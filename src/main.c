@@ -6,7 +6,7 @@
 // TODO(#2): Write SDL display functions code
 // TODO(#3): Write gameplay code
 // TODO(#4): Write game bot code
-// TODO: Write code for hosting games over network
+// TODO(#5): Write code for hosting games over network
 
 int main(void)
 {
