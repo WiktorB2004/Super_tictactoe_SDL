@@ -2,7 +2,7 @@
 #include "../include/engine.h"
 #include "../include/utils/engine_utils.h"
 
-// TODO: Write game engine code
+// TODO(#1): Write game engine code
 // TODO: Write SDL display functions code
 // TODO: Write gameplay code
 // TODO: Write game bot code
