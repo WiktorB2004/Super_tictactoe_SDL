@@ -4,7 +4,7 @@
 
 // TODO(#1): Write game engine code
 // TODO(#2): Write SDL display functions code
-// TODO: Write gameplay code
+// TODO(#3): Write gameplay code
 // TODO: Write game bot code
 // TODO: Write code for hosting games over network
 
