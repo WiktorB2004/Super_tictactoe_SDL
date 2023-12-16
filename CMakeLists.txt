@@ -4,8 +4,10 @@ project(Super_Tictactoe)
 # Set C standard to C11
 set(CMAKE_C_STANDARD 11)
 
-# Directories
+# SDL configuration
+find_package(SDL2 REQUIRED)
 
+# Directories
 set(SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(UTILS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/utils)
@@ -15,9 +17,20 @@ set(OBJ_DIR ${CMAKE_CURRENT_SOURCE_DIR}/obj)
 
 # Source files
 set(SOURCES
+    ${UTILS_DIR}/bot_utils.c
+    ${UTILS_DIR}/engine_utils.c
+    ${UTILS_DIR}/gameplay_utils.c
+    ${UTILS_DIR}/sdl_utils.c
+    ${SOURCE_DIR}/engine/engine.c
+    ${SOURCE_DIR}/engine/sdl_display.c
+    ${SOURCE_DIR}/game_bot/bot.c
+    ${SOURCE_DIR}/game_bot/generate_move.c
+    ${SOURCE_DIR}/gameplay/gameplay.c
     ${SOURCE_DIR}/main.c
-    # SOURCES..
 )
+
+# Include SDL headers
+include_directories(${SDL2_INCLUDE_DIRS})
 
 # Header files
 include_directories(${INCLUDE_DIR})
