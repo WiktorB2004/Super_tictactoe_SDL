@@ -47,7 +47,13 @@ set(BOT_TEST_SOURCES
     ${SOURCE_DIR}/game_bot/generate_move.c
     ${TEST_DIR}/bot_test/src/sample_test.c
     ${TEST_DIR}/bot_test/bot_test.c
+)
 
+set(HOST_TEST_SOURCES
+    ${UTILS_DIR}/host_utils.c
+    ${SOURCE_DIR}/game_host/game_hosting.c
+    ${TEST_DIR}/host_test/src/sample_test.c
+    ${TEST_DIR}/host_test/host_test.c
 )
 
 set(UTILS_TEST_SOURCES
@@ -66,12 +72,14 @@ include_directories(${LIB_DIR}/Unity)
 add_executable(test_engine ${ENGINE_TEST_SOURCES})
 add_executable(test_gameplay  ${GAMEPLAY_TEST_SOURCES})
 add_executable(test_bot  ${BOT_TEST_SOURCES})
+add_executable(test_host  ${HOST_TEST_SOURCES})
 add_executable(test_utils ${UTILS_TEST_SOURCES})
 
 # Link Unity library with test executable
 target_link_libraries(test_engine PRIVATE unity)
 target_link_libraries(test_gameplay PRIVATE unity)
 target_link_libraries(test_bot PRIVATE unity)
+target_link_libraries(test_host PRIVATE unity)
 target_link_libraries(test_utils PRIVATE unity)
 
 # Optionally, set output directories for test files
@@ -90,6 +98,11 @@ set_target_properties(test_bot PROPERTIES
     ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/obj/bot
     LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/obj/bot
 )
+set_target_properties(test_host PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/bot
+    ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/obj/bot
+    LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/obj/bot
+)
 set_target_properties(test_utils PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/utils
     ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/obj/utils
@@ -101,4 +114,5 @@ enable_testing()
 add_test(NAME engine COMMAND test_engine)
 add_test(NAME gameplay COMMAND test_gameplay)
 add_test(NAME bot COMMAND test_bot)
+add_test(NAME host COMMAND test_host)
 add_test(NAME utils COMMAND test_utils)

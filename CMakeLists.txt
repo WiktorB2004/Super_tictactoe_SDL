@@ -26,6 +26,7 @@ set(SOURCES
     ${SOURCE_DIR}/game_bot/bot.c
     ${SOURCE_DIR}/game_bot/generate_move.c
     ${SOURCE_DIR}/gameplay/gameplay.c
+    ${SOURCE_DIR}/game_host/game_hosting.c
     ${SOURCE_DIR}/main.c
 )
 
