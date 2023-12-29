@@ -9,6 +9,11 @@ typedef struct zmiana{
     char gracz;
 } zmiana;
 
+typedef struct pair{
+    int x;
+    int y;
+} pair;
+
 typedef struct vector_node{
     int size;
     int cap;
@@ -24,18 +29,34 @@ typedef struct node{
     int wins;
 } node;
 
-vector_node *create_vector_node();
+//dane
 node *create_node();
+vector_node *create_vector_node();
 void destruct_node(node *NODE);
 void destruct_vector_node(vector_node *vector);
 void push_back(vector_node *vector, node *new_node);
-double uct(node *wierzcholek);
-void zmiana_gracza(char *gracz);
-int znajdz_czesc(zmiana ruch);
 
-//TODO
-node *select(char **plansza, int czesc, node *v, char gracz);
-void dodaj_syna(node *v, char **plansza, int czesc, char gracz);
-void symulate(node *v, char **plansza, int czesc);
-void unselect(node *v, char **plansza, char gracz);
-zmiana znajdz_opt(node *v);
+//funkcje do sprawdzania wyniku potyczek na planszy
+char sprawdz_wynik(char **sub_plansza);
+void uzupelnij_nad_zwyciestwa(char **plansza, char **nad_zwyciestwa);
+void update_nad_zwyciestwa(char **plnasza, char **nad_zwyciestwa, int czesc);
+
+//funkcje do selection
+double uct(node *wierzcholek);
+int pelny(char **plansza, int czesc, node *v);
+node *select(char **plansza, int czesc, node *v);
+
+//funkcje do expansion
+void dodaj_syna(node *v, char **plansza, int czesc, char gracz); //TODO
+
+//funkcje do simulation
+void symulate(node *v, char **plansza, int czesc); //TODO
+
+//funkcje do backpropagation
+void unselect(node *v, char **plansza, char gracz); //TODO
+
+// pomieszane funkcje 
+char zmiana_gracza(char gracz);
+int znajdz_czesc(zmiana ruch);
+pair poczatek_czesci(int czesc);
+zmiana znajdz_opt(node *v); //TODO

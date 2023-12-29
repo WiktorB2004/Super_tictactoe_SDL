@@ -55,10 +55,28 @@ int bot_9x9_hard(char **plansza, char gracz, int czesc);
 
 int bot_9x9_impopable(char **plansza, char gracz, int czesc){
     node *v = create_node();
+    v -> ruch.gracz = zmiana_gracza(gracz);
 
+    //dla 9 planszy sprawdza kto wygrywa w poszczególnych planszach 
+    char **nad_zwyciestwa = calloc(3, sizeof(char *));
+    if(nad_zwyciestwa == NULL){
+        puts("błąd alokacji pamięci");
+        exit(EXIT_FAILURE);
+    }
+
+    for(int i = 0; i < 3; i++){
+        nad_zwyciestwa[i] = calloc(3, sizeof(char));
+        if(nad_zwyciestwa[i] == NULL){
+            puts("błąd alokacji pamięci");
+            exit(EXIT_FAILURE);
+        }
+    }
+    uzupelnij_nad_zwyciestwa(plansza, nad_zwyciestwa);
+
+    //początek tworzenia mcts
     for(int i = 0; i < 500; i++){
         //wybieram liścia
-        node *selected = select(plansza, czesc, v, gracz);
+        node *selected = select(plansza, czesc, v);
 
         //wybranemu wierzchołkowi dodaje syna
         dodaj_syna(selected, plansza, czesc, gracz);
