@@ -24,6 +24,7 @@
         -zwraca numer części planszy (patrz linijka 11) w 
             której trzeba wykonać następny ruch, 0 jeśli gra jest 3x3
         -dodaje do planszy X lub O
+        -jeśli bot nie może wykonać ruchu to zrwóci -1 !!!!!!!
 
 */
 #include "../../include/game_bot.h"
@@ -56,6 +57,7 @@ int bot_9x9_hard(char **plansza, char gracz, int czesc);
 int bot_9x9_impopable(char **plansza, char gracz, int czesc){
     node *v = create_node();
     v -> ruch.gracz = zmiana_gracza(gracz);
+    v -> ruch.czesc = czesc; //czesc mówi w której części ma się odbyć następny ruch 
 
     //dla 9 planszy sprawdza kto wygrywa w poszczególnych planszach 
     char **nad_zwyciestwa = calloc(3, sizeof(char *));
@@ -76,20 +78,34 @@ int bot_9x9_impopable(char **plansza, char gracz, int czesc){
     //początek tworzenia mcts
     for(int i = 0; i < 500; i++){
         //wybieram liścia
-        node *selected = select(plansza, czesc, v);
+        node *selected = select(plansza, v, nad_zwyciestwa);
 
-        //wybranemu wierzchołkowi dodaje syna
-        dodaj_syna(selected, plansza, czesc, gracz);
+        //wybranemu wierzchołkowi dodaje syna i ustawia plansze pod niego 
+        node *new_selected;
+        if(dodaj_syna(selected, plansza, nad_zwyciestwa)){
+            //nie udało sie dodać syna, więc będe robił symulacje dla selected
+            new_selected = selected;
+        }
+        else{
+            //udało sie dodać syna, więc robie symulacje dla nowo dodanego syna, który jest 
+            //oczywiście na końcu vectora
+            new_selected = selected -> vector_node -> sons[selected -> vector_node -> size];
+        }
 
-        //przeprowadzam symulacje dla syna
-        symulate(selected, plansza, czesc);
+        //przeprowadzam symulacje dla syna/ojca i mówie czy 
+        //wygrał/zremisował/przegrał gracz (ten z argumentu funcji)
+        int wynik = symulate(new_selected, plansza, nad_zwyciestwa, gracz);
 
         //updatuje informacje dla wierzchołków od syna do korzenia (v)
-        unselect(selected, plansza, gracz);
+        unselect(selected, plansza, wynik, nad_zwyciestwa);
     }
 
     //wybierz najlepszy ruch
     zmiana ruch = znajdz_opt(v);
+    if(ruch.czesc == -1){
+        destruct_node(v); //nie mogę wykonać jakiegokolwiek ruchu
+        return -1;
+    }
 
     //zmianiam plansze
     plansza[ruch.x][ruch.y] = gracz;

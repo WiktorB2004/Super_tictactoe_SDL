@@ -24,6 +24,7 @@
         -zwraca numer części planszy (patrz linijka 11) w 
             której trzeba wykonać następny ruch, 0 jeśli grajest 3x3
         -dodaje do planszy X lub O
+        -jeśli bot nie może wykonać ruchu to zrwóci -1 !!!!!!!
 
 */
 

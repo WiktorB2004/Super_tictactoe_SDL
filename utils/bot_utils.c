@@ -29,6 +29,7 @@ node *create_node(){
 
     wierzcholek -> ruch.x = -1;
     wierzcholek -> ruch.y = -1;
+    wierzcholek -> ruch.czesc = -1;
     wierzcholek -> ruch.gracz = '\0';
 
     wierzcholek -> parent = NULL;
@@ -56,7 +57,7 @@ void destruct_vector_node(vector_node *vector){
 
 void push_back(vector_node *vector, node *new_node){
     if(vector -> size + 1 == vector -> cap){
-        void **sons2 = realloc(vector -> sons, vector -> cap * 2.2 * sizeof(node*));
+        node **sons2 = realloc(vector -> sons, vector -> cap * 2.2 * sizeof(node*));
         if(sons2 == NULL){
             puts("błąd alokacji pamięci");
             exit(EXIT_FAILURE);
@@ -189,21 +190,50 @@ int pelny(char **plansza, int czesc, node *v){
     return sajz < moge;
 }
 
-node *select(char **plansza, int czesc, node *v){
+node *select(char **plansza, node *v, char **nad_zwyciestwa){
     //vector jest pełny można tylko wybrać syna
-    if(pelny(plansza, czesc, v)){
-        int best_score = 0, idx_best = 0;
-        for(int i = 0; i < 9; i++){
+    if(pelny(plansza, v -> ruch.czesc, v)){
+        int best_score = 0, idx_best = -1;
+        for(int i = 0; i < v -> vector_node -> size; i++){
             if(uct(v -> vector_node -> sons[i]) > best_score){
                 best_score = uct(v -> vector_node -> sons[i]);
                 idx_best = i;
             }
         }
+
+        if(idx_best == -1) return v;
+        //!nie wybrano syna, ponieważ go sie nie da wybrać, więc nie ide w dół,
+        //!pozostaje w nodzie, ale potem będe dla niego próbował dobrać syna 
+        //!co się znów nie uda 
         
         node *son = v -> vector_node -> sons[idx_best];
         plansza[son -> ruch.x][son -> ruch.y] = son -> ruch.gracz;
 
-        return select(plansza, znajdz_czesc(son -> ruch), son);
+        pair p = poczatek_czesci(v -> ruch.czesc);
+        char **sub_plansza = malloc(3 * sizeof(char *));
+        if(sub_plansza == NULL){
+            puts("błąd alokacji pamięci");
+            exit(EXIT_FAILURE);
+        }
+        for(int i = 0; i < 3; i++){
+            sub_plansza[i] = malloc(3 * sizeof(char));
+            if(sub_plansza[i] == NULL){
+                puts("błąd alokacji pamięci");
+                exit(EXIT_FAILURE);
+            }
+        }
+
+        for(int i = 0; i < 3; i++)
+            for(int j = 0; j < 3; j++)
+                sub_plansza[i][j] = plansza[p.x + i][p.y + j];
+
+        nad_zwyciestwa[v -> ruch.czesc / 3][v -> ruch.czesc % 3] = sprawdz_wynik(sub_plansza);
+        
+        for(int i = 0; i < 3; i++)
+            free(sub_plansza[i]);
+        free(sub_plansza);
+
+        return select(plansza, son, nad_zwyciestwa);
     }
 
     //vector nie jest pełny można dodawać mu syna
@@ -213,5 +243,196 @@ node *select(char **plansza, int czesc, node *v){
 
     //żeby kompilator nie krzyczał że coś ni zwracam, to i tak nigdy się nie wykona
     return NULL;
+}
+
+// 0 jeśli się udało dodać syna, 1 jeśli się nie udało
+int dodaj_syna(node *v, char **plansza, char **nad_zwyciestwa){
+    pair p = poczatek_czesci(v -> ruch.czesc);
+    int nowa_czesc = -1;
+    int x = -1, y = -1;
+
+    for(int i = 0; i < 3; i++)
+        for(int j = 0; j < 3; j++)
+            if(plansza[p.x + i][p.y + j] == ' '){
+                x = p.x + 1, y = p.y + j;
+                nowa_czesc = i * 3 + j;
+            }
+    
+    if(nowa_czesc == -1) return 1;
+
+    //wybrano już x i y, teraz czas dodać nowego syna
+    node *new_node = create_node();
+    new_node -> parent = v;
+
+    zmiana ruch = {x, y, nowa_czesc, zmiana_gracza(v -> ruch.gracz)};
+    new_node -> ruch = ruch;
+    
+    push_back(v -> vector_node, new_node);
+
+    //zmiana planszy pod new_node
+    plansza[new_node -> ruch.x][new_node -> ruch.y] = new_node -> ruch.gracz;
+    pair p = poczatek_czesci(v -> ruch.czesc);
+    char **sub_plansza = malloc(3 * sizeof(char *));
+    if(sub_plansza == NULL){
+        puts("błąd alokacji pamięci");
+        exit(EXIT_FAILURE);
+    }
+    for(int i = 0; i < 3; i++){
+        sub_plansza[i] = malloc(3 * sizeof(char));
+        if(sub_plansza[i] == NULL){
+            puts("błąd alokacji pamięci");
+            exit(EXIT_FAILURE);
+        }
+    }
+
+    for(int i = 0; i < 3; i++)
+        for(int j = 0; j < 3; j++)
+            sub_plansza[i][j] = plansza[p.x + i][p.y + j];
+
+    nad_zwyciestwa[v -> ruch.czesc / 3][v -> ruch.czesc % 3] = sprawdz_wynik(sub_plansza);
+        
+    for(int i = 0; i < 3; i++)
+        free(sub_plansza[i]);
+    free(sub_plansza);
+
+    return 0;
+}
+
+//nikt nie zwyciężył, a wszystki pola są zapełnione
+int remis(char **nad_zwyciestwa){
+    if(sprawdz_wynik(nad_zwyciestwa) != ' ') return 0;
+    for(int i = 0; i < 3; i++)
+        for(int j = 0; j < 3; j++)
+            if(nad_zwyciestwa[i][j] == ' ') return 0;
+    
+    return 1;
+}
+
+// 0: gracz przegrał, 1: gracz zremisował, 2: gracz wygrał
+int symulate(node *v, char **plansza, char **nad_zywciestwa, char gracz){
+    char matrix[9][9]; //kopia planszy
+    for(int i = 0; i < 9; i++)
+        for(int j = 0; j < 9; j++)
+            matrix[i][j] = plansza[i][j];
+    
+    char **wyniki_pol = malloc(3 * sizeof(char *));
+    if(wyniki_pol == NULL){
+        pust("błąd alokacji pamięcji");
+        exit(EXIT_FAILURE);
+    }
+    for(int i = 0; i < 3; i++){
+        wyniki_pol[i] = malloc(3 * sizeof(char));
+        if(wyniki_pol[i] == NULL){
+            puts("błąd alokacji pamięcji");
+            exit(EXIT_FAILURE);
+        }
+    }
+
+    for(int i = 0; i < 3; i++)
+        for(int j = 0; j < 3; j++)
+            wyniki_pol[i][j] = nad_zywciestwa[i][j];
+
+    zmiana ruch = v -> ruch;
+    while(sprawdz_wynik(wyniki_pol) == ' ' && !remis(wyniki_pol)){
+        pair p = poczatek_czesci(ruch.czesc);
+        int ile_opcji = 0;
+
+        for(int i = 0; i < 3; i++)
+            for(int j = 0; j < 3; j++)
+                if(matrix[p.x + i][p.y + j] == ' ') ile_opcji++;
+        
+        if(ile_opcji == 0){
+            //nie mam gdzie postawić znaku więc definiuje taką sytuacje jako remis
+            for(int i = 0; i < 3; i++) free(wyniki_pol[i]);
+            free(wyniki_pol);
+
+            return 1;
+        }
+
+        int opcja = rand() % ile_opcji;
+        for(int i = 0, idx = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                if(matrix[p.x + i][p.y + j] == ' ' && opcja == idx){
+                    ruch.x = p.x + i;
+                    ruch.y = p.y + j;
+                    ruch.czesc = i * 3 + j;
+                    ruch.gracz = zmiana_gracza(ruch.gracz);
+                }
+                else if(matrix[i][j] == ' ') idx++;
+            }
+        }
+
+        matrix[ruch.x][ruch.y] = ruch.gracz;
+        char **sub_plansza = malloc(3 * sizeof(char *));
+        if(sub_plansza == NULL){
+            puts("błąd alokacji pamięcji");
+            exit(EXIT_FAILURE);
+        }
+
+        for(int i = 0; i < 3; i++){
+            sub_plansza[i] = malloc(3 * sizeof(char));
+            if(sub_plansza[i] == NULL){
+                puts("błąd alokacji pamięcji");
+                exit(EXIT_FAILURE);
+            }
+        }
+
+        for(int i = 0; i < 3; i++)
+            for(int j = 0; j < 3; j++)
+                sub_plansza[i][j] = matrix[p.x + i][p.y + j];
+        
+        int czesc = znajdz_czesc(ruch);
+        wyniki_pol[czesc / 3][czesc % 3] = sprawdz_wynik(sub_plansza);
+
+        for(int i = 0; i < 3; i++) free(sub_plansza[i]);
+        free(sub_plansza);
+    }
+
+
+    if(remis(wyniki_pol)){
+        for(int i = 0; i < 3; i++) free(wyniki_pol[i]);
+        free(wyniki_pol);
+        return 1;
+    }
+
+    int wynik = 2 * (sprawdz_wynik(wyniki_pol) == gracz);
+    for(int i = 0; i < 3; i++) free(wyniki_pol[i]);
+    free(wyniki_pol);
+
+    return wynik;
+}
+
+void unselect(node *v, char **plansza, int wynik, char **nad_zwyciestwa){
+    if(v -> parent == NULL){
+        v -> visit++;
+        v -> wins += wynik;
+        return;
+    }
+
+    plansza[v -> ruch.x][v -> ruch.y] = ' ';
+    update_nad_zwyciestwa(plansza, nad_zwyciestwa, znajdz_czesc(v -> ruch));
+
+    v -> visit++;
+    v -> wins += wynik;
+
+    unselect(v -> parent, plansza, wynik, nad_zwyciestwa);
+}
+
+zmiana znajdz_opt(node *v){
+    zmiana ruch;
+    if(v -> vector_node -> size == 0){
+        ruch.czesc = -1;
+        return ruch;
+    }
+
+    int best_score = 0, best_idx = 0;
+    for(int i = 0; i < v -> vector_node -> size; i++){
+        if(uct(v -> vector_node -> sons[i]) > best_score){
+            best_score = uct(v -> vector_node -> sons[i]);
+            best_idx = i;
+        }
+    }
+
+    return v -> vector_node -> sons[best_idx] -> ruch;
 }
 

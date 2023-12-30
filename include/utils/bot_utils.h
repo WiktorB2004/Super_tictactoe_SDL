@@ -2,10 +2,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+#include <time.h>
 
 typedef struct zmiana{
     int x;
     int y;
+    int czesc;
     char gracz;
 } zmiana;
 
@@ -44,19 +46,20 @@ void update_nad_zwyciestwa(char **plnasza, char **nad_zwyciestwa, int czesc);
 //funkcje do selection
 double uct(node *wierzcholek);
 int pelny(char **plansza, int czesc, node *v);
-node *select(char **plansza, int czesc, node *v);
+node *select(char **plansza, node *v, char **nad_zwyciestwa);
+int remis(char **nad_zwyciestwa);
 
 //funkcje do expansion
-void dodaj_syna(node *v, char **plansza, int czesc, char gracz); //TODO
+int dodaj_syna(node *v, char **plansza, char **nad_zwyciestwa);
 
 //funkcje do simulation
-void symulate(node *v, char **plansza, int czesc); //TODO
+int symulate(node *v, char **plansza, char **nad_zwyciestwa, char gracz);
 
 //funkcje do backpropagation
-void unselect(node *v, char **plansza, char gracz); //TODO
+void unselect(node *v, char **plansza, int wynik, char **nad_zwyciestwa);
 
 // pomieszane funkcje 
 char zmiana_gracza(char gracz);
 int znajdz_czesc(zmiana ruch);
 pair poczatek_czesci(int czesc);
-zmiana znajdz_opt(node *v); //TODO
+zmiana znajdz_opt(node *v); 

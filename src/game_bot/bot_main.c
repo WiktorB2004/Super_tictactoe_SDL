@@ -12,4 +12,7 @@
 
 int main(){
     //TODO dokończyć implementacje sparawdzania bota
+    //TODO dodać srand(time(NULL)); do prawdziwego maina
+    
+    srand(time(NULL));
 }
