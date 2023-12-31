@@ -41,3 +41,5 @@ int bot_3x3_impopable(char **plansza, char gracz, int czesc);
 int bot_9x9_normal(char **plansza, char gracz, int czesc);
 int bot_9x9_hard(char **plansza, char gracz, int czesc);
 int bot_9x9_impopable(char **plansza, char gracz, int czesc);
+
+int bot_9x9_random(char **plansza, char gracz, int czesc);

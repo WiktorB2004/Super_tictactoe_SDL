@@ -27,8 +27,12 @@
         -jeśli bot nie może wykonać ruchu to zrwóci -1 !!!!!!!
 
 */
-#include "../../include/game_bot.h"
+#include "../../include/game_bot.h" 
 #include "../../include/utils/bot_utils.h"
+
+#define iteracje_normal 500
+#define iteracje_hard 5000
+#define iteracje_impopable 250000
 
 int bot(char **plansza, char gracz, int czesc, int tryb){
     int (*boty[])(char **, char, int) = {
@@ -50,35 +54,19 @@ int bot(char **plansza, char gracz, int czesc, int tryb){
     return ans;
 }
 
-//TODO zmienić liczbę iteracji dla reszty botów (względem bota impopable)
-int bot_9x9_normal(char **plansza, char gracz, int czesc);
-int bot_9x9_hard(char **plansza, char gracz, int czesc);
-
-int bot_9x9_impopable(char **plansza, char gracz, int czesc){
+int bot_9x9_normal(char **plansza, char gracz, int czesc){
     node *v = create_node();
     v -> ruch.gracz = zmiana_gracza(gracz);
     v -> ruch.czesc = czesc; //czesc mówi w której części ma się odbyć następny ruch 
 
     //dla 9 planszy sprawdza kto wygrywa w poszczególnych planszach 
-    char **nad_zwyciestwa = calloc(3, sizeof(char *));
-    if(nad_zwyciestwa == NULL){
-        puts("błąd alokacji pamięci");
-        exit(EXIT_FAILURE);
-    }
-
-    for(int i = 0; i < 3; i++){
-        nad_zwyciestwa[i] = calloc(3, sizeof(char));
-        if(nad_zwyciestwa[i] == NULL){
-            puts("błąd alokacji pamięci");
-            exit(EXIT_FAILURE);
-        }
-    }
+    char **nad_zwyciestwa = allocate(3);
     uzupelnij_nad_zwyciestwa(plansza, nad_zwyciestwa);
 
     //początek tworzenia mcts
-    for(int i = 0; i < 500; i++){
+    for(int i = 0; i < iteracje_normal; i++){
         //wybieram liścia
-        node *selected = select(plansza, v, nad_zwyciestwa);
+        node *selected = Select(plansza, v, nad_zwyciestwa);
 
         //wybranemu wierzchołkowi dodaje syna i ustawia plansze pod niego 
         node *new_selected;
@@ -89,7 +77,7 @@ int bot_9x9_impopable(char **plansza, char gracz, int czesc){
         else{
             //udało sie dodać syna, więc robie symulacje dla nowo dodanego syna, który jest 
             //oczywiście na końcu vectora
-            new_selected = selected -> vector_node -> sons[selected -> vector_node -> size];
+            new_selected = selected -> vec -> sons[selected -> vec -> size -1];
         }
 
         //przeprowadzam symulacje dla syna/ojca i mówie czy 
@@ -97,7 +85,7 @@ int bot_9x9_impopable(char **plansza, char gracz, int czesc){
         int wynik = symulate(new_selected, plansza, nad_zwyciestwa, gracz);
 
         //updatuje informacje dla wierzchołków od syna do korzenia (v)
-        unselect(selected, plansza, wynik, nad_zwyciestwa);
+        unselect(new_selected, plansza, wynik, nad_zwyciestwa);
     }
 
     //wybierz najlepszy ruch
@@ -113,5 +101,145 @@ int bot_9x9_impopable(char **plansza, char gracz, int czesc){
     //pobieram dodatkową pamięć ram z chmury
     destruct_node(v);
     
-    return znajdz_czesc(ruch);
+    return ruch.czesc;
+}
+
+int bot_9x9_hard(char **plansza, char gracz, int czesc){
+    node *v = create_node();
+    v -> ruch.gracz = zmiana_gracza(gracz);
+    v -> ruch.czesc = czesc; //czesc mówi w której części ma się odbyć następny ruch 
+
+    //dla 9 planszy sprawdza kto wygrywa w poszczególnych planszach 
+    char **nad_zwyciestwa = allocate(3);
+    uzupelnij_nad_zwyciestwa(plansza, nad_zwyciestwa);
+
+    //początek tworzenia mcts
+    for(int i = 0; i < iteracje_hard; i++){
+        //wybieram liścia
+        node *selected = Select(plansza, v, nad_zwyciestwa);
+
+        //wybranemu wierzchołkowi dodaje syna i ustawia plansze pod niego 
+        node *new_selected;
+        if(dodaj_syna(selected, plansza, nad_zwyciestwa)){
+            //nie udało sie dodać syna, więc będe robił symulacje dla selected
+            new_selected = selected;
+        }
+        else{
+            //udało sie dodać syna, więc robie symulacje dla nowo dodanego syna, który jest 
+            //oczywiście na końcu vectora
+            new_selected = selected -> vec -> sons[selected -> vec -> size -1];
+        }
+
+        //przeprowadzam symulacje dla syna/ojca i mówie czy 
+        //wygrał/zremisował/przegrał gracz (ten z argumentu funcji)
+        int wynik = symulate(new_selected, plansza, nad_zwyciestwa, gracz);
+
+        //updatuje informacje dla wierzchołków od syna do korzenia (v)
+        unselect(new_selected, plansza, wynik, nad_zwyciestwa);
+    }
+
+    //wybierz najlepszy ruch
+    zmiana ruch = znajdz_opt(v);
+    if(ruch.czesc == -1){
+        destruct_node(v); //nie mogę wykonać jakiegokolwiek ruchu
+        return -1;
+    }
+
+    //zmianiam plansze
+    plansza[ruch.x][ruch.y] = gracz;
+
+    //pobieram dodatkową pamięć ram z chmury
+    destruct_node(v);
+    
+    return ruch.czesc;
+}
+
+int bot_9x9_impopable(char **plansza, char gracz, int czesc){
+    node *v = create_node();
+    v -> ruch.gracz = zmiana_gracza(gracz);
+    v -> ruch.czesc = czesc; //czesc mówi w której części ma się odbyć następny ruch 
+
+    //dla 9 planszy sprawdza kto wygrywa w poszczególnych planszach 
+    char **nad_zwyciestwa = allocate(3);
+    uzupelnij_nad_zwyciestwa(plansza, nad_zwyciestwa);
+
+    //początek tworzenia mcts
+    for(int i = 0; i < iteracje_impopable; i++){
+        //wybieram liścia
+        node *selected = Select(plansza, v, nad_zwyciestwa);
+
+        //wybranemu wierzchołkowi dodaje syna i ustawia plansze pod niego 
+        node *new_selected;
+        if(dodaj_syna(selected, plansza, nad_zwyciestwa)){
+            //nie udało sie dodać syna, więc będe robił symulacje dla selected
+            new_selected = selected;
+        }
+        else{
+            //udało sie dodać syna, więc robie symulacje dla nowo dodanego syna, który jest 
+            //oczywiście na końcu vectora
+            new_selected = selected -> vec -> sons[selected -> vec -> size -1];
+        }
+
+        //przeprowadzam symulacje dla syna/ojca i mówie czy 
+        //wygrał/zremisował/przegrał gracz (ten z argumentu funcji)
+        int wynik = symulate(new_selected, plansza, nad_zwyciestwa, gracz);
+
+        //updatuje informacje dla wierzchołków od syna do korzenia (v)
+        unselect(new_selected, plansza, wynik, nad_zwyciestwa);
+    }
+
+    //wybierz najlepszy ruch
+    zmiana ruch = znajdz_opt(v);
+    if(ruch.czesc == -1){
+        destruct_node(v); //nie mogę wykonać jakiegokolwiek ruchu
+        return -1;
+    }
+
+    //zmianiam plansze
+    plansza[ruch.x][ruch.y] = gracz;
+
+    //pobieram dodatkową pamięć ram z chmury
+    destruct_node(v);
+    
+    return ruch.czesc;
+}
+
+int bot_9x9_random(char **plansza, char gracz, int czesc){
+    pair p = poczatek_czesci(czesc);
+
+    int ile_opcji = 0;
+    for(int i = 0; i < 3; i++)
+        for(int j = 0; j < 3; j++)
+            if(plansza[p.x + i][p.y + j] == ' ') ile_opcji++;
+    
+    if(ile_opcji == 0) return -1;
+    int wybieram = rand() % ile_opcji;
+    zmiana ruch;
+
+    for(int i = 0, idx = 0; i < 3; i++){
+        for(int j = 0; j < 3; j++){
+            if(plansza[p.x + i][p.y + j] == ' ' && wybieram == idx){
+                ruch.x = p.x + i;
+                ruch.y = p.y + j;
+                ruch.czesc = i * 3 + j;
+                idx++;
+            }
+            else if(plansza[p.x + i][p.y + j] == ' ') idx++;
+        }
+    }
+
+    plansza[ruch.x][ruch.y] = gracz;
+    return ruch.czesc;
+}
+
+
+//bez tego nie chce się kompilować
+int bot_3x3_normal(char **plansza, char gracz, int czesc){
+    return 0;
+}
+int bot_3x3_hard(char **plansza, char gracz, int czesc){
+    return 0;
+}
+int bot_3x3_impopable(char **plansza, char gracz, int czesc){
+    return 0;
 }
