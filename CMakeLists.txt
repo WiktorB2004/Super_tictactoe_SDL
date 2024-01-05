@@ -42,6 +42,9 @@ add_executable(executable ${SOURCES})
 # Compile options
 add_compile_options(-lm)
 
+# Linking the executable with the math library 
+target_link_libraries(executable PRIVATE m)
+
 # Set output directories
 set_target_properties(executable PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${BIN_DIR}
