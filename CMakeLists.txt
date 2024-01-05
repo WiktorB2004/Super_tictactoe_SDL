@@ -39,6 +39,9 @@ include_directories(${INCLUDE_DIR})
 # Executable
 add_executable(executable ${SOURCES})
 
+# Compile options
+add_compile_options(-lm)
+
 # Set output directories
 set_target_properties(executable PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${BIN_DIR}
