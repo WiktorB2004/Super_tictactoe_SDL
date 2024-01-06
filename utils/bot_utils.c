@@ -2,8 +2,10 @@
     tutaj implementuje wszystkie funkcje pomocnicze do bota
 */
 
+#include <math.h>
 #include "../include/game_bot.h"
 #include "../include/utils/bot_utils.h"
+
 
 #define inf 1e9
 
