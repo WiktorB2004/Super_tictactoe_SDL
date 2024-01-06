@@ -24,7 +24,7 @@
 */
 var NAVTREE =
 [
-  [ "WLang Interpreter", "index.html", [
+  [ "Super Tictactoe", "index.html", [
     [ "Super Tictactoe game created using SDL", "index.html", null ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
