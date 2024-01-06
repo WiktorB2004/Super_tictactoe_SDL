@@ -5,7 +5,7 @@ project(Super_Tictactoe)
 find_package(SDL2 REQUIRED)
 
 # Add compilation flags
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -lm")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 # Directories
 set(SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
@@ -49,4 +49,4 @@ set_target_properties(executable PROPERTIES
 add_subdirectory(${TEST_DIR})
 
 # Link math.h
-target_link_libraries(executable PUBLIC m)
+target_link_libraries(executable PRIVATE m)
