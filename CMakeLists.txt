@@ -48,4 +48,5 @@ set_target_properties(executable PROPERTIES
 
 add_subdirectory(${TEST_DIR})
 
-target_link_libraries(executable PRIVATE m)
+# Link math.h
+target_link_libraries(executable PUBLIC m)
