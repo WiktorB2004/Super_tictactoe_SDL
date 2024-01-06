@@ -12,7 +12,7 @@ typedef enum
     X_WON,       /**< X won - 1 */
     O_WON,       /**< O won  - 2 */
     DRAW,        /**< Draw  - 3 */
-} BoardStatus;
+} GameStatus;
 
 /*!
  * \brief Represents a single tictactoe board.
@@ -22,10 +22,36 @@ typedef enum
  */
 typedef struct
 {
-    BoardStatus status;
-    int moves_count;
-    char value[3][3];
+    GameStatus status; /**< Status of the game on the board */
+    int moves_count;   /**< Counter of moves played on the board */
+    char value[3][3];  /**< Matrix representing the board */
 } Board;
+
+/*!
+ * \brief Represents any board of the size nxn.
+ *
+ * This structure defines tictactoe board. It keeps nxn game status and boards,
+ * allowing to play on the boards of any size.
+ */
+typedef struct
+{
+    Board **board;     /**< Pointer to the pointer of boards - representation of nxn board */
+    int board_size;    /**< boards are board_size x board_size */
+    int moves_count;   /**< Counter of the moves played in the game */
+    GameStatus status; /**< Status of the game on the board */
+} UltimateGame;
+
+/*!
+ * \brief This function initializes game of specified size (nxn).
+ *
+ * This function initializes game of specified size by allocating needed memory
+ * and other struct values.
+ *
+ *
+ * @param game Pointer to UltimateGame to initialize.
+ * @param size The size of the game to initialize
+ */
+void initialize_UltimateGame(UltimateGame *game, int size);
 
 /*!
  * \brief This function places the move in specified row/column.
