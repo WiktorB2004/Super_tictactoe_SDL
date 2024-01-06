@@ -78,7 +78,10 @@ add_executable(test_utils ${UTILS_TEST_SOURCES})
 # Link Unity library with test executable
 target_link_libraries(test_engine PRIVATE unity)
 target_link_libraries(test_gameplay PRIVATE unity)
+
 target_link_libraries(test_bot PRIVATE unity)
+target_link_libraries(test_bot PRIVATE m)
+
 target_link_libraries(test_host PRIVATE unity)
 target_link_libraries(test_utils PRIVATE unity)
 
