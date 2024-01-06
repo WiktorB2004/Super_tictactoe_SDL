@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.27)
 project(Super_Tictactoe)
 
-# Set C standard to C11
-set(CMAKE_C_STANDARD 11)
-
 # SDL configuration
 find_package(SDL2 REQUIRED)
+
+# Add compilation flags
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 ")
 
 # Directories
 set(SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
@@ -39,12 +39,6 @@ include_directories(${INCLUDE_DIR})
 # Executable
 add_executable(executable ${SOURCES})
 
-# Compile options
-add_compile_options(-lm)
-
-# Linking the executable with the math library 
-target_link_libraries(executable PRIVATE m)
-
 # Set output directories
 set_target_properties(executable PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${BIN_DIR}
@@ -53,3 +47,6 @@ set_target_properties(executable PROPERTIES
 )
 
 add_subdirectory(${TEST_DIR})
+
+# Link math.h
+target_link_libraries(executable PRIVATE m)
