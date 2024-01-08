@@ -39,6 +39,26 @@ void initialize_Game(Game *game, int size)
     game->status = NOT_STARTED;
 }
 
+void free_Game(Game *game)
+{
+    if (game == NULL)
+    {
+        return;
+    }
+
+    if (game->board != NULL)
+    {
+        for (int i = 0; i < (game->board_size * game->board_size); i++)
+        {
+            if (game->board[i] != NULL)
+            {
+                free(game->board[i]);
+            }
+        }
+        free(game->board);
+    }
+}
+
 void modify_board(Board *board, int row, int column, Player player)
 {
     switch (board->status)
@@ -58,8 +78,6 @@ void modify_board(Board *board, int row, int column, Player player)
     case O_WON:
     case DRAW:
         fprintf(stderr, "Invalid action: The game has already ended.\n");
-        break;
-        // FIXME: Incorrect action handler - print message
         break;
     default:
         fprintf(stderr, "Incorrect board status provided - cant modify the board.\n");

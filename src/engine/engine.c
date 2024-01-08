@@ -9,4 +9,5 @@ void engine()
     initialize_Game(&game, 1);
     game.status = IN_PROGRESS;
     gameplay(&game);
+    free_Game(&game);
 }
