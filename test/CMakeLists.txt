@@ -39,7 +39,7 @@ set(ENGINE_TEST_SOURCES
 set(GAMEPLAY_TEST_SOURCES
     ${UTILS_DIR}/gameplay_utils.c
     ${SOURCE_DIR}/gameplay/gameplay.c
-    ${TEST_DIR}/gameplay_test/src/sample_test.c
+    ${TEST_DIR}/gameplay_test/src/test_gameplay.c
     ${TEST_DIR}/gameplay_test/gameplay_test.c
 )
 

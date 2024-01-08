@@ -4,8 +4,6 @@
 #include "../../include/gameplay.h"
 #include "../../include/utils/gameplay_utils.h"
 
-// FIXME: Create memory deallocation functions - use them inside engine after the end of the game
-
 void modify_board(Board *board, int row, int column, Player player)
 {
     switch (board->status)

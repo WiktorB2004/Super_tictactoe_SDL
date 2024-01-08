@@ -51,9 +51,11 @@ void free_Game(Game *game)
             if (game->board[i] != NULL)
             {
                 free(game->board[i]);
+                game->board[i] = NULL;
             }
         }
         free(game->board);
+        game->board = NULL;
     }
 }
 
