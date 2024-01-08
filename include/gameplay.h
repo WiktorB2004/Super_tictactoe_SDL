@@ -18,7 +18,8 @@ typedef enum
 /*!
  * \brief Enumerates the turns of players.
  *
- * This enumeration represents which player is about to place next move.
+ * This enumeration represents which player is about to place next move and
+ * is used as indicators in the Board values
  */
 typedef enum
 {
@@ -31,27 +32,27 @@ typedef enum
  * \brief Represents a single tictactoe board.
  *
  * This structure defines tictactoe board. It keeps game status and board as 3x3 matrix,
- * with "X" and "O" as user moves.
+ * with X and O as player moves.
  */
 typedef struct
 {
     GameStatus status;  /**< Status of the game on the board */
-    int moves_count;    /**< Counter of moves played on the board */
+    int moves_count;    /**< Number of moves played on the board */
     Player value[3][3]; /**< Matrix representing the board */
 } Board;
 
 /*!
- * \brief Represents any board of the size nxn.
+ * \brief Represents any board of the size NxN.
  *
- * This structure defines tictactoe board. It keeps nxn game status and boards,
- * allowing to play on the boards of any size.
+ * This structure defines tictactoe board. It keeps NxN game status and boards,
+ * allowing to play on the boards of any (correct) size.
  */
 typedef struct
 {
-    Board **board;     /**< Pointer to the pointer of boards - representation of nxn board */
+    Board **board;     /**< Pointer to the pointer of board - linear representation of NxN board */
     int board_size;    /**< boards are board_size x board_size */
-    int moves_count;   /**< Counter of the moves played in the game */
-    GameStatus status; /**< Status of the game on the board */
+    int moves_count;   /**< Numbers of the moves played in the game */
+    GameStatus status; /**< Status of the game */
     Player turn;       /**< X or O indicating which player is about to move next */
 } Game;
 
@@ -66,23 +67,31 @@ typedef struct
 void initialize_Board(Board *board);
 
 /*!
- * \brief This function initializes game of specified size (nxn).
+ * \brief This function initializes game of specified size (NxN).
  *
  * This function initializes game of specified size by allocating needed memory
  * and other struct values.
  *
  *
- * @param game Pointer to UltimateGame to initialize.
+ * @param game Pointer to Game to initialize.
  * @param size The size of the game to initialize
  */
 void initialize_Game(Game *game, int size);
 
 /*!
+ * \brief This function deallocates memory of the Game.
+ *
+ * This function deallocates the memory allocated in initialize_Game function.
+ *
+ * @param game Pointer to the game to free.
+ */
+void free_Game(Game *game);
+
+/*!
  * \brief This function places the move in specified row/column.
  *
  * This function places the move using provided row and column on 3x3 board.
- * It edits the board in place and return nothing.
- *
+ * It edits the board in place and returns nothing.
  *
  * @param board The board to be modified.
  * @param row The row on the board on which to put the move.
@@ -92,13 +101,13 @@ void initialize_Game(Game *game, int size);
 void modify_board(Board *board, int row, int column, Player player);
 
 /*!
- * \brief This function perform checks on the board and manages its status.
+ * \brief This function perform checks on the single board and manages its status.
  *
- * This function checks the board and if there is a draw or someone won the game it
+ * This function checks the single board and if there is a draw or someone won the game it
  * modifies the board status
  *
  * @param board The board to be checked.
- * @param turn The player turn on the board / in the game depending on game board size.
+ * @param turn The player in the game.
  */
 void check_board(Board *board, Player turn);
 
@@ -116,7 +125,7 @@ void check_game(Game *game, Player turn);
 /*!
  * \brief This function handles the tictac toe gameplay.
  *
- * This function executes logic needed to play any amount of the 3x3 games.
+ * This function executes logic needed to play any (correct) amount of the 3x3 games.
  * It keeps the correct order of player moves and executes check/modify functions.
  *
  * @param game The pointer to the game of tictactoe - initialized beforehand.
