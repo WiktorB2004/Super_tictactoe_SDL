@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['parent_0',['parent',['../structnode.html#a05e4fe9e0177ba2d8dbd2c487cfddd53',1,'node']]]
+  ['gracz_0',['gracz',['../structzmiana.html#afd810759f0f12c8e49d3a1dd7d461b72',1,'zmiana']]]
 ];

@@ -92,11 +92,202 @@ $(function(){initNavTree('gameplay__utils_8h.html',''); initResizable(); });
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">gameplay_utils.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-
+<div class="textblock"><code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="gameplay_8h_source.html">../gameplay.h</a>&quot;</code><br />
+</div>
 <p><a href="gameplay__utils_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ab826e854f1dbcb890c20015867ed419e" id="r_ab826e854f1dbcb890c20015867ed419e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab826e854f1dbcb890c20015867ed419e">initialize_Board</a> (<a class="el" href="structBoard.html">Board</a> *board)</td></tr>
+<tr class="memdesc:ab826e854f1dbcb890c20015867ed419e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function initializes regular game of size (3x3).  <br /></td></tr>
+<tr class="separator:ab826e854f1dbcb890c20015867ed419e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a964be18711c032dd4629f0aa4912149e" id="r_a964be18711c032dd4629f0aa4912149e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a964be18711c032dd4629f0aa4912149e">initialize_Game</a> (<a class="el" href="structGame.html">Game</a> *game, int size)</td></tr>
+<tr class="memdesc:a964be18711c032dd4629f0aa4912149e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function initializes game of specified size (NxN).  <br /></td></tr>
+<tr class="separator:a964be18711c032dd4629f0aa4912149e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6f273882892a97b6f5ed18a8906f370" id="r_ac6f273882892a97b6f5ed18a8906f370"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac6f273882892a97b6f5ed18a8906f370">free_Game</a> (<a class="el" href="structGame.html">Game</a> *game)</td></tr>
+<tr class="memdesc:ac6f273882892a97b6f5ed18a8906f370"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function deallocates memory of the <a class="el" href="structGame.html" title="Represents any board of the size NxN.">Game</a>.  <br /></td></tr>
+<tr class="separator:ac6f273882892a97b6f5ed18a8906f370"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b6a15a62495aa0e300fc4c4016cc478" id="r_a6b6a15a62495aa0e300fc4c4016cc478"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6b6a15a62495aa0e300fc4c4016cc478">check_board_horizontally</a> (<a class="el" href="structBoard.html">Board</a> *board)</td></tr>
+<tr class="memdesc:a6b6a15a62495aa0e300fc4c4016cc478"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function perform horizontall checks on the board.  <br /></td></tr>
+<tr class="separator:a6b6a15a62495aa0e300fc4c4016cc478"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6b758b4261d8934c8a5ca173a80cc75" id="r_af6b758b4261d8934c8a5ca173a80cc75"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af6b758b4261d8934c8a5ca173a80cc75">check_board_vertically</a> (<a class="el" href="structBoard.html">Board</a> *board)</td></tr>
+<tr class="memdesc:af6b758b4261d8934c8a5ca173a80cc75"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function perform verticall checks on the board.  <br /></td></tr>
+<tr class="separator:af6b758b4261d8934c8a5ca173a80cc75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac39ce2957c3e5681f5e0886e4b3e5e17" id="r_ac39ce2957c3e5681f5e0886e4b3e5e17"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac39ce2957c3e5681f5e0886e4b3e5e17">check_board_diagonally</a> (<a class="el" href="structBoard.html">Board</a> *board)</td></tr>
+<tr class="memdesc:ac39ce2957c3e5681f5e0886e4b3e5e17"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function perform diagonall checks on the board.  <br /></td></tr>
+<tr class="separator:ac39ce2957c3e5681f5e0886e4b3e5e17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ac39ce2957c3e5681f5e0886e4b3e5e17" name="ac39ce2957c3e5681f5e0886e4b3e5e17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac39ce2957c3e5681f5e0886e4b3e5e17">&#9670;&#160;</a></span>check_board_diagonally()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool check_board_diagonally </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structBoard.html">Board</a> *</td>          <td class="paramname"><span class="paramname"><em>board</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function perform diagonall checks on the board. </p>
+<p>This function checks the board and if someone won the game it returns true.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">board</td><td>The board to be checked. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>win/continue = true/false </dd></dl>
+
+</div>
+</div>
+<a id="a6b6a15a62495aa0e300fc4c4016cc478" name="a6b6a15a62495aa0e300fc4c4016cc478"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b6a15a62495aa0e300fc4c4016cc478">&#9670;&#160;</a></span>check_board_horizontally()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool check_board_horizontally </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structBoard.html">Board</a> *</td>          <td class="paramname"><span class="paramname"><em>board</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function perform horizontall checks on the board. </p>
+<p>This function checks the board and if someone won the game it returns true.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">board</td><td>The board to be checked. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>win/continue = true/false </dd></dl>
+
+</div>
+</div>
+<a id="af6b758b4261d8934c8a5ca173a80cc75" name="af6b758b4261d8934c8a5ca173a80cc75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6b758b4261d8934c8a5ca173a80cc75">&#9670;&#160;</a></span>check_board_vertically()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool check_board_vertically </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structBoard.html">Board</a> *</td>          <td class="paramname"><span class="paramname"><em>board</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function perform verticall checks on the board. </p>
+<p>This function checks the board and if someone won the game it returns true.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">board</td><td>The board to be checked. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>win/continue = true/false </dd></dl>
+
+</div>
+</div>
+<a id="ac6f273882892a97b6f5ed18a8906f370" name="ac6f273882892a97b6f5ed18a8906f370"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6f273882892a97b6f5ed18a8906f370">&#9670;&#160;</a></span>free_Game()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void free_Game </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structGame.html">Game</a> *</td>          <td class="paramname"><span class="paramname"><em>game</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function deallocates memory of the <a class="el" href="structGame.html" title="Represents any board of the size NxN.">Game</a>. </p>
+<p>This function deallocates the memory allocated in initialize_Game function.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">game</td><td>Pointer to the game to free. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab826e854f1dbcb890c20015867ed419e" name="ab826e854f1dbcb890c20015867ed419e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab826e854f1dbcb890c20015867ed419e">&#9670;&#160;</a></span>initialize_Board()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void initialize_Board </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structBoard.html">Board</a> *</td>          <td class="paramname"><span class="paramname"><em>board</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function initializes regular game of size (3x3). </p>
+<p>This function initializes game of size 3x3 by allocating needed memory and other struct values.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">board</td><td>Pointer to board to initialize. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a964be18711c032dd4629f0aa4912149e" name="a964be18711c032dd4629f0aa4912149e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a964be18711c032dd4629f0aa4912149e">&#9670;&#160;</a></span>initialize_Game()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void initialize_Game </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structGame.html">Game</a> *</td>          <td class="paramname"><span class="paramname"><em>game</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>size</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function initializes game of specified size (NxN). </p>
+<p>This function initializes game of specified size by allocating needed memory and other struct values.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">game</td><td>Pointer to <a class="el" href="structGame.html" title="Represents any board of the size NxN.">Game</a> to initialize. </td></tr>
+    <tr><td class="paramname">size</td><td>The size of the game to initialize </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

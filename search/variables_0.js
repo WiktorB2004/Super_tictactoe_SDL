@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['cap_0',['cap',['../structvector__node.html#a50b347b71bb6e018a53819847694cfac',1,'vector_node']]],
-  ['czesc_1',['czesc',['../structzmiana.html#afccab8910561230336d7157341a67f9d',1,'zmiana']]]
+  ['board_0',['board',['../structGame.html#a4600aecf6682093cc21765fd14683a62',1,'Game']]],
+  ['board_5fsize_1',['board_size',['../structGame.html#a04bdaebf63c6e2ed0412bdcbb47a06ab',1,'Game']]]
 ];

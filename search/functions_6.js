@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['remis_0',['remis',['../bot__utils_8c.html#a34de84a3eb08c90523b6d12541c2b25c',1,'remis(char **nad_zwyciestwa):&#160;bot_utils.c'],['../bot__utils_8h.html#a34de84a3eb08c90523b6d12541c2b25c',1,'remis(char **nad_zwyciestwa):&#160;bot_utils.c']]]
+  ['gameplay_0',['gameplay',['../gameplay_8c.html#a2870c2b421e88cdeba44329e50f0f5ae',1,'gameplay(Game *game):&#160;gameplay.c'],['../gameplay_8h.html#a2870c2b421e88cdeba44329e50f0f5ae',1,'gameplay(Game *game):&#160;gameplay.c']]]
 ];

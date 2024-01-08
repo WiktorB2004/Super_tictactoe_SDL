@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['zmiana_5fgracza_0',['zmiana_gracza',['../bot__utils_8c.html#a0a88e93a4b33457bfd61384264fd095c',1,'zmiana_gracza(char gracz):&#160;bot_utils.c'],['../bot__utils_8h.html#a0a88e93a4b33457bfd61384264fd095c',1,'zmiana_gracza(char gracz):&#160;bot_utils.c']]],
-  ['znajdz_5fczesc_1',['znajdz_czesc',['../bot__utils_8c.html#a19b38a1e3a5ac28f8966fa45eefcda18',1,'znajdz_czesc(zmiana ruch):&#160;bot_utils.c'],['../bot__utils_8h.html#a19b38a1e3a5ac28f8966fa45eefcda18',1,'znajdz_czesc(zmiana ruch):&#160;bot_utils.c']]],
-  ['znajdz_5fopt_2',['znajdz_opt',['../bot__utils_8c.html#a2360014a49bede11b98bb75a98abbe71',1,'znajdz_opt(node *v):&#160;bot_utils.c'],['../bot__utils_8h.html#a2360014a49bede11b98bb75a98abbe71',1,'znajdz_opt(node *v):&#160;bot_utils.c']]]
+  ['pelny_0',['pelny',['../bot__utils_8c.html#ab2827df33245710645b6993593d8a0dd',1,'pelny(char **plansza, int czesc, node *v):&#160;bot_utils.c'],['../bot__utils_8h.html#ab2827df33245710645b6993593d8a0dd',1,'pelny(char **plansza, int czesc, node *v):&#160;bot_utils.c']]],
+  ['poczatek_5fczesci_1',['poczatek_czesci',['../bot__utils_8c.html#a87eaf776785718fd6b70e22c5272c726',1,'poczatek_czesci(int czesc):&#160;bot_utils.c'],['../bot__utils_8h.html#a87eaf776785718fd6b70e22c5272c726',1,'poczatek_czesci(int czesc):&#160;bot_utils.c']]],
+  ['push_5fback_2',['push_back',['../bot__utils_8c.html#a9a0e4756a372d27cc9753ae20c713cd7',1,'push_back(vector_node *vector, node *new_node):&#160;bot_utils.c'],['../bot__utils_8h.html#a9a0e4756a372d27cc9753ae20c713cd7',1,'push_back(vector_node *vector, node *new_node):&#160;bot_utils.c']]]
 ];

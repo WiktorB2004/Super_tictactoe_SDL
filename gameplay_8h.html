@@ -92,11 +92,247 @@ $(function(){initNavTree('gameplay_8h.html',''); initResizable(); });
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">gameplay.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
 <p><a href="gameplay_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structBoard.html">Board</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a single tictactoe board.  <a href="structBoard.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structGame.html">Game</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents any board of the size NxN.  <a href="structGame.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a881b49e3802366255ad852f1c8624fd1" id="r_a881b49e3802366255ad852f1c8624fd1"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a881b49e3802366255ad852f1c8624fd1">GameStatus</a> { <br />
+&#160;&#160;<a class="el" href="#a881b49e3802366255ad852f1c8624fd1a643cea6438bbca00e218a0b1c05e1012">IN_PROGRESS</a>
+, <a class="el" href="#a881b49e3802366255ad852f1c8624fd1abe74362599fba03e8f1d5ca74f195603">X_WON</a>
+, <a class="el" href="#a881b49e3802366255ad852f1c8624fd1a43315851c3420cc44208a1be2a9ce061">O_WON</a>
+, <a class="el" href="#a881b49e3802366255ad852f1c8624fd1a61f3c57b6943c85413975507aede78cd">DRAW</a>
+, <br />
+&#160;&#160;<a class="el" href="#a881b49e3802366255ad852f1c8624fd1ae7d82dfe80ea0bd4feea8ee49ea2eab5">NOT_STARTED</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:a881b49e3802366255ad852f1c8624fd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerates all the statuses of the board.  <a href="#a881b49e3802366255ad852f1c8624fd1">More...</a><br /></td></tr>
+<tr class="separator:a881b49e3802366255ad852f1c8624fd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c8780378078e51e7c9041cbac392db9" id="r_a9c8780378078e51e7c9041cbac392db9"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9c8780378078e51e7c9041cbac392db9">Player</a> { <a class="el" href="#a9c8780378078e51e7c9041cbac392db9af4b8b7698dfedf5562a7db2bdb07010a">O</a>
+, <a class="el" href="#a9c8780378078e51e7c9041cbac392db9a58833a3110c570fb05130d40c365d1e4">X</a>
+, <a class="el" href="#a9c8780378078e51e7c9041cbac392db9a2f0d18fc0d0fa4a6cd92dc328501874d">EMPTY</a>
+ }</td></tr>
+<tr class="memdesc:a9c8780378078e51e7c9041cbac392db9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerates the turns of players.  <a href="#a9c8780378078e51e7c9041cbac392db9">More...</a><br /></td></tr>
+<tr class="separator:a9c8780378078e51e7c9041cbac392db9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ae149c393a1bd8cf384a266f53887598b" id="r_ae149c393a1bd8cf384a266f53887598b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae149c393a1bd8cf384a266f53887598b">modify_board</a> (<a class="el" href="structBoard.html">Board</a> *board, int row, int column, <a class="el" href="#a9c8780378078e51e7c9041cbac392db9">Player</a> player)</td></tr>
+<tr class="memdesc:ae149c393a1bd8cf384a266f53887598b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function places the move in specified row/column.  <br /></td></tr>
+<tr class="separator:ae149c393a1bd8cf384a266f53887598b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea84aaef057eac3b70e538333a2c5c3f" id="r_aea84aaef057eac3b70e538333a2c5c3f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aea84aaef057eac3b70e538333a2c5c3f">check_board</a> (<a class="el" href="structBoard.html">Board</a> *board, <a class="el" href="#a9c8780378078e51e7c9041cbac392db9">Player</a> turn)</td></tr>
+<tr class="memdesc:aea84aaef057eac3b70e538333a2c5c3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function perform checks on the single board and manages its status.  <br /></td></tr>
+<tr class="separator:aea84aaef057eac3b70e538333a2c5c3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a151b5562b69dfc58a3ecde54b022d4b0" id="r_a151b5562b69dfc58a3ecde54b022d4b0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a151b5562b69dfc58a3ecde54b022d4b0">check_game</a> (<a class="el" href="structGame.html">Game</a> *game, <a class="el" href="#a9c8780378078e51e7c9041cbac392db9">Player</a> turn)</td></tr>
+<tr class="memdesc:a151b5562b69dfc58a3ecde54b022d4b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function perform checks on the game and manages its status.  <br /></td></tr>
+<tr class="separator:a151b5562b69dfc58a3ecde54b022d4b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2870c2b421e88cdeba44329e50f0f5ae" id="r_a2870c2b421e88cdeba44329e50f0f5ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2870c2b421e88cdeba44329e50f0f5ae">gameplay</a> (<a class="el" href="structGame.html">Game</a> *game)</td></tr>
+<tr class="memdesc:a2870c2b421e88cdeba44329e50f0f5ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function handles the tictac toe gameplay.  <br /></td></tr>
+<tr class="separator:a2870c2b421e88cdeba44329e50f0f5ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="a881b49e3802366255ad852f1c8624fd1" name="a881b49e3802366255ad852f1c8624fd1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a881b49e3802366255ad852f1c8624fd1">&#9670;&#160;</a></span>GameStatus</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a881b49e3802366255ad852f1c8624fd1">GameStatus</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enumerates all the statuses of the board. </p>
+<p>This enumeration represents game status on single board, helps to manage online game hosting and score tracking on boards bigger than 3x3. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a881b49e3802366255ad852f1c8624fd1a643cea6438bbca00e218a0b1c05e1012" name="a881b49e3802366255ad852f1c8624fd1a643cea6438bbca00e218a0b1c05e1012"></a>IN_PROGRESS&#160;</td><td class="fielddoc"><p><a class="el" href="structGame.html" title="Represents any board of the size NxN.">Game</a> in progress - 0 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a881b49e3802366255ad852f1c8624fd1abe74362599fba03e8f1d5ca74f195603" name="a881b49e3802366255ad852f1c8624fd1abe74362599fba03e8f1d5ca74f195603"></a>X_WON&#160;</td><td class="fielddoc"><p>X won - 1 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a881b49e3802366255ad852f1c8624fd1a43315851c3420cc44208a1be2a9ce061" name="a881b49e3802366255ad852f1c8624fd1a43315851c3420cc44208a1be2a9ce061"></a>O_WON&#160;</td><td class="fielddoc"><p>O won - 2 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a881b49e3802366255ad852f1c8624fd1a61f3c57b6943c85413975507aede78cd" name="a881b49e3802366255ad852f1c8624fd1a61f3c57b6943c85413975507aede78cd"></a>DRAW&#160;</td><td class="fielddoc"><p>Draw - 3 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a881b49e3802366255ad852f1c8624fd1ae7d82dfe80ea0bd4feea8ee49ea2eab5" name="a881b49e3802366255ad852f1c8624fd1ae7d82dfe80ea0bd4feea8ee49ea2eab5"></a>NOT_STARTED&#160;</td><td class="fielddoc"><p><a class="el" href="structGame.html" title="Represents any board of the size NxN.">Game</a> waiting for the start - 4 </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a9c8780378078e51e7c9041cbac392db9" name="a9c8780378078e51e7c9041cbac392db9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c8780378078e51e7c9041cbac392db9">&#9670;&#160;</a></span>Player</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a9c8780378078e51e7c9041cbac392db9">Player</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enumerates the turns of players. </p>
+<p>This enumeration represents which player is about to place next move and is used as indicators in the <a class="el" href="structBoard.html" title="Represents a single tictactoe board.">Board</a> values </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a9c8780378078e51e7c9041cbac392db9af4b8b7698dfedf5562a7db2bdb07010a" name="a9c8780378078e51e7c9041cbac392db9af4b8b7698dfedf5562a7db2bdb07010a"></a>O&#160;</td><td class="fielddoc"><p>O - 0 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a9c8780378078e51e7c9041cbac392db9a58833a3110c570fb05130d40c365d1e4" name="a9c8780378078e51e7c9041cbac392db9a58833a3110c570fb05130d40c365d1e4"></a>X&#160;</td><td class="fielddoc"><p>X - 1 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a9c8780378078e51e7c9041cbac392db9a2f0d18fc0d0fa4a6cd92dc328501874d" name="a9c8780378078e51e7c9041cbac392db9a2f0d18fc0d0fa4a6cd92dc328501874d"></a>EMPTY&#160;</td><td class="fielddoc"><p>Empty space - 2 </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="aea84aaef057eac3b70e538333a2c5c3f" name="aea84aaef057eac3b70e538333a2c5c3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea84aaef057eac3b70e538333a2c5c3f">&#9670;&#160;</a></span>check_board()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void check_board </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structBoard.html">Board</a> *</td>          <td class="paramname"><span class="paramname"><em>board</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a9c8780378078e51e7c9041cbac392db9">Player</a></td>          <td class="paramname"><span class="paramname"><em>turn</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function perform checks on the single board and manages its status. </p>
+<p>This function checks the single board and if there is a draw or someone won the game it modifies the board status</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">board</td><td>The board to be checked. </td></tr>
+    <tr><td class="paramname">turn</td><td>The player in the game. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a151b5562b69dfc58a3ecde54b022d4b0" name="a151b5562b69dfc58a3ecde54b022d4b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a151b5562b69dfc58a3ecde54b022d4b0">&#9670;&#160;</a></span>check_game()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void check_game </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structGame.html">Game</a> *</td>          <td class="paramname"><span class="paramname"><em>game</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a9c8780378078e51e7c9041cbac392db9">Player</a></td>          <td class="paramname"><span class="paramname"><em>turn</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function perform checks on the game and manages its status. </p>
+<p>This function checks all the game boards and if there is a draw or someone won the game it modifies the game status</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">game</td><td>The game to be checked. </td></tr>
+    <tr><td class="paramname">turn</td><td>The player turn in the game. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2870c2b421e88cdeba44329e50f0f5ae" name="a2870c2b421e88cdeba44329e50f0f5ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2870c2b421e88cdeba44329e50f0f5ae">&#9670;&#160;</a></span>gameplay()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gameplay </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structGame.html">Game</a> *</td>          <td class="paramname"><span class="paramname"><em>game</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function handles the tictac toe gameplay. </p>
+<p>This function executes logic needed to play any (correct) amount of the 3x3 games. It keeps the correct order of player moves and executes check/modify functions.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">game</td><td>The pointer to the game of tictactoe - initialized beforehand. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae149c393a1bd8cf384a266f53887598b" name="ae149c393a1bd8cf384a266f53887598b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae149c393a1bd8cf384a266f53887598b">&#9670;&#160;</a></span>modify_board()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void modify_board </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structBoard.html">Board</a> *</td>          <td class="paramname"><span class="paramname"><em>board</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>row</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>column</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a9c8780378078e51e7c9041cbac392db9">Player</a></td>          <td class="paramname"><span class="paramname"><em>player</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function places the move in specified row/column. </p>
+<p>This function places the move using provided row and column on 3x3 board. It edits the board in place and returns nothing.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">board</td><td>The board to be modified. </td></tr>
+    <tr><td class="paramname">row</td><td>The row on the board on which to put the move. </td></tr>
+    <tr><td class="paramname">column</td><td>The column on the board on which to put the move. </td></tr>
+    <tr><td class="paramname">player</td><td>The sign representing the players turn - X or O (Player enum) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
