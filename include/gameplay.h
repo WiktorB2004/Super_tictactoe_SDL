@@ -12,7 +12,20 @@ typedef enum
     X_WON,       /**< X won - 1 */
     O_WON,       /**< O won  - 2 */
     DRAW,        /**< Draw  - 3 */
+    NOT_STARTED, /**< Game waiting for the start  - 4 */
 } GameStatus;
+
+/*!
+ * \brief Enumerates the turns of players.
+ *
+ * This enumeration represents which player is about to place next move.
+ */
+typedef enum
+{
+    O,     /**< O - 0 */
+    X,     /**< X - 1 */
+    EMPTY, /**< Empty space - 2 */
+} Player;
 
 /*!
  * \brief Represents a single tictactoe board.
@@ -22,9 +35,9 @@ typedef enum
  */
 typedef struct
 {
-    GameStatus status; /**< Status of the game on the board */
-    int moves_count;   /**< Counter of moves played on the board */
-    char value[3][3];  /**< Matrix representing the board */
+    GameStatus status;  /**< Status of the game on the board */
+    int moves_count;    /**< Counter of moves played on the board */
+    Player value[3][3]; /**< Matrix representing the board */
 } Board;
 
 /*!
@@ -39,7 +52,18 @@ typedef struct
     int board_size;    /**< boards are board_size x board_size */
     int moves_count;   /**< Counter of the moves played in the game */
     GameStatus status; /**< Status of the game on the board */
-} UltimateGame;
+    Player turn;       /**< X or O indicating which player is about to move next */
+} Game;
+
+/*!
+ * \brief This function initializes regular game of size (3x3).
+ *
+ * This function initializes game of size 3x3 by allocating needed memory
+ * and other struct values.
+ *
+ * @param board Pointer to board to initialize.
+ */
+void initialize_Board(Board *board);
 
 /*!
  * \brief This function initializes game of specified size (nxn).
@@ -51,7 +75,7 @@ typedef struct
  * @param game Pointer to UltimateGame to initialize.
  * @param size The size of the game to initialize
  */
-void initialize_UltimateGame(UltimateGame *game, int size);
+void initialize_Game(Game *game, int size);
 
 /*!
  * \brief This function places the move in specified row/column.
@@ -63,9 +87,9 @@ void initialize_UltimateGame(UltimateGame *game, int size);
  * @param board The board to be modified.
  * @param row The row on the board on which to put the move.
  * @param column The column on the board on which to put the move.
- * @param player The sign representing the players turn - X or O
+ * @param player The sign representing the players turn - X or O (Player enum)
  */
-void modify_board(Board *board, int row, int column, char player);
+void modify_board(Board *board, int row, int column, Player player);
 
 /*!
  * \brief This function perform checks on the board and manages its status.
@@ -74,15 +98,27 @@ void modify_board(Board *board, int row, int column, char player);
  * modifies the board status
  *
  * @param board The board to be checked.
+ * @param turn The player turn on the board / in the game depending on game board size.
  */
-void check_board(Board *board);
+void check_board(Board *board, Player turn);
 
 /*!
- * \brief This function handles gameplay on a single board.
+ * \brief This function perform checks on the game and manages its status.
  *
- * This function executes logic needed to play the 3x3 game on one board.
+ * This function checks all the game boards and if there is a draw or someone won the game it
+ * modifies the game status
+ *
+ * @param game The game to be checked.
+ * @param turn The player turn in the game.
+ */
+void check_game(Game *game, Player turn);
+
+/*!
+ * \brief This function handles the tictac toe gameplay.
+ *
+ * This function executes logic needed to play any amount of the 3x3 games.
  * It keeps the correct order of player moves and executes check/modify functions.
  *
- * @param board The board representing single game of tictactoe.
+ * @param game The pointer to the game of tictactoe - initialized beforehand.
  */
-void gameplay(Board *board);
+void gameplay(Game *game);

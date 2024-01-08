@@ -27,8 +27,10 @@ include_directories(${TEST_DIR}/utils_test/include)
 # Set all test suites source files
 set(ENGINE_TEST_SOURCES
     ${UTILS_DIR}/engine_utils.c
-    ${SOURCE_DIR}/engine/engine.c
     ${UTILS_DIR}/sdl_utils.c
+    ${UTILS_DIR}/gameplay_utils.c
+    ${SOURCE_DIR}/engine/engine.c
+    ${SOURCE_DIR}/gameplay/gameplay.c
     ${SOURCE_DIR}/engine/sdl_display.c
     ${TEST_DIR}/engine_test/src/sample_test.c
     ${TEST_DIR}/engine_test/engine_test.c
