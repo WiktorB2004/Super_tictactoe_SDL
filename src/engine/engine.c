@@ -6,7 +6,7 @@
 void engine()
 {
     Game game;
-    initialize_Game(&game, 1);
+    initialize_Game(&game, 3);
     game.status = IN_PROGRESS;
     gameplay(&game);
     free_Game(&game);
