@@ -7,34 +7,55 @@
 
 #define inf 1e9
 
-vector_node *create_vector_node(){
+vector_node *create_vector_node(char **plnasza, int czesc){
     vector_node *vector = malloc(sizeof(vector_node));
     vector -> size = 0;
-    vector -> cap = 1;
+    int cnt = 0;
+    pair p = poczatek_czesci(czesc);
+    for(int i = 0; i < 3; i++)
+        for(int j = 0; j < 3; j++)
+            if(plnasza[i + p.x][j + p.y] == ' ') cnt++;
 
-    vector -> sons = malloc(1 * sizeof(node*));
+    vector -> max_size = cnt;
+    vector -> sons = malloc(cnt * sizeof(node*));
     if(vector -> sons == NULL){
         puts("błąd alokacji pamięci");
         exit(EXIT_FAILURE);
     }
 
+    for(int i = 0; i < cnt; i++)
+        vector -> sons[i] = NULL;
+
     return vector;
 }
 
-node *create_node(){
+node *create_node(char **plansza, int czesc){
     node *wierzcholek = malloc(sizeof(node));
     if(wierzcholek == NULL){
         puts("błąd alokacji pamięci");
         exit(EXIT_FAILURE);
     }
 
+    pthread_mutex_t *mutex = malloc(sizeof(pthread_mutex_t));
+    if(mutex == NULL){
+        puts("błąd alokajic pamięci");
+        exit(EXIT_FAILURE);
+    }
+
+
+    wierzcholek -> mutex = mutex;
+    if(pthread_mutex_init(mutex, NULL) != 0){
+        puts("błąd inicjalizaji mutexa");
+        exit(EXIT_FAILURE);
+    }
+    
     wierzcholek -> ruch.x = -1;
     wierzcholek -> ruch.y = -1;
     wierzcholek -> ruch.czesc = -1;
     wierzcholek -> ruch.gracz = '\0';
 
     wierzcholek -> parent = NULL;
-    wierzcholek -> vec = create_vector_node();
+    wierzcholek -> vec = create_vector_node(plansza, czesc);
     wierzcholek -> visit = 0;
     wierzcholek -> wins = 0;
 
@@ -45,6 +66,10 @@ node *create_node(){
 void destruct_node(node *NODE){
     if(NODE -> vec != NULL) //nie jest liściem 
         destruct_vector_node(NODE -> vec);
+
+    pthread_mutex_destroy(NODE -> mutex);
+    free(NODE -> mutex);
+
     free(NODE);
 }
 
@@ -56,20 +81,8 @@ void destruct_vector_node(vector_node *vector){
     free(vector);
 }
 
-void push_back(vector_node *vector, node *new_node){
-    if(vector -> size + 1 == vector -> cap){
-        node **sons2 = realloc(vector -> sons, vector -> cap * 2.2 * sizeof(node*));
-        if(sons2 == NULL){
-            puts("błąd alokacji pamięci");
-            exit(EXIT_FAILURE);
-        }
-
-        vector -> sons = sons2;
-        vector -> cap *= 2.2;
-    }
-
-    vector -> sons[vector -> size] = new_node;
-    vector -> size++;
+void push_back(choosen_node *cn, node *new_node){
+    cn -> v -> vec -> sons[cn -> idx] = new_node;
 }
 
 double uct(node *wierzcholek){
@@ -182,42 +195,66 @@ int pelny(char **plansza, int czesc, node *v){
     return sajz == moge;
 }
 
-node *Select(char **plansza, node *v, char **nad_zwyciestwa){
+choosen_node *Select(char **plansza, node *v, char **nad_zwyciestwa){
+    pthread_mutex_lock(v -> mutex);
     //vector jest pełny można tylko wybrać syna
-    if(pelny(plansza, v -> ruch.czesc, v)){
+    if(v -> vec -> size == v -> vec -> max_size){
+        pthread_mutex_unlock(v -> mutex);
+
         double best_score = 0;
         int idx_best = -1;
         for(int i = 0; i < v -> vec -> size; i++){
+            if(v -> vec -> sons[i] == NULL || v -> vec -> sons[i] -> visit == 0){
+                continue;
+            }
+            // if(v -> vec -> sons[i] -> parent != v){
+            //     puts("oj");
+            // }
             if(uct(v -> vec -> sons[i]) > best_score){
                 best_score = uct(v -> vec -> sons[i]);
                 idx_best = i;
             }
         }
 
-        if(idx_best == -1) return v;
+        if(idx_best == -1){
+            choosen_node *cn = malloc(sizeof(choosen_node));
+            if(cn == NULL){
+                puts("błąd alokacji pamięcji");
+                exit(0);
+            }
+            
+            cn -> idx = -1;
+            cn -> v = v;
+
+            return cn;
+        }
         //!nie wybrano syna, ponieważ go sie nie da wybrać, więc nie ide w dół,
         //!pozostaje w nodzie, ale potem będe dla niego próbował dobrać syna 
         //!co się znów nie uda 
         
         node *son = v -> vec -> sons[idx_best];
         plansza[son -> ruch.x][son -> ruch.y] = son -> ruch.gracz;
-
-        pair p = poczatek_czesci(v -> ruch.czesc);
-        char **sub_plansza = allocate(3);
-
-        for(int i = 0; i < 3; i++)
-            for(int j = 0; j < 3; j++)
-                sub_plansza[i][j] = plansza[p.x + i][p.y + j];
-
-        nad_zwyciestwa[v -> ruch.czesc / 3][v -> ruch.czesc % 3] = sprawdz_wynik(sub_plansza);
-        deallocate(sub_plansza, 3);
+        update_nad_zwyciestwa(plansza, nad_zwyciestwa, v -> ruch.czesc);
 
         return Select(plansza, son, nad_zwyciestwa);
     }
 
     //vector nie jest pełny można dodawać mu syna
     else{
-        return v;
+        int add_idx = v -> vec -> size;
+        v -> vec -> size++;
+        pthread_mutex_unlock(v -> mutex);
+
+        choosen_node *cn = malloc(sizeof(choosen_node));
+        if(cn == NULL){
+            puts("błąd alokacji pamięcji");
+            exit(0);
+        }
+        
+        cn -> idx = add_idx;
+        cn -> v = v;
+
+        return cn;
     }
 
     //żeby kompilator nie krzyczał że coś ni zwracam, to i tak nigdy się nie wykona
@@ -225,11 +262,11 @@ node *Select(char **plansza, node *v, char **nad_zwyciestwa){
 }
 
 // 0 jeśli się udało dodać syna, 1 jeśli się nie udało
-int dodaj_syna(node *v, char **plansza, char **nad_zwyciestwa){
-    pair p = poczatek_czesci(v -> ruch.czesc);
+int dodaj_syna(choosen_node *cn, char **plansza, char **nad_zwyciestwa){
+    pair p = poczatek_czesci(cn -> v -> ruch.czesc);
     int nowa_czesc = -1;
     int x = -1, y = -1;
-    int target = v -> vec -> size;
+    int target = cn -> idx;
 
     for(int i = 0, idx = 0; i < 3; i++)
         for(int j = 0; j < 3; j++)
@@ -240,19 +277,27 @@ int dodaj_syna(node *v, char **plansza, char **nad_zwyciestwa){
             }
             else if(plansza[p.x + i][p.y + j] == ' ') idx++;
     
-    if(nowa_czesc == -1) return 1;
+    if(nowa_czesc == -1) 
+        return 1;
+    
+    plansza[x][y] = zmiana_gracza(cn -> v -> ruch.gracz);
+    update_nad_zwyciestwa(plansza, nad_zwyciestwa, cn -> v -> ruch.czesc);
 
     //wybrano już x i y, teraz czas dodać nowego syna
-    node *new_node = create_node();
-    new_node -> parent = v;
+    node *new_node = create_node(plansza, nowa_czesc);
+    new_node -> parent = cn -> v;
 
-    zmiana ruch = {x, y, nowa_czesc, zmiana_gracza(v -> ruch.gracz)};
+    zmiana ruch = {x, y, nowa_czesc, zmiana_gracza(cn -> v -> ruch.gracz)};
     new_node -> ruch = ruch;
-    push_back(v -> vec, new_node);
+    push_back(cn, new_node);
+
+    if(cn -> v != new_node -> parent){
+        puts("dkjfkd");
+    }
 
     //zmiana planszy pod new_node
-    plansza[new_node -> ruch.x][new_node -> ruch.y] = new_node -> ruch.gracz;
-    update_nad_zwyciestwa(plansza, nad_zwyciestwa, v -> ruch.czesc); 
+    // plansza[new_node -> ruch.x][new_node -> ruch.y] = new_node -> ruch.gracz;
+    // update_nad_zwyciestwa(plansza, nad_zwyciestwa, cn -> v -> ruch.czesc); 
         
     return 0;
 }
@@ -324,7 +369,7 @@ int symulate(node *v, char **plansza, char **nad_zywciestwa, char gracz){
         return 1;
     }
 
-    int wynik = 2 * (sprawdz_wynik(wyniki_pol) == gracz);
+    int wynik = 3 * (sprawdz_wynik(wyniki_pol) == gracz);
     deallocate(wyniki_pol, 3);
     deallocate(matrix, 9);
 
@@ -354,11 +399,11 @@ zmiana znajdz_opt(node *v){
         return ruch;
     }
 
-    double best_score = 0;
+    int best_score = 0;
     int best_idx = 0;
     for(int i = 0; i < v -> vec -> size; i++){
-        if(uct(v -> vec -> sons[i]) > best_score){
-            best_score = uct(v -> vec -> sons[i]);
+        if(v -> vec -> sons[i] -> visit > best_score){
+            best_score = v -> vec -> sons[i] -> visit;
             best_idx = i;
         }
     }

@@ -41,6 +41,7 @@ add_executable(executable ${SOURCES})
 
 # Compile options
 add_compile_options(-lm)
+add_compile_options(-pthread)
 
 # Linking the executable with the math library 
 target_link_libraries(executable PRIVATE m)
