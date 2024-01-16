@@ -30,16 +30,16 @@
 #include "../../include/game_bot.h" 
 #include "../../include/utils/bot_utils.h"
 
-#define iteracje_normal 500
-#define iteracje_hard 50000
-#define iteracje_impopable 5000000
-#define thread_no 16
+#define iteracje_normal 2000
+#define iteracje_hard 25000
+#define iteracje_impopable 500000
+#define thread_no 8
 
 pthread_mutex_t lock_cnt;
 int liczba_iteracji, cel_liczby_iteracji;
 
-int bot(char **plansza, char gracz, int czesc, int tryb){
-    int (*boty[])(char **, char, int) = {
+int bot(Game *game, int czesc, int tryb){
+    int (*boty[])(Game *, int) = {
         bot_3x3_normal,
         bot_3x3_hard,
         bot_3x3_impopable,
@@ -54,7 +54,7 @@ int bot(char **plansza, char gracz, int czesc, int tryb){
         exit(EXIT_FAILURE);
     }
 
-    int ans = (*boty[tryb])(plansza, gracz, czesc);
+    int ans = (*boty[tryb])(game, czesc);
     return ans;
 }
 
@@ -96,7 +96,34 @@ void *watek(void *ARG){
     }
 }
 
-int make_mcts(char **plansza, char gracz, int czesc){
+int make_mcts(Game *game, int czesc){
+    //zamiana game -> plansza i nadzwyciestwa
+    char **plansza = allocate(9);
+    char **nad_zywciestwa = allocate(3);
+    char gracz = (game -> turn == 0 ? 'O' : 'X');
+
+
+    for(int i = 0; i < 9; i++){
+        char wynik = game -> board[i] -> status;
+        if(wynik == 1) nad_zywciestwa[i / 3][i % 3] = 'X';
+        else if(wynik == 2) nad_zywciestwa[i / 3][i % 3] = 'O';
+        else nad_zywciestwa[i / 3][i % 3] = ' ';
+    }
+
+    for(int c = 0; c < 9; c++){
+        pair p = poczatek_czesci(c);
+        for(int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                int w = game -> board[c] -> value[i][j];
+                if(w == 0) plansza[p.x + i][p.y + j] = 'O';
+                else if(w == 1) plansza[p.x + i][p.y + j] = 'X';
+                else plansza[p.x + i][p.y + j] = ' ';
+            }
+        }
+    }
+
+
+    //koniec zamiany
     node *v = create_node(plansza, czesc);
     v -> ruch.gracz = zmiana_gracza(gracz);
     v -> ruch.czesc = czesc;
@@ -143,13 +170,6 @@ int make_mcts(char **plansza, char gracz, int czesc){
 
     //wybierz najlepszy ruch
     zmiana ruch = znajdz_opt(v);
-    if(ruch.czesc == -1){
-        destruct_node(v); //nie mogę wykonać jakiegokolwiek ruchu
-        return -1;
-    }
-
-    //zmianiam plansze
-    plansza[ruch.x][ruch.y] = gracz;
 
     //pobieram dodatkową pamięć ram z chmury
     for(int i = 0; i < thread_no; i++){
@@ -159,29 +179,36 @@ int make_mcts(char **plansza, char gracz, int czesc){
 
     destruct_node(v);
     pthread_mutex_destroy(&lock_cnt);
-    
+
+    deallocate(plansza, 9);
+    deallocate(nad_zywciestwa, 3);
+
+    if(ruch.czesc == -1) return -1;
+
+    //dopisywanie zmiany
+    game -> board[znajdz_czesc(ruch)] -> value[ruch.x % 3][ruch.y % 3] = gracz;
     return ruch.czesc;
 }
 
-int bot_9x9_normal(char **plansza, char gracz, int czesc){
+int bot_9x9_normal(Game *game, int czesc){
     liczba_iteracji = 0;
     cel_liczby_iteracji = iteracje_normal;
     
-    return make_mcts(plansza, gracz, czesc);
+    return make_mcts(game, czesc);
 }
 
-int bot_9x9_hard(char **plansza, char gracz, int czesc){
+int bot_9x9_hard(Game *game, int czesc){
     liczba_iteracji = 0;
     cel_liczby_iteracji = iteracje_hard;
     
-    return make_mcts(plansza, gracz, czesc);
+    return make_mcts(game, czesc);
 }
 
-int bot_9x9_impopable(char **plansza, char gracz, int czesc){
+int bot_9x9_impopable(Game *game, int czesc){
     liczba_iteracji = 0;
     cel_liczby_iteracji = iteracje_impopable;
     
-    return make_mcts(plansza, gracz, czesc);
+    return make_mcts(game, czesc);
 }
 
 int bot_9x9_random(char **plansza, char gracz, int czesc){
@@ -214,12 +241,12 @@ int bot_9x9_random(char **plansza, char gracz, int czesc){
 
 
 //bez tego nie chce się kompilować
-int bot_3x3_normal(char **plansza, char gracz, int czesc){
+int bot_3x3_normal(Game *game, int czesc){
     return 0;
 }
-int bot_3x3_hard(char **plansza, char gracz, int czesc){
+int bot_3x3_hard(Game *game, int czesc){
     return 0;
 }
-int bot_3x3_impopable(char **plansza, char gracz, int czesc){
+int bot_3x3_impopable(Game *game, int czesc){
     return 0;
 }

@@ -3,8 +3,7 @@
     Implementacja botów o trzech stopniach trudności i w dwóch wariantach rozmiaru planszy.
 
     Bot przyjmuje argumenty:
-        - wskaźnik na planszę do gry
-        - kto wykonuje ruch: X czy O
+        - wskaźnik na gre
         - w której części ma się odbyć ruch, jeśli plansza jest 3x3 to 
             podaj argument = 0, jeśli plansza jest 9x9 to indeksuje części:
             0 | 1 | 2
@@ -30,6 +29,7 @@
 #pragma once
 #include <stdio.h>
 #include <stdlib.h>
+#include "gameplay.h"
 
 /**
  * @brief Funkcja realizująca działanie bota w grze kółko-krzyżyk.
@@ -40,7 +40,7 @@
  * @param tryb Tryb gry określający poziom trudności i rozmiar planszy.
  * @return Numer części planszy, w której trzeba wykonać następny ruch, 0 jeśli gra jest 3x3, -1 jeśli bot nie może wykonać ruchu.
  */
-int bot(char **plansza, char gracz, int czesc, int tryb);
+int bot(Game *game, int czesc, int tryb);
 
 /**
  * @brief Funkcja realizująca działanie bota w trybie normalnym na planszy 3x3.
@@ -50,7 +50,7 @@ int bot(char **plansza, char gracz, int czesc, int tryb);
  * @param czesc Numer części planszy, w której ma się odbyć ruch.
  * @return Numer części planszy, w której trzeba wykonać następny ruch, 0 jeśli gra jest 3x3, -1 jeśli bot nie może wykonać ruchu.
  */
-int bot_3x3_normal(char **plansza, char gracz, int czesc);
+int bot_3x3_normal(Game *game, int czesc);
 
 /**
  * @brief Funkcja realizująca działanie bota w trybie trudnym na planszy 3x3.
@@ -60,7 +60,7 @@ int bot_3x3_normal(char **plansza, char gracz, int czesc);
  * @param czesc Numer części planszy, w której ma się odbyć ruch.
  * @return Numer części planszy, w której trzeba wykonać następny ruch, 0 jeśli gra jest 3x3, -1 jeśli bot nie może wykonać ruchu.
  */
-int bot_3x3_hard(char **plansza, char gracz, int czesc);
+int bot_3x3_hard(Game *game, int czesc);
 
 /**
  * @brief Funkcja realizująca działanie bota w trybie impopable na planszy 3x3.
@@ -70,7 +70,7 @@ int bot_3x3_hard(char **plansza, char gracz, int czesc);
  * @param czesc Numer części planszy, w której ma się odbyć ruch.
  * @return Numer części planszy, w której trzeba wykonać następny ruch, 0 jeśli gra jest 3x3, -1 jeśli bot nie może wykonać ruchu.
  */
-int bot_3x3_impopable(char **plansza, char gracz, int czesc);
+int bot_3x3_impopable(Game *game, int czesc);
 
 /**
  * @brief Funkcja realizująca działanie bota w trybie normalnym na planszy 9x9.
@@ -80,7 +80,7 @@ int bot_3x3_impopable(char **plansza, char gracz, int czesc);
  * @param czesc Numer części planszy, w której ma się odbyć ruch.
  * @return Numer części planszy, w której trzeba wykonać następny ruch, 0 jeśli gra jest 3x3, -1 jeśli bot nie może wykonać ruchu.
  */
-int bot_9x9_normal(char **plansza, char gracz, int czesc);
+int bot_9x9_normal(Game *game, int czesc);
 
 /**
  * @brief Funkcja realizująca działanie bota w trybie trudnym na planszy 9x9.
@@ -90,7 +90,7 @@ int bot_9x9_normal(char **plansza, char gracz, int czesc);
  * @param czesc Numer części planszy, w której ma się odbyć ruch.
  * @return Numer części planszy, w której trzeba wykonać następny ruch, 0 jeśli gra jest 3x3, -1 jeśli bot nie może wykonać ruchu.
  */
-int bot_9x9_hard(char **plansza, char gracz, int czesc);
+int bot_9x9_hard(Game *game, int czesc);
 
 /**
  * @brief Funkcja realizująca działanie bota w trybie impopable na planszy 9x9.
@@ -100,7 +100,7 @@ int bot_9x9_hard(char **plansza, char gracz, int czesc);
  * @param czesc Numer części planszy, w której ma się odbyć ruch.
  * @return Numer części planszy, w której trzeba wykonać następny ruch, 0 jeśli gra jest 3x3, -1 jeśli bot nie może wykonać ruchu.
  */
-int bot_9x9_impopable(char **plansza, char gracz, int czesc);
+int bot_9x9_impopable(Game *game, int czesc);
 
 /**
  * @brief Funkcja realizująca działanie bota w trybie losowym na planszy 9x9.

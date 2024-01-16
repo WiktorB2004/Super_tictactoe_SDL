@@ -1,0 +1,27 @@
+name: Build and Deploy documentation to GitHub Pages
+
+on:
+  push:
+    branches: [ master ]
+    
+jobs:
+  generate-and-deploy-documentation:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+        
+    - name: Generate doxygen documentation
+      uses: mattnotmitt/doxygen-action@v1.1.0
+      with:
+        # Path to Doxyfile
+        doxyfile-path: "./Doxyfile"
+        # Working directory
+        working-directory: "."
+    
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        # Change the directory if changes in Doxyfile
+        publish_dir: ./docs/html

@@ -2,8 +2,10 @@
     tutaj implementuje wszystkie funkcje pomocnicze do bota
 */
 
+#include <math.h>
 #include "../include/game_bot.h"
 #include "../include/utils/bot_utils.h"
+
 
 #define inf 1e9
 
@@ -75,7 +77,8 @@ void destruct_node(node *NODE){
 
 void destruct_vector_node(vector_node *vector){
     for(int i = 0; i < vector -> size; i++)
-        destruct_node(vector -> sons[i]);
+        if(vector -> sons[i] != NULL)
+            destruct_node(vector -> sons[i]);
 
     free(vector -> sons);
     free(vector);
@@ -89,8 +92,10 @@ double uct(node *wierzcholek){
     if(wierzcholek -> visit == 0) return (double) inf;
 
     double uct = (double) wierzcholek -> wins / wierzcholek -> visit;
-    uct += (double) sqrt(2) * sqrt(log(wierzcholek -> parent == NULL ? wierzcholek -> visit :
+    uct += (double) sqrt(9) * sqrt(log(wierzcholek -> parent == NULL ? wierzcholek -> visit :
         wierzcholek -> parent -> visit) / wierzcholek -> visit);
+
+    uct += (double) 1 / (rand() % 45 + 5);
     return uct;
 }
 

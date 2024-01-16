@@ -27,8 +27,10 @@ include_directories(${TEST_DIR}/utils_test/include)
 # Set all test suites source files
 set(ENGINE_TEST_SOURCES
     ${UTILS_DIR}/engine_utils.c
-    ${SOURCE_DIR}/engine/engine.c
     ${UTILS_DIR}/sdl_utils.c
+    ${UTILS_DIR}/gameplay_utils.c
+    ${SOURCE_DIR}/engine/engine.c
+    ${SOURCE_DIR}/gameplay/gameplay.c
     ${SOURCE_DIR}/engine/sdl_display.c
     ${TEST_DIR}/engine_test/src/sample_test.c
     ${TEST_DIR}/engine_test/engine_test.c
@@ -37,7 +39,7 @@ set(ENGINE_TEST_SOURCES
 set(GAMEPLAY_TEST_SOURCES
     ${UTILS_DIR}/gameplay_utils.c
     ${SOURCE_DIR}/gameplay/gameplay.c
-    ${TEST_DIR}/gameplay_test/src/sample_test.c
+    ${TEST_DIR}/gameplay_test/src/test_gameplay.c
     ${TEST_DIR}/gameplay_test/gameplay_test.c
 )
 
@@ -77,10 +79,19 @@ add_executable(test_utils ${UTILS_TEST_SOURCES})
 
 # Link Unity library with test executable
 target_link_libraries(test_engine PRIVATE unity)
+target_link_libraries(test_engine PRIVATE m)
+
 target_link_libraries(test_gameplay PRIVATE unity)
+target_link_libraries(test_gameplay PRIVATE m)
+
 target_link_libraries(test_bot PRIVATE unity)
+target_link_libraries(test_bot PRIVATE m)
+
 target_link_libraries(test_host PRIVATE unity)
+target_link_libraries(test_host PRIVATE m)
+
 target_link_libraries(test_utils PRIVATE unity)
+target_link_libraries(test_utils PRIVATE m)
 
 # Optionally, set output directories for test files
 set_target_properties(test_engine PROPERTIES
