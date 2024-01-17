@@ -5,7 +5,7 @@ project(Super_Tictactoe)
 find_package(SDL2 REQUIRED)
 
 # Add compilation flags
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread")
 
 # Directories
 set(SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
@@ -38,10 +38,6 @@ include_directories(${INCLUDE_DIR})
 
 # Executable
 add_executable(executable ${SOURCES})
-
-# Compile options
-add_compile_options(-lm)
-add_compile_options(-pthread)
 
 # Linking the executable with the math library 
 target_link_libraries(executable PRIVATE m)
