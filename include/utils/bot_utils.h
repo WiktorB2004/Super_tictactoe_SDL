@@ -69,6 +69,9 @@ typedef struct choosen_node
     int idx;   /**< Indeks wybranego węzła */
 } choosen_node;
 
+//mutex na malloca
+extern pthread_mutex_t stop_malloc;
+
 /** @name Funkcje inicjalizujące i usuwające struktury danych */
 ///@{
 node *create_node(char **plansza, int czesc);

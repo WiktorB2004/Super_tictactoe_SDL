@@ -9,7 +9,8 @@ void setUp(void)
         exit(1);
     }
 
-    initialize_Game(game, 3);       
+    initialize_Game(game, 3);
+    game -> turn = 1; //X       
 }
 
 void tearDown(void)

@@ -10,7 +10,15 @@
 #define inf 1e9
 
 vector_node *create_vector_node(char **plnasza, int czesc){
-    vector_node *vector = malloc(sizeof(vector_node));
+    pthread_mutex_lock(&stop_malloc);
+    vector_node *vector = calloc(1, sizeof(vector_node));
+    pthread_mutex_unlock(&stop_malloc);
+
+    if(vector == NULL){
+        puts("błąd alokacji pamięci");
+        exit(EXIT_FAILURE);
+    }
+
     vector -> size = 0;
     int cnt = 0;
     pair p = poczatek_czesci(czesc);
@@ -19,7 +27,10 @@ vector_node *create_vector_node(char **plnasza, int czesc){
             if(plnasza[i + p.x][j + p.y] == ' ') cnt++;
 
     vector -> max_size = cnt;
-    vector -> sons = malloc(cnt * sizeof(node*));
+    pthread_mutex_lock(&stop_malloc);
+    vector -> sons = calloc(cnt, sizeof(node*));
+    pthread_mutex_unlock(&stop_malloc);
+
     if(vector -> sons == NULL){
         puts("błąd alokacji pamięci");
         exit(EXIT_FAILURE);
@@ -32,13 +43,19 @@ vector_node *create_vector_node(char **plnasza, int czesc){
 }
 
 node *create_node(char **plansza, int czesc){
-    node *wierzcholek = malloc(sizeof(node));
+    pthread_mutex_lock(&stop_malloc);
+    node *wierzcholek = calloc(1, sizeof(node));
+    pthread_mutex_unlock(&stop_malloc);
+
     if(wierzcholek == NULL){
         puts("błąd alokacji pamięci");
         exit(EXIT_FAILURE);
     }
 
-    pthread_mutex_t *mutex = malloc(sizeof(pthread_mutex_t));
+    pthread_mutex_lock(&stop_malloc);
+    pthread_mutex_t *mutex = calloc(1, sizeof(pthread_mutex_t));
+    pthread_mutex_unlock(&stop_malloc);
+
     if(mutex == NULL){
         puts("błąd alokajic pamięci");
         exit(EXIT_FAILURE);
@@ -71,7 +88,7 @@ void destruct_node(node *NODE){
 
     pthread_mutex_destroy(NODE -> mutex);
     free(NODE -> mutex);
-
+    
     free(NODE);
 }
 
@@ -90,12 +107,10 @@ void push_back(choosen_node *cn, node *new_node){
 
 double uct(node *wierzcholek){
     if(wierzcholek -> visit == 0) return (double) inf;
-
+    double c = 0.8;
     double uct = (double) wierzcholek -> wins / wierzcholek -> visit;
-    uct += (double) sqrt(9) * sqrt(log(wierzcholek -> parent == NULL ? wierzcholek -> visit :
+    uct += (double) sqrt(c) * sqrt(log(wierzcholek -> parent == NULL ? wierzcholek -> visit :
         wierzcholek -> parent -> visit) / wierzcholek -> visit);
-
-    uct += (double) 1 / (rand() % 45 + 5);
     return uct;
 }
 
@@ -296,10 +311,6 @@ int dodaj_syna(choosen_node *cn, char **plansza, char **nad_zwyciestwa){
     new_node -> ruch = ruch;
     push_back(cn, new_node);
 
-    if(cn -> v != new_node -> parent){
-        puts("dkjfkd");
-    }
-
     //zmiana planszy pod new_node
     // plansza[new_node -> ruch.x][new_node -> ruch.y] = new_node -> ruch.gracz;
     // update_nad_zwyciestwa(plansza, nad_zwyciestwa, cn -> v -> ruch.czesc); 
@@ -374,7 +385,7 @@ int symulate(node *v, char **plansza, char **nad_zywciestwa, char gracz){
         return 1;
     }
 
-    int wynik = 3 * (sprawdz_wynik(wyniki_pol) == gracz);
+    int wynik = 2 * (sprawdz_wynik(wyniki_pol) == gracz);
     deallocate(wyniki_pol, 3);
     deallocate(matrix, 9);
 

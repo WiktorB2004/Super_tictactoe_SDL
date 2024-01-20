@@ -32,10 +32,10 @@
 
 #define iteracje_normal 2500
 #define iteracje_hard 25000
-#define iteracje_impopable 250000
+#define iteracje_impopable 2500000
 #define thread_no 8
 
-pthread_mutex_t lock_cnt;
+pthread_mutex_t lock_cnt, stop_malloc;
 int liczba_iteracji, cel_liczby_iteracji;
 
 int bot(Game *game, int czesc, int tryb){
@@ -54,7 +54,17 @@ int bot(Game *game, int czesc, int tryb){
         exit(EXIT_FAILURE);
     }
 
+    //inicjalizacja mutexa na malloca
+    if(pthread_mutex_init(&stop_malloc, NULL) != 0){
+        puts("błąd inicjalizaji mutexa");
+        exit(EXIT_FAILURE);
+    }
+
     int ans = (*boty[tryb])(game, czesc);
+
+    //deaktywacja mutexa na malloca
+    pthread_mutex_destroy(&stop_malloc);
+
     return ans;
 }
 
@@ -152,9 +162,12 @@ int make_mcts(Game *game, int czesc){
                 _plansza[i][j] = plansza[i][j];
         arg[i].plansza = _plansza;
         
-        char **nad_zwyciestwa = allocate(3);
-        uzupelnij_nad_zwyciestwa(plansza, nad_zwyciestwa);
-        arg[i].nad_zwyciestwa = nad_zwyciestwa;
+        char **_nad_zwyciestwa = allocate(3);
+        for(int i = 0; i < 3; i++)
+            for(int j = 0; j < 3; j++)
+                _nad_zwyciestwa[i][j] = nad_zywciestwa;
+                
+        arg[i].nad_zwyciestwa = _nad_zwyciestwa;
 
         arg[i].czesc = czesc;
         arg[i].gracz = gracz;
