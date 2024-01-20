@@ -30,9 +30,9 @@
 #include "../../include/game_bot.h" 
 #include "../../include/utils/bot_utils.h"
 
-#define iteracje_normal 2000
+#define iteracje_normal 2500
 #define iteracje_hard 25000
-#define iteracje_impopable 500000
+#define iteracje_impopable 250000
 #define thread_no 8
 
 pthread_mutex_t lock_cnt;
@@ -121,9 +121,23 @@ int make_mcts(Game *game, int czesc){
             }
         }
     }
-
-
     //koniec zamiany
+
+    //sprawdzenie czy da sie w ogóle zrobić ruch
+    pair p = poczatek_czesci(czesc);
+    int moge = 0;
+    for(int i = 0; i < 3; i++)
+        for(int j = 0; j < 3; j++)
+            if(plansza[p.x + i][p.y + j] == ' ') moge++;
+    
+    if(moge == 0){
+        //nie mam jak dokonać ruchu, zwracam -1
+        deallocate(plansza, 9);
+        deallocate(nad_zywciestwa, 3);
+        return -1;
+    }
+
+    //początek normalnego kodu
     node *v = create_node(plansza, czesc);
     v -> ruch.gracz = zmiana_gracza(gracz);
     v -> ruch.czesc = czesc;
@@ -186,7 +200,8 @@ int make_mcts(Game *game, int czesc){
     if(ruch.czesc == -1) return -1;
 
     //dopisywanie zmiany
-    game -> board[znajdz_czesc(ruch)] -> value[ruch.x % 3][ruch.y % 3] = gracz;
+    modify_board(game -> board[znajdz_czesc(ruch)], ruch.x % 3, ruch.y % 3, game -> turn);
+    // game -> board[znajdz_czesc(ruch)] -> value[ruch.x % 3][ruch.y % 3] = gracz;
     return ruch.czesc;
 }
 
