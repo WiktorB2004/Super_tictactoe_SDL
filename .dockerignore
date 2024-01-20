@@ -1,0 +1,21 @@
+# Exclude build artifacts
+build/
+bin/
+
+# Exclude version control system directories
+.git/
+.svn/
+
+# Exclude temporary and backup files
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# Exclude unnecessary files/folders
+docs/
+test/
+.github
+Doxyfile
+.vscode
+/lib/Unity
