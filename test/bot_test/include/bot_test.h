@@ -25,8 +25,6 @@
 #include "../src/bot_test18.c"
 #include "../src/bot_test19.c"
 
-
-
 Game *game;
 
 //pusta cała plansza
