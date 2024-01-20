@@ -5,7 +5,7 @@ project(Super_Tictactoe)
 find_package(SDL2 REQUIRED)
 
 # Add compilation flags
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 # Directories
 set(SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
@@ -37,21 +37,20 @@ include_directories(${SDL2_INCLUDE_DIRS})
 include_directories(${INCLUDE_DIR})
 
 # Executable
-add_executable(executable ${SOURCES})
-
-# Linking the executable with the math library 
-target_link_libraries(executable PRIVATE m)
+add_executable(supertictactoe ${SOURCES})
 
 # Set output directories
-set_target_properties(executable PROPERTIES
+set_target_properties(supertictactoe PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${BIN_DIR}
     ARCHIVE_OUTPUT_DIRECTORY ${OBJ_DIR}
     LIBRARY_OUTPUT_DIRECTORY ${OBJ_DIR}
 )
 
 # Testing
-enable_testing()
-add_subdirectory(${TEST_DIR})
+if (NOT DEFINED RELEASE_BUILD) 
+    enable_testing()
+    add_subdirectory(${TEST_DIR})
+endif()
 
 # Link math.h
-target_link_libraries(executable PRIVATE m)
+target_link_libraries(supertictactoe PRIVATE m)
