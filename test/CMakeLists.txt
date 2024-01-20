@@ -47,26 +47,26 @@ set(BOT_TEST_SOURCES
     ${UTILS_DIR}/bot_utils.c
     ${SOURCE_DIR}/game_bot/bot.c
     ${SOURCE_DIR}/game_bot/generate_move.c
-    ${TEST_DIR}/bot_test/src/sample_test0.c
-    ${TEST_DIR}/bot_test/src/sample_test1.c
-    ${TEST_DIR}/bot_test/src/sample_test2.c
-    ${TEST_DIR}/bot_test/src/sample_test3.c
-    ${TEST_DIR}/bot_test/src/sample_test4.c
-    ${TEST_DIR}/bot_test/src/sample_test5.c
-    ${TEST_DIR}/bot_test/src/sample_test6.c
-    ${TEST_DIR}/bot_test/src/sample_test7.c
-    ${TEST_DIR}/bot_test/src/sample_test8.c
-    ${TEST_DIR}/bot_test/src/sample_test9.c
-    ${TEST_DIR}/bot_test/src/sample_test10.c
-    ${TEST_DIR}/bot_test/src/sample_test11.c
-    ${TEST_DIR}/bot_test/src/sample_test12.c
-    ${TEST_DIR}/bot_test/src/sample_test13.c
-    ${TEST_DIR}/bot_test/src/sample_test14.c
-    ${TEST_DIR}/bot_test/src/sample_test15.c
-    ${TEST_DIR}/bot_test/src/sample_test16.c
-    ${TEST_DIR}/bot_test/src/sample_test17.c
-    ${TEST_DIR}/bot_test/src/sample_test18.c
-    ${TEST_DIR}/bot_test/src/sample_test19.c
+    ${TEST_DIR}/bot_test/src/bot_test0.c
+    ${TEST_DIR}/bot_test/src/bot_test1.c
+    ${TEST_DIR}/bot_test/src/bot_test2.c
+    ${TEST_DIR}/bot_test/src/bot_test3.c
+    ${TEST_DIR}/bot_test/src/bot_test4.c
+    ${TEST_DIR}/bot_test/src/bot_test5.c
+    ${TEST_DIR}/bot_test/src/bot_test6.c
+    ${TEST_DIR}/bot_test/src/bot_test7.c
+    ${TEST_DIR}/bot_test/src/bot_test8.c
+    ${TEST_DIR}/bot_test/src/bot_test9.c
+    ${TEST_DIR}/bot_test/src/bot_test10.c
+    ${TEST_DIR}/bot_test/src/bot_test11.c
+    ${TEST_DIR}/bot_test/src/bot_test12.c
+    ${TEST_DIR}/bot_test/src/bot_test13.c
+    ${TEST_DIR}/bot_test/src/bot_test14.c
+    ${TEST_DIR}/bot_test/src/bot_test15.c
+    ${TEST_DIR}/bot_test/src/bot_test16.c
+    ${TEST_DIR}/bot_test/src/bot_test17.c
+    ${TEST_DIR}/bot_test/src/bot_test18.c
+    ${TEST_DIR}/bot_test/src/bot_test19.c
     ${TEST_DIR}/bot_test/bot_test.c
 )
 

@@ -1,8 +1,8 @@
 #include "unity.h"
 #include "../include/bot_test.h"
 
-// Example test case
-void test_sample5(void)
+extern Game *game;
+void test_bot6(void)
 {
     //ustawienie planszy
     for(int i = 0; i < 3; i++)
@@ -11,7 +11,8 @@ void test_sample5(void)
 
     for(int i = 0; i < 3; i++) game -> board[4] -> value[2][i] = 2; // ' ' 
     game -> board[4] -> value[1][2] = 2; // ' '
+    game -> board[4] -> value[1][1] = 2; // ' '
 
     int next_czesc = bot(game, 4, 4);
-    TEST_ASSERT_TRUE(next_czesc >= 5 && next_czesc <= 8);   
+    TEST_ASSERT_TRUE(next_czesc >= 4 && next_czesc <= 8);    
 }

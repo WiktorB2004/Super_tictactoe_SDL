@@ -1,8 +1,8 @@
 #include "unity.h"
 #include "../include/bot_test.h"
 
-// Example test case
-void test_sample8(void)
+extern Game *game;
+void test_bot8(void)
 {
     //ustawienie planszy
     for(int i = 0; i < 3; i++)
