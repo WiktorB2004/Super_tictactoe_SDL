@@ -2,7 +2,7 @@
 #include "../include/bot_test.h"
 
 // Example test case
-void test_sample(void)
+void test_sample6(void)
 {
     //ustawienie planszy
     for(int i = 0; i < 3; i++)

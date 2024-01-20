@@ -4,6 +4,28 @@
 #include "../../../include/game_bot.h"
 #include "../../../include/gameplay.h"
 
+#include "../src/sample_test0.c"
+#include "../src/sample_test1.c"
+#include "../src/sample_test2.c"
+#include "../src/sample_test3.c"
+#include "../src/sample_test4.c"
+#include "../src/sample_test5.c"
+#include "../src/sample_test6.c"
+#include "../src/sample_test7.c"
+#include "../src/sample_test8.c"
+#include "../src/sample_test9.c"
+#include "../src/sample_test10.c"
+#include "../src/sample_test11.c"
+#include "../src/sample_test12.c"
+#include "../src/sample_test13.c"
+#include "../src/sample_test14.c"
+#include "../src/sample_test15.c"
+#include "../src/sample_test16.c"
+#include "../src/sample_test17.c"
+#include "../src/sample_test18.c"
+#include "../src/sample_test19.c"
+
+
 Game *game;
 
 //pusta cała plansza
