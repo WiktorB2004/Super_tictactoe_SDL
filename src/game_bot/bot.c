@@ -165,8 +165,8 @@ int make_mcts(Game *game, int czesc){
         char **_nad_zwyciestwa = allocate(3);
         for(int i = 0; i < 3; i++)
             for(int j = 0; j < 3; j++)
-                _nad_zwyciestwa[i][j] = nad_zywciestwa;
-                
+                _nad_zwyciestwa[i][j] = nad_zywciestwa[i][j];
+
         arg[i].nad_zwyciestwa = _nad_zwyciestwa;
 
         arg[i].czesc = czesc;

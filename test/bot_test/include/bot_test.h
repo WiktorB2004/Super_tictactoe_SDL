@@ -26,7 +26,7 @@
 #include "../src/sample_test19.c"
 
 
-Game *game;
+extern Game *game;
 
 //pusta cała plansza
 void test_sample0(void);
