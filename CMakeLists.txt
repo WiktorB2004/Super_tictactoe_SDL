@@ -46,6 +46,8 @@ set_target_properties(executable PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY ${OBJ_DIR}
 )
 
+# Testing
+enable_testing()
 add_subdirectory(${TEST_DIR})
 
 # Link math.h
