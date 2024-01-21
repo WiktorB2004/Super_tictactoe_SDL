@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['created_20using_20sdl_0',['Super Tictactoe game created using SDL',['../index.html',1,'']]]
+  ['super_20tic_20tac_20toe_0',['Super tic tac toe',['../index.html',1,'']]]
 ];

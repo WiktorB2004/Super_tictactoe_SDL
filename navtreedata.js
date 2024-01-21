@@ -25,7 +25,7 @@
 var NAVTREE =
 [
   [ "Super Tictactoe", "index.html", [
-    [ "Super Tictactoe game created using SDL", "index.html", null ],
+    [ "Super tic tac toe", "index.html", "index" ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Structure Index", "classes.html", null ],

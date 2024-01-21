@@ -10,6 +10,5 @@ var searchData=
   ['cout_7',['cout',['../bot__utils_8c.html#a36e1373ef8afbe828ff9bc54267581e1',1,'cout(char **plansza, int x):&#160;bot_utils.c'],['../bot__utils_8h.html#a36e1373ef8afbe828ff9bc54267581e1',1,'cout(char **plansza, int x):&#160;bot_utils.c']]],
   ['create_5fnode_8',['create_node',['../bot__utils_8c.html#af08456d99dd166754283d57b26ac186a',1,'create_node(char **plansza, int czesc):&#160;bot_utils.c'],['../bot__utils_8h.html#af08456d99dd166754283d57b26ac186a',1,'create_node(char **plansza, int czesc):&#160;bot_utils.c']]],
   ['create_5fvector_5fnode_9',['create_vector_node',['../bot__utils_8c.html#a610cd93fe00aaaf67768d28452115b41',1,'create_vector_node(char **plnasza, int czesc):&#160;bot_utils.c'],['../bot__utils_8h.html#a63d8440057d20f790f0255a6a00985d0',1,'create_vector_node(char **plansza, int czesc):&#160;bot_utils.c']]],
-  ['created_20using_20sdl_10',['Super Tictactoe game created using SDL',['../index.html',1,'']]],
-  ['czesc_11',['czesc',['../structzmiana.html#afccab8910561230336d7157341a67f9d',1,'zmiana::czesc'],['../structargument.html#a67c8a60bed210d2018d692b8ef55d7da',1,'argument::czesc']]]
+  ['czesc_10',['czesc',['../structzmiana.html#afccab8910561230336d7157341a67f9d',1,'zmiana::czesc'],['../structargument.html#a67c8a60bed210d2018d692b8ef55d7da',1,'argument::czesc']]]
 ];

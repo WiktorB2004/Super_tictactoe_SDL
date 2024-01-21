@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Super Tictactoe: Super Tictactoe game created using SDL</title>
+<title>Super Tictactoe: Super tic tac toe</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -92,10 +92,38 @@ $(function(){initNavTree('index.html',''); initResizable(); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">Super Tictactoe game created using SDL </div></div>
+  <div class="headertitle"><div class="title">Super tic tac toe </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_README"></a> Documentation: <a href="https://wiktorb2004.github.io/Super_tictactoe_SDL">Super Tictactoe Docs</a> </p>
+<div class="textblock"><p><a class="anchor" id="md_README"></a></p><ul>
+<li>The project involves creating tic tac toe game using SDL in regular(3x3) / ultimate(9x9) mode with possiblity to host games over LAN. <br  />
+</li>
+<li>Source code documentation (Doxygen) - <a href="https://wiktorb2004.github.io/Super_tictactoe_SDL/">Super Tic Tac Toe Docs</a></li>
+</ul>
+<h1><a class="anchor" id="autotoc_md1"></a>
+How to play</h1>
+<ul>
+<li>Use docker image <div class="fragment"><div class="line">$ docker pull ghcr.io/wiktorb2004/super_tictactoe_sdl:master</div>
+<div class="line">$ docker run -it ghcr.io/wiktorb2004/super_tictactoe_sdl:master</div>
+</div><!-- fragment --></li>
+<li>Download repository and build the source code <div class="fragment"><div class="line">$ git clone https://github.com/WiktorB2004/Super_tictactoe_SDL.git</div>
+<div class="line">$ cd Super_tictactoe_SDL</div>
+<div class="line">$ mkdir build</div>
+<div class="line">$ cd build</div>
+<div class="line">$ cmake .. -DRELEASE_BUILD=1</div>
+<div class="line">$ cmake --build .</div>
+<div class="line">$ cd ..</div>
+<div class="line">$ ./bin/supertictactoe</div>
+</div><!-- fragment --></li>
+</ul>
+<h3><a class="anchor" id="autotoc_md2"></a>
+Generating documentation - you need to have Doxygen installed</h3>
+<div class="fragment"><div class="line">$ git clone https://github.com/WiktorB2004/Super_tictactoe_SDL.git</div>
+<div class="line">$ cd WLang_interpreter-C/</div>
+<div class="line">$ doxygen Doxyfile</div>
+</div><!-- fragment --><p> The documentation will be available inside /docs folder</p>
+<hr  />
+<p> Thank you for exploring this project, and I hope it demonstrates our dedication to the craft of software development and commitment to delivering high-quality solutions. If you have any questions or would like to collaborate with us, please feel free to get in touch. </p>
 </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"/>
 </div><!-- contents -->
