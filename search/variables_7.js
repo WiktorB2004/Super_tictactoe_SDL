@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['turn_0',['turn',['../structGame.html#ad16f3a8440430cfd53610b921641cca2',1,'Game']]]
+  ['parent_0',['parent',['../structnode.html#a05e4fe9e0177ba2d8dbd2c487cfddd53',1,'node']]],
+  ['plansza_1',['plansza',['../structargument.html#abfe62b6c04054a47bc81b8e4dd3191dc',1,'argument']]]
 ];

@@ -99,31 +99,40 @@ $(function(){initNavTree('game__bot_8h.html',''); initResizable(); });
 <div class="contents">
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="gameplay_8h_source.html">gameplay.h</a>&quot;</code><br />
 </div>
 <p><a href="game__bot_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a126ca0fbb994ec9d5c29fab189812ad2" id="r_a126ca0fbb994ec9d5c29fab189812ad2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a126ca0fbb994ec9d5c29fab189812ad2">bot</a> (char **plansza, char gracz, int czesc, int tryb)</td></tr>
-<tr class="separator:a126ca0fbb994ec9d5c29fab189812ad2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b2875b2e43d4833d4bd8ecddb26bbaf" id="r_a1b2875b2e43d4833d4bd8ecddb26bbaf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1b2875b2e43d4833d4bd8ecddb26bbaf">bot_3x3_normal</a> (char **plansza, char gracz, int czesc)</td></tr>
-<tr class="separator:a1b2875b2e43d4833d4bd8ecddb26bbaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a790cac1df86d72b86ffcc04c6cfcf876" id="r_a790cac1df86d72b86ffcc04c6cfcf876"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a790cac1df86d72b86ffcc04c6cfcf876">bot_3x3_hard</a> (char **plansza, char gracz, int czesc)</td></tr>
-<tr class="separator:a790cac1df86d72b86ffcc04c6cfcf876"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa685a0ebed8b430bf6652cd0465fc475" id="r_aa685a0ebed8b430bf6652cd0465fc475"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa685a0ebed8b430bf6652cd0465fc475">bot_3x3_impopable</a> (char **plansza, char gracz, int czesc)</td></tr>
-<tr class="separator:aa685a0ebed8b430bf6652cd0465fc475"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a306a8153fadda1d8592f68c9054044e0" id="r_a306a8153fadda1d8592f68c9054044e0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a306a8153fadda1d8592f68c9054044e0">bot_9x9_normal</a> (char **plansza, char gracz, int czesc)</td></tr>
-<tr class="separator:a306a8153fadda1d8592f68c9054044e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4e5f3083b659bf7354ab5d3d26315d9" id="r_ab4e5f3083b659bf7354ab5d3d26315d9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4e5f3083b659bf7354ab5d3d26315d9">bot_9x9_hard</a> (char **plansza, char gracz, int czesc)</td></tr>
-<tr class="separator:ab4e5f3083b659bf7354ab5d3d26315d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a724100d76e505be8faca6441ed04a549" id="r_a724100d76e505be8faca6441ed04a549"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a724100d76e505be8faca6441ed04a549">bot_9x9_impopable</a> (char **plansza, char gracz, int czesc)</td></tr>
-<tr class="separator:a724100d76e505be8faca6441ed04a549"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a665f1a2b7454a78632a4f1e7113dd9b0" id="r_a665f1a2b7454a78632a4f1e7113dd9b0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a665f1a2b7454a78632a4f1e7113dd9b0">bot</a> (<a class="el" href="structGame.html">Game</a> *game, int czesc, int tryb)</td></tr>
+<tr class="memdesc:a665f1a2b7454a78632a4f1e7113dd9b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja realizująca działanie bota w grze kółko-krzyżyk.  <br /></td></tr>
+<tr class="separator:a665f1a2b7454a78632a4f1e7113dd9b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae87e02b0ebf288bd77979950da039197" id="r_ae87e02b0ebf288bd77979950da039197"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae87e02b0ebf288bd77979950da039197">bot_3x3_normal</a> (<a class="el" href="structGame.html">Game</a> *game, int czesc)</td></tr>
+<tr class="memdesc:ae87e02b0ebf288bd77979950da039197"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja realizująca działanie bota w trybie normalnym na planszy 3x3.  <br /></td></tr>
+<tr class="separator:ae87e02b0ebf288bd77979950da039197"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1dbf83c7389fdde2ee281f1584a53a8" id="r_ae1dbf83c7389fdde2ee281f1584a53a8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae1dbf83c7389fdde2ee281f1584a53a8">bot_3x3_hard</a> (<a class="el" href="structGame.html">Game</a> *game, int czesc)</td></tr>
+<tr class="memdesc:ae1dbf83c7389fdde2ee281f1584a53a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja realizująca działanie bota w trybie trudnym na planszy 3x3.  <br /></td></tr>
+<tr class="separator:ae1dbf83c7389fdde2ee281f1584a53a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa65b9361607a77ecaeaa3d435820bfcb" id="r_aa65b9361607a77ecaeaa3d435820bfcb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa65b9361607a77ecaeaa3d435820bfcb">bot_3x3_impopable</a> (<a class="el" href="structGame.html">Game</a> *game, int czesc)</td></tr>
+<tr class="memdesc:aa65b9361607a77ecaeaa3d435820bfcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja realizująca działanie bota w trybie impopable na planszy 3x3.  <br /></td></tr>
+<tr class="separator:aa65b9361607a77ecaeaa3d435820bfcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af18490ac79edc1572001f338c4e8c480" id="r_af18490ac79edc1572001f338c4e8c480"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af18490ac79edc1572001f338c4e8c480">bot_9x9_normal</a> (<a class="el" href="structGame.html">Game</a> *game, int czesc)</td></tr>
+<tr class="memdesc:af18490ac79edc1572001f338c4e8c480"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja realizująca działanie bota w trybie normalnym na planszy 9x9.  <br /></td></tr>
+<tr class="separator:af18490ac79edc1572001f338c4e8c480"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef997a630ebeb2a004aef4be43ed9d02" id="r_aef997a630ebeb2a004aef4be43ed9d02"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef997a630ebeb2a004aef4be43ed9d02">bot_9x9_hard</a> (<a class="el" href="structGame.html">Game</a> *game, int czesc)</td></tr>
+<tr class="memdesc:aef997a630ebeb2a004aef4be43ed9d02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja realizująca działanie bota w trybie trudnym na planszy 9x9.  <br /></td></tr>
+<tr class="separator:aef997a630ebeb2a004aef4be43ed9d02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab127012100b05ec11d59977c9dfca8d" id="r_aab127012100b05ec11d59977c9dfca8d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab127012100b05ec11d59977c9dfca8d">bot_9x9_impopable</a> (<a class="el" href="structGame.html">Game</a> *game, int czesc)</td></tr>
+<tr class="memdesc:aab127012100b05ec11d59977c9dfca8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja realizująca działanie bota w trybie impopable na planszy 9x9.  <br /></td></tr>
+<tr class="separator:aab127012100b05ec11d59977c9dfca8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae559b7c27a4a2576c550c91bbecd1b11" id="r_ae559b7c27a4a2576c550c91bbecd1b11"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae559b7c27a4a2576c550c91bbecd1b11">bot_9x9_random</a> (char **plansza, char gracz, int czesc)</td></tr>
+<tr class="memdesc:ae559b7c27a4a2576c550c91bbecd1b11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja realizująca działanie bota w trybie losowym na planszy 9x9.  <br /></td></tr>
 <tr class="separator:ae559b7c27a4a2576c550c91bbecd1b11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a126ca0fbb994ec9d5c29fab189812ad2" name="a126ca0fbb994ec9d5c29fab189812ad2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a126ca0fbb994ec9d5c29fab189812ad2">&#9670;&#160;</a></span>bot()</h2>
+<a id="a665f1a2b7454a78632a4f1e7113dd9b0" name="a665f1a2b7454a78632a4f1e7113dd9b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a665f1a2b7454a78632a4f1e7113dd9b0">&#9670;&#160;</a></span>bot()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -131,12 +140,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int bot </td>
           <td>(</td>
-          <td class="paramtype">char **</td>          <td class="paramname"><span class="paramname"><em>plansza</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>gracz</em>, </span></td>
+          <td class="paramtype"><a class="el" href="structGame.html">Game</a> *</td>          <td class="paramname"><span class="paramname"><em>game</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -151,10 +155,22 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Funkcja realizująca działanie bota w grze kółko-krzyżyk. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">plansza</td><td>Wskaźnik na planszę do gry. </td></tr>
+    <tr><td class="paramname">gracz</td><td>Znak określający, kto wykonuje ruch: 'X' lub 'O'. </td></tr>
+    <tr><td class="paramname">czesc</td><td>Numer części planszy, w której ma się odbyć ruch. </td></tr>
+    <tr><td class="paramname">tryb</td><td>Tryb gry określający poziom trudności i rozmiar planszy. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Numer części planszy, w której trzeba wykonać następny ruch, 0 jeśli gra jest 3x3, -1 jeśli bot nie może wykonać ruchu. </dd></dl>
+
 </div>
 </div>
-<a id="a790cac1df86d72b86ffcc04c6cfcf876" name="a790cac1df86d72b86ffcc04c6cfcf876"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a790cac1df86d72b86ffcc04c6cfcf876">&#9670;&#160;</a></span>bot_3x3_hard()</h2>
+<a id="ae1dbf83c7389fdde2ee281f1584a53a8" name="ae1dbf83c7389fdde2ee281f1584a53a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1dbf83c7389fdde2ee281f1584a53a8">&#9670;&#160;</a></span>bot_3x3_hard()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -162,12 +178,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int bot_3x3_hard </td>
           <td>(</td>
-          <td class="paramtype">char **</td>          <td class="paramname"><span class="paramname"><em>plansza</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>gracz</em>, </span></td>
+          <td class="paramtype"><a class="el" href="structGame.html">Game</a> *</td>          <td class="paramname"><span class="paramname"><em>game</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -177,10 +188,21 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Funkcja realizująca działanie bota w trybie trudnym na planszy 3x3. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">plansza</td><td>Wskaźnik na planszę do gry. </td></tr>
+    <tr><td class="paramname">gracz</td><td>Znak określający, kto wykonuje ruch: 'X' lub 'O'. </td></tr>
+    <tr><td class="paramname">czesc</td><td>Numer części planszy, w której ma się odbyć ruch. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Numer części planszy, w której trzeba wykonać następny ruch, 0 jeśli gra jest 3x3, -1 jeśli bot nie może wykonać ruchu. </dd></dl>
+
 </div>
 </div>
-<a id="aa685a0ebed8b430bf6652cd0465fc475" name="aa685a0ebed8b430bf6652cd0465fc475"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa685a0ebed8b430bf6652cd0465fc475">&#9670;&#160;</a></span>bot_3x3_impopable()</h2>
+<a id="aa65b9361607a77ecaeaa3d435820bfcb" name="aa65b9361607a77ecaeaa3d435820bfcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa65b9361607a77ecaeaa3d435820bfcb">&#9670;&#160;</a></span>bot_3x3_impopable()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -188,12 +210,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int bot_3x3_impopable </td>
           <td>(</td>
-          <td class="paramtype">char **</td>          <td class="paramname"><span class="paramname"><em>plansza</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>gracz</em>, </span></td>
+          <td class="paramtype"><a class="el" href="structGame.html">Game</a> *</td>          <td class="paramname"><span class="paramname"><em>game</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -203,10 +220,21 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Funkcja realizująca działanie bota w trybie impopable na planszy 3x3. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">plansza</td><td>Wskaźnik na planszę do gry. </td></tr>
+    <tr><td class="paramname">gracz</td><td>Znak określający, kto wykonuje ruch: 'X' lub 'O'. </td></tr>
+    <tr><td class="paramname">czesc</td><td>Numer części planszy, w której ma się odbyć ruch. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Numer części planszy, w której trzeba wykonać następny ruch, 0 jeśli gra jest 3x3, -1 jeśli bot nie może wykonać ruchu. </dd></dl>
+
 </div>
 </div>
-<a id="a1b2875b2e43d4833d4bd8ecddb26bbaf" name="a1b2875b2e43d4833d4bd8ecddb26bbaf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1b2875b2e43d4833d4bd8ecddb26bbaf">&#9670;&#160;</a></span>bot_3x3_normal()</h2>
+<a id="ae87e02b0ebf288bd77979950da039197" name="ae87e02b0ebf288bd77979950da039197"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae87e02b0ebf288bd77979950da039197">&#9670;&#160;</a></span>bot_3x3_normal()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -214,12 +242,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int bot_3x3_normal </td>
           <td>(</td>
-          <td class="paramtype">char **</td>          <td class="paramname"><span class="paramname"><em>plansza</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>gracz</em>, </span></td>
+          <td class="paramtype"><a class="el" href="structGame.html">Game</a> *</td>          <td class="paramname"><span class="paramname"><em>game</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -229,10 +252,21 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Funkcja realizująca działanie bota w trybie normalnym na planszy 3x3. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">plansza</td><td>Wskaźnik na planszę do gry. </td></tr>
+    <tr><td class="paramname">gracz</td><td>Znak określający, kto wykonuje ruch: 'X' lub 'O'. </td></tr>
+    <tr><td class="paramname">czesc</td><td>Numer części planszy, w której ma się odbyć ruch. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Numer części planszy, w której trzeba wykonać następny ruch, 0 jeśli gra jest 3x3, -1 jeśli bot nie może wykonać ruchu. </dd></dl>
+
 </div>
 </div>
-<a id="ab4e5f3083b659bf7354ab5d3d26315d9" name="ab4e5f3083b659bf7354ab5d3d26315d9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab4e5f3083b659bf7354ab5d3d26315d9">&#9670;&#160;</a></span>bot_9x9_hard()</h2>
+<a id="aef997a630ebeb2a004aef4be43ed9d02" name="aef997a630ebeb2a004aef4be43ed9d02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef997a630ebeb2a004aef4be43ed9d02">&#9670;&#160;</a></span>bot_9x9_hard()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -240,12 +274,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int bot_9x9_hard </td>
           <td>(</td>
-          <td class="paramtype">char **</td>          <td class="paramname"><span class="paramname"><em>plansza</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>gracz</em>, </span></td>
+          <td class="paramtype"><a class="el" href="structGame.html">Game</a> *</td>          <td class="paramname"><span class="paramname"><em>game</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -255,10 +284,21 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Funkcja realizująca działanie bota w trybie trudnym na planszy 9x9. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">plansza</td><td>Wskaźnik na planszę do gry. </td></tr>
+    <tr><td class="paramname">gracz</td><td>Znak określający, kto wykonuje ruch: 'X' lub 'O'. </td></tr>
+    <tr><td class="paramname">czesc</td><td>Numer części planszy, w której ma się odbyć ruch. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Numer części planszy, w której trzeba wykonać następny ruch, 0 jeśli gra jest 3x3, -1 jeśli bot nie może wykonać ruchu. </dd></dl>
+
 </div>
 </div>
-<a id="a724100d76e505be8faca6441ed04a549" name="a724100d76e505be8faca6441ed04a549"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a724100d76e505be8faca6441ed04a549">&#9670;&#160;</a></span>bot_9x9_impopable()</h2>
+<a id="aab127012100b05ec11d59977c9dfca8d" name="aab127012100b05ec11d59977c9dfca8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab127012100b05ec11d59977c9dfca8d">&#9670;&#160;</a></span>bot_9x9_impopable()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -266,12 +306,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int bot_9x9_impopable </td>
           <td>(</td>
-          <td class="paramtype">char **</td>          <td class="paramname"><span class="paramname"><em>plansza</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>gracz</em>, </span></td>
+          <td class="paramtype"><a class="el" href="structGame.html">Game</a> *</td>          <td class="paramname"><span class="paramname"><em>game</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -281,10 +316,21 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Funkcja realizująca działanie bota w trybie impopable na planszy 9x9. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">plansza</td><td>Wskaźnik na planszę do gry. </td></tr>
+    <tr><td class="paramname">gracz</td><td>Znak określający, kto wykonuje ruch: 'X' lub 'O'. </td></tr>
+    <tr><td class="paramname">czesc</td><td>Numer części planszy, w której ma się odbyć ruch. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Numer części planszy, w której trzeba wykonać następny ruch, 0 jeśli gra jest 3x3, -1 jeśli bot nie może wykonać ruchu. </dd></dl>
+
 </div>
 </div>
-<a id="a306a8153fadda1d8592f68c9054044e0" name="a306a8153fadda1d8592f68c9054044e0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a306a8153fadda1d8592f68c9054044e0">&#9670;&#160;</a></span>bot_9x9_normal()</h2>
+<a id="af18490ac79edc1572001f338c4e8c480" name="af18490ac79edc1572001f338c4e8c480"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af18490ac79edc1572001f338c4e8c480">&#9670;&#160;</a></span>bot_9x9_normal()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -292,12 +338,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int bot_9x9_normal </td>
           <td>(</td>
-          <td class="paramtype">char **</td>          <td class="paramname"><span class="paramname"><em>plansza</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>gracz</em>, </span></td>
+          <td class="paramtype"><a class="el" href="structGame.html">Game</a> *</td>          <td class="paramname"><span class="paramname"><em>game</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -306,6 +347,17 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Funkcja realizująca działanie bota w trybie normalnym na planszy 9x9. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">plansza</td><td>Wskaźnik na planszę do gry. </td></tr>
+    <tr><td class="paramname">gracz</td><td>Znak określający, kto wykonuje ruch: 'X' lub 'O'. </td></tr>
+    <tr><td class="paramname">czesc</td><td>Numer części planszy, w której ma się odbyć ruch. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Numer części planszy, w której trzeba wykonać następny ruch, 0 jeśli gra jest 3x3, -1 jeśli bot nie może wykonać ruchu. </dd></dl>
 
 </div>
 </div>
@@ -332,6 +384,17 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Funkcja realizująca działanie bota w trybie losowym na planszy 9x9. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">plansza</td><td>Wskaźnik na planszę do gry. </td></tr>
+    <tr><td class="paramname">gracz</td><td>Znak określający, kto wykonuje ruch: 'X' lub 'O'. </td></tr>
+    <tr><td class="paramname">czesc</td><td>Numer części planszy, w której ma się odbyć ruch. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Numer części planszy, w której trzeba wykonać następny ruch, 0 jeśli gra jest 3x3, -1 jeśli bot nie może wykonać ruchu. </dd></dl>
 
 </div>
 </div>

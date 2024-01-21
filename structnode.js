@@ -1,5 +1,6 @@
 var structnode =
 [
+    [ "mutex", "structnode.html#a236de2fa9145a5c0e438a5595013514f", null ],
     [ "parent", "structnode.html#a05e4fe9e0177ba2d8dbd2c487cfddd53", null ],
     [ "ruch", "structnode.html#aae2ec69b083a8118bdfa405a0f9166c9", null ],
     [ "vec", "structnode.html#a3cf3895d261cc53412732125c58feb30", null ],

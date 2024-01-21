@@ -98,29 +98,35 @@ $(function(){initNavTree('structvector__node.html',''); initResizable(); });
 </div><!--header-->
 <div class="contents">
 
+<p>Struktura przechowująca dynamiczną tablicę wskaźników na synów węzła.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="bot__utils_8h_source.html">bot_utils.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Data Fields</h2></td></tr>
 <tr class="memitem:ab225ba0e583670c19abbd06294bc4b21" id="r_ab225ba0e583670c19abbd06294bc4b21"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab225ba0e583670c19abbd06294bc4b21">size</a></td></tr>
 <tr class="separator:ab225ba0e583670c19abbd06294bc4b21"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50b347b71bb6e018a53819847694cfac" id="r_a50b347b71bb6e018a53819847694cfac"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a50b347b71bb6e018a53819847694cfac">cap</a></td></tr>
-<tr class="separator:a50b347b71bb6e018a53819847694cfac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3c25233fc07b70c3f54dd104c4e4cea" id="r_ae3c25233fc07b70c3f54dd104c4e4cea"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3c25233fc07b70c3f54dd104c4e4cea">max_size</a></td></tr>
+<tr class="separator:ae3c25233fc07b70c3f54dd104c4e4cea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af33e57022e487c11a5030eaf528a6262" id="r_af33e57022e487c11a5030eaf528a6262"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structnode.html">node</a> **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af33e57022e487c11a5030eaf528a6262">sons</a></td></tr>
 <tr class="separator:af33e57022e487c11a5030eaf528a6262"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Field Documentation</h2>
-<a id="a50b347b71bb6e018a53819847694cfac" name="a50b347b71bb6e018a53819847694cfac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a50b347b71bb6e018a53819847694cfac">&#9670;&#160;</a></span>cap</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Struktura przechowująca dynamiczną tablicę wskaźników na synów węzła. </p>
+</div><h2 class="groupheader">Field Documentation</h2>
+<a id="ae3c25233fc07b70c3f54dd104c4e4cea" name="ae3c25233fc07b70c3f54dd104c4e4cea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3c25233fc07b70c3f54dd104c4e4cea">&#9670;&#160;</a></span>max_size</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int vector_node::cap</td>
+          <td class="memname">int vector_node::max_size</td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Maksymalny rozmiar tablicy </p>
 
 </div>
 </div>
@@ -135,6 +141,7 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Aktualny rozmiar tablicy </p>
 
 </div>
 </div>
@@ -149,6 +156,7 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Wskaźnik na tablicę wskaźników na synów typu node </p>
 
 </div>
 </div>
