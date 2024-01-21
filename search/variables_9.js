@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['pallete_0',['pallete',['../structsdl__data.html#ae63f1af99133fa4d84edef4875e43497',1,'sdl_data']]],
-  ['parent_1',['parent',['../structnode.html#a05e4fe9e0177ba2d8dbd2c487cfddd53',1,'node']]],
-  ['plansza_2',['plansza',['../structargument.html#abfe62b6c04054a47bc81b8e4dd3191dc',1,'argument']]],
-  ['playfield_3',['playfield',['../structsdl__data.html#af0cae4509b7e32e1fd5ae9547c3c1ee7',1,'sdl_data']]],
-  ['put_5fsign_4',['put_sign',['../structplayfield.html#a02beb0c295fdb0ccd8f44757e0ff89db',1,'playfield::put_sign'],['../structsdl__data.html#ad6fff07091d78be6d31f0a6912fafb51',1,'sdl_data::put_sign']]]
+  ['size_0',['size',['../structvector__node.html#ab225ba0e583670c19abbd06294bc4b21',1,'vector_node']]],
+  ['sons_1',['sons',['../structvector__node.html#af33e57022e487c11a5030eaf528a6262',1,'vector_node']]],
+  ['status_2',['status',['../structBoard.html#a87db634107abdb1fa8cad2c893feb759',1,'Board::status'],['../structGame.html#ac7bdb69dfc0d8ddd753907bc9e9d2651',1,'Game::status']]],
+  ['stop_5fmalloc_3',['stop_malloc',['../bot_8c.html#a20f06fb0a1e421a96c9661f743b7afe0',1,'stop_malloc:&#160;bot.c'],['../bot__utils_8h.html#a20f06fb0a1e421a96c9661f743b7afe0',1,'stop_malloc:&#160;bot.c']]]
 ];

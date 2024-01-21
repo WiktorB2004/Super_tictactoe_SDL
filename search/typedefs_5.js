@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['object_0',['Object',['../sdl__display_8h.html#ac1d573b78381906e7299e87cab9152bc',1,'sdl_display.h']]]
+  ['zmiana_0',['zmiana',['../bot__utils_8h.html#a9b3971301b7903554c34226928791a98',1,'bot_utils.h']]]
 ];
