@@ -1,4 +1,5 @@
 #include "include/bot_test.h"
+#include "../../../include/gameplay.h"
 #include "../../../include/utils/gameplay_utils.h"
 
 Game *game;
