@@ -84,6 +84,9 @@ set(UTILS_TEST_SOURCES
     ${UTILS_DIR}/gameplay_utils.c
     ${UTILS_DIR}/sdl_utils.c
     ${UTILS_DIR}/bot_utils.c
+    ${SOURCE_DIR}/game_bot/bot.c
+    ${SOURCE_DIR}/gameplay/gameplay.c
+    ${SOURCE_DIR}/game_bot/generate_move.c
     ${TEST_DIR}/utils_test/src/sample_test.c
     ${TEST_DIR}/utils_test/utils_test.c
 )
