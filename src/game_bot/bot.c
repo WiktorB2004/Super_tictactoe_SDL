@@ -29,6 +29,7 @@
 */
 #include "../../include/game_bot.h" 
 #include "../../include/utils/bot_utils.h"
+#include "../../include/gameplay.h"
 
 #define iteracje_normal 2500
 #define iteracje_hard 25000
