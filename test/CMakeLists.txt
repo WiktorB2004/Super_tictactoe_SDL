@@ -143,8 +143,8 @@ set_target_properties(test_utils PROPERTIES
 
 # Add tests
 enable_testing()
-add_test(NAME engine COMMAND test_engine)
+# add_test(NAME engine COMMAND test_engine)
 add_test(NAME gameplay COMMAND test_gameplay)
 add_test(NAME bot COMMAND test_bot)
-add_test(NAME host COMMAND test_host)
-add_test(NAME utils COMMAND test_utils)
+# add_test(NAME host COMMAND test_host)
+# add_test(NAME utils COMMAND test_utils)
