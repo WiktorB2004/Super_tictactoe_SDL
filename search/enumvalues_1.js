@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['empty_0',['EMPTY',['../gameplay_8h.html#a9c8780378078e51e7c9041cbac392db9a2f0d18fc0d0fa4a6cd92dc328501874d',1,'gameplay.h']]]
+  ['draw_0',['DRAW',['../gameplay_8h.html#a881b49e3802366255ad852f1c8624fd1a61f3c57b6943c85413975507aede78cd',1,'gameplay.h']]]
 ];

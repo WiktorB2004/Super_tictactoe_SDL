@@ -1,7 +1,10 @@
 var searchData=
 [
-  ['uct_0',['uct',['../bot__utils_8c.html#af82ee3b37b210574e90864b86647a7cf',1,'uct(node *wierzcholek):&#160;bot_utils.c'],['../bot__utils_8h.html#af82ee3b37b210574e90864b86647a7cf',1,'uct(node *wierzcholek):&#160;bot_utils.c']]],
-  ['unselect_1',['unselect',['../bot__utils_8c.html#ab7699d76dbfbdac2bcd8de81538be44b',1,'unselect(node *v, char **plansza, int wynik, char **nad_zwyciestwa):&#160;bot_utils.c'],['../bot__utils_8h.html#ab7699d76dbfbdac2bcd8de81538be44b',1,'unselect(node *v, char **plansza, int wynik, char **nad_zwyciestwa):&#160;bot_utils.c']]],
-  ['update_5fnad_5fzwyciestwa_2',['update_nad_zwyciestwa',['../bot__utils_8c.html#a05443aa1de48c7c70273a661d47c60d5',1,'update_nad_zwyciestwa(char **plansza, char **nad_zwyciestwa, int czesc):&#160;bot_utils.c'],['../bot__utils_8h.html#a2be37798866b78cd74e333e0df3aa5b0',1,'update_nad_zwyciestwa(char **plnasza, char **nad_zwyciestwa, int czesc):&#160;bot_utils.c']]],
-  ['uzupelnij_5fnad_5fzwyciestwa_3',['uzupelnij_nad_zwyciestwa',['../bot__utils_8c.html#a3a24070dbdfa513205f7cddb3e0bbba6',1,'uzupelnij_nad_zwyciestwa(char **plansza, char **nad_zwyciestwa):&#160;bot_utils.c'],['../bot__utils_8h.html#a3a24070dbdfa513205f7cddb3e0bbba6',1,'uzupelnij_nad_zwyciestwa(char **plansza, char **nad_zwyciestwa):&#160;bot_utils.c']]]
+  ['remis_0',['remis',['../bot__utils_8c.html#a34de84a3eb08c90523b6d12541c2b25c',1,'remis(char **nad_zwyciestwa):&#160;bot_utils.c'],['../bot__utils_8h.html#a34de84a3eb08c90523b6d12541c2b25c',1,'remis(char **nad_zwyciestwa):&#160;bot_utils.c']]],
+  ['render_5fboard_1',['render_board',['../sdl__display_8c.html#a441807a4ed7ee767862771d0ba02cd16',1,'sdl_display.c']]],
+  ['render_5fbutton_2',['render_button',['../sdl__display_8c.html#aa587e803044bd8d844117d9318bf9d2c',1,'sdl_display.c']]],
+  ['render_5fcell_3',['render_cell',['../sdl__display_8c.html#aaae5f9a90471c78e068c0d9eb2e4d936',1,'sdl_display.c']]],
+  ['render_5fmenu_4',['render_menu',['../sdl__display_8c.html#a1aa0c547aeffbd59ab575f6ac3479cbd',1,'sdl_display.c']]],
+  ['render_5fobject_5',['render_object',['../sdl__display_8c.html#a671a5426810fe6710071bf45df6ed0e1',1,'sdl_display.c']]],
+  ['render_5fplayfield_6',['render_playfield',['../sdl__display_8c.html#ab187c4da46c153c0bc4824974cb2501c',1,'sdl_display.c']]]
 ];

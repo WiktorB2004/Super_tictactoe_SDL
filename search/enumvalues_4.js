@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['o_0',['O',['../gameplay_8h.html#a9c8780378078e51e7c9041cbac392db9af4b8b7698dfedf5562a7db2bdb07010a',1,'gameplay.h']]],
-  ['o_5fwon_1',['O_WON',['../gameplay_8h.html#a881b49e3802366255ad852f1c8624fd1a43315851c3420cc44208a1be2a9ce061',1,'gameplay.h']]]
+  ['mode_0',['mode',['../sdl__display_8h.html#ab0f08fdde6faa58116caa291c5533a85af1982b2b77f9b0e7cd29e39b39d8a0b4',1,'sdl_display.h']]]
 ];

@@ -6,5 +6,5 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "game_host.h", "game__host_8h.html", null ],
     [ "gameplay.h", "gameplay_8h.html", "gameplay_8h" ],
     [ "generate_move.h", "generate__move_8h.html", null ],
-    [ "sdl_display.h", "sdl__display_8h.html", null ]
+    [ "sdl_display.h", "sdl__display_8h.html", "sdl__display_8h" ]
 ];
