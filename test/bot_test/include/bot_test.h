@@ -7,5 +7,5 @@
 #include "../../../include/game_bot.h"
 #include "../../../include/utils/gameplay_utils.h"
 
-Game *game;
+extern Game *game;
 #endif // BOT_TEST_H

@@ -20,7 +20,7 @@
 #include "../src/bot_test18.c"
 #include "../src/bot_test19.c"
 
-extern Game *game;
+Game *game;
 void setUp(void)
 {  
     game = malloc(sizeof(Game));
