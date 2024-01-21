@@ -29,13 +29,18 @@
 */
 #include "../../include/game_bot.h" 
 #include "../../include/utils/bot_utils.h"
+#include "../../include/gameplay.h"
 
-#define iteracje_normal 500
-#define iteracje_hard 5000
-#define iteracje_impopable 250000
+#define iteracje_normal 2500
+#define iteracje_hard 25000
+#define iteracje_impopable 2500000
+#define thread_no 8
 
-int bot(char **plansza, char gracz, int czesc, int tryb){
-    int (*boty[])(char **, char, int) = {
+pthread_mutex_t lock_cnt, stop_malloc;
+int liczba_iteracji, cel_liczby_iteracji;
+
+int bot(Game *game, int czesc, int tryb){
+    int (*boty[])(Game *, int) = {
         bot_3x3_normal,
         bot_3x3_hard,
         bot_3x3_impopable,
@@ -50,158 +55,189 @@ int bot(char **plansza, char gracz, int czesc, int tryb){
         exit(EXIT_FAILURE);
     }
 
-    int ans = (*boty[tryb])(plansza, gracz, czesc);
+    //inicjalizacja mutexa na malloca
+    if(pthread_mutex_init(&stop_malloc, NULL) != 0){
+        puts("błąd inicjalizaji mutexa");
+        exit(EXIT_FAILURE);
+    }
+
+    int ans = (*boty[tryb])(game, czesc);
+
+    //deaktywacja mutexa na malloca
+    pthread_mutex_destroy(&stop_malloc);
+
     return ans;
 }
 
-int bot_9x9_normal(char **plansza, char gracz, int czesc){
-    node *v = create_node();
-    v -> ruch.gracz = zmiana_gracza(gracz);
-    v -> ruch.czesc = czesc; //czesc mówi w której części ma się odbyć następny ruch 
+void *watek(void *ARG){
+    while(1){
+        pthread_mutex_lock(&lock_cnt);
+        if(liczba_iteracji >= cel_liczby_iteracji){
+            pthread_mutex_unlock(&lock_cnt);
+            break;
+        }
+        liczba_iteracji++;
+        pthread_mutex_unlock(&lock_cnt);
 
-    //dla 9 planszy sprawdza kto wygrywa w poszczególnych planszach 
-    char **nad_zwyciestwa = allocate(3);
-    uzupelnij_nad_zwyciestwa(plansza, nad_zwyciestwa);
+        //iteracja
+        argument *arg = (argument*) ARG;
 
-    //początek tworzenia mcts
-    for(int i = 0; i < iteracje_normal; i++){
         //wybieram liścia
-        node *selected = Select(plansza, v, nad_zwyciestwa);
+        choosen_node *selected = Select(arg -> plansza, arg -> v, arg -> nad_zwyciestwa);
 
         //wybranemu wierzchołkowi dodaje syna i ustawia plansze pod niego 
         node *new_selected;
-        if(dodaj_syna(selected, plansza, nad_zwyciestwa)){
-            //nie udało sie dodać syna, więc będe robił symulacje dla selected
-            new_selected = selected;
+        if(dodaj_syna(selected, arg -> plansza, arg -> nad_zwyciestwa)){
+            //nie udało sie dodać syna, więc będe robił symulacje dla ojca
+            new_selected = selected -> v;
         }
         else{
-            //udało sie dodać syna, więc robie symulacje dla nowo dodanego syna, który jest 
-            //oczywiście na końcu vectora
-            new_selected = selected -> vec -> sons[selected -> vec -> size -1];
+            //udało sie dodać syna, więc robie symulacje dla syna
+            new_selected = selected -> v -> vec -> sons[selected -> idx];
         }
 
         //przeprowadzam symulacje dla syna/ojca i mówie czy 
         //wygrał/zremisował/przegrał gracz (ten z argumentu funcji)
-        int wynik = symulate(new_selected, plansza, nad_zwyciestwa, gracz);
+        int wynik = symulate(new_selected, arg -> plansza, arg -> nad_zwyciestwa, arg -> gracz);
 
         //updatuje informacje dla wierzchołków od syna do korzenia (v)
-        unselect(new_selected, plansza, wynik, nad_zwyciestwa);
+        unselect(new_selected, arg -> plansza, wynik, arg -> nad_zwyciestwa);
+        free(selected);
+        //koniec iteracji
+    }
+}
+
+int make_mcts(Game *game, int czesc){
+    //zamiana game -> plansza i nadzwyciestwa
+    char **plansza = allocate(9);
+    char **nad_zywciestwa = allocate(3);
+    char gracz = (game -> turn == 0 ? 'O' : 'X');
+
+
+    for(int i = 0; i < 9; i++){
+        char wynik = game -> board[i] -> status;
+        if(wynik == 1) nad_zywciestwa[i / 3][i % 3] = 'X';
+        else if(wynik == 2) nad_zywciestwa[i / 3][i % 3] = 'O';
+        else nad_zywciestwa[i / 3][i % 3] = ' ';
+    }
+
+    for(int c = 0; c < 9; c++){
+        pair p = poczatek_czesci(c);
+        for(int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                int w = game -> board[c] -> value[i][j];
+                if(w == 0) plansza[p.x + i][p.y + j] = 'O';
+                else if(w == 1) plansza[p.x + i][p.y + j] = 'X';
+                else plansza[p.x + i][p.y + j] = ' ';
+            }
+        }
+    }
+    //koniec zamiany
+
+    //sprawdzenie czy da sie w ogóle zrobić ruch
+    pair p = poczatek_czesci(czesc);
+    int moge = 0;
+    for(int i = 0; i < 3; i++)
+        for(int j = 0; j < 3; j++)
+            if(plansza[p.x + i][p.y + j] == ' ') moge++;
+    
+    if(moge == 0){
+        //nie mam jak dokonać ruchu, zwracam -1
+        deallocate(plansza, 9);
+        deallocate(nad_zywciestwa, 3);
+        return -1;
+    }
+
+    //początek normalnego kodu
+    node *v = create_node(plansza, czesc);
+    v -> ruch.gracz = zmiana_gracza(gracz);
+    v -> ruch.czesc = czesc;
+
+    //torzenie wątków
+    pthread_t thread[thread_no];
+    argument arg[thread_no];
+    for(int i = 0; i < thread_no; i++){
+        char **_plansza = allocate(9);
+        for(int i = 0; i < 9; i++)
+            for(int j = 0; j < 9; j++)
+                _plansza[i][j] = plansza[i][j];
+        arg[i].plansza = _plansza;
+        
+        char **_nad_zwyciestwa = allocate(3);
+        for(int i = 0; i < 3; i++)
+            for(int j = 0; j < 3; j++)
+                _nad_zwyciestwa[i][j] = nad_zywciestwa[i][j];
+
+        arg[i].nad_zwyciestwa = _nad_zwyciestwa;
+
+        arg[i].czesc = czesc;
+        arg[i].gracz = gracz;
+        arg[i].v = v;
+    }
+
+    if(pthread_mutex_init(&lock_cnt, NULL) != 0){
+        puts("błąd przy tworzenie wątków");
+        exit(1);
+    }
+
+    //wywoływanie wątków
+    for(int i = 0; i < thread_no; i++){
+        if(pthread_create(&thread[i], NULL, watek, &arg[i]) != 0){
+            puts("błąd przy tworzenie wątków");
+            exit(1);
+        }
+    }
+
+    //łączenie wątków
+    for(int i = 0; i < thread_no; i++){
+        if(pthread_join(thread[i], NULL) != 0){
+            puts("błąd przy łączenie wątków");
+            exit(1);
+        }
     }
 
     //wybierz najlepszy ruch
     zmiana ruch = znajdz_opt(v);
-    if(ruch.czesc == -1){
-        destruct_node(v); //nie mogę wykonać jakiegokolwiek ruchu
-        return -1;
-    }
-
-    //zmianiam plansze
-    plansza[ruch.x][ruch.y] = gracz;
 
     //pobieram dodatkową pamięć ram z chmury
+    for(int i = 0; i < thread_no; i++){
+        deallocate(arg[i].plansza, 9);
+        deallocate(arg[i].nad_zwyciestwa, 3);
+    }
+
     destruct_node(v);
-    
+    pthread_mutex_destroy(&lock_cnt);
+
+    deallocate(plansza, 9);
+    deallocate(nad_zywciestwa, 3);
+
+    if(ruch.czesc == -1) return -1;
+
+    //dopisywanie zmiany
+    modify_board(game -> board[znajdz_czesc(ruch)], ruch.x % 3, ruch.y % 3, game -> turn);
+    // game -> board[znajdz_czesc(ruch)] -> value[ruch.x % 3][ruch.y % 3] = gracz;
     return ruch.czesc;
 }
 
-int bot_9x9_hard(char **plansza, char gracz, int czesc){
-    node *v = create_node();
-    v -> ruch.gracz = zmiana_gracza(gracz);
-    v -> ruch.czesc = czesc; //czesc mówi w której części ma się odbyć następny ruch 
-
-    //dla 9 planszy sprawdza kto wygrywa w poszczególnych planszach 
-    char **nad_zwyciestwa = allocate(3);
-    uzupelnij_nad_zwyciestwa(plansza, nad_zwyciestwa);
-
-    //początek tworzenia mcts
-    for(int i = 0; i < iteracje_hard; i++){
-        //wybieram liścia
-        node *selected = Select(plansza, v, nad_zwyciestwa);
-
-        //wybranemu wierzchołkowi dodaje syna i ustawia plansze pod niego 
-        node *new_selected;
-        if(dodaj_syna(selected, plansza, nad_zwyciestwa)){
-            //nie udało sie dodać syna, więc będe robił symulacje dla selected
-            new_selected = selected;
-        }
-        else{
-            //udało sie dodać syna, więc robie symulacje dla nowo dodanego syna, który jest 
-            //oczywiście na końcu vectora
-            new_selected = selected -> vec -> sons[selected -> vec -> size -1];
-        }
-
-        //przeprowadzam symulacje dla syna/ojca i mówie czy 
-        //wygrał/zremisował/przegrał gracz (ten z argumentu funcji)
-        int wynik = symulate(new_selected, plansza, nad_zwyciestwa, gracz);
-
-        //updatuje informacje dla wierzchołków od syna do korzenia (v)
-        unselect(new_selected, plansza, wynik, nad_zwyciestwa);
-    }
-
-    //wybierz najlepszy ruch
-    zmiana ruch = znajdz_opt(v);
-    if(ruch.czesc == -1){
-        destruct_node(v); //nie mogę wykonać jakiegokolwiek ruchu
-        return -1;
-    }
-
-    //zmianiam plansze
-    plansza[ruch.x][ruch.y] = gracz;
-
-    //pobieram dodatkową pamięć ram z chmury
-    destruct_node(v);
+int bot_9x9_normal(Game *game, int czesc){
+    liczba_iteracji = 0;
+    cel_liczby_iteracji = iteracje_normal;
     
-    return ruch.czesc;
+    return make_mcts(game, czesc);
 }
 
-int bot_9x9_impopable(char **plansza, char gracz, int czesc){
-    node *v = create_node();
-    v -> ruch.gracz = zmiana_gracza(gracz);
-    v -> ruch.czesc = czesc; //czesc mówi w której części ma się odbyć następny ruch 
-
-    //dla 9 planszy sprawdza kto wygrywa w poszczególnych planszach 
-    char **nad_zwyciestwa = allocate(3);
-    uzupelnij_nad_zwyciestwa(plansza, nad_zwyciestwa);
-
-    //początek tworzenia mcts
-    for(int i = 0; i < iteracje_impopable; i++){
-        //wybieram liścia
-        node *selected = Select(plansza, v, nad_zwyciestwa);
-
-        //wybranemu wierzchołkowi dodaje syna i ustawia plansze pod niego 
-        node *new_selected;
-        if(dodaj_syna(selected, plansza, nad_zwyciestwa)){
-            //nie udało sie dodać syna, więc będe robił symulacje dla selected
-            new_selected = selected;
-        }
-        else{
-            //udało sie dodać syna, więc robie symulacje dla nowo dodanego syna, który jest 
-            //oczywiście na końcu vectora
-            new_selected = selected -> vec -> sons[selected -> vec -> size -1];
-        }
-
-        //przeprowadzam symulacje dla syna/ojca i mówie czy 
-        //wygrał/zremisował/przegrał gracz (ten z argumentu funcji)
-        int wynik = symulate(new_selected, plansza, nad_zwyciestwa, gracz);
-
-        //updatuje informacje dla wierzchołków od syna do korzenia (v)
-        unselect(new_selected, plansza, wynik, nad_zwyciestwa);
-    }
-
-    //wybierz najlepszy ruch
-    zmiana ruch = znajdz_opt(v);
-    if(ruch.czesc == -1){
-        destruct_node(v); //nie mogę wykonać jakiegokolwiek ruchu
-        return -1;
-    }
-
-    //zmianiam plansze
-    plansza[ruch.x][ruch.y] = gracz;
-
-    //pobieram dodatkową pamięć ram z chmury
-    destruct_node(v);
+int bot_9x9_hard(Game *game, int czesc){
+    liczba_iteracji = 0;
+    cel_liczby_iteracji = iteracje_hard;
     
-    return ruch.czesc;
+    return make_mcts(game, czesc);
+}
+
+int bot_9x9_impopable(Game *game, int czesc){
+    liczba_iteracji = 0;
+    cel_liczby_iteracji = iteracje_impopable;
+    
+    return make_mcts(game, czesc);
 }
 
 int bot_9x9_random(char **plansza, char gracz, int czesc){
@@ -234,12 +270,12 @@ int bot_9x9_random(char **plansza, char gracz, int czesc){
 
 
 //bez tego nie chce się kompilować
-int bot_3x3_normal(char **plansza, char gracz, int czesc){
+int bot_3x3_normal(Game *game, int czesc){
     return 0;
 }
-int bot_3x3_hard(char **plansza, char gracz, int czesc){
+int bot_3x3_hard(Game *game, int czesc){
     return 0;
 }
-int bot_3x3_impopable(char **plansza, char gracz, int czesc){
+int bot_3x3_impopable(Game *game, int czesc){
     return 0;
 }

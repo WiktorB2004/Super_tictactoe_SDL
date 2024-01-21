@@ -54,3 +54,5 @@ endif()
 
 # Link math.h
 target_link_libraries(supertictactoe PRIVATE m)
+# Link pthreads.h
+target_link_libraries(supertictactoe PUBLIC pthread)
