@@ -45,6 +45,7 @@ set(GAMEPLAY_TEST_SOURCES
 
 set(BOT_TEST_SOURCES
     ${UTILS_DIR}/bot_utils.c
+    ${UTILS_DIR}/gameplay_utils.c
     ${SOURCE_DIR}/game_bot/bot.c
     ${SOURCE_DIR}/game_bot/generate_move.c
     ${TEST_DIR}/bot_test/src/bot_test0.c
