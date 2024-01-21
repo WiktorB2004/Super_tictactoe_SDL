@@ -25,7 +25,7 @@ $ ./bin/supertictactoe
 
 ```
 $ git clone https://github.com/WiktorB2004/Super_tictactoe_SDL.git
-$ cd WLang_interpreter-C/
+$ cd Super_tictactoe_SDL
 $ doxygen Doxyfile
 ```
 The documentation will be available inside /docs folder
