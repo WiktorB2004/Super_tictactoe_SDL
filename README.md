@@ -31,4 +31,4 @@ $ doxygen Doxyfile
 The documentation will be available inside /docs folder
 
 - - - -
-Thank you for exploring this project, and I hope it demonstrates our dedication to the craft of software development and commitment to delivering high-quality solutions. If you have any questions or would like to collaborate with us, please feel free to get in touch.
+Thank you for exploring this project, and we hope it demonstrates our dedication to the craft of software development and commitment to delivering high-quality solutions. If you have any questions or would like to collaborate with us, please feel free to get in touch.
