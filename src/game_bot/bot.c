@@ -270,7 +270,30 @@ int bot_9x9_random(char **plansza, char gracz, int czesc){
 
 
 //bez tego nie chce się kompilować
-int bot_3x3_normal(Game *game, int czesc){
+
+//void modify_board(Board *board, int row, int column, Player player)
+int bot_3x3_normal(Game *game, int czesc){ 
+    srand(time(0));
+    int miejsce, kolumna, wiersz;
+
+    //losowanie ruchu i zmiana planszy 
+    while(1)
+    {
+       miejsce = rand() % 9;
+       wiersz = miejsce / 3;
+       kolumna = miejsce % 3;
+       if(game -> board -> value[wiersz][kolumna] != EMPTY) continue;
+       else break;
+    }
+    modify_board(game, wiersz, kolumna, game->turn);
+
+    //zmiana game->turn na drugiego 
+    if(game -> turn == O) game -> turn = X;
+    else game -> turn = O;
+
+    //jesli ruch niemozliwy - zwroc -1
+    if(game->moves_count == 9) return -1;
+
     return 0;
 }
 int bot_3x3_hard(Game *game, int czesc){
