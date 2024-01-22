@@ -110,3 +110,59 @@ bool check_board_diagonally(Board *board)
     }
     return false;
 }
+
+bool check_draw_horizontally(Board *board)
+{
+    for(int i=0;i<3;i++)
+    {
+        int x=0,o=0;
+        for(int j=0;j<3;j++)
+        {
+             if( board->value[i][j] == 0 ) o++;
+             else if( board->value[i][j] == 1 ) x++;
+        }
+        if( x == 0 || o == 0 ) return true;
+    }
+    return false;
+}
+
+bool check_draw_vertically(Board *board)
+{
+    for(int j=0;j<3;j++)
+    {
+        int x=0,o=0;
+        for(int i=0;i<3;i++)
+        {
+             if( board->value[i][j] == 0 ) o++;
+             else if( board->value[i][j] == 1 ) x++;
+        }
+        if( x == 0 || o == 0 ) return true;
+    }
+    return false;
+}
+
+bool check_draw_diagonally(Board *board)
+{
+    int x=0,o=0,i=0,j=0;
+    while(i<3)
+    {
+        if(board->value[i][i] == 0 ) o++;
+        else if(board->value[i][i] == 1 ) x++;
+        i++;
+    }
+
+    if( o==0 || x==0 ) return true;
+
+    o=0,x=0;
+    i--;
+    while(j<3)
+    {
+        if(board->value[i][j] == 0) o++;
+        else if(board->value[i][j] == 1) x++;
+        i--,j++;
+    }
+
+    if( o==0 || x==0 ) return true;
+    return false;
+}
+
