@@ -4,6 +4,7 @@
 #include <math.h>
 #include <time.h>
 #include <pthread.h>
+#include "gameplay.h"
 
 /**
  * @brief Struktura przechowująca informacje o ruchu w grze.
@@ -68,6 +69,16 @@ typedef struct choosen_node
     node *v;  /**< Wskaźnik na wybrany węzeł */
     int idx;   /**< Indeks wybranego węzła */
 } choosen_node;
+
+/**
+ * @brief Struktura przechowująca dane o najlepszym ruchu do wykonania.
+ */
+typedef struct bestMove
+{
+    int wartosc_ruchu;  /**< Wartość ruchu (dobry/zły) zwracana przez minimaxa */
+    int x;  /**< Indeks wiersza */
+    int y;  /**< Indeks kolumny */
+} bestMove;
 
 //mutex na malloca
 extern pthread_mutex_t stop_malloc;
