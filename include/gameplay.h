@@ -26,6 +26,7 @@ typedef enum
     O,     /**< O - 0 */
     X,     /**< X - 1 */
     EMPTY, /**< Empty space - 2 */
+    DRAW_pom,  /**< DRAW - 3 */
 } Player;
 
 /*!
@@ -89,7 +90,20 @@ void check_board(Board *board, Player turn);
  * @param game The game to be checked.
  * @param turn The player turn in the game.
  */
+void check_draw(Board *board);
+
+/*!
+ * \brief This function perform checks on the game and manages its status.
+ *
+ * This function checks all the game boards and if there is a draw or someone won the game it
+ * modifies the game status
+ *
+ * @param game The game to be checked.
+ * @param turn The player turn in the game.
+ */
 void check_game(Game *game, Player turn);
+
+void check_game_draw(Game *game);
 
 /*!
  * \brief This function handles the tictac toe gameplay.
