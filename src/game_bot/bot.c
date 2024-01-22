@@ -268,8 +268,7 @@ int bot_9x9_random(char **plansza, char gracz, int czesc){
     return ruch.czesc;
 }
 
-
-//bez tego nie chce się kompilować
+int minimax(Game *game, int depth, Player ruch_bota);
 
 //void modify_board(Board *board, int row, int column, Player player)
 int bot_3x3_normal(Game *game, int czesc){ 
@@ -282,17 +281,13 @@ int bot_3x3_normal(Game *game, int czesc){
        miejsce = rand() % 9;
        wiersz = miejsce / 3;
        kolumna = miejsce % 3;
-       if(game -> board -> value[wiersz][kolumna] != EMPTY) continue;
+       if(game -> board[0] -> value[wiersz][kolumna] != EMPTY) continue;
        else break;
     }
-    modify_board(game, wiersz, kolumna, game->turn);
-
-    //zmiana game->turn na drugiego 
-    if(game -> turn == O) game -> turn = X;
-    else game -> turn = O;
+    modify_board(game -> board[0], wiersz, kolumna, game -> turn);
 
     //jesli ruch niemozliwy - zwroc -1
-    if(game->moves_count == 9) return -1;
+    if(game->board[0]->moves_count == 9) return -1;
 
     return 0;
 }
@@ -301,4 +296,56 @@ int bot_3x3_hard(Game *game, int czesc){
 }
 int bot_3x3_impopable(Game *game, int czesc){
     return 0;
+}
+
+int minimax(Game *game, int depth, Player ruch_bota){
+    GameStatus status_gry = checkBoardStatus(*(game -> board[0]));
+    switch (status_gry)
+    {
+    case IN_PROGRESS:
+        if(depth == 0) return 0;
+    case X_WON:
+        if(ruch_bota == X) return (10 - game->board[0]->moves_count); 
+        else if(ruch_bota == O) return -1 * (10 - game->board[0]->moves_count);
+        //zwraca wartość ruchu jako ilość pozostałych wolnych pól +1 (czyli 1/-1 gdy plansza jest zapełniona)
+    case O_WON:
+        if(ruch_bota == X) return -1 * (10 - game->board[0]->moves_count); 
+        else if(ruch_bota == O) return (10 - game->board[0]->moves_count);
+    case DRAW:
+        return 0;
+    default:
+        break;
+    }
+
+    int min = 100, max = -100, value;
+    for(int i = 0; i < 3; i++)
+    {
+        for(int j = 0; j < 3; j++)
+        {
+            if(game -> board[0] -> value[i][j] == EMPTY)
+            {
+                //zmiana game'a
+                modify_board(game -> board[0], i, j, game -> turn);
+                if(game -> turn == X) game -> turn = O;
+                else game -> turn = X;
+                (game->board[0]->moves_count)++;
+
+                //rekurencyjne wywołanie aby otrzymać wartość ruchu
+                value = minimax(game, depth - 1, ruch_bota);
+                
+                //cofnięcie zmian game'a
+                modify_board(game -> board[0], i, j, EMPTY);
+                if(game -> turn == X) game -> turn = O;
+                else game -> turn = X;
+                (game->board[0]->moves_count)--;
+
+                //ustalenie min i maxa
+                if(value > max) max = value;
+                if(value < min) min = value;
+            }
+        }
+    }
+    //określenie najlepszego ruchu
+    if(game->turn == ruch_bota) return max;
+    else return min;
 }

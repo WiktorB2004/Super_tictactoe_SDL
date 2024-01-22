@@ -4,6 +4,7 @@
 #include <math.h>
 #include <time.h>
 #include <pthread.h>
+#include "gameplay.h"
 
 /**
  * @brief Struktura przechowująca informacje o ruchu w grze.
@@ -86,6 +87,7 @@ void push_back(choosen_node *cn, node *new_node);
 char sprawdz_wynik(char **sub_plansza);
 void uzupelnij_nad_zwyciestwa(char **plansza, char **nad_zwyciestwa);
 void update_nad_zwyciestwa(char **plnasza, char **nad_zwyciestwa, int czesc);
+GameStatus checkBoardStatus(Board board);
 ///@}
 
 /** @name Funkcje do selection */
