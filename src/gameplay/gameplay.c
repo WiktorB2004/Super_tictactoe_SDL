@@ -108,12 +108,6 @@ void check_game_draw(Game *game)
         else if( pom == 3 ) board->value[idx/3][idx%3] = 3;
         else board->value[idx/3][idx%3] = 2;
         idx++;
-        for(int a=0;a<3;a++)
-            {
-                for(int b=0;b<3;b++) printf("%d",board->value[a][b]);
-                printf("\n");
-            }
-            printf("\n");
     }
     /*for (int i = 0; i < game->board_size; i++)
     {
