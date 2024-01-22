@@ -271,11 +271,16 @@ int bot_9x9_random(char **plansza, char gracz, int czesc){
 bestMove minimax(Game *game, int depth, Player ruch_bota);
 
 int bot_3x3_normal(Game *game, int czesc){ 
+    //jesli ruch niemozliwy - zwroc -1
+    check_board(game -> board[0], game -> turn);
+    check_game_draw(game);
+    if(game->board[0]->moves_count == 9) return -1;
+    else if(game -> status != IN_PROGRESS) return -1;
     srand(time(0));
     int miejsce, kolumna, wiersz;
 
     //losowanie ruchu i zmiana planszy 
-    while(1)
+    while(game -> status == IN_PROGRESS)
     {
        miejsce = rand() % 9;
        wiersz = miejsce / 3;
@@ -285,14 +290,14 @@ int bot_3x3_normal(Game *game, int czesc){
     }
     modify_board(game -> board[0], wiersz, kolumna, game -> turn);
 
-    //jesli ruch niemozliwy - zwroc -1
-    if(game->board[0]->moves_count == 9) return -1;
-
     return 0;
 }
 
 int bot_3x3_hard(Game *game, int czesc){
+    check_board(game -> board[0], game -> turn);
+    check_game_draw(game);
     if(game->board[0]->moves_count == 9) return -1;
+    else if(game -> status != IN_PROGRESS) return -1;
     else
     {
         bestMove naj_ruch = minimax(game, 2, game -> turn);
@@ -302,7 +307,10 @@ int bot_3x3_hard(Game *game, int czesc){
 }
 
 int bot_3x3_impopable(Game *game, int czesc){
+    check_board(game -> board[0], game -> turn);
+    check_game_draw(game);
     if(game->board[0]->moves_count == 9) return -1;
+    else if(game -> status != IN_PROGRESS) return -1;
     else
     {
         bestMove naj_ruch = minimax(game, 100, game -> turn);
@@ -317,8 +325,10 @@ bestMove minimax(Game *game, int depth, Player ruch_bota){
     toReturn.x = -1;
     toReturn.y = -1;
 
-    GameStatus status_gry = checkBoardStatus(*(game -> board[0]));
-    switch (status_gry)
+    check_board(game -> board[0], game -> turn);
+    check_game_draw(game);
+    printf("status gry: %i \n", game -> turn);
+    switch (game -> status)
     {
     case IN_PROGRESS:
         if(depth == 0) 
@@ -326,6 +336,7 @@ bestMove minimax(Game *game, int depth, Player ruch_bota){
             toReturn.wartosc_ruchu = 0;
             return toReturn;
         }
+        break;
     case X_WON:
         if(ruch_bota == X) 
         {
@@ -338,6 +349,7 @@ bestMove minimax(Game *game, int depth, Player ruch_bota){
             return toReturn;
         }
         //zwraca wartość ruchu jako ilość pozostałych wolnych pól +1 (czyli 1/-1 gdy plansza jest zapełniona)
+        break;
     case O_WON:
         if(ruch_bota == X) 
         {
@@ -349,9 +361,11 @@ bestMove minimax(Game *game, int depth, Player ruch_bota){
             toReturn.wartosc_ruchu = (10 - game->board[0]->moves_count);
             return toReturn;
         }
+        break;
     case DRAW:
         toReturn.wartosc_ruchu = 0;
         return toReturn;
+        break;
     default:
         break;
     }
@@ -381,7 +395,7 @@ bestMove minimax(Game *game, int depth, Player ruch_bota){
                 modify_board(game -> board[0], i, j, EMPTY);
                 if(game -> turn == X) game -> turn = O;
                 else game -> turn = X;
-                (game->board[0]->moves_count)--;
+                (game->board[0]->moves_count)--;   
 
                 //ustalenie min i maxa
                 if(value.wartosc_ruchu > max.wartosc_ruchu) max = value;
