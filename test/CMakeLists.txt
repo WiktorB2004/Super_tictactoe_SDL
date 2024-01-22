@@ -50,26 +50,26 @@ set(BOT_TEST_SOURCES
     ${SOURCE_DIR}/game_bot/bot.c
     ${SOURCE_DIR}/gameplay/gameplay.c
     ${SOURCE_DIR}/game_bot/generate_move.c
-    ${TEST_DIR}/bot_test/src/bot_test0.c
-    ${TEST_DIR}/bot_test/src/bot_test1.c
-    ${TEST_DIR}/bot_test/src/bot_test2.c
-    ${TEST_DIR}/bot_test/src/bot_test3.c
-    ${TEST_DIR}/bot_test/src/bot_test4.c
-    ${TEST_DIR}/bot_test/src/bot_test5.c
-    ${TEST_DIR}/bot_test/src/bot_test6.c
-    ${TEST_DIR}/bot_test/src/bot_test7.c
-    ${TEST_DIR}/bot_test/src/bot_test8.c
-    ${TEST_DIR}/bot_test/src/bot_test9.c
-    ${TEST_DIR}/bot_test/src/bot_test10.c
-    ${TEST_DIR}/bot_test/src/bot_test11.c
-    ${TEST_DIR}/bot_test/src/bot_test12.c
-    ${TEST_DIR}/bot_test/src/bot_test13.c
-    ${TEST_DIR}/bot_test/src/bot_test14.c
-    ${TEST_DIR}/bot_test/src/bot_test15.c
-    ${TEST_DIR}/bot_test/src/bot_test16.c
-    ${TEST_DIR}/bot_test/src/bot_test17.c
-    ${TEST_DIR}/bot_test/src/bot_test18.c
-    ${TEST_DIR}/bot_test/src/bot_test19.c
+    ${TEST_DIR}/bot_test/src/test_czy_bot_ogólnie_dziala_poprawnie_dla_calej_pustej_planszy.c
+    ${TEST_DIR}/bot_test/src/test_bot_miejsca_wolne_na_planszy_0.c
+    ${TEST_DIR}/bot_test/src/test_bot_miejsca_wolne_na_planszy_1.c
+    ${TEST_DIR}/bot_test/src/test_bot_miejsca_wolne_na_planszy_2.c
+    ${TEST_DIR}/bot_test/src/test_bot_miejsca_wolne_na_planszy_3.c
+    ${TEST_DIR}/bot_test/src/test_bot_miejsca_wolne_na_planszy_4.c
+    ${TEST_DIR}/bot_test/src/test_bot_miejsca_wolne_na_planszy_5.c
+    ${TEST_DIR}/bot_test/src/test_bot_miejsca_wolne_na_planszy_6.c
+    ${TEST_DIR}/bot_test/src/test_bot_miejsca_wolne_na_planszy_7.c
+    ${TEST_DIR}/bot_test/src/test_bot_miejsca_wolne_na_planszy_8.c
+    ${TEST_DIR}/bot_test/src/test_bot_miejsca_wolne_na_planszy_9.c
+    ${TEST_DIR}/bot_test/src/test_bot_poprawne_zwrocenie_nr_planszy_0.c
+    ${TEST_DIR}/bot_test/src/test_bot_poprawne_zwrocenie_nr_planszy_1.c
+    ${TEST_DIR}/bot_test/src/test_bot_poprawne_zwrocenie_nr_planszy_2.c
+    ${TEST_DIR}/bot_test/src/test_bot_poprawne_zwrocenie_nr_planszy_3.c
+    ${TEST_DIR}/bot_test/src/test_bot_poprawne_zwrocenie_nr_planszy_4.c
+    ${TEST_DIR}/bot_test/src/test_bot_poprawne_zwrocenie_nr_planszy_5.c
+    ${TEST_DIR}/bot_test/src/test_bot_poprawne_zwrocenie_nr_planszy_6.c
+    ${TEST_DIR}/bot_test/src/test_bot_poprawne_zwrocenie_nr_planszy_7.c
+    ${TEST_DIR}/bot_test/src/test_bot_poprawne_zwrocenie_nr_planszy_8.c
     ${TEST_DIR}/bot_test/bot_test.c
 )
 
