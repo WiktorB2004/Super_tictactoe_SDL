@@ -70,6 +70,16 @@ typedef struct choosen_node
     int idx;   /**< Indeks wybranego węzła */
 } choosen_node;
 
+/**
+ * @brief Struktura przechowująca dane o najlepszym ruchu do wykonania.
+ */
+typedef struct bestMove
+{
+    int wartosc_ruchu;  /**< Wartość ruchu (dobry/zły) zwracana przez minimaxa */
+    int x;  /**< Indeks wiersza */
+    int y;  /**< Indeks kolumny */
+} bestMove;
+
 //mutex na malloca
 extern pthread_mutex_t stop_malloc;
 

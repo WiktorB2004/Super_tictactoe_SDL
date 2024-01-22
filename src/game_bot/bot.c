@@ -268,9 +268,8 @@ int bot_9x9_random(char **plansza, char gracz, int czesc){
     return ruch.czesc;
 }
 
-int minimax(Game *game, int depth, Player ruch_bota);
+bestMove minimax(Game *game, int depth, Player ruch_bota);
 
-//void modify_board(Board *board, int row, int column, Player player)
 int bot_3x3_normal(Game *game, int czesc){ 
     srand(time(0));
     int miejsce, kolumna, wiersz;
@@ -291,33 +290,76 @@ int bot_3x3_normal(Game *game, int czesc){
 
     return 0;
 }
+
 int bot_3x3_hard(Game *game, int czesc){
-    return 0;
-}
-int bot_3x3_impopable(Game *game, int czesc){
+    if(game->board[0]->moves_count == 9) return -1;
+    else
+    {
+        bestMove naj_ruch = minimax(game, 2, game -> turn);
+        modify_board(game -> board[0], naj_ruch.x, naj_ruch.y, game -> turn);
+    }
     return 0;
 }
 
-int minimax(Game *game, int depth, Player ruch_bota){
+int bot_3x3_impopable(Game *game, int czesc){
+    if(game->board[0]->moves_count == 9) return -1;
+    else
+    {
+        bestMove naj_ruch = minimax(game, 100, game -> turn);
+        modify_board(game -> board[0], naj_ruch.x, naj_ruch.y, game -> turn);
+    }
+    return 0;
+}
+
+bestMove minimax(Game *game, int depth, Player ruch_bota){
+    //żeby już za dużo nie zmieniać i checkBoardStatus działał
+    bestMove toReturn;
+    toReturn.x = -1;
+    toReturn.y = -1;
+
     GameStatus status_gry = checkBoardStatus(*(game -> board[0]));
     switch (status_gry)
     {
     case IN_PROGRESS:
-        if(depth == 0) return 0;
+        if(depth == 0) 
+        {
+            toReturn.wartosc_ruchu = 0;
+            return toReturn;
+        }
     case X_WON:
-        if(ruch_bota == X) return (10 - game->board[0]->moves_count); 
-        else if(ruch_bota == O) return -1 * (10 - game->board[0]->moves_count);
+        if(ruch_bota == X) 
+        {
+            toReturn.wartosc_ruchu = (10 - game->board[0]->moves_count); 
+            return toReturn;
+        }
+        else if(ruch_bota == O) 
+        {
+            toReturn.wartosc_ruchu = -1 * (10 - game->board[0]->moves_count);
+            return toReturn;
+        }
         //zwraca wartość ruchu jako ilość pozostałych wolnych pól +1 (czyli 1/-1 gdy plansza jest zapełniona)
     case O_WON:
-        if(ruch_bota == X) return -1 * (10 - game->board[0]->moves_count); 
-        else if(ruch_bota == O) return (10 - game->board[0]->moves_count);
+        if(ruch_bota == X) 
+        {
+            toReturn.wartosc_ruchu = -1 * (10 - game->board[0]->moves_count); 
+            return toReturn;
+        }
+        else if(ruch_bota == O) 
+        {
+            toReturn.wartosc_ruchu = (10 - game->board[0]->moves_count);
+            return toReturn;
+        }
     case DRAW:
-        return 0;
+        toReturn.wartosc_ruchu = 0;
+        return toReturn;
     default:
         break;
     }
 
-    int min = 100, max = -100, value;
+    bestMove min, max, value;
+    min.wartosc_ruchu = 100;
+    max.wartosc_ruchu = -100;
+
     for(int i = 0; i < 3; i++)
     {
         for(int j = 0; j < 3; j++)
@@ -331,8 +373,10 @@ int minimax(Game *game, int depth, Player ruch_bota){
                 (game->board[0]->moves_count)++;
 
                 //rekurencyjne wywołanie aby otrzymać wartość ruchu
-                value = minimax(game, depth - 1, ruch_bota);
-                
+                value.x = i;
+                value.y = j;
+                value.wartosc_ruchu = minimax(game, depth - 1, ruch_bota).wartosc_ruchu;
+
                 //cofnięcie zmian game'a
                 modify_board(game -> board[0], i, j, EMPTY);
                 if(game -> turn == X) game -> turn = O;
@@ -340,8 +384,8 @@ int minimax(Game *game, int depth, Player ruch_bota){
                 (game->board[0]->moves_count)--;
 
                 //ustalenie min i maxa
-                if(value > max) max = value;
-                if(value < min) min = value;
+                if(value.wartosc_ruchu > max.wartosc_ruchu) max = value;
+                if(value.wartosc_ruchu < min.wartosc_ruchu) min = value;
             }
         }
     }
