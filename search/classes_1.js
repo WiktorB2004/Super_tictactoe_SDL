@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['board_0',['Board',['../structBoard.html',1,'']]],
-  ['button_1',['button',['../structbutton.html',1,'']]]
+  ['bestmove_0',['bestMove',['../structbestMove.html',1,'']]],
+  ['board_1',['Board',['../structBoard.html',1,'']]],
+  ['button_2',['button',['../structbutton.html',1,'']]]
 ];

@@ -1,6 +1,7 @@
 var annotated_dup =
 [
     [ "argument", "structargument.html", "structargument" ],
+    [ "bestMove", "structbestMove.html", "structbestMove" ],
     [ "Board", "structBoard.html", "structBoard" ],
     [ "button", "structbutton.html", "structbutton" ],
     [ "cell", "structcell.html", "structcell" ],

@@ -9,11 +9,12 @@ var searchData=
   ['menu_6',['Menu',['../sdl__display_8h.html#a58f4f616fdcea022455efe75659b131e',1,'sdl_display.h']]],
   ['menu_5fbuttons_7',['Menu_Buttons',['../sdl__display_8h.html#ab0f08fdde6faa58116caa291c5533a85',1,'sdl_display.h']]],
   ['menu_5ffunctions_8',['menu_functions',['../structsdl__data.html#aab5a90e9c4f45736ae06db40599a61ce',1,'sdl_data']]],
-  ['mode_9',['mode',['../sdl__display_8h.html#ab0f08fdde6faa58116caa291c5533a85af1982b2b77f9b0e7cd29e39b39d8a0b4',1,'sdl_display.h']]],
-  ['mode_5fcount_10',['mode_count',['../sdl__display_8h.html#a3f2856310f8a0a24b17a9a715e6f13a7',1,'sdl_display.h']]],
-  ['mode_5fsprite_5fres_11',['mode_sprite_res',['../sdl__display_8h.html#a87692a4ced99471c35a7228bb939c360',1,'sdl_display.h']]],
-  ['modes_12',['modes',['../structtextures.html#a1e570f8dc76265238d447e7fef05ed4d',1,'textures']]],
-  ['modify_5fboard_13',['modify_board',['../gameplay_8c.html#ae149c393a1bd8cf384a266f53887598b',1,'modify_board(Board *board, int row, int column, Player player):&#160;gameplay.c'],['../gameplay_8h.html#ae149c393a1bd8cf384a266f53887598b',1,'modify_board(Board *board, int row, int column, Player player):&#160;gameplay.c']]],
-  ['moves_5fcount_14',['moves_count',['../structBoard.html#ad52d10268d701160c42d8c876b4a450f',1,'Board::moves_count'],['../structGame.html#a70482b0ea67b7a3e21805af64326db79',1,'Game::moves_count']]],
-  ['mutex_15',['mutex',['../structnode.html#a236de2fa9145a5c0e438a5595013514f',1,'node']]]
+  ['minimax_9',['minimax',['../bot_8c.html#a18d818fbbd974dafc2ec73fc774403c9',1,'bot.c']]],
+  ['mode_10',['mode',['../sdl__display_8h.html#ab0f08fdde6faa58116caa291c5533a85af1982b2b77f9b0e7cd29e39b39d8a0b4',1,'sdl_display.h']]],
+  ['mode_5fcount_11',['mode_count',['../sdl__display_8h.html#a3f2856310f8a0a24b17a9a715e6f13a7',1,'sdl_display.h']]],
+  ['mode_5fsprite_5fres_12',['mode_sprite_res',['../sdl__display_8h.html#a87692a4ced99471c35a7228bb939c360',1,'sdl_display.h']]],
+  ['modes_13',['modes',['../structtextures.html#a1e570f8dc76265238d447e7fef05ed4d',1,'textures']]],
+  ['modify_5fboard_14',['modify_board',['../gameplay_8c.html#ae149c393a1bd8cf384a266f53887598b',1,'modify_board(Board *board, int row, int column, Player player):&#160;gameplay.c'],['../gameplay_8h.html#ae149c393a1bd8cf384a266f53887598b',1,'modify_board(Board *board, int row, int column, Player player):&#160;gameplay.c']]],
+  ['moves_5fcount_15',['moves_count',['../structBoard.html#ad52d10268d701160c42d8c876b4a450f',1,'Board::moves_count'],['../structGame.html#a70482b0ea67b7a3e21805af64326db79',1,'Game::moves_count']]],
+  ['mutex_16',['mutex',['../structnode.html#a236de2fa9145a5c0e438a5595013514f',1,'node']]]
 ];

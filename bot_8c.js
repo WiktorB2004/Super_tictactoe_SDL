@@ -13,6 +13,7 @@ var bot_8c =
     [ "bot_9x9_normal", "bot_8c.html#af18490ac79edc1572001f338c4e8c480", null ],
     [ "bot_9x9_random", "bot_8c.html#ae559b7c27a4a2576c550c91bbecd1b11", null ],
     [ "make_mcts", "bot_8c.html#adb4aa57cd76fb2cec02e7aa3510c277b", null ],
+    [ "minimax", "bot_8c.html#a18d818fbbd974dafc2ec73fc774403c9", null ],
     [ "watek", "bot_8c.html#a542a4c7c2104ca778ff2048107b5c6c4", null ],
     [ "cel_liczby_iteracji", "bot_8c.html#a9d7e9217d561aada1540faee3a9439df", null ],
     [ "liczba_iteracji", "bot_8c.html#a6b08bcfe107c0fbc68e0d53528899029", null ],
