@@ -26,7 +26,6 @@ typedef enum
     O,     /**< O - 0 */
     X,     /**< X - 1 */
     EMPTY, /**< Empty space - 2 */
-    DRAW_pom,  /**< DRAW - 3 */
 } Player;
 
 /*!
