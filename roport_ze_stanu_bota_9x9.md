@@ -34,181 +34,128 @@ Wykresy pokazują wyniki dla bota nr_4 grającego z botem nr_3
 
 ##### Wygrane < 40%
 
-<div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_9.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_10.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_15.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_16.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_43.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_46.png" alt="wykres" width="100%">
-    </div>
-</div>
+<table>
+  <tr>
+    <td><img src="/wykresy/wykres_9.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_10.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_15.png" alt="wykres" width="550"/></td>
+  </tr>
+  <tr>
+    <td><img src="/wykresy/wykres_16.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_43.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_46.png" alt="wykres" width="550"/></td>
+  </tr>
+</table>
+
 
 
 ##### Wygrane 40% - 45%
 
-<div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_0.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_6.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_13.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_22.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_31.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_37.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_40.png" alt="wykres" width="100%">
-    </div>
-</div>
+<table>
+  <tr>
+    <td><img src="/wykresy/wykres_0.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_6.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_13.png" alt="wykres" width="550"/></td>
+  </tr>
+  <tr>
+    <td><img src="/wykresy/wykres_22.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_31.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_37.png" alt="wykres" width="550"/></td>
+  </tr>
+  <tr>
+    <td><img src="/wykresy/wykres_40.png" alt="wykres" width="550"/></td>
+  </tr>
+</table>
+
 
 ##### Wygrane 45% - 50%
 
-<div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_2.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_3.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_12.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_19.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_21.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_25.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_27.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_34.png" alt="wykres" width="100%">
-    </div>
-</div>
+<table>
+  <tr>
+    <td><img src="/wykresy/wykres_2.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_3.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_12.png" alt="wykres" width="550"/></td>
+  </tr>
+  <tr>
+    <td><img src="/wykresy/wykres_19.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_21.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_25.png" alt="wykres" width="550"/></td>
+  </tr>
+  <tr>
+    <td><img src="/wykresy/wykres_27.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_34.png" alt="wykres" width="550"/></td>
+  </tr>
+</table>
 
 
 ##### Wygrane 50% - 55%
 
-<div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_1.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_4.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_7.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_8.png" alt="wykres" width="100%">
-    </div>
-</div>
+<table>
+  <tr>
+    <td><img src="/wykresy/wykres_1.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_4.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_7.png" alt="wykres" width="550"/></td>
+  </tr>
+  <tr>
+    <td><img src="/wykresy/wykres_8.png" alt="wykres" width="550"/></td>
+  </tr>
+</table>
+
 
 ##### Wygrane 55% - 60%
 
-<div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_5.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_14.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_18.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_20.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_24.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_28.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_33.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_39.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_42.png" alt="wykres" width="100%">
-    </div>
-</div>
+<table>
+  <tr>
+    <td><img src="/wykresy/wykres_5.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_14.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_18.png" alt="wykres" width="550"/></td>
+  </tr>
+  <tr>
+    <td><img src="/wykresy/wykres_20.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_24.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_28.png" alt="wykres" width="550"/></td>
+  </tr>
+  <tr>
+    <td><img src="/wykresy/wykres_33.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_39.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_42.png" alt="wykres" width="550"/></td>
+  </tr>
+</table>
+
 
 ##### Wygrane 60% - 65%
 
-<div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_11.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_23.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_30.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_36.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_41.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_45.png" alt="wykres" width="100%">
-    </div>
-</div>
+<table>
+  <tr>
+    <td><img src="/wykresy/wykres_11.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_23.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_30.png" alt="wykres" width="550"/></td>
+  </tr>
+  <tr>
+    <td><img src="/wykresy/wykres_36.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_41.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_45.png" alt="wykres" width="550"/></td>
+  </tr>
+</table>
+
 
 ##### Wygrane 65% - 70%
 
-<div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_17.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_26.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_29.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_32.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_35.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_38.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_44.png" alt="wykres" width="100%">
-    </div>
-</div>
+<table>
+  <tr>
+    <td><img src="/wykresy/wykres_17.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_26.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_29.png" alt="wykres" width="550"/></td>
+  </tr>
+  <tr>
+    <td><img src="/wykresy/wykres_32.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_35.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_38.png" alt="wykres" width="550"/></td>
+  </tr>
+  <tr>
+    <td><img src="/wykresy/wykres_44.png" alt="wykres" width="550"/></td>
+  </tr>
+</table>
 
 
 ##### Wygrane 70% > 
@@ -224,46 +171,29 @@ Jak wynika z wykresu nie ma to znaczenia czy używamy bota z 7M iteracji i DIFF 
 ### Druga część analizy wyników
 Druga częć polegała na pojedynkach pomiędzy botem impopable a botem hard, każdy zestaw danych miał 25 rund, jest to spowodowane tym że jedna runda trwała 5min. W tej części oba boty miały cały czas DIFF = 1 oraz select = 2, zmienily się tylko parametry WINS = {2, 3}, SQRT = {1, 2, 4, 9, 16, 25}
 
+<table>
+  <tr>
+    <td><img src="/wykresy/wykres_v2_0.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_v2_1.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_v2_2.png" alt="wykres" width="550"/></td>
+  </tr>
+  <tr>
+    <td><img src="/wykresy/wykres_v2_3.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_v2_4.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_v2_5.png" alt="wykres" width="550"/></td>
+  </tr>
+  <tr>
+    <td><img src="/wykresy/wykres_v2_6.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_v2_7.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_v2_8.png" alt="wykres" width="550"/></td>
+  </tr>
+  <tr>
+    <td><img src="/wykresy/wykres_v2_9.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_v2_10.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_v2_11.png" alt="wykres" width="550"/></td>
+  </tr>
+</table>
 
-
-<div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_v2_0.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_v2_1.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_v2_2.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_v2_3.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_v2_4.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_v2_5.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_v2_6.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_v2_7.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_v2_8.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_v2_9.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_v2_10.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 30%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_v2_11.png" alt="wykres" width="100%">
-    </div>
-</div>
 
 Jak widać z wykresów bot impobable nie jest aż tak impopable, widać też tendencje: im większe SQRT i WINS tym gorzej radzi sobie bot impopable, więc warto by było przetestować co sie stanie dla mniejszego SQRT, WINS musi być conajmiej 2, ponieważ remist dodaje 1pkt, a przegrana 0pkt.
 
@@ -271,32 +201,25 @@ Jak widać z wykresów bot impobable nie jest aż tak impopable, widać też ten
 
 W tej części znów grały przeciwko sobie boty hard i impopable, jednak teraz DIFF = 0, SELECT pozostaje bez zmian oraz SQRT = {0.2, 0.4, 0.8, 1}, WINS = {2, 3}. Dla przypomienia parametr SQRT, czyli stała c we wzorze UCT nie wynosi np 0.2, a sqrt(0.2).
 
-<div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
-    <div style="flex: 0 0 50%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_v3_0.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 50%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_v3_1.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 50%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_v3_2.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 50%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_v3_3.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 50%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_v3_4.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 50%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_v3_5.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 50%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_v3_6.png" alt="wykres" width="100%">
-    </div>
-    <div style="flex: 0 0 50%; margin-bottom: 10px;">
-        <img src="/wykresy/wykres_v3_7.png" alt="wykres" width="100%">
-    </div>
-</div>
+<table>
+  <tr>
+    <td><img src="/wykresy/wykres_v3_0.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_v3_1.png" alt="wykres" width="550"/></td>
+  </tr>
+  <tr>
+    <td><img src="/wykresy/wykres_v3_2.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_v3_3.png" alt="wykres" width="550"/></td>
+  </tr>
+  <tr>
+    <td><img src="/wykresy/wykres_v3_4.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_v3_5.png" alt="wykres" width="550"/></td>
+  </tr>
+  <tr>
+    <td><img src="/wykresy/wykres_v3_6.png" alt="wykres" width="550"/></td>
+    <td><img src="/wykresy/wykres_v3_7.png" alt="wykres" width="550"/></td>
+  </tr>
+</table>
+
 
 ---
 
@@ -311,5 +234,3 @@ Najlepiej sobie poradził bot DIFF = 0, SQRT = 0.8, SELECT = 2, WINS = 2 są to 
 
 ##### hard vs impopable
 ![wykres](/wykresy/wykres_v3_4.png)
-
-
