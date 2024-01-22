@@ -92,12 +92,779 @@ $(function(){initNavTree('sdl__display_8c.html',''); initResizable(); });
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">sdl_display.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="sdl__display_8h_source.html">../../include/sdl_display.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="sdl__utils_8h_source.html">../../include/utils/sdl_utils.h</a>&quot;</code><br />
-</div></div><!-- contents -->
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ad05388d04bce451ff478fb668dc65894" id="r_ad05388d04bce451ff478fb668dc65894"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad05388d04bce451ff478fb668dc65894">setup_cells</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>)</td></tr>
+<tr class="separator:ad05388d04bce451ff478fb668dc65894"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa587e803044bd8d844117d9318bf9d2c" id="r_aa587e803044bd8d844117d9318bf9d2c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa587e803044bd8d844117d9318bf9d2c">render_button</a> (SDL_Renderer *renderer, <a class="el" href="sdl__display_8h.html#a3a5405a7c8d68a27f3bde9a0aa8bca28">Button</a> *<a class="el" href="structbutton.html">button</a>, int clip)</td></tr>
+<tr class="separator:aa587e803044bd8d844117d9318bf9d2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a671a5426810fe6710071bf45df6ed0e1" id="r_a671a5426810fe6710071bf45df6ed0e1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a671a5426810fe6710071bf45df6ed0e1">render_object</a> (SDL_Renderer *renderer, <a class="el" href="sdl__display_8h.html#ac1d573b78381906e7299e87cab9152bc">Object</a> *<a class="el" href="structobject.html">object</a>, int clip)</td></tr>
+<tr class="separator:a671a5426810fe6710071bf45df6ed0e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a441807a4ed7ee767862771d0ba02cd16" id="r_a441807a4ed7ee767862771d0ba02cd16"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a441807a4ed7ee767862771d0ba02cd16">render_board</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>)</td></tr>
+<tr class="separator:a441807a4ed7ee767862771d0ba02cd16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1aa0c547aeffbd59ab575f6ac3479cbd" id="r_a1aa0c547aeffbd59ab575f6ac3479cbd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1aa0c547aeffbd59ab575f6ac3479cbd">render_menu</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>)</td></tr>
+<tr class="separator:a1aa0c547aeffbd59ab575f6ac3479cbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab187c4da46c153c0bc4824974cb2501c" id="r_ab187c4da46c153c0bc4824974cb2501c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab187c4da46c153c0bc4824974cb2501c">render_playfield</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>)</td></tr>
+<tr class="separator:ab187c4da46c153c0bc4824974cb2501c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a150a2e3166d4ebcdce78e54aeb34abe9" id="r_a150a2e3166d4ebcdce78e54aeb34abe9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a150a2e3166d4ebcdce78e54aeb34abe9">free_txt</a> (SDL_Texture **texture)</td></tr>
+<tr class="separator:a150a2e3166d4ebcdce78e54aeb34abe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7680947f4ed99ca031ea86929921d9dd" id="r_a7680947f4ed99ca031ea86929921d9dd"><td class="memItemLeft" align="right" valign="top">SDL_Texture *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7680947f4ed99ca031ea86929921d9dd">load_from_text</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>, SDL_Rect *content_rect, const char *text)</td></tr>
+<tr class="separator:a7680947f4ed99ca031ea86929921d9dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9887ccd62ab054ff754734cfd16c838f" id="r_a9887ccd62ab054ff754734cfd16c838f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9887ccd62ab054ff754734cfd16c838f">f_mode</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>)</td></tr>
+<tr class="separator:a9887ccd62ab054ff754734cfd16c838f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa93bd5c2750c1dfc9a162f99e2c1492e" id="r_aa93bd5c2750c1dfc9a162f99e2c1492e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa93bd5c2750c1dfc9a162f99e2c1492e">f_play</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>)</td></tr>
+<tr class="separator:aa93bd5c2750c1dfc9a162f99e2c1492e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a893db4bbe62fcebfcfd9b8f2fc0574ff" id="r_a893db4bbe62fcebfcfd9b8f2fc0574ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a893db4bbe62fcebfcfd9b8f2fc0574ff">f_add_id</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>)</td></tr>
+<tr class="separator:a893db4bbe62fcebfcfd9b8f2fc0574ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65685aacad730d9d74c4664702bfabd9" id="r_a65685aacad730d9d74c4664702bfabd9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a65685aacad730d9d74c4664702bfabd9">f_sub_id</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>)</td></tr>
+<tr class="separator:a65685aacad730d9d74c4664702bfabd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae23f93ac98aa0a894a155ca3247c9729" id="r_ae23f93ac98aa0a894a155ca3247c9729"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae23f93ac98aa0a894a155ca3247c9729">f_add_mult_id</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>)</td></tr>
+<tr class="separator:ae23f93ac98aa0a894a155ca3247c9729"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2b957680ff98be7e7647cef3b0c5d00" id="r_ab2b957680ff98be7e7647cef3b0c5d00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab2b957680ff98be7e7647cef3b0c5d00">f_sub_mult_id</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>)</td></tr>
+<tr class="separator:ab2b957680ff98be7e7647cef3b0c5d00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81e50a382c834bc7a08ded70c9f2206f" id="r_a81e50a382c834bc7a08ded70c9f2206f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a81e50a382c834bc7a08ded70c9f2206f">f_next_x</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>)</td></tr>
+<tr class="separator:a81e50a382c834bc7a08ded70c9f2206f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abddf384f116ad1d602f348d8f47c05ec" id="r_abddf384f116ad1d602f348d8f47c05ec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abddf384f116ad1d602f348d8f47c05ec">f_prev_x</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>)</td></tr>
+<tr class="separator:abddf384f116ad1d602f348d8f47c05ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21980b9115c771c32c3e747e809172c8" id="r_a21980b9115c771c32c3e747e809172c8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21980b9115c771c32c3e747e809172c8">f_next_o</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>)</td></tr>
+<tr class="separator:a21980b9115c771c32c3e747e809172c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a012ad3089b94eb4868ecc0e91fbf420b" id="r_a012ad3089b94eb4868ecc0e91fbf420b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a012ad3089b94eb4868ecc0e91fbf420b">f_prev_o</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>)</td></tr>
+<tr class="separator:a012ad3089b94eb4868ecc0e91fbf420b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03d333ddaa81e4e13af9bc966a624add" id="r_a03d333ddaa81e4e13af9bc966a624add"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a03d333ddaa81e4e13af9bc966a624add">f_select_cell</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>, int x, int y)</td></tr>
+<tr class="separator:a03d333ddaa81e4e13af9bc966a624add"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bbf1e80f6826646b4662b585d3c56d9" id="r_a8bbf1e80f6826646b4662b585d3c56d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8bbf1e80f6826646b4662b585d3c56d9">f_put_sign</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>)</td></tr>
+<tr class="separator:a8bbf1e80f6826646b4662b585d3c56d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02f36cbfcdb2ead4b3ddd3b99c395126" id="r_a02f36cbfcdb2ead4b3ddd3b99c395126"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a02f36cbfcdb2ead4b3ddd3b99c395126">f_forfeit</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>)</td></tr>
+<tr class="separator:a02f36cbfcdb2ead4b3ddd3b99c395126"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef8a9fd730e775edd32bc9e532b2a6cd" id="r_aef8a9fd730e775edd32bc9e532b2a6cd"><td class="memItemLeft" align="right" valign="top">SDL_Texture *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef8a9fd730e775edd32bc9e532b2a6cd">load_from_file</a> (SDL_Renderer *renderer, const char *path)</td></tr>
+<tr class="separator:aef8a9fd730e775edd32bc9e532b2a6cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a230be335b93c1bfab7c9fc85fe140a52" id="r_a230be335b93c1bfab7c9fc85fe140a52"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a230be335b93c1bfab7c9fc85fe140a52">close_sdl</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>)</td></tr>
+<tr class="separator:a230be335b93c1bfab7c9fc85fe140a52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a8b7754155906d6c9872e4078472b6e" id="r_a7a8b7754155906d6c9872e4078472b6e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7a8b7754155906d6c9872e4078472b6e">set_color</a> (SDL_Color *color, Uint8 r, Uint8 g, Uint8 b, Uint8 a)</td></tr>
+<tr class="separator:a7a8b7754155906d6c9872e4078472b6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33108bc5029e56acd5bd6de59dafe353" id="r_a33108bc5029e56acd5bd6de59dafe353"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a33108bc5029e56acd5bd6de59dafe353">set_pos</a> (SDL_Rect *rect, int x, int y, int w, int h)</td></tr>
+<tr class="separator:a33108bc5029e56acd5bd6de59dafe353"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b52ed2d598f7d505c996a7403fc2d68" id="r_a5b52ed2d598f7d505c996a7403fc2d68"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5b52ed2d598f7d505c996a7403fc2d68">init_sdl</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> **sdl_data_ptr)</td></tr>
+<tr class="separator:a5b52ed2d598f7d505c996a7403fc2d68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf66de3e402409774df2443b28821c69" id="r_adf66de3e402409774df2443b28821c69"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adf66de3e402409774df2443b28821c69">init_pallete</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>)</td></tr>
+<tr class="separator:adf66de3e402409774df2443b28821c69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0dccf60bf9b171568761b8fd185111cd" id="r_a0dccf60bf9b171568761b8fd185111cd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0dccf60bf9b171568761b8fd185111cd">init_textures</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>)</td></tr>
+<tr class="separator:a0dccf60bf9b171568761b8fd185111cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf2d04800b0039aedd48feb81898d251" id="r_acf2d04800b0039aedd48feb81898d251"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf2d04800b0039aedd48feb81898d251">init_menu</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>)</td></tr>
+<tr class="separator:acf2d04800b0039aedd48feb81898d251"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed16687efb749973febecf4fa25f4e8a" id="r_aed16687efb749973febecf4fa25f4e8a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aed16687efb749973febecf4fa25f4e8a">init_playfield</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>)</td></tr>
+<tr class="separator:aed16687efb749973febecf4fa25f4e8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaae5f9a90471c78e068c0d9eb2e4d936" id="r_aaae5f9a90471c78e068c0d9eb2e4d936"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaae5f9a90471c78e068c0d9eb2e4d936">render_cell</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>, <a class="el" href="sdl__display_8h.html#a5a015017629833d016e38b49dca7b1c3">Cell</a> *<a class="el" href="structcell.html">cell</a>, int sign)</td></tr>
+<tr class="separator:aaae5f9a90471c78e068c0d9eb2e4d936"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefad48bb757d75e8ca79a08e8a25a80e" id="r_aefad48bb757d75e8ca79a08e8a25a80e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aefad48bb757d75e8ca79a08e8a25a80e">load_media</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>)</td></tr>
+<tr class="separator:aefad48bb757d75e8ca79a08e8a25a80e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac175e2d21f646ec7738ca6d0e1546dee" id="r_ac175e2d21f646ec7738ca6d0e1546dee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac175e2d21f646ec7738ca6d0e1546dee">handle_menu_event</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>, SDL_Event event)</td></tr>
+<tr class="separator:ac175e2d21f646ec7738ca6d0e1546dee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c2bee53c11c7748f9193180a9b86428" id="r_a3c2bee53c11c7748f9193180a9b86428"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3c2bee53c11c7748f9193180a9b86428">handle_ingame_event</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>, SDL_Event event)</td></tr>
+<tr class="separator:a3c2bee53c11c7748f9193180a9b86428"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7407c66f2e1171631787e89c3ab84354" id="r_a7407c66f2e1171631787e89c3ab84354"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7407c66f2e1171631787e89c3ab84354">frame_events</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>)</td></tr>
+<tr class="separator:a7407c66f2e1171631787e89c3ab84354"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a230be335b93c1bfab7c9fc85fe140a52" name="a230be335b93c1bfab7c9fc85fe140a52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a230be335b93c1bfab7c9fc85fe140a52">&#9670;&#160;</a></span>close_sdl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void close_sdl </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a893db4bbe62fcebfcfd9b8f2fc0574ff" name="a893db4bbe62fcebfcfd9b8f2fc0574ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a893db4bbe62fcebfcfd9b8f2fc0574ff">&#9670;&#160;</a></span>f_add_id()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void f_add_id </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae23f93ac98aa0a894a155ca3247c9729" name="ae23f93ac98aa0a894a155ca3247c9729"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae23f93ac98aa0a894a155ca3247c9729">&#9670;&#160;</a></span>f_add_mult_id()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void f_add_mult_id </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a02f36cbfcdb2ead4b3ddd3b99c395126" name="a02f36cbfcdb2ead4b3ddd3b99c395126"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02f36cbfcdb2ead4b3ddd3b99c395126">&#9670;&#160;</a></span>f_forfeit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void f_forfeit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9887ccd62ab054ff754734cfd16c838f" name="a9887ccd62ab054ff754734cfd16c838f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9887ccd62ab054ff754734cfd16c838f">&#9670;&#160;</a></span>f_mode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void f_mode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a21980b9115c771c32c3e747e809172c8" name="a21980b9115c771c32c3e747e809172c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21980b9115c771c32c3e747e809172c8">&#9670;&#160;</a></span>f_next_o()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void f_next_o </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a81e50a382c834bc7a08ded70c9f2206f" name="a81e50a382c834bc7a08ded70c9f2206f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81e50a382c834bc7a08ded70c9f2206f">&#9670;&#160;</a></span>f_next_x()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void f_next_x </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa93bd5c2750c1dfc9a162f99e2c1492e" name="aa93bd5c2750c1dfc9a162f99e2c1492e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa93bd5c2750c1dfc9a162f99e2c1492e">&#9670;&#160;</a></span>f_play()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void f_play </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a012ad3089b94eb4868ecc0e91fbf420b" name="a012ad3089b94eb4868ecc0e91fbf420b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a012ad3089b94eb4868ecc0e91fbf420b">&#9670;&#160;</a></span>f_prev_o()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void f_prev_o </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abddf384f116ad1d602f348d8f47c05ec" name="abddf384f116ad1d602f348d8f47c05ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abddf384f116ad1d602f348d8f47c05ec">&#9670;&#160;</a></span>f_prev_x()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void f_prev_x </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8bbf1e80f6826646b4662b585d3c56d9" name="a8bbf1e80f6826646b4662b585d3c56d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8bbf1e80f6826646b4662b585d3c56d9">&#9670;&#160;</a></span>f_put_sign()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void f_put_sign </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a03d333ddaa81e4e13af9bc966a624add" name="a03d333ddaa81e4e13af9bc966a624add"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03d333ddaa81e4e13af9bc966a624add">&#9670;&#160;</a></span>f_select_cell()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void f_select_cell </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>x</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>y</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a65685aacad730d9d74c4664702bfabd9" name="a65685aacad730d9d74c4664702bfabd9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65685aacad730d9d74c4664702bfabd9">&#9670;&#160;</a></span>f_sub_id()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void f_sub_id </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab2b957680ff98be7e7647cef3b0c5d00" name="ab2b957680ff98be7e7647cef3b0c5d00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2b957680ff98be7e7647cef3b0c5d00">&#9670;&#160;</a></span>f_sub_mult_id()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void f_sub_mult_id </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7407c66f2e1171631787e89c3ab84354" name="a7407c66f2e1171631787e89c3ab84354"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7407c66f2e1171631787e89c3ab84354">&#9670;&#160;</a></span>frame_events()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void frame_events </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a150a2e3166d4ebcdce78e54aeb34abe9" name="a150a2e3166d4ebcdce78e54aeb34abe9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a150a2e3166d4ebcdce78e54aeb34abe9">&#9670;&#160;</a></span>free_txt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void free_txt </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Texture **</td>          <td class="paramname"><span class="paramname"><em>texture</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3c2bee53c11c7748f9193180a9b86428" name="a3c2bee53c11c7748f9193180a9b86428"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c2bee53c11c7748f9193180a9b86428">&#9670;&#160;</a></span>handle_ingame_event()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handle_ingame_event </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Event</td>          <td class="paramname"><span class="paramname"><em>event</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac175e2d21f646ec7738ca6d0e1546dee" name="ac175e2d21f646ec7738ca6d0e1546dee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac175e2d21f646ec7738ca6d0e1546dee">&#9670;&#160;</a></span>handle_menu_event()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handle_menu_event </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Event</td>          <td class="paramname"><span class="paramname"><em>event</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acf2d04800b0039aedd48feb81898d251" name="acf2d04800b0039aedd48feb81898d251"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf2d04800b0039aedd48feb81898d251">&#9670;&#160;</a></span>init_menu()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool init_menu </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adf66de3e402409774df2443b28821c69" name="adf66de3e402409774df2443b28821c69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf66de3e402409774df2443b28821c69">&#9670;&#160;</a></span>init_pallete()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool init_pallete </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aed16687efb749973febecf4fa25f4e8a" name="aed16687efb749973febecf4fa25f4e8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed16687efb749973febecf4fa25f4e8a">&#9670;&#160;</a></span>init_playfield()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool init_playfield </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5b52ed2d598f7d505c996a7403fc2d68" name="a5b52ed2d598f7d505c996a7403fc2d68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b52ed2d598f7d505c996a7403fc2d68">&#9670;&#160;</a></span>init_sdl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool init_sdl </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> **</td>          <td class="paramname"><span class="paramname"><em>sdl_data_ptr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0dccf60bf9b171568761b8fd185111cd" name="a0dccf60bf9b171568761b8fd185111cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0dccf60bf9b171568761b8fd185111cd">&#9670;&#160;</a></span>init_textures()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool init_textures </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aef8a9fd730e775edd32bc9e532b2a6cd" name="aef8a9fd730e775edd32bc9e532b2a6cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef8a9fd730e775edd32bc9e532b2a6cd">&#9670;&#160;</a></span>load_from_file()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SDL_Texture * load_from_file </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>renderer</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>path</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7680947f4ed99ca031ea86929921d9dd" name="a7680947f4ed99ca031ea86929921d9dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7680947f4ed99ca031ea86929921d9dd">&#9670;&#160;</a></span>load_from_text()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SDL_Texture * load_from_text </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Rect *</td>          <td class="paramname"><span class="paramname"><em>content_rect</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>text</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aefad48bb757d75e8ca79a08e8a25a80e" name="aefad48bb757d75e8ca79a08e8a25a80e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefad48bb757d75e8ca79a08e8a25a80e">&#9670;&#160;</a></span>load_media()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool load_media </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a441807a4ed7ee767862771d0ba02cd16" name="a441807a4ed7ee767862771d0ba02cd16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a441807a4ed7ee767862771d0ba02cd16">&#9670;&#160;</a></span>render_board()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void render_board </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa587e803044bd8d844117d9318bf9d2c" name="aa587e803044bd8d844117d9318bf9d2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa587e803044bd8d844117d9318bf9d2c">&#9670;&#160;</a></span>render_button()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void render_button </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>renderer</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="sdl__display_8h.html#a3a5405a7c8d68a27f3bde9a0aa8bca28">Button</a> *</td>          <td class="paramname"><span class="paramname"><em>button</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>clip</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaae5f9a90471c78e068c0d9eb2e4d936" name="aaae5f9a90471c78e068c0d9eb2e4d936"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaae5f9a90471c78e068c0d9eb2e4d936">&#9670;&#160;</a></span>render_cell()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void render_cell </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="sdl__display_8h.html#a5a015017629833d016e38b49dca7b1c3">Cell</a> *</td>          <td class="paramname"><span class="paramname"><em>cell</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>sign</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1aa0c547aeffbd59ab575f6ac3479cbd" name="a1aa0c547aeffbd59ab575f6ac3479cbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1aa0c547aeffbd59ab575f6ac3479cbd">&#9670;&#160;</a></span>render_menu()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void render_menu </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a671a5426810fe6710071bf45df6ed0e1" name="a671a5426810fe6710071bf45df6ed0e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a671a5426810fe6710071bf45df6ed0e1">&#9670;&#160;</a></span>render_object()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void render_object </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *</td>          <td class="paramname"><span class="paramname"><em>renderer</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="sdl__display_8h.html#ac1d573b78381906e7299e87cab9152bc">Object</a> *</td>          <td class="paramname"><span class="paramname"><em>object</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>clip</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab187c4da46c153c0bc4824974cb2501c" name="ab187c4da46c153c0bc4824974cb2501c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab187c4da46c153c0bc4824974cb2501c">&#9670;&#160;</a></span>render_playfield()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void render_playfield </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7a8b7754155906d6c9872e4078472b6e" name="a7a8b7754155906d6c9872e4078472b6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a8b7754155906d6c9872e4078472b6e">&#9670;&#160;</a></span>set_color()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void set_color </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Color *</td>          <td class="paramname"><span class="paramname"><em>color</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Uint8</td>          <td class="paramname"><span class="paramname"><em>r</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Uint8</td>          <td class="paramname"><span class="paramname"><em>g</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Uint8</td>          <td class="paramname"><span class="paramname"><em>b</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Uint8</td>          <td class="paramname"><span class="paramname"><em>a</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a33108bc5029e56acd5bd6de59dafe353" name="a33108bc5029e56acd5bd6de59dafe353"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33108bc5029e56acd5bd6de59dafe353">&#9670;&#160;</a></span>set_pos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void set_pos </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Rect *</td>          <td class="paramname"><span class="paramname"><em>rect</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>x</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>y</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>w</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>h</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad05388d04bce451ff478fb668dc65894" name="ad05388d04bce451ff478fb668dc65894"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad05388d04bce451ff478fb668dc65894">&#9670;&#160;</a></span>setup_cells()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setup_cells </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

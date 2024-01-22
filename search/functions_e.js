@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['zmiana_5fgracza_0',['zmiana_gracza',['../bot__utils_8c.html#a0a88e93a4b33457bfd61384264fd095c',1,'zmiana_gracza(char gracz):&#160;bot_utils.c'],['../bot__utils_8h.html#a0a88e93a4b33457bfd61384264fd095c',1,'zmiana_gracza(char gracz):&#160;bot_utils.c']]],
-  ['znajdz_5fczesc_1',['znajdz_czesc',['../bot__utils_8c.html#a19b38a1e3a5ac28f8966fa45eefcda18',1,'znajdz_czesc(zmiana ruch):&#160;bot_utils.c'],['../bot__utils_8h.html#a19b38a1e3a5ac28f8966fa45eefcda18',1,'znajdz_czesc(zmiana ruch):&#160;bot_utils.c']]],
-  ['znajdz_5fopt_2',['znajdz_opt',['../bot__utils_8c.html#a2360014a49bede11b98bb75a98abbe71',1,'znajdz_opt(node *v):&#160;bot_utils.c'],['../bot__utils_8h.html#a2360014a49bede11b98bb75a98abbe71',1,'znajdz_opt(node *v):&#160;bot_utils.c']]]
+  ['uct_0',['uct',['../bot__utils_8c.html#af82ee3b37b210574e90864b86647a7cf',1,'uct(node *wierzcholek):&#160;bot_utils.c'],['../bot__utils_8h.html#af82ee3b37b210574e90864b86647a7cf',1,'uct(node *wierzcholek):&#160;bot_utils.c']]],
+  ['unselect_1',['unselect',['../bot__utils_8c.html#ab7699d76dbfbdac2bcd8de81538be44b',1,'unselect(node *v, char **plansza, int wynik, char **nad_zwyciestwa):&#160;bot_utils.c'],['../bot__utils_8h.html#ab7699d76dbfbdac2bcd8de81538be44b',1,'unselect(node *v, char **plansza, int wynik, char **nad_zwyciestwa):&#160;bot_utils.c']]],
+  ['update_5fnad_5fzwyciestwa_2',['update_nad_zwyciestwa',['../bot__utils_8c.html#a05443aa1de48c7c70273a661d47c60d5',1,'update_nad_zwyciestwa(char **plansza, char **nad_zwyciestwa, int czesc):&#160;bot_utils.c'],['../bot__utils_8h.html#a2be37798866b78cd74e333e0df3aa5b0',1,'update_nad_zwyciestwa(char **plnasza, char **nad_zwyciestwa, int czesc):&#160;bot_utils.c']]],
+  ['uzupelnij_5fnad_5fzwyciestwa_3',['uzupelnij_nad_zwyciestwa',['../bot__utils_8c.html#a3a24070dbdfa513205f7cddb3e0bbba6',1,'uzupelnij_nad_zwyciestwa(char **plansza, char **nad_zwyciestwa):&#160;bot_utils.c'],['../bot__utils_8h.html#a3a24070dbdfa513205f7cddb3e0bbba6',1,'uzupelnij_nad_zwyciestwa(char **plansza, char **nad_zwyciestwa):&#160;bot_utils.c']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['draw_0',['DRAW',['../gameplay_8h.html#a881b49e3802366255ad852f1c8624fd1a61f3c57b6943c85413975507aede78cd',1,'gameplay.h']]]
+  ['add_5fid_0',['add_id',['../sdl__display_8h.html#ab0f08fdde6faa58116caa291c5533a85afc7dd5f43e821a64dd91ffe806ab4a4b',1,'sdl_display.h']]],
+  ['add_5fmult_5fid_1',['add_mult_id',['../sdl__display_8h.html#ab0f08fdde6faa58116caa291c5533a85a0287f34e74b21f8838a45ac84d37fa5d',1,'sdl_display.h']]]
 ];

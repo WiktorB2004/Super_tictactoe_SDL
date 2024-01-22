@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['y_0',['y',['../structzmiana.html#a3f647bc598d5d20de19869c134798dec',1,'zmiana::y'],['../structpair.html#a780f9b12dd779b1f41cea218303c3698',1,'pair::y']]]
+  ['window_0',['window',['../structsdl__data.html#a757872a65808fce63a2e9832db608e64',1,'sdl_data']]],
+  ['wins_1',['wins',['../structnode.html#a1d62272df8dfd5544c838aea92e306cf',1,'node']]]
 ];

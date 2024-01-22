@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['pair_0',['pair',['../structpair.html',1,'']]]
+  ['node_0',['node',['../structnode.html',1,'']]]
 ];

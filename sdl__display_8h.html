@@ -92,11 +92,386 @@ $(function(){initNavTree('sdl__display_8h.html',''); initResizable(); });
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">sdl_display.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-
+<div class="textblock"><code>#include &lt;SDL2/SDL.h&gt;</code><br />
+<code>#include &lt;SDL2/SDL_image.h&gt;</code><br />
+<code>#include &lt;SDL2/SDL_ttf.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
+</div>
 <p><a href="sdl__display_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcell.html">cell</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structobject.html">object</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbutton.html">button</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpallete.html">pallete</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtextures.html">textures</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmenu.html">menu</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structplayfield.html">playfield</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsdl__data.html">sdl_data</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ab99a39677e6dd30b413a7a6128fa617b" id="r_ab99a39677e6dd30b413a7a6128fa617b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab99a39677e6dd30b413a7a6128fa617b">sign_sprites</a>&#160;&#160;&#160;4</td></tr>
+<tr class="separator:ab99a39677e6dd30b413a7a6128fa617b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ccdfe0b5801fab66325e0723c4aee91" id="r_a4ccdfe0b5801fab66325e0723c4aee91"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4ccdfe0b5801fab66325e0723c4aee91">sign_sprite_res</a>&#160;&#160;&#160;128</td></tr>
+<tr class="separator:a4ccdfe0b5801fab66325e0723c4aee91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f2856310f8a0a24b17a9a715e6f13a7" id="r_a3f2856310f8a0a24b17a9a715e6f13a7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3f2856310f8a0a24b17a9a715e6f13a7">mode_count</a>&#160;&#160;&#160;2</td></tr>
+<tr class="separator:a3f2856310f8a0a24b17a9a715e6f13a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87692a4ced99471c35a7228bb939c360" id="r_a87692a4ced99471c35a7228bb939c360"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a87692a4ced99471c35a7228bb939c360">mode_sprite_res</a>&#160;&#160;&#160;256</td></tr>
+<tr class="separator:a87692a4ced99471c35a7228bb939c360"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac959f86032d9acf819ee84eb8f1e0680" id="r_ac959f86032d9acf819ee84eb8f1e0680"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac959f86032d9acf819ee84eb8f1e0680">max_cells</a>&#160;&#160;&#160;81</td></tr>
+<tr class="separator:ac959f86032d9acf819ee84eb8f1e0680"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a5a015017629833d016e38b49dca7b1c3" id="r_a5a015017629833d016e38b49dca7b1c3"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structcell.html">cell</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a015017629833d016e38b49dca7b1c3">Cell</a></td></tr>
+<tr class="separator:a5a015017629833d016e38b49dca7b1c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1d573b78381906e7299e87cab9152bc" id="r_ac1d573b78381906e7299e87cab9152bc"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structobject.html">object</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac1d573b78381906e7299e87cab9152bc">Object</a></td></tr>
+<tr class="separator:ac1d573b78381906e7299e87cab9152bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a5405a7c8d68a27f3bde9a0aa8bca28" id="r_a3a5405a7c8d68a27f3bde9a0aa8bca28"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structbutton.html">button</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3a5405a7c8d68a27f3bde9a0aa8bca28">Button</a></td></tr>
+<tr class="separator:a3a5405a7c8d68a27f3bde9a0aa8bca28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a107975d2859904ca26da6af3c50931ed" id="r_a107975d2859904ca26da6af3c50931ed"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structpallete.html">pallete</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a107975d2859904ca26da6af3c50931ed">Pallete</a></td></tr>
+<tr class="separator:a107975d2859904ca26da6af3c50931ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28ae449dd98e771f6473a8ea939bcfec" id="r_a28ae449dd98e771f6473a8ea939bcfec"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structtextures.html">textures</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a28ae449dd98e771f6473a8ea939bcfec">Textures</a></td></tr>
+<tr class="separator:a28ae449dd98e771f6473a8ea939bcfec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58f4f616fdcea022455efe75659b131e" id="r_a58f4f616fdcea022455efe75659b131e"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structmenu.html">menu</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a58f4f616fdcea022455efe75659b131e">Menu</a></td></tr>
+<tr class="separator:a58f4f616fdcea022455efe75659b131e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c05974b51d71392ad4a087abcde7ede" id="r_a4c05974b51d71392ad4a087abcde7ede"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structplayfield.html">playfield</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4c05974b51d71392ad4a087abcde7ede">Playfield</a></td></tr>
+<tr class="separator:a4c05974b51d71392ad4a087abcde7ede"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9f85c4277681e2e679bd29bf69f7b95" id="r_ae9f85c4277681e2e679bd29bf69f7b95"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structsdl__data.html">sdl_data</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a></td></tr>
+<tr class="separator:ae9f85c4277681e2e679bd29bf69f7b95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ab0f08fdde6faa58116caa291c5533a85" id="r_ab0f08fdde6faa58116caa291c5533a85"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab0f08fdde6faa58116caa291c5533a85">Menu_Buttons</a> { <br />
+&#160;&#160;<a class="el" href="#ab0f08fdde6faa58116caa291c5533a85af1982b2b77f9b0e7cd29e39b39d8a0b4">mode</a>
+, <a class="el" href="#ab0f08fdde6faa58116caa291c5533a85add7770619d252a3e8aadf3b86b3e5633">play</a>
+, <a class="el" href="#ab0f08fdde6faa58116caa291c5533a85afc7dd5f43e821a64dd91ffe806ab4a4b">add_id</a>
+, <a class="el" href="#ab0f08fdde6faa58116caa291c5533a85ad6e3959f97d2c7d791deb35497aeed81">sub_id</a>
+, <br />
+&#160;&#160;<a class="el" href="#ab0f08fdde6faa58116caa291c5533a85a0287f34e74b21f8838a45ac84d37fa5d">add_mult_id</a>
+, <a class="el" href="#ab0f08fdde6faa58116caa291c5533a85ada2612745cd7b7b49250734a96ea75ff">sub_mult_id</a>
+, <a class="el" href="#ab0f08fdde6faa58116caa291c5533a85a338ffae2e23a2c6595467355d21758f8">next_x</a>
+, <a class="el" href="#ab0f08fdde6faa58116caa291c5533a85a0f84b532fc5f7e669b2a89f943fa92d5">prev_x</a>
+, <br />
+&#160;&#160;<a class="el" href="#ab0f08fdde6faa58116caa291c5533a85aaff648e99a01fe622adc69e1231f7777">next_o</a>
+, <a class="el" href="#ab0f08fdde6faa58116caa291c5533a85a804df910a52697cc2a1843a0de1b1a97">prev_o</a>
+<br />
+ }</td></tr>
+<tr class="separator:ab0f08fdde6faa58116caa291c5533a85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a5b52ed2d598f7d505c996a7403fc2d68" id="r_a5b52ed2d598f7d505c996a7403fc2d68"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5b52ed2d598f7d505c996a7403fc2d68">init_sdl</a> (<a class="el" href="#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> **sdl_data_ptr)</td></tr>
+<tr class="separator:a5b52ed2d598f7d505c996a7403fc2d68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefad48bb757d75e8ca79a08e8a25a80e" id="r_aefad48bb757d75e8ca79a08e8a25a80e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aefad48bb757d75e8ca79a08e8a25a80e">load_media</a> (<a class="el" href="#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>)</td></tr>
+<tr class="separator:aefad48bb757d75e8ca79a08e8a25a80e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7407c66f2e1171631787e89c3ab84354" id="r_a7407c66f2e1171631787e89c3ab84354"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7407c66f2e1171631787e89c3ab84354">frame_events</a> (<a class="el" href="#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>)</td></tr>
+<tr class="separator:a7407c66f2e1171631787e89c3ab84354"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a230be335b93c1bfab7c9fc85fe140a52" id="r_a230be335b93c1bfab7c9fc85fe140a52"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a230be335b93c1bfab7c9fc85fe140a52">close_sdl</a> (<a class="el" href="#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>)</td></tr>
+<tr class="separator:a230be335b93c1bfab7c9fc85fe140a52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="ac959f86032d9acf819ee84eb8f1e0680" name="ac959f86032d9acf819ee84eb8f1e0680"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac959f86032d9acf819ee84eb8f1e0680">&#9670;&#160;</a></span>max_cells</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define max_cells&#160;&#160;&#160;81</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3f2856310f8a0a24b17a9a715e6f13a7" name="a3f2856310f8a0a24b17a9a715e6f13a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f2856310f8a0a24b17a9a715e6f13a7">&#9670;&#160;</a></span>mode_count</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define mode_count&#160;&#160;&#160;2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a87692a4ced99471c35a7228bb939c360" name="a87692a4ced99471c35a7228bb939c360"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87692a4ced99471c35a7228bb939c360">&#9670;&#160;</a></span>mode_sprite_res</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define mode_sprite_res&#160;&#160;&#160;256</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4ccdfe0b5801fab66325e0723c4aee91" name="a4ccdfe0b5801fab66325e0723c4aee91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ccdfe0b5801fab66325e0723c4aee91">&#9670;&#160;</a></span>sign_sprite_res</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define sign_sprite_res&#160;&#160;&#160;128</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab99a39677e6dd30b413a7a6128fa617b" name="ab99a39677e6dd30b413a7a6128fa617b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab99a39677e6dd30b413a7a6128fa617b">&#9670;&#160;</a></span>sign_sprites</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define sign_sprites&#160;&#160;&#160;4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="a3a5405a7c8d68a27f3bde9a0aa8bca28" name="a3a5405a7c8d68a27f3bde9a0aa8bca28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a5405a7c8d68a27f3bde9a0aa8bca28">&#9670;&#160;</a></span>Button</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structbutton.html">button</a> <a class="el" href="#a3a5405a7c8d68a27f3bde9a0aa8bca28">Button</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5a015017629833d016e38b49dca7b1c3" name="a5a015017629833d016e38b49dca7b1c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a015017629833d016e38b49dca7b1c3">&#9670;&#160;</a></span>Cell</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structcell.html">cell</a> <a class="el" href="#a5a015017629833d016e38b49dca7b1c3">Cell</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a58f4f616fdcea022455efe75659b131e" name="a58f4f616fdcea022455efe75659b131e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58f4f616fdcea022455efe75659b131e">&#9670;&#160;</a></span>Menu</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structmenu.html">menu</a> <a class="el" href="#a58f4f616fdcea022455efe75659b131e">Menu</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac1d573b78381906e7299e87cab9152bc" name="ac1d573b78381906e7299e87cab9152bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1d573b78381906e7299e87cab9152bc">&#9670;&#160;</a></span>Object</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structobject.html">object</a> <a class="el" href="#ac1d573b78381906e7299e87cab9152bc">Object</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a107975d2859904ca26da6af3c50931ed" name="a107975d2859904ca26da6af3c50931ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a107975d2859904ca26da6af3c50931ed">&#9670;&#160;</a></span>Pallete</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structpallete.html">pallete</a> <a class="el" href="#a107975d2859904ca26da6af3c50931ed">Pallete</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4c05974b51d71392ad4a087abcde7ede" name="a4c05974b51d71392ad4a087abcde7ede"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c05974b51d71392ad4a087abcde7ede">&#9670;&#160;</a></span>Playfield</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structplayfield.html">playfield</a> <a class="el" href="#a4c05974b51d71392ad4a087abcde7ede">Playfield</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae9f85c4277681e2e679bd29bf69f7b95" name="ae9f85c4277681e2e679bd29bf69f7b95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9f85c4277681e2e679bd29bf69f7b95">&#9670;&#160;</a></span>Sdl_Data</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structsdl__data.html">sdl_data</a> <a class="el" href="#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a28ae449dd98e771f6473a8ea939bcfec" name="a28ae449dd98e771f6473a8ea939bcfec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28ae449dd98e771f6473a8ea939bcfec">&#9670;&#160;</a></span>Textures</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structtextures.html">textures</a> <a class="el" href="#a28ae449dd98e771f6473a8ea939bcfec">Textures</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="ab0f08fdde6faa58116caa291c5533a85" name="ab0f08fdde6faa58116caa291c5533a85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0f08fdde6faa58116caa291c5533a85">&#9670;&#160;</a></span>Menu_Buttons</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#ab0f08fdde6faa58116caa291c5533a85">Menu_Buttons</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ab0f08fdde6faa58116caa291c5533a85af1982b2b77f9b0e7cd29e39b39d8a0b4" name="ab0f08fdde6faa58116caa291c5533a85af1982b2b77f9b0e7cd29e39b39d8a0b4"></a>mode&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ab0f08fdde6faa58116caa291c5533a85add7770619d252a3e8aadf3b86b3e5633" name="ab0f08fdde6faa58116caa291c5533a85add7770619d252a3e8aadf3b86b3e5633"></a>play&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ab0f08fdde6faa58116caa291c5533a85afc7dd5f43e821a64dd91ffe806ab4a4b" name="ab0f08fdde6faa58116caa291c5533a85afc7dd5f43e821a64dd91ffe806ab4a4b"></a>add_id&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ab0f08fdde6faa58116caa291c5533a85ad6e3959f97d2c7d791deb35497aeed81" name="ab0f08fdde6faa58116caa291c5533a85ad6e3959f97d2c7d791deb35497aeed81"></a>sub_id&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ab0f08fdde6faa58116caa291c5533a85a0287f34e74b21f8838a45ac84d37fa5d" name="ab0f08fdde6faa58116caa291c5533a85a0287f34e74b21f8838a45ac84d37fa5d"></a>add_mult_id&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ab0f08fdde6faa58116caa291c5533a85ada2612745cd7b7b49250734a96ea75ff" name="ab0f08fdde6faa58116caa291c5533a85ada2612745cd7b7b49250734a96ea75ff"></a>sub_mult_id&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ab0f08fdde6faa58116caa291c5533a85a338ffae2e23a2c6595467355d21758f8" name="ab0f08fdde6faa58116caa291c5533a85a338ffae2e23a2c6595467355d21758f8"></a>next_x&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ab0f08fdde6faa58116caa291c5533a85a0f84b532fc5f7e669b2a89f943fa92d5" name="ab0f08fdde6faa58116caa291c5533a85a0f84b532fc5f7e669b2a89f943fa92d5"></a>prev_x&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ab0f08fdde6faa58116caa291c5533a85aaff648e99a01fe622adc69e1231f7777" name="ab0f08fdde6faa58116caa291c5533a85aaff648e99a01fe622adc69e1231f7777"></a>next_o&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ab0f08fdde6faa58116caa291c5533a85a804df910a52697cc2a1843a0de1b1a97" name="ab0f08fdde6faa58116caa291c5533a85a804df910a52697cc2a1843a0de1b1a97"></a>prev_o&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a230be335b93c1bfab7c9fc85fe140a52" name="a230be335b93c1bfab7c9fc85fe140a52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a230be335b93c1bfab7c9fc85fe140a52">&#9670;&#160;</a></span>close_sdl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void close_sdl </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7407c66f2e1171631787e89c3ab84354" name="a7407c66f2e1171631787e89c3ab84354"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7407c66f2e1171631787e89c3ab84354">&#9670;&#160;</a></span>frame_events()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void frame_events </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5b52ed2d598f7d505c996a7403fc2d68" name="a5b52ed2d598f7d505c996a7403fc2d68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b52ed2d598f7d505c996a7403fc2d68">&#9670;&#160;</a></span>init_sdl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool init_sdl </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> **</td>          <td class="paramname"><span class="paramname"><em>sdl_data_ptr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aefad48bb757d75e8ca79a08e8a25a80e" name="aefad48bb757d75e8ca79a08e8a25a80e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefad48bb757d75e8ca79a08e8a25a80e">&#9670;&#160;</a></span>load_media()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool load_media </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
