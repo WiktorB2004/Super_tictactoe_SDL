@@ -111,9 +111,14 @@ Functions</h2></td></tr>
 <tr class="memitem:aea84aaef057eac3b70e538333a2c5c3f" id="r_aea84aaef057eac3b70e538333a2c5c3f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aea84aaef057eac3b70e538333a2c5c3f">check_board</a> (<a class="el" href="structBoard.html">Board</a> *board, <a class="el" href="gameplay_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a> turn)</td></tr>
 <tr class="memdesc:aea84aaef057eac3b70e538333a2c5c3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function perform checks on the single board and manages its status.  <br /></td></tr>
 <tr class="separator:aea84aaef057eac3b70e538333a2c5c3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41531a9d28857e60e79aa7bea20b0854" id="r_a41531a9d28857e60e79aa7bea20b0854"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a41531a9d28857e60e79aa7bea20b0854">check_draw</a> (<a class="el" href="structBoard.html">Board</a> *board)</td></tr>
+<tr class="memdesc:a41531a9d28857e60e79aa7bea20b0854"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function perform checks on the game and manages its status.  <br /></td></tr>
+<tr class="separator:a41531a9d28857e60e79aa7bea20b0854"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a151b5562b69dfc58a3ecde54b022d4b0" id="r_a151b5562b69dfc58a3ecde54b022d4b0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a151b5562b69dfc58a3ecde54b022d4b0">check_game</a> (<a class="el" href="structGame.html">Game</a> *game, <a class="el" href="gameplay_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a> turn)</td></tr>
 <tr class="memdesc:a151b5562b69dfc58a3ecde54b022d4b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function perform checks on the game and manages its status.  <br /></td></tr>
 <tr class="separator:a151b5562b69dfc58a3ecde54b022d4b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a141b444587c7fefdeb46248f73aa8a8b" id="r_a141b444587c7fefdeb46248f73aa8a8b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a141b444587c7fefdeb46248f73aa8a8b">check_game_draw</a> (<a class="el" href="structGame.html">Game</a> *game)</td></tr>
+<tr class="separator:a141b444587c7fefdeb46248f73aa8a8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2870c2b421e88cdeba44329e50f0f5ae" id="r_a2870c2b421e88cdeba44329e50f0f5ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2870c2b421e88cdeba44329e50f0f5ae">gameplay</a> (<a class="el" href="structGame.html">Game</a> *game)</td></tr>
 <tr class="memdesc:a2870c2b421e88cdeba44329e50f0f5ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function handles the tictac toe gameplay.  <br /></td></tr>
 <tr class="separator:a2870c2b421e88cdeba44329e50f0f5ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -150,6 +155,33 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a41531a9d28857e60e79aa7bea20b0854" name="a41531a9d28857e60e79aa7bea20b0854"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41531a9d28857e60e79aa7bea20b0854">&#9670;&#160;</a></span>check_draw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void check_draw </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structBoard.html">Board</a> *</td>          <td class="paramname"><span class="paramname"><em>board</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function perform checks on the game and manages its status. </p>
+<p>This function checks all the game boards and if there is a draw or someone won the game it modifies the game status</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">game</td><td>The game to be checked. </td></tr>
+    <tr><td class="paramname">turn</td><td>The player turn in the game. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a151b5562b69dfc58a3ecde54b022d4b0" name="a151b5562b69dfc58a3ecde54b022d4b0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a151b5562b69dfc58a3ecde54b022d4b0">&#9670;&#160;</a></span>check_game()</h2>
 
@@ -178,6 +210,23 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a141b444587c7fefdeb46248f73aa8a8b" name="a141b444587c7fefdeb46248f73aa8a8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a141b444587c7fefdeb46248f73aa8a8b">&#9670;&#160;</a></span>check_game_draw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void check_game_draw </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structGame.html">Game</a> *</td>          <td class="paramname"><span class="paramname"><em>game</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

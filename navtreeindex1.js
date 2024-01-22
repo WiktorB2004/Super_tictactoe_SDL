@@ -1,5 +1,15 @@
 var NAVTREEINDEX1 =
 {
+"structGame.html#ac7bdb69dfc0d8ddd753907bc9e9d2651":[1,0,5,3],
+"structGame.html#ad16f3a8440430cfd53610b921641cca2":[1,0,5,4],
+"structargument.html":[1,0,0],
+"structargument.html#a05c79e03982e439ec31f27d159b40b59":[1,0,0,2],
+"structargument.html#a67c8a60bed210d2018d692b8ef55d7da":[1,0,0,0],
+"structargument.html#aa2f06c2a5058810187fc0ddd2587ac23":[1,0,0,1],
+"structargument.html#ab4d73f258bbf604113e10d6880915b7e":[1,0,0,4],
+"structargument.html#abfe62b6c04054a47bc81b8e4dd3191dc":[1,0,0,3],
+"structbutton.html":[1,0,2],
+"structbutton.html#a3f6320037f95612a49c876444308ff70":[1,0,2,2],
 "structbutton.html#a63270ab40c67338c1151c4edc5c785e2":[1,0,2,4],
 "structbutton.html#ac21857fad20e2df17214762c50712da2":[1,0,2,1],
 "structbutton.html#ad67a4ca5df84b7d9f41539fd1672c4e4":[1,0,2,3],
