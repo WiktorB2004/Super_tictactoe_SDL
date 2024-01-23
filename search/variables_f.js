@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['x_0',['x',['../structzmiana.html#a85a47540efeeec55346355a2d224b955',1,'zmiana::x'],['../structpair.html#ad70e76c852f5b61c2dd73ed3bf582856',1,'pair::x'],['../structbestMove.html#a8f4330659a84a198baa3d5c73e49490f',1,'bestMove::x']]]
+  ['wartosc_5fruchu_0',['wartosc_ruchu',['../structbestMove.html#aaffc1d992c56694397b577b35471dcc0',1,'bestMove']]],
+  ['window_1',['window',['../structsdl__data.html#a757872a65808fce63a2e9832db608e64',1,'sdl_data']]],
+  ['wins_2',['wins',['../structnode.html#a1d62272df8dfd5544c838aea92e306cf',1,'node']]]
 ];

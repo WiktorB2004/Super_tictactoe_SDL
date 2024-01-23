@@ -138,6 +138,8 @@ Functions</h2></td></tr>
 <tr class="separator:a21980b9115c771c32c3e747e809172c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a012ad3089b94eb4868ecc0e91fbf420b" id="r_a012ad3089b94eb4868ecc0e91fbf420b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a012ad3089b94eb4868ecc0e91fbf420b">f_prev_o</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>)</td></tr>
 <tr class="separator:a012ad3089b94eb4868ecc0e91fbf420b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e07576c7507cf9e621a092979316e5c" id="r_a4e07576c7507cf9e621a092979316e5c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4e07576c7507cf9e621a092979316e5c">f_switch_online</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>)</td></tr>
+<tr class="separator:a4e07576c7507cf9e621a092979316e5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03d333ddaa81e4e13af9bc966a624add" id="r_a03d333ddaa81e4e13af9bc966a624add"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a03d333ddaa81e4e13af9bc966a624add">f_select_cell</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>, int x, int y)</td></tr>
 <tr class="separator:a03d333ddaa81e4e13af9bc966a624add"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8bbf1e80f6826646b4662b585d3c56d9" id="r_a8bbf1e80f6826646b4662b585d3c56d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8bbf1e80f6826646b4662b585d3c56d9">f_put_sign</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>)</td></tr>
@@ -170,8 +172,8 @@ Functions</h2></td></tr>
 <tr class="separator:ac175e2d21f646ec7738ca6d0e1546dee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c2bee53c11c7748f9193180a9b86428" id="r_a3c2bee53c11c7748f9193180a9b86428"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3c2bee53c11c7748f9193180a9b86428">handle_ingame_event</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>, SDL_Event event)</td></tr>
 <tr class="separator:a3c2bee53c11c7748f9193180a9b86428"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7407c66f2e1171631787e89c3ab84354" id="r_a7407c66f2e1171631787e89c3ab84354"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7407c66f2e1171631787e89c3ab84354">frame_events</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>)</td></tr>
-<tr class="separator:a7407c66f2e1171631787e89c3ab84354"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a880f7ec30f2f314308ba76c177416857" id="r_a880f7ec30f2f314308ba76c177416857"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a880f7ec30f2f314308ba76c177416857">frame_events</a> (<a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>, bool *quit)</td></tr>
+<tr class="separator:a880f7ec30f2f314308ba76c177416857"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a230be335b93c1bfab7c9fc85fe140a52" name="a230be335b93c1bfab7c9fc85fe140a52"></a>
@@ -421,8 +423,25 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a7407c66f2e1171631787e89c3ab84354" name="a7407c66f2e1171631787e89c3ab84354"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7407c66f2e1171631787e89c3ab84354">&#9670;&#160;</a></span>frame_events()</h2>
+<a id="a4e07576c7507cf9e621a092979316e5c" name="a4e07576c7507cf9e621a092979316e5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e07576c7507cf9e621a092979316e5c">&#9670;&#160;</a></span>f_switch_online()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void f_switch_online </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a880f7ec30f2f314308ba76c177416857" name="a880f7ec30f2f314308ba76c177416857"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a880f7ec30f2f314308ba76c177416857">&#9670;&#160;</a></span>frame_events()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -430,8 +449,12 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void frame_events </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="sdl__display_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">bool *</td>          <td class="paramname"><span class="paramname"><em>quit</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">

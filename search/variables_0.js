@@ -6,5 +6,6 @@ var searchData=
   ['board_3',['board',['../structGame.html#a4600aecf6682093cc21765fd14683a62',1,'Game']]],
   ['board_5flines_4',['board_lines',['../structpallete.html#a36f24c7b5fa52b68ae88e8ccbe196024',1,'pallete']]],
   ['board_5fsize_5',['board_size',['../structGame.html#a04bdaebf63c6e2ed0412bdcbb47a06ab',1,'Game']]],
-  ['buttons_6',['buttons',['../structmenu.html#a7d55c561a47b37d27521fdd9bc17a88d',1,'menu']]]
+  ['bot_5fdifficulty_6',['bot_difficulty',['../structsdl__data.html#a73247912a53ad64cca7ac13380d761ae',1,'sdl_data']]],
+  ['buttons_7',['buttons',['../structmenu.html#a7d55c561a47b37d27521fdd9bc17a88d',1,'menu']]]
 ];

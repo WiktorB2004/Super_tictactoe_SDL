@@ -30,5 +30,6 @@ var searchData=
   ['sub_5fmult_5fid_27',['sub_mult_id',['../sdl__display_8h.html#ab0f08fdde6faa58116caa291c5533a85ada2612745cd7b7b49250734a96ea75ff',1,'sdl_display.h']]],
   ['super_20tic_20tac_20toe_28',['Super tic tac toe',['../index.html',1,'']]],
   ['super_5fmode_29',['super_mode',['../structsdl__data.html#a2a4327efe2228f9433118bcace607df6',1,'sdl_data']]],
-  ['symulate_30',['symulate',['../bot__utils_8c.html#a7fe6c00d29ed3278ced12979e832935a',1,'symulate(node *v, char **plansza, char **nad_zywciestwa, char gracz):&#160;bot_utils.c'],['../bot__utils_8h.html#aa47ff701e68f390be4e6aa237a7c6f48',1,'symulate(node *v, char **plansza, char **nad_zwyciestwa, char gracz):&#160;bot_utils.c']]]
+  ['switch_5fonline_30',['switch_online',['../sdl__display_8h.html#ab0f08fdde6faa58116caa291c5533a85a4730a02cfb47183e8ba647172c073481',1,'sdl_display.h']]],
+  ['symulate_31',['symulate',['../bot__utils_8c.html#a7fe6c00d29ed3278ced12979e832935a',1,'symulate(node *v, char **plansza, char **nad_zywciestwa, char gracz):&#160;bot_utils.c'],['../bot__utils_8h.html#aa47ff701e68f390be4e6aa237a7c6f48',1,'symulate(node *v, char **plansza, char **nad_zwyciestwa, char gracz):&#160;bot_utils.c']]]
 ];

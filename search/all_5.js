@@ -13,11 +13,12 @@ var searchData=
   ['f_5fselect_5fcell_10',['f_select_cell',['../sdl__display_8c.html#a03d333ddaa81e4e13af9bc966a624add',1,'sdl_display.c']]],
   ['f_5fsub_5fid_11',['f_sub_id',['../sdl__display_8c.html#a65685aacad730d9d74c4664702bfabd9',1,'sdl_display.c']]],
   ['f_5fsub_5fmult_5fid_12',['f_sub_mult_id',['../sdl__display_8c.html#ab2b957680ff98be7e7647cef3b0c5d00',1,'sdl_display.c']]],
-  ['field_5fbackground_13',['field_background',['../structtextures.html#abd785614987ee7d420f870b8a216a85d',1,'textures']]],
-  ['flip_14',['flip',['../structbutton.html#a63270ab40c67338c1151c4edc5c785e2',1,'button']]],
-  ['font_15',['font',['../structpallete.html#a0b5db1b288a1bd2ebeef1ead6e8c9509',1,'pallete']]],
-  ['forfeit_16',['forfeit',['../structplayfield.html#a870970830ee415ca2a9477f54d257ae2',1,'playfield::forfeit'],['../structsdl__data.html#ac3587612a6798c64dc916626cba3f85b',1,'sdl_data::forfeit']]],
-  ['frame_5fevents_17',['frame_events',['../sdl__display_8c.html#a7407c66f2e1171631787e89c3ab84354',1,'frame_events(Sdl_Data *sdl_data):&#160;sdl_display.c'],['../sdl__display_8h.html#a7407c66f2e1171631787e89c3ab84354',1,'frame_events(Sdl_Data *sdl_data):&#160;sdl_display.c']]],
-  ['free_5fgame_18',['free_Game',['../gameplay__utils_8c.html#ac6f273882892a97b6f5ed18a8906f370',1,'free_Game(Game *game):&#160;gameplay_utils.c'],['../gameplay__utils_8h.html#ac6f273882892a97b6f5ed18a8906f370',1,'free_Game(Game *game):&#160;gameplay_utils.c']]],
-  ['free_5ftxt_19',['free_txt',['../sdl__display_8c.html#a150a2e3166d4ebcdce78e54aeb34abe9',1,'sdl_display.c']]]
+  ['f_5fswitch_5fonline_13',['f_switch_online',['../sdl__display_8c.html#a4e07576c7507cf9e621a092979316e5c',1,'sdl_display.c']]],
+  ['field_5fbackground_14',['field_background',['../structtextures.html#abd785614987ee7d420f870b8a216a85d',1,'textures']]],
+  ['flip_15',['flip',['../structbutton.html#a63270ab40c67338c1151c4edc5c785e2',1,'button']]],
+  ['font_16',['font',['../structpallete.html#a0b5db1b288a1bd2ebeef1ead6e8c9509',1,'pallete']]],
+  ['forfeit_17',['forfeit',['../structplayfield.html#a870970830ee415ca2a9477f54d257ae2',1,'playfield::forfeit'],['../structsdl__data.html#ac3587612a6798c64dc916626cba3f85b',1,'sdl_data::forfeit']]],
+  ['frame_5fevents_18',['frame_events',['../sdl__display_8c.html#a880f7ec30f2f314308ba76c177416857',1,'frame_events(Sdl_Data *sdl_data, bool *quit):&#160;sdl_display.c'],['../sdl__display_8h.html#a880f7ec30f2f314308ba76c177416857',1,'frame_events(Sdl_Data *sdl_data, bool *quit):&#160;sdl_display.c']]],
+  ['free_5fgame_19',['free_Game',['../gameplay__utils_8c.html#ac6f273882892a97b6f5ed18a8906f370',1,'free_Game(Game *game):&#160;gameplay_utils.c'],['../gameplay__utils_8h.html#ac6f273882892a97b6f5ed18a8906f370',1,'free_Game(Game *game):&#160;gameplay_utils.c']]],
+  ['free_5ftxt_20',['free_txt',['../sdl__display_8c.html#a150a2e3166d4ebcdce78e54aeb34abe9',1,'sdl_display.c']]]
 ];

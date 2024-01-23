@@ -52,7 +52,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"structGame.html#a4600aecf6682093cc21765fd14683a62"
+"structGame.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

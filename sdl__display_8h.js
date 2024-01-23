@@ -31,10 +31,11 @@ var sdl__display_8h =
       [ "next_x", "sdl__display_8h.html#ab0f08fdde6faa58116caa291c5533a85a338ffae2e23a2c6595467355d21758f8", null ],
       [ "prev_x", "sdl__display_8h.html#ab0f08fdde6faa58116caa291c5533a85a0f84b532fc5f7e669b2a89f943fa92d5", null ],
       [ "next_o", "sdl__display_8h.html#ab0f08fdde6faa58116caa291c5533a85aaff648e99a01fe622adc69e1231f7777", null ],
-      [ "prev_o", "sdl__display_8h.html#ab0f08fdde6faa58116caa291c5533a85a804df910a52697cc2a1843a0de1b1a97", null ]
+      [ "prev_o", "sdl__display_8h.html#ab0f08fdde6faa58116caa291c5533a85a804df910a52697cc2a1843a0de1b1a97", null ],
+      [ "switch_online", "sdl__display_8h.html#ab0f08fdde6faa58116caa291c5533a85a4730a02cfb47183e8ba647172c073481", null ]
     ] ],
     [ "close_sdl", "sdl__display_8h.html#a230be335b93c1bfab7c9fc85fe140a52", null ],
-    [ "frame_events", "sdl__display_8h.html#a7407c66f2e1171631787e89c3ab84354", null ],
+    [ "frame_events", "sdl__display_8h.html#a880f7ec30f2f314308ba76c177416857", null ],
     [ "init_sdl", "sdl__display_8h.html#a5b52ed2d598f7d505c996a7403fc2d68", null ],
     [ "load_media", "sdl__display_8h.html#aefad48bb757d75e8ca79a08e8a25a80e", null ]
 ];

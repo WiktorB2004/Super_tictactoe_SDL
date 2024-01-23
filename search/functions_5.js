@@ -13,7 +13,8 @@ var searchData=
   ['f_5fselect_5fcell_10',['f_select_cell',['../sdl__display_8c.html#a03d333ddaa81e4e13af9bc966a624add',1,'sdl_display.c']]],
   ['f_5fsub_5fid_11',['f_sub_id',['../sdl__display_8c.html#a65685aacad730d9d74c4664702bfabd9',1,'sdl_display.c']]],
   ['f_5fsub_5fmult_5fid_12',['f_sub_mult_id',['../sdl__display_8c.html#ab2b957680ff98be7e7647cef3b0c5d00',1,'sdl_display.c']]],
-  ['frame_5fevents_13',['frame_events',['../sdl__display_8c.html#a7407c66f2e1171631787e89c3ab84354',1,'frame_events(Sdl_Data *sdl_data):&#160;sdl_display.c'],['../sdl__display_8h.html#a7407c66f2e1171631787e89c3ab84354',1,'frame_events(Sdl_Data *sdl_data):&#160;sdl_display.c']]],
-  ['free_5fgame_14',['free_Game',['../gameplay__utils_8c.html#ac6f273882892a97b6f5ed18a8906f370',1,'free_Game(Game *game):&#160;gameplay_utils.c'],['../gameplay__utils_8h.html#ac6f273882892a97b6f5ed18a8906f370',1,'free_Game(Game *game):&#160;gameplay_utils.c']]],
-  ['free_5ftxt_15',['free_txt',['../sdl__display_8c.html#a150a2e3166d4ebcdce78e54aeb34abe9',1,'sdl_display.c']]]
+  ['f_5fswitch_5fonline_13',['f_switch_online',['../sdl__display_8c.html#a4e07576c7507cf9e621a092979316e5c',1,'sdl_display.c']]],
+  ['frame_5fevents_14',['frame_events',['../sdl__display_8c.html#a880f7ec30f2f314308ba76c177416857',1,'frame_events(Sdl_Data *sdl_data, bool *quit):&#160;sdl_display.c'],['../sdl__display_8h.html#a880f7ec30f2f314308ba76c177416857',1,'frame_events(Sdl_Data *sdl_data, bool *quit):&#160;sdl_display.c']]],
+  ['free_5fgame_15',['free_Game',['../gameplay__utils_8c.html#ac6f273882892a97b6f5ed18a8906f370',1,'free_Game(Game *game):&#160;gameplay_utils.c'],['../gameplay__utils_8h.html#ac6f273882892a97b6f5ed18a8906f370',1,'free_Game(Game *game):&#160;gameplay_utils.c']]],
+  ['free_5ftxt_16',['free_txt',['../sdl__display_8c.html#a150a2e3166d4ebcdce78e54aeb34abe9',1,'sdl_display.c']]]
 ];

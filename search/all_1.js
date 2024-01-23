@@ -17,9 +17,10 @@ var searchData=
   ['bot_5f9x9_5fimpopable_14',['bot_9x9_impopable',['../bot_8c.html#aab127012100b05ec11d59977c9dfca8d',1,'bot_9x9_impopable(Game *game, int czesc):&#160;bot.c'],['../game__bot_8h.html#aab127012100b05ec11d59977c9dfca8d',1,'bot_9x9_impopable(Game *game, int czesc):&#160;bot.c']]],
   ['bot_5f9x9_5fnormal_15',['bot_9x9_normal',['../bot_8c.html#af18490ac79edc1572001f338c4e8c480',1,'bot_9x9_normal(Game *game, int czesc):&#160;bot.c'],['../game__bot_8h.html#af18490ac79edc1572001f338c4e8c480',1,'bot_9x9_normal(Game *game, int czesc):&#160;bot.c']]],
   ['bot_5f9x9_5frandom_16',['bot_9x9_random',['../bot_8c.html#ae559b7c27a4a2576c550c91bbecd1b11',1,'bot_9x9_random(char **plansza, char gracz, int czesc):&#160;bot.c'],['../game__bot_8h.html#ae559b7c27a4a2576c550c91bbecd1b11',1,'bot_9x9_random(char **plansza, char gracz, int czesc):&#160;bot.c']]],
-  ['bot_5futils_2ec_17',['bot_utils.c',['../bot__utils_8c.html',1,'']]],
-  ['bot_5futils_2eh_18',['bot_utils.h',['../bot__utils_8h.html',1,'']]],
-  ['button_19',['button',['../structbutton.html',1,'']]],
-  ['button_20',['Button',['../sdl__display_8h.html#a3a5405a7c8d68a27f3bde9a0aa8bca28',1,'sdl_display.h']]],
-  ['buttons_21',['buttons',['../structmenu.html#a7d55c561a47b37d27521fdd9bc17a88d',1,'menu']]]
+  ['bot_5fdifficulty_17',['bot_difficulty',['../structsdl__data.html#a73247912a53ad64cca7ac13380d761ae',1,'sdl_data']]],
+  ['bot_5futils_2ec_18',['bot_utils.c',['../bot__utils_8c.html',1,'']]],
+  ['bot_5futils_2eh_19',['bot_utils.h',['../bot__utils_8h.html',1,'']]],
+  ['button_20',['button',['../structbutton.html',1,'']]],
+  ['button_21',['Button',['../sdl__display_8h.html#a3a5405a7c8d68a27f3bde9a0aa8bca28',1,'sdl_display.h']]],
+  ['buttons_22',['buttons',['../structmenu.html#a7d55c561a47b37d27521fdd9bc17a88d',1,'menu']]]
 ];
