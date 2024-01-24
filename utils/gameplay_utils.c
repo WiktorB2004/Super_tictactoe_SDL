@@ -32,7 +32,7 @@ void initialize_Game(Game *game)
         initialize_Board(game->board[i]);
     }
     game->turn = X;
-    game->board_size = 0;
+    game->board_size = 1;
     game->moves_count = 0;
     game->status = NOT_STARTED;
 }

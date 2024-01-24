@@ -12,11 +12,13 @@ SDL_Texture *load_from_text(Sdl_Data *sdl_data, SDL_Rect *content_rect, const ch
 void f_mode(Sdl_Data *sdl_data)
 {
 	sdl_data->super_mode = sdl_data->super_mode ? 0 : 1;
+	sdl_data->game->board_size = sdl_data->super_mode == 1 ? 3 : 1;
 	render_button(sdl_data->renderer, sdl_data->menu->buttons[mode], (int)sdl_data->super_mode + 1);
 }
 
 void f_play(Sdl_Data *sdl_data)
 {
+	gameplay(sdl_data);
 	setup_cells(sdl_data);
 	render_playfield(sdl_data);
 	sdl_data->in_game = 1;
@@ -123,12 +125,12 @@ void f_select_cell(Sdl_Data *sdl_data, int x, int y)
 {
 	sdl_data->select_x = (x - sdl_data->playfield->background->background_rect.x) / (board_size / (sdl_data->super_mode ? 9 : 3));
 	sdl_data->select_y = (y - sdl_data->playfield->background->background_rect.y) / (board_size / (sdl_data->super_mode ? 9 : 3));
-	printf("%d, %d\n", sdl_data->select_x, sdl_data->select_y);
+	sdl_data->select_board = sdl_data->select_x / 3 + (int)(sdl_data->select_y / 3) * 3;
 }
 
 void f_put_sign(Sdl_Data *sdl_data)
 {
-	board[sdl_data->select_x][sdl_data->select_y] = 1;
+	gameplay(sdl_data);
 	render_board(sdl_data);
 	SDL_RenderPresent(sdl_data->renderer);
 }
