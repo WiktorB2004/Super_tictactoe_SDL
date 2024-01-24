@@ -9,9 +9,11 @@ void engine()
     Game game;
     Sdl_Data *sdl_data;
     initialize_Game(&game);
-    init_sdl(&sdl_data);
+    if (!init_sdl(&sdl_data) || !load_media(sdl_data))
+    {
+        return;
+    }
     sdl_data->game = &game;
-    load_media(sdl_data);
     bool quit = 0;
     while (!quit)
     {
