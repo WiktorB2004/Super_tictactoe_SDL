@@ -496,17 +496,34 @@ bool init_playfield(Sdl_Data *sdl_data)
 		return 0;
 	}
 
-	playfield->cells = malloc(max_cells * sizeof(Cell *));
-	if (playfield->cells == NULL)
+	playfield->normal_cells = malloc(max_normal_cells * sizeof(Cell *));
+	if (playfield->normal_cells == NULL)
 	{
 		fprintf(stderr, "Unable to allocate memory\n");
 		return 0;
 	}
 
-	for (int i = 0; i < max_cells; i++)
+	for (int i = 0; i < max_normal_cells; i++)
 	{
-		playfield->cells[i] = malloc(sizeof(Cell));
-		if (playfield->cells[i] == NULL)
+		playfield->normal_cells[i] = malloc(sizeof(Cell));
+		if (playfield->normal_cells[i] == NULL)
+		{
+			fprintf(stderr, "Unable to allocate memory\n");
+			return 0;
+		}
+	}
+
+	playfield->super_cells = malloc(max_super_cells * sizeof(Cell *));
+	if (playfield->super_cells == NULL)
+	{
+		fprintf(stderr, "Unable to allocate memory\n");
+		return 0;
+	}
+
+	for (int i = 0; i < max_super_cells; i++)
+	{
+		playfield->super_cells[i] = malloc(sizeof(Cell));
+		if (playfield->super_cells[i] == NULL)
 		{
 			fprintf(stderr, "Unable to allocate memory\n");
 			return 0;
@@ -556,17 +573,21 @@ bool init_playfield(Sdl_Data *sdl_data)
 
 void setup_cells(Sdl_Data *sdl_data)
 {
-	int count = sdl_data->super_mode ? max_cells : 9;
-	int side = sdl_data->super_mode ? 9 : 3;
-	int size = board_size / side;
+	int n_size = board_size / 3, s_size = board_size / 9;
 	int x = sdl_data->playfield->background->background_rect.x;
 	int y = sdl_data->playfield->background->background_rect.y;
 	Cell *cell;
 
-	for (int i = 0; i < count; i++)
+	for (int i = 0; i < max_super_cells; i++)
 	{
-		cell = sdl_data->playfield->cells[i];
-		set_pos(&cell->rect, x + i % side * size, y + i / side * size, size, size);
+		cell = sdl_data->playfield->super_cells[i];
+		set_pos(&cell->rect, x + i % 9 * s_size, y + i / 9 * s_size, s_size, s_size);
+	}
+
+	for (int i = 0; i < max_normal_cells; i++)
+	{
+		cell = sdl_data->playfield->normal_cells[i];
+		set_pos(&cell->rect, x + i % 3 * n_size, y + i / 3 * n_size, n_size, n_size);
 	}
 
 	sdl_data->select_x = -1;
@@ -575,13 +596,32 @@ void setup_cells(Sdl_Data *sdl_data)
 
 void render_cell(Sdl_Data *sdl_data, Cell *cell, int sign)
 {
-	if (sign == 0)
+	if (sign == EMPTY)
 	{
 		return;
 	}
 
-	SDL_Texture *txt = sign == 1 ? sdl_data->textures->sign_x : sdl_data->textures->sign_o;
-	int clip = sign == 1 ? sdl_data->pallete->sprite_x : sdl_data->pallete->sprite_o;
+	if(sign == DRAW)
+	{
+		SDL_Rect rect;
+		SDL_Texture *txt = load_from_text(sdl_data, &rect, "DRAW");
+
+		double w_mult = (double)rect.w / (double)cell->rect.w;
+		double h_mult = (double)rect.h / (double)cell->rect.h;
+		double mult = fmax(w_mult, h_mult) * 1.05f;
+
+		rect.w = (double)rect.w / mult;
+		rect.h = (double)rect.h / mult;
+		rect.x = (cell->rect.w - rect.w) / 2 + cell->rect.x;
+		rect.y = (cell->rect.h - rect.h) / 2 + cell->rect.y;
+
+		SDL_RenderCopy(sdl_data->renderer, txt, NULL, &rect);
+		SDL_DestroyTexture(txt);
+		return;
+	}
+
+	SDL_Texture *txt = sign == X ? sdl_data->textures->sign_x : sdl_data->textures->sign_o;
+	int clip = sign == X ? sdl_data->pallete->sprite_x : sdl_data->pallete->sprite_o;
 	SDL_Rect sprite_clip;
 	sprite_clip.x = 128 * (clip);
 	sprite_clip.y = 0;
@@ -674,20 +714,20 @@ void render_board(Sdl_Data *sdl_data)
 {
 	Playfield *playfield = sdl_data->playfield;
 	SDL_Renderer *renderer = sdl_data->renderer;
-	int count = sdl_data->super_mode ? max_cells : 9;
 	int side = sdl_data->super_mode ? 9 : 3;
 	int size_bold = board_size / 3, size = board_size / 9, x, y;
 	SDL_Rect *board_rect = &sdl_data->playfield->background->background_rect;
+	Board **board = sdl_data->game->board;
 
 	render_object(renderer, playfield->background, 0);
 
-	for (int i = 0; i < count; i++)
-	{
-		render_cell(sdl_data, sdl_data->playfield->cells[i], board[i % side][i / side]);
-	}
-
 	if (sdl_data->super_mode)
 	{
+		for(int i = 0; i < max_super_cells; i++)
+		{
+			render_cell(sdl_data, sdl_data->playfield->super_cells[i], board[(i % 9) / 3 + (i / 27) * 3]->value[i % 3][(i % 27) / 9]);
+		}
+
 		for (int i = 1; i < side; i++)
 		{
 			if (i % 3 == 0)
@@ -700,6 +740,11 @@ void render_board(Sdl_Data *sdl_data)
 			SDL_RenderDrawLine(sdl_data->renderer, x + size * i, y, x + size * i, y + board_size);
 			SDL_RenderDrawLine(sdl_data->renderer, x, y + size * i, x + board_size, y + size * i);
 		}
+	}
+
+	for(int i = 0; i < max_normal_cells; i++)
+	{
+		render_cell(sdl_data, sdl_data->playfield->normal_cells[i], sdl_data->super_mode ? board[i]->status : board[0]->value[i % 3][i / 3]);
 	}
 
 	for (int i = 1; i < 3; i++)
@@ -777,7 +822,7 @@ void handle_ingame_event(Sdl_Data *sdl_data, SDL_Event event)
 {
 	Playfield *playfield = sdl_data->playfield;
 
-	if (event.type == SDL_MOUSEBUTTONDOWN)
+	if(event.type == SDL_MOUSEBUTTONDOWN)
 	{
 		int x, y;
 		SDL_GetMouseState(&x, &y);
@@ -797,17 +842,32 @@ void handle_ingame_event(Sdl_Data *sdl_data, SDL_Event event)
 			return;
 		}
 
-		for (int i = 0; i < (sdl_data->super_mode ? 81 : 9); i++)
+		if(sdl_data->super_mode)
 		{
-			hitbox = &playfield->cells[i]->rect;
-			if (x > hitbox->x && y > hitbox->y && x < hitbox->x + hitbox->w && y < hitbox->y + hitbox->h)
+			for (int i = 0; i < max_super_cells; i++)
 			{
-				sdl_data->select_cell(sdl_data, x, y);
-				return;
+				hitbox = &playfield->super_cells[i]->rect;
+				if (x > hitbox->x && y > hitbox->y && x < hitbox->x + hitbox->w && y < hitbox->y + hitbox->h)
+				{
+					sdl_data->select_cell(sdl_data, x, y);
+					return;
+				}
 			}
 		}
+		else
+		{
+			for(int i = 0; i < max_normal_cells; i++)
+			{
+				hitbox = &playfield->normal_cells[i]->rect;
+				if (x > hitbox->x && y > hitbox->y && x < hitbox->x + hitbox->w && y < hitbox->y + hitbox->h)
+				{
+					sdl_data->select_cell(sdl_data, x, y);
+					return;
+				}
+			}
+		}	
 	}
-	else if (event.type == SDL_MOUSEBUTTONUP)
+	else if(event.type == SDL_MOUSEBUTTONUP)
 	{
 		return;
 	}
@@ -817,14 +877,14 @@ void frame_events(Sdl_Data *sdl_data, bool *quit)
 {
 	SDL_Event event;
 
-	while (SDL_PollEvent(&event) != 0)
+	while(SDL_PollEvent(&event) != 0)
 	{
-		if (event.type == SDL_QUIT)
+		if(event.type == SDL_QUIT)
 		{
 			*quit = 1;
 		}
 
-		if (sdl_data->in_game)
+		if(sdl_data->in_game)
 		{
 			handle_ingame_event(sdl_data, event);
 		}

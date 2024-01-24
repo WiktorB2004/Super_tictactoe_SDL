@@ -35,7 +35,8 @@ typedef struct Game Game;
 #define mode_sprite_res 256
 
 /** @brief Maximum number of cells in the game. */
-#define max_cells 81
+#define max_super_cells 81
+#define max_normal_cells 9
 
 /** @} */
 
@@ -198,11 +199,12 @@ typedef struct menu
 /** @brief Structure representing the playfield in the game. */
 typedef struct playfield
 {
-	Object *background; /**< Background object. */
-	Object *timer;		/**< Timer object. */
-	Cell **cells;		/**< Array of cells in the playfield. */
-	Button *put_sign;	/**< Button for putting a sign. */
-	Button *forfeit;	/**< Button for forfeiting the game. */
+	Object *background; 	/**< Background object. */
+	Object *timer;			/**< Timer object. */
+	Cell **super_cells;		/**< Array of 3x3 board cells in the playfield. */
+	Cell **normal_cells;	/**< Array of 9x9 board cells in the playfield. */
+	Button *put_sign;		/**< Button for putting a sign. */
+	Button *forfeit;		/**< Button for forfeiting the game. */
 } Playfield;
 
 /** @brief Structure representing SDL-related data. */
