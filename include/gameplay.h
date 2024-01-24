@@ -27,9 +27,9 @@ typedef enum
  */
 typedef enum
 {
-    O,     /**< O - 0 */
+    EMPTY, /**< Empty space - 0 */
     X,     /**< X - 1 */
-    EMPTY, /**< Empty space - 2 */
+    O,     /**< O - 2 */
 } Player;
 
 /*!
