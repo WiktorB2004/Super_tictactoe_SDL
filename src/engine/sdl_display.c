@@ -157,7 +157,6 @@ void f_put_sign(Sdl_Data *sdl_data)
 	}
 	sdl_data->select_x %= 3;
 	sdl_data->select_y %= 3;
-	printf("%d   %d:%d\n", sdl_data->select_board, sdl_data->select_x, sdl_data->select_y);
 	gameplay(sdl_data);
 	if(sdl_data->super_mode)
 	{
