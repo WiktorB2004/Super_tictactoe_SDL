@@ -24,8 +24,16 @@ void f_play(Sdl_Data *sdl_data)
 void f_add_id(Sdl_Data *sdl_data)
 {
 	char buffer[max_id / 10 + 2];
-	sdl_data->game_id = (sdl_data->game_id + 1) % max_id;
-	sprintf(buffer, "%d", sdl_data->game_id);
+	if (sdl_data->on_lan)
+	{
+		sdl_data->game_id = (sdl_data->game_id + 1) % max_id;
+		sprintf(buffer, "%d", sdl_data->game_id);
+	}
+	else
+	{
+		sdl_data->bot_difficulty = (sdl_data->bot_difficulty + 1) % max_diff;
+		sprintf(buffer, "%d", sdl_data->bot_difficulty);
+	}
 	free_txt(&sdl_data->menu->game_id->content_txt);
 	sdl_data->menu->game_id->content_txt = load_from_text(sdl_data, &sdl_data->menu->game_id->content_rect, buffer);
 	render_object(sdl_data->renderer, sdl_data->menu->game_id, 0);
@@ -33,14 +41,24 @@ void f_add_id(Sdl_Data *sdl_data)
 void f_sub_id(Sdl_Data *sdl_data)
 {
 	char buffer[max_id / 10 + 2];
-	sdl_data->game_id = (sdl_data->game_id - 1) % max_id < 0 ? max_id - 1 : (sdl_data->game_id - 1) % max_id;
-	sprintf(buffer, "%d", sdl_data->game_id);
+	if (sdl_data->on_lan)
+	{
+		sdl_data->game_id = (sdl_data->game_id - 1) % max_id < 0 ? max_id - 1 : (sdl_data->game_id - 1) % max_id;
+		sprintf(buffer, "%d", sdl_data->game_id);
+	}
+	else
+	{
+		sdl_data->bot_difficulty = (sdl_data->bot_difficulty - 1) % max_diff < 0 ? max_diff - 1 : (sdl_data->bot_difficulty - 1) % max_diff;
+		sprintf(buffer, "%d", sdl_data->bot_difficulty);
+	}
 	free_txt(&sdl_data->menu->game_id->content_txt);
 	sdl_data->menu->game_id->content_txt = load_from_text(sdl_data, &sdl_data->menu->game_id->content_rect, buffer);
 	render_object(sdl_data->renderer, sdl_data->menu->game_id, 0);
 }
 void f_add_mult_id(Sdl_Data *sdl_data)
 {
+	if (!sdl_data->on_lan)
+		return;
 	char buffer[max_id / 10 + 2];
 	sdl_data->game_id = (sdl_data->game_id + 10) % max_id;
 	sprintf(buffer, "%d", sdl_data->game_id);
@@ -50,6 +68,8 @@ void f_add_mult_id(Sdl_Data *sdl_data)
 }
 void f_sub_mult_id(Sdl_Data *sdl_data)
 {
+	if (!sdl_data->on_lan)
+		return;
 	char buffer[max_id / 10 + 2];
 	sdl_data->game_id = (sdl_data->game_id - 10) % max_id < 0 ? max_id - 10 + sdl_data->game_id : (sdl_data->game_id - 10) % max_id;
 	sprintf(buffer, "%d", sdl_data->game_id);
@@ -76,6 +96,27 @@ void f_prev_o(Sdl_Data *sdl_data)
 {
 	sdl_data->pallete->sprite_o = (sdl_data->pallete->sprite_o - 1) % sign_sprites < 0 ? sign_sprites - 1 : (sdl_data->pallete->sprite_o - 1) % sign_sprites;
 	render_object(sdl_data->renderer, sdl_data->menu->sign_o, (int)sdl_data->pallete->sprite_o + 1);
+}
+void f_switch_online(Sdl_Data *sdl_data)
+{
+	char buffer[max_id / 10 + 2];
+	sdl_data->on_lan = sdl_data->on_lan ? 0 : 1;
+	free_txt(&sdl_data->menu->game_id->content_txt);
+	free_txt(&sdl_data->menu->buttons[switch_online]->content_txt);
+	if (sdl_data->on_lan)
+	{
+		sprintf(buffer, "%d", sdl_data->game_id);
+		sdl_data->menu->game_id->content_txt = load_from_text(sdl_data, &sdl_data->menu->game_id->content_rect, buffer);
+		sdl_data->menu->buttons[switch_online]->content_txt = load_from_text(sdl_data, &sdl_data->menu->buttons[switch_online]->content_rect, "on LAN");
+	}
+	else
+	{
+		sprintf(buffer, "%d", sdl_data->bot_difficulty);
+		sdl_data->menu->game_id->content_txt = load_from_text(sdl_data, &sdl_data->menu->game_id->content_rect, buffer);
+		sdl_data->menu->buttons[switch_online]->content_txt = load_from_text(sdl_data, &sdl_data->menu->buttons[switch_online]->content_rect, "vs BOT");
+	}
+	render_object(sdl_data->renderer, sdl_data->menu->game_id, 0);
+	render_button(sdl_data->renderer, sdl_data->menu->buttons[switch_online], 0);
 }
 
 void f_select_cell(Sdl_Data *sdl_data, int x, int y)
@@ -415,27 +456,32 @@ bool init_menu(Sdl_Data *sdl_data)
 	buttons[sub_mult_id]->content_txt = textures->double_arrow;
 	menu_functions[sub_mult_id] = f_sub_mult_id;
 
-	set_pos(&buttons[next_x]->background_rect, (window_width - 128) / 2 - 80, 500, 64, 64);
+	set_pos(&buttons[next_x]->background_rect, (window_width - 128) / 2 - 80, 520, 64, 64);
 	buttons[next_x]->content_rect = buttons[next_x]->background_rect;
 	buttons[next_x]->content_txt = textures->single_arrow;
 	menu_functions[next_x] = f_next_x;
 
-	set_pos(&buttons[prev_x]->background_rect, (window_width - 128) / 2 - 400, 500, 64, 64);
+	set_pos(&buttons[prev_x]->background_rect, (window_width - 128) / 2 - 400, 520, 64, 64);
 	buttons[prev_x]->flip = SDL_FLIP_HORIZONTAL;
 	buttons[prev_x]->content_rect = buttons[prev_x]->background_rect;
 	buttons[prev_x]->content_txt = textures->single_arrow;
 	menu_functions[prev_x] = f_prev_x;
 
-	set_pos(&buttons[next_o]->background_rect, (window_width - 128) / 2 + 400, 500, 64, 64);
+	set_pos(&buttons[next_o]->background_rect, (window_width - 128) / 2 + 400, 520, 64, 64);
 	buttons[next_o]->content_rect = buttons[next_o]->background_rect;
 	buttons[next_o]->content_txt = textures->single_arrow;
 	menu_functions[next_o] = f_next_o;
 
-	set_pos(&buttons[prev_o]->background_rect, (window_width - 128) / 2 + 80, 500, 64, 64);
+	set_pos(&buttons[prev_o]->background_rect, (window_width - 128) / 2 + 80, 520, 64, 64);
 	buttons[prev_o]->flip = SDL_FLIP_HORIZONTAL;
 	buttons[prev_o]->content_rect = buttons[prev_o]->background_rect;
 	buttons[prev_o]->content_txt = textures->single_arrow;
 	menu_functions[prev_o] = f_prev_o;
+
+	set_pos(&buttons[switch_online]->background_rect, (window_width - 256) / 2, 436, 256, 64);
+	buttons[switch_online]->content_rect = buttons[switch_online]->background_rect;
+	buttons[switch_online]->content_txt = load_from_text(sdl_data, &buttons[switch_online]->content_rect, "vs BOT");
+	menu_functions[switch_online] = f_switch_online;
 
 	return 1;
 }
@@ -687,6 +733,8 @@ bool load_media(Sdl_Data *sdl_data)
 	sdl_data->in_game = 0;
 	sdl_data->super_mode = 0;
 	sdl_data->time_left = 600;
+	sdl_data->bot_difficulty = 0;
+	sdl_data->on_lan = 0;
 
 	if (!init_textures(sdl_data) || !init_pallete(sdl_data) || !init_menu(sdl_data) || !init_playfield(sdl_data))
 	{
@@ -765,12 +813,17 @@ void handle_ingame_event(Sdl_Data *sdl_data, SDL_Event event)
 	}
 }
 
-void frame_events(Sdl_Data *sdl_data)
+void frame_events(Sdl_Data *sdl_data, bool *quit)
 {
 	SDL_Event event;
 
 	while (SDL_PollEvent(&event) != 0)
 	{
+		if (event.type == SDL_QUIT)
+		{
+			*quit = 1;
+		}
+
 		if (sdl_data->in_game)
 		{
 			handle_ingame_event(sdl_data, event);

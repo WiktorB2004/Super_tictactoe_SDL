@@ -21,12 +21,13 @@ static const char *path_field_background = "../resources/field_background.png";
 static const char *path_logo = "../resources/logo.png";
 static const char *path_font = "../resources/font.ttf";
 
+static const int max_diff = 3;
 static const int max_id = 100;
 static const int window_width = 1280;
 static const int window_height = 720;
 static const int font_size = 64;
 
-static const int menu_buttons = 10;
+static const int menu_buttons = 11;
 static const int board_size = 500;
 
 static int board[9][9];
@@ -42,7 +43,8 @@ enum Menu_Buttons
 	next_x,
 	prev_x,
 	next_o,
-	prev_o
+	prev_o,
+	switch_online
 };
 
 typedef struct cell
@@ -110,7 +112,9 @@ typedef struct playfield
 typedef struct sdl_data
 {
 	bool super_mode;
+	bool on_lan;
 	bool in_game;
+	int bot_difficulty;
 	int game_id;
 	int time_left;
 	int select_x;
@@ -129,5 +133,5 @@ typedef struct sdl_data
 
 bool init_sdl(Sdl_Data **sdl_data_ptr);
 bool load_media(Sdl_Data *sdl_data);
-void frame_events(Sdl_Data *sdl_data);
+void frame_events(Sdl_Data *sdl_data, bool *quit);
 void close_sdl(Sdl_Data *sdl_data);

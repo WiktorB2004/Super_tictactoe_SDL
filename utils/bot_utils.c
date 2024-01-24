@@ -460,5 +460,3 @@ void deallocate(char **matrix, int x){
         free(matrix[i]);
     free(matrix);
 }
-
-
