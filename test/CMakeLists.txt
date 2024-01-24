@@ -28,7 +28,6 @@ include_directories(${TEST_DIR}/bot_test/include)
 # Set all test suites source files
 # set(ENGINE_TEST_SOURCES
 #     ${UTILS_DIR}/engine_utils.c
-#     ${UTILS_DIR}/sdl_utils.c
 #     ${UTILS_DIR}/gameplay_utils.c
 #     ${SOURCE_DIR}/engine/engine.c
 #     ${SOURCE_DIR}/gameplay/gameplay.c
@@ -83,7 +82,6 @@ set(BOT_TEST_SOURCES
 # set(UTILS_TEST_SOURCES
 #     ${UTILS_DIR}/engine_utils.c
 #     ${UTILS_DIR}/gameplay_utils.c
-#     ${UTILS_DIR}/sdl_utils.c
 #     ${UTILS_DIR}/bot_utils.c
 #     ${SOURCE_DIR}/game_bot/bot.c
 #     ${SOURCE_DIR}/gameplay/gameplay.c
