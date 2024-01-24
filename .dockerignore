@@ -15,7 +15,8 @@ Thumbs.db
 # Exclude unnecessary files/folders
 docs/
 test/
-.github
+/.github
 Doxyfile
 .vscode
 /lib/Unity
+/bot-charts
