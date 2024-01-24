@@ -24,7 +24,7 @@ void f_play(Sdl_Data *sdl_data)
 	sdl_data->game->status = IN_PROGRESS;
 	if(sdl_data->super_mode)
 	{
-		sdl_data->select_board = 4;
+		sdl_data->select_board = -1;
 	}
 	else
 	{
@@ -136,12 +136,12 @@ void f_select_cell(Sdl_Data *sdl_data, int x, int y)
 {
 	int select_x = (x - sdl_data->playfield->background->background_rect.x) / (board_size / (sdl_data->super_mode ? 9 : 3));
 	int select_y = (y - sdl_data->playfield->background->background_rect.y) / (board_size / (sdl_data->super_mode ? 9 : 3));
+	int select_board = select_x / 3 + select_y / 3 * 3;
 
-	if(select_x / 3 == sdl_data->select_board % 3 && select_y / 3 == sdl_data->select_board / 3)
+	if((sdl_data->select_board == -1 || sdl_data->select_board == select_board) && sdl_data->game->board[select_board]->status == IN_PROGRESS)
 	{
-		sdl_data->select_x = select_x % 3;
-		sdl_data->select_y = select_y % 3;
-		printf("game: %d  %d:%d\n", sdl_data->select_board, sdl_data->select_x, sdl_data->select_y);
+		sdl_data->select_x = select_x;
+		sdl_data->select_y = select_y;
 	}
 }
 
@@ -151,10 +151,21 @@ void f_put_sign(Sdl_Data *sdl_data)
 	{
 		return;
 	}
+	if(sdl_data->select_board == -1)
+	{
+		sdl_data->select_board = sdl_data->select_x / 3 + sdl_data->select_y / 3 * 3;
+	}
+	sdl_data->select_x %= 3;
+	sdl_data->select_y %= 3;
+	printf("%d   %d:%d\n", sdl_data->select_board, sdl_data->select_x, sdl_data->select_y);
 	gameplay(sdl_data);
 	if(sdl_data->super_mode)
 	{
 		sdl_data->select_board = sdl_data->select_x + sdl_data->select_y * 3;
+		if(sdl_data->game->board[sdl_data->select_board] != IN_PROGRESS)
+		{
+			sdl_data->select_board = -1;
+		}
 	}
 	render_board(sdl_data);
 	SDL_RenderPresent(sdl_data->renderer);
