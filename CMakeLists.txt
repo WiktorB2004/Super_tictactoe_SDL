@@ -21,15 +21,15 @@ set(OBJ_DIR ${CMAKE_CURRENT_SOURCE_DIR}/obj)
 
 # Source files
 set(SOURCES
+    ${UTILS_DIR}/gameplay_utils.c   
     ${UTILS_DIR}/bot_utils.c
     ${UTILS_DIR}/engine_utils.c
-    ${UTILS_DIR}/gameplay_utils.c
-    ${UTILS_DIR}/sdl_utils.c
+    ${UTILS_DIR}/host_utils.c
+    ${SOURCE_DIR}/gameplay/gameplay.c
     ${SOURCE_DIR}/engine/engine.c
     ${SOURCE_DIR}/engine/sdl_display.c
     ${SOURCE_DIR}/game_bot/bot.c
     ${SOURCE_DIR}/game_bot/generate_move.c
-    ${SOURCE_DIR}/gameplay/gameplay.c
     ${SOURCE_DIR}/game_host/game_hosting.c
     ${SOURCE_DIR}/main.c
 )

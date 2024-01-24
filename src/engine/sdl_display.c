@@ -1,23 +1,35 @@
 #include "../../include/sdl_display.h"
-#include "../../include/utils/sdl_utils.h"
+#include "../../include/utils/gameplay_utils.h"
 
 void setup_cells(Sdl_Data *sdl_data);
-void render_button(SDL_Renderer* renderer, Button *button, int clip);
-void render_object(SDL_Renderer* renderer, Object *object, int clip);
+void render_button(SDL_Renderer *renderer, Button *button, int clip);
+void render_object(SDL_Renderer *renderer, Object *object, int clip);
 void render_board(Sdl_Data *sdl_data);
 void render_menu(Sdl_Data *sdl_data);
 void render_playfield(Sdl_Data *sdl_data);
 void free_txt(SDL_Texture **texture);
-SDL_Texture *load_from_text(Sdl_Data *sdl_data, SDL_Rect *content_rect, const char* text);
+SDL_Texture *load_from_text(Sdl_Data *sdl_data, SDL_Rect *content_rect, const char *text);
 
 void f_mode(Sdl_Data *sdl_data)
 {
 	sdl_data->super_mode = sdl_data->super_mode ? 0 : 1;
+	sdl_data->game->board_size = sdl_data->super_mode == 1 ? 3 : 1;
 	render_button(sdl_data->renderer, sdl_data->menu->buttons[mode], (int)sdl_data->super_mode + 1);
 }
 
 void f_play(Sdl_Data *sdl_data)
 {
+	sdl_data->select_x = -1;
+	sdl_data->select_y = -1;
+	sdl_data->game->status = IN_PROGRESS;
+	if(sdl_data->super_mode)
+	{
+		sdl_data->select_board = -1;
+	}
+	else
+	{
+		sdl_data->select_board = 0;
+	}
 	setup_cells(sdl_data);
 	render_playfield(sdl_data);
 	sdl_data->in_game = 1;
@@ -25,13 +37,13 @@ void f_play(Sdl_Data *sdl_data)
 void f_add_id(Sdl_Data *sdl_data)
 {
 	char buffer[max_id / 10 + 2];
-	if(sdl_data->on_lan)
+	if (sdl_data->on_lan)
 	{
 		sdl_data->game_id = (sdl_data->game_id + 1) % max_id;
 		sprintf(buffer, "%d", sdl_data->game_id);
 	}
 	else
-	{	
+	{
 		sdl_data->bot_difficulty = (sdl_data->bot_difficulty + 1) % max_diff;
 		sprintf(buffer, "%d", sdl_data->bot_difficulty);
 	}
@@ -42,7 +54,7 @@ void f_add_id(Sdl_Data *sdl_data)
 void f_sub_id(Sdl_Data *sdl_data)
 {
 	char buffer[max_id / 10 + 2];
-	if(sdl_data->on_lan)
+	if (sdl_data->on_lan)
 	{
 		sdl_data->game_id = (sdl_data->game_id - 1) % max_id < 0 ? max_id - 1 : (sdl_data->game_id - 1) % max_id;
 		sprintf(buffer, "%d", sdl_data->game_id);
@@ -58,7 +70,8 @@ void f_sub_id(Sdl_Data *sdl_data)
 }
 void f_add_mult_id(Sdl_Data *sdl_data)
 {
-	if(!sdl_data->on_lan) return;
+	if (!sdl_data->on_lan)
+		return;
 	char buffer[max_id / 10 + 2];
 	sdl_data->game_id = (sdl_data->game_id + 10) % max_id;
 	sprintf(buffer, "%d", sdl_data->game_id);
@@ -68,7 +81,8 @@ void f_add_mult_id(Sdl_Data *sdl_data)
 }
 void f_sub_mult_id(Sdl_Data *sdl_data)
 {
-	if(!sdl_data->on_lan) return;
+	if (!sdl_data->on_lan)
+		return;
 	char buffer[max_id / 10 + 2];
 	sdl_data->game_id = (sdl_data->game_id - 10) % max_id < 0 ? max_id - 10 + sdl_data->game_id : (sdl_data->game_id - 10) % max_id;
 	sprintf(buffer, "%d", sdl_data->game_id);
@@ -102,7 +116,7 @@ void f_switch_online(Sdl_Data *sdl_data)
 	sdl_data->on_lan = sdl_data->on_lan ? 0 : 1;
 	free_txt(&sdl_data->menu->game_id->content_txt);
 	free_txt(&sdl_data->menu->buttons[switch_online]->content_txt);
-	if(sdl_data->on_lan)
+	if (sdl_data->on_lan)
 	{
 		sprintf(buffer, "%d", sdl_data->game_id);
 		sdl_data->menu->game_id->content_txt = load_from_text(sdl_data, &sdl_data->menu->game_id->content_rect, buffer);
@@ -118,47 +132,73 @@ void f_switch_online(Sdl_Data *sdl_data)
 	render_button(sdl_data->renderer, sdl_data->menu->buttons[switch_online], 0);
 }
 
-
 void f_select_cell(Sdl_Data *sdl_data, int x, int y)
 {
-	sdl_data->select_x = (x - sdl_data->playfield->background->background_rect.x) / (board_size / (sdl_data->super_mode ? 9 : 3));
-	sdl_data->select_y = (y - sdl_data->playfield->background->background_rect.y) / (board_size / (sdl_data->super_mode ? 9 : 3));
-	printf("%d, %d\n", sdl_data->select_x, sdl_data->select_y);
+	int select_x = (x - sdl_data->playfield->background->background_rect.x) / (board_size / (sdl_data->super_mode ? 9 : 3));
+	int select_y = (y - sdl_data->playfield->background->background_rect.y) / (board_size / (sdl_data->super_mode ? 9 : 3));
+	int select_board = select_x / 3 + select_y / 3 * 3;
+
+	if((sdl_data->select_board == -1 || sdl_data->select_board == select_board) && sdl_data->game->board[select_board]->status == IN_PROGRESS)
+	{
+		sdl_data->select_x = select_x;
+		sdl_data->select_y = select_y;
+	}
 }
 
 void f_put_sign(Sdl_Data *sdl_data)
 {
-	board[sdl_data->select_x][sdl_data->select_y] = 1;
+	if(sdl_data->select_x == -1)
+	{
+		return;
+	}
+	if(sdl_data->select_board == -1)
+	{
+		sdl_data->select_board = sdl_data->select_x / 3 + sdl_data->select_y / 3 * 3;
+	}
+	sdl_data->select_x %= 3;
+	sdl_data->select_y %= 3;
+	gameplay(sdl_data);
+	if(sdl_data->super_mode)
+	{
+		sdl_data->select_board = sdl_data->select_x + sdl_data->select_y * 3;
+		if(sdl_data->game->board[sdl_data->select_board] != IN_PROGRESS)
+		{
+			sdl_data->select_board = -1;
+		}
+	}
 	render_board(sdl_data);
 	SDL_RenderPresent(sdl_data->renderer);
+	sdl_data->select_x = -1;
+	sdl_data->select_y = -1;
 }
 
 void f_forfeit(Sdl_Data *sdl_data)
 {
 	render_menu(sdl_data);
 	sdl_data->in_game = 0;
+	reset_Game(sdl_data->game);
 }
 
 void free_txt(SDL_Texture **texture)
 {
-	if(*texture != NULL)
+	if (*texture != NULL)
 	{
 		SDL_DestroyTexture(*texture);
 		texture = NULL;
 	}
 }
 
-SDL_Texture *load_from_file(SDL_Renderer *renderer, const char* path)
+SDL_Texture *load_from_file(SDL_Renderer *renderer, const char *path)
 {
 	SDL_Surface *loaded_surface = IMG_Load(path);
-	if(loaded_surface == NULL)
+	if (loaded_surface == NULL)
 	{
 		fprintf(stderr, "Unable to load image %s! Error: %s\n", path, IMG_GetError());
 		return NULL;
 	}
 
 	SDL_Texture *new_texture = SDL_CreateTextureFromSurface(renderer, loaded_surface);
-	if(new_texture == NULL)
+	if (new_texture == NULL)
 	{
 		fprintf(stderr, "Unable to create texture from %s! Error: %s\n", path, SDL_GetError());
 	}
@@ -168,16 +208,16 @@ SDL_Texture *load_from_file(SDL_Renderer *renderer, const char* path)
 	return new_texture;
 }
 
-SDL_Texture *load_from_text(Sdl_Data *sdl_data, SDL_Rect *content_rect, const char* text)
+SDL_Texture *load_from_text(Sdl_Data *sdl_data, SDL_Rect *content_rect, const char *text)
 {
-	SDL_Surface* text_surface = TTF_RenderText_Solid(sdl_data->pallete->font, text, sdl_data->pallete->text);
-	if(text_surface == NULL)
+	SDL_Surface *text_surface = TTF_RenderText_Solid(sdl_data->pallete->font, text, sdl_data->pallete->text);
+	if (text_surface == NULL)
 	{
 		return NULL;
 	}
 
 	SDL_Texture *new_texture = SDL_CreateTextureFromSurface(sdl_data->renderer, text_surface);
-	if(new_texture == NULL)
+	if (new_texture == NULL)
 	{
 		fprintf(stderr, "Unable to create texture from %s! Error: %s\n", text, SDL_GetError());
 	}
@@ -220,53 +260,53 @@ bool init_sdl(Sdl_Data **sdl_data_ptr)
 {
 	*sdl_data_ptr = malloc(sizeof(Sdl_Data));
 	Sdl_Data *sdl_data = *sdl_data_ptr;
-	if(sdl_data == NULL)
+	if (sdl_data == NULL)
 	{
 		fprintf(stderr, "Unable to allocate memory\n");
 		return 0;
 	}
 
-    if (SDL_Init(SDL_INIT_VIDEO) < 0)
+	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
-        fprintf(stderr, "Unable to initialize SDL: %s\n", SDL_GetError());
-        return 0;
-    }
+		fprintf(stderr, "Unable to initialize SDL: %s\n", SDL_GetError());
+		return 0;
+	}
 
-	if(!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"))
+	if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"))
 	{
 		printf("Warning: Linear texture filtering disabled\n");
 	}
 
-    sdl_data->window = SDL_CreateWindow("Super TicTacToe", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, window_width, window_height, SDL_WINDOW_SHOWN);
-    if (sdl_data->window == NULL)
+	sdl_data->window = SDL_CreateWindow("Super TicTacToe", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, window_width, window_height, SDL_WINDOW_SHOWN);
+	if (sdl_data->window == NULL)
 	{
-        fprintf(stderr, "Unable to create window: %s\n", SDL_GetError());
+		fprintf(stderr, "Unable to create window: %s\n", SDL_GetError());
 		return 0;
-    }
+	}
 
-    sdl_data->renderer = SDL_CreateRenderer(sdl_data->window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-    if (sdl_data->renderer == NULL)
+	sdl_data->renderer = SDL_CreateRenderer(sdl_data->window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	if (sdl_data->renderer == NULL)
 	{
-        fprintf(stderr, "Unable to create renderer: %s\n", SDL_GetError());
-        return 0;
-    }
+		fprintf(stderr, "Unable to create renderer: %s\n", SDL_GetError());
+		return 0;
+	}
 
 	SDL_SetRenderDrawColor(sdl_data->renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(sdl_data->renderer);
 	SDL_RenderPresent(sdl_data->renderer);
 
 	int img_flags = IMG_INIT_PNG;
-	if(!(IMG_Init(img_flags) & img_flags))
+	if (!(IMG_Init(img_flags) & img_flags))
 	{
 		fprintf(stderr, "SDL_image could not initialize: %s\n", IMG_GetError());
 		return 0;
 	}
 
-	if(TTF_Init() == -1)
-    {
-        fprintf(stderr, "SDL_ttf could not initialize: %s\n", TTF_GetError());
-        return 0;
-    }
+	if (TTF_Init() == -1)
+	{
+		fprintf(stderr, "SDL_ttf could not initialize: %s\n", TTF_GetError());
+		return 0;
+	}
 
 	return 1;
 }
@@ -275,14 +315,14 @@ bool init_pallete(Sdl_Data *sdl_data)
 {
 	sdl_data->pallete = malloc(sizeof(Pallete));
 	Pallete *pallete = sdl_data->pallete;
-	if(pallete == NULL)
+	if (pallete == NULL)
 	{
 		fprintf(stderr, "Unable to allocate memory\n");
 		return 0;
 	}
 
 	sdl_data->pallete->font = TTF_OpenFont(path_font, font_size);
-	if(sdl_data->pallete->font == NULL)
+	if (sdl_data->pallete->font == NULL)
 	{
 		fprintf(stderr, "Unable to open font %s! Error: %s\n", path_font, TTF_GetError());
 		return 0;
@@ -303,49 +343,49 @@ bool init_textures(Sdl_Data *sdl_data)
 	SDL_Renderer *renderer = sdl_data->renderer;
 	sdl_data->textures = malloc(sizeof(Textures));
 	Textures *textures = sdl_data->textures;
-	if(textures == NULL)
+	if (textures == NULL)
 	{
 		return 0;
 	}
 
 	textures->single_arrow = load_from_file(renderer, path_single_arrow);
-	if(textures->single_arrow == NULL)
+	if (textures->single_arrow == NULL)
 	{
 		return 0;
 	}
 
 	textures->double_arrow = load_from_file(renderer, path_double_arrow);
-	if(textures->double_arrow == NULL)
+	if (textures->double_arrow == NULL)
 	{
 		return 0;
 	}
 
 	textures->sign_x = load_from_file(renderer, path_x);
-	if(textures->sign_x == NULL)
+	if (textures->sign_x == NULL)
 	{
 		return 0;
 	}
 
 	textures->sign_o = load_from_file(renderer, path_o);
-	if(textures->sign_o == NULL)
+	if (textures->sign_o == NULL)
 	{
 		return 0;
 	}
 
 	textures->modes = load_from_file(renderer, path_modes);
-	if(textures->modes == NULL)
+	if (textures->modes == NULL)
 	{
 		return 0;
 	}
 
 	textures->field_background = load_from_file(renderer, path_field_background);
-	if(textures->field_background == NULL)
+	if (textures->field_background == NULL)
 	{
 		return 0;
 	}
 
 	textures->logo = load_from_file(renderer, path_logo);
-	if(textures->logo == NULL)
+	if (textures->logo == NULL)
 	{
 		return 0;
 	}
@@ -357,15 +397,15 @@ bool init_menu(Sdl_Data *sdl_data)
 {
 	sdl_data->menu = malloc(sizeof(Menu));
 	Menu *menu = sdl_data->menu;
-	if(menu == NULL)
+	if (menu == NULL)
 	{
 		fprintf(stderr, "Unable to allocate memory\n");
 		return 0;
 	}
 
-	sdl_data->menu_functions = malloc(menu_buttons * sizeof(void (*)(Sdl_Data*)));
-	void (**menu_functions)(Sdl_Data*) = sdl_data->menu_functions;
-	if(menu_functions == NULL)
+	sdl_data->menu_functions = malloc(menu_buttons * sizeof(void (*)(Sdl_Data *)));
+	void (**menu_functions)(Sdl_Data *) = sdl_data->menu_functions;
+	if (menu_functions == NULL)
 	{
 		fprintf(stderr, "Unable to allocate memory\n");
 		return 0;
@@ -377,7 +417,7 @@ bool init_menu(Sdl_Data *sdl_data)
 	menu->game_id = malloc(sizeof(Object));
 	menu->sign_x = malloc(sizeof(Object));
 	menu->sign_o = malloc(sizeof(Object));
-	if(menu->logo == NULL || menu->game_id == NULL || menu->sign_x == NULL || menu->sign_x == NULL)
+	if (menu->logo == NULL || menu->game_id == NULL || menu->sign_x == NULL || menu->sign_x == NULL)
 	{
 		fprintf(stderr, "Unable to allocate memory\n");
 		return 0;
@@ -403,8 +443,8 @@ bool init_menu(Sdl_Data *sdl_data)
 	menu->sign_o->background_txt = textures->field_background;
 	menu->sign_o->content_txt = textures->sign_o;
 
-	menu->buttons = malloc(menu_buttons * sizeof(Button*));
-	if(menu->buttons == NULL)
+	menu->buttons = malloc(menu_buttons * sizeof(Button *));
+	if (menu->buttons == NULL)
 	{
 		fprintf(stderr, "Unable to allocate memory\n");
 		return 0;
@@ -412,10 +452,10 @@ bool init_menu(Sdl_Data *sdl_data)
 
 	Button **buttons = menu->buttons;
 
-	for(int i = 0; i < menu_buttons; i++)
+	for (int i = 0; i < menu_buttons; i++)
 	{
 		buttons[i] = malloc(sizeof(Button));
-		if(buttons[i] == NULL)
+		if (buttons[i] == NULL)
 		{
 			fprintf(stderr, "Unable to allocate memory\n");
 			return 0;
@@ -489,24 +529,41 @@ bool init_menu(Sdl_Data *sdl_data)
 bool init_playfield(Sdl_Data *sdl_data)
 {
 	sdl_data->playfield = malloc(sizeof(Playfield));
-	Playfield* playfield = sdl_data->playfield;
-	if(playfield == NULL)
+	Playfield *playfield = sdl_data->playfield;
+	if (playfield == NULL)
 	{
 		fprintf(stderr, "Unable to allocate memory\n");
 		return 0;
 	}
 
-	playfield->cells = malloc(max_cells * sizeof(Cell*));
-	if(playfield->cells == NULL)
+	playfield->normal_cells = malloc(max_normal_cells * sizeof(Cell *));
+	if (playfield->normal_cells == NULL)
 	{
 		fprintf(stderr, "Unable to allocate memory\n");
 		return 0;
 	}
-	
-	for(int i = 0; i < max_cells; i++)
+
+	for (int i = 0; i < max_normal_cells; i++)
 	{
-		playfield->cells[i] = malloc(sizeof(Cell));
-		if(playfield->cells[i] == NULL)
+		playfield->normal_cells[i] = malloc(sizeof(Cell));
+		if (playfield->normal_cells[i] == NULL)
+		{
+			fprintf(stderr, "Unable to allocate memory\n");
+			return 0;
+		}
+	}
+
+	playfield->super_cells = malloc(max_super_cells * sizeof(Cell *));
+	if (playfield->super_cells == NULL)
+	{
+		fprintf(stderr, "Unable to allocate memory\n");
+		return 0;
+	}
+
+	for (int i = 0; i < max_super_cells; i++)
+	{
+		playfield->super_cells[i] = malloc(sizeof(Cell));
+		if (playfield->super_cells[i] == NULL)
 		{
 			fprintf(stderr, "Unable to allocate memory\n");
 			return 0;
@@ -519,7 +576,7 @@ bool init_playfield(Sdl_Data *sdl_data)
 	playfield->timer = malloc(sizeof(Object));
 	playfield->put_sign = malloc(sizeof(Button));
 	playfield->forfeit = malloc(sizeof(Button));
-	if(playfield->background == NULL || playfield->timer == NULL || playfield->put_sign == NULL || playfield->forfeit == NULL)
+	if (playfield->background == NULL || playfield->timer == NULL || playfield->put_sign == NULL || playfield->forfeit == NULL)
 	{
 		fprintf(stderr, "Unable to allocate memory\n");
 		return 0;
@@ -556,17 +613,21 @@ bool init_playfield(Sdl_Data *sdl_data)
 
 void setup_cells(Sdl_Data *sdl_data)
 {
-	int count = sdl_data->super_mode ? max_cells : 9;
-	int side = sdl_data->super_mode ? 9 : 3;
-	int size = board_size / side;
+	int n_size = board_size / 3, s_size = board_size / 9;
 	int x = sdl_data->playfield->background->background_rect.x;
 	int y = sdl_data->playfield->background->background_rect.y;
 	Cell *cell;
 
-	for(int i = 0; i < count; i++)
+	for (int i = 0; i < max_super_cells; i++)
 	{
-		cell = sdl_data->playfield->cells[i];
-		set_pos(&cell->rect, x + i % side * size, y + i / side * size, size, size);
+		cell = sdl_data->playfield->super_cells[i];
+		set_pos(&cell->rect, x + i % 9 * s_size, y + i / 9 * s_size, s_size, s_size);
+	}
+
+	for (int i = 0; i < max_normal_cells; i++)
+	{
+		cell = sdl_data->playfield->normal_cells[i];
+		set_pos(&cell->rect, x + i % 3 * n_size, y + i / 3 * n_size, n_size, n_size);
 	}
 
 	sdl_data->select_x = -1;
@@ -575,13 +636,32 @@ void setup_cells(Sdl_Data *sdl_data)
 
 void render_cell(Sdl_Data *sdl_data, Cell *cell, int sign)
 {
-	if(sign == 0)
+	if (sign == EMPTY)
 	{
 		return;
 	}
 
-	SDL_Texture *txt = sign == 1 ? sdl_data->textures->sign_x : sdl_data->textures->sign_o;
-	int clip = sign == 1 ? sdl_data->pallete->sprite_x : sdl_data->pallete->sprite_o;
+	if(sign == DRAW)
+	{
+		SDL_Rect rect;
+		SDL_Texture *txt = load_from_text(sdl_data, &rect, "DRAW");
+
+		double w_mult = (double)rect.w / (double)cell->rect.w;
+		double h_mult = (double)rect.h / (double)cell->rect.h;
+		double mult = fmax(w_mult, h_mult) * 1.05f;
+
+		rect.w = (double)rect.w / mult;
+		rect.h = (double)rect.h / mult;
+		rect.x = (cell->rect.w - rect.w) / 2 + cell->rect.x;
+		rect.y = (cell->rect.h - rect.h) / 2 + cell->rect.y;
+
+		SDL_RenderCopy(sdl_data->renderer, txt, NULL, &rect);
+		SDL_DestroyTexture(txt);
+		return;
+	}
+
+	SDL_Texture *txt = sign == X ? sdl_data->textures->sign_x : sdl_data->textures->sign_o;
+	int clip = sign == X ? sdl_data->pallete->sprite_x : sdl_data->pallete->sprite_o;
 	SDL_Rect sprite_clip;
 	sprite_clip.x = 128 * (clip);
 	sprite_clip.y = 0;
@@ -591,11 +671,11 @@ void render_cell(Sdl_Data *sdl_data, Cell *cell, int sign)
 	SDL_RenderCopy(sdl_data->renderer, txt, &sprite_clip, &cell->rect);
 }
 
-void render_object(SDL_Renderer* renderer, Object *object, int clip)
+void render_object(SDL_Renderer *renderer, Object *object, int clip)
 {
 	SDL_RenderCopy(renderer, object->background_txt, NULL, &object->background_rect);
 
-	if(clip == 0)
+	if (clip == 0)
 	{
 		double w_mult = (double)object->content_rect.w / (double)object->background_rect.w;
 		double h_mult = (double)object->content_rect.h / (double)object->background_rect.h;
@@ -620,11 +700,11 @@ void render_object(SDL_Renderer* renderer, Object *object, int clip)
 	}
 }
 
-void render_button(SDL_Renderer* renderer, Button *button, int clip)
+void render_button(SDL_Renderer *renderer, Button *button, int clip)
 {
 	SDL_RenderCopy(renderer, button->background_txt, NULL, &button->background_rect);
 
-	if(clip == 0)
+	if (clip == 0)
 	{
 		double w_mult = (double)button->content_rect.w / (double)button->background_rect.w;
 		double h_mult = (double)button->content_rect.h / (double)button->background_rect.h;
@@ -662,7 +742,7 @@ void render_menu(Sdl_Data *sdl_data)
 	render_object(renderer, menu->sign_o, sdl_data->pallete->sprite_o + 1);
 	render_object(renderer, menu->game_id, 0);
 
-	for(int i = 0; i < menu_buttons; i++)
+	for (int i = 0; i < menu_buttons; i++)
 	{
 		render_button(renderer, menu->buttons[i], i == mode ? (int)sdl_data->super_mode + 1 : 0);
 	}
@@ -674,23 +754,23 @@ void render_board(Sdl_Data *sdl_data)
 {
 	Playfield *playfield = sdl_data->playfield;
 	SDL_Renderer *renderer = sdl_data->renderer;
-	int count = sdl_data->super_mode ? max_cells : 9;
 	int side = sdl_data->super_mode ? 9 : 3;
 	int size_bold = board_size / 3, size = board_size / 9, x, y;
 	SDL_Rect *board_rect = &sdl_data->playfield->background->background_rect;
+	Board **board = sdl_data->game->board;
 
 	render_object(renderer, playfield->background, 0);
 
-	for(int i = 0; i < count; i++)
+	if (sdl_data->super_mode)
 	{
-		render_cell(sdl_data, sdl_data->playfield->cells[i], board[i % side][i / side]);
-	}
-
-	if(sdl_data->super_mode)
-	{
-		for(int i = 1; i < side; i++)
+		for(int i = 0; i < max_super_cells; i++)
 		{
-			if(i % 3 == 0)
+			render_cell(sdl_data, sdl_data->playfield->super_cells[i], board[(i % 9) / 3 + (i / 27) * 3]->value[i % 3][(i % 27) / 9]);
+		}
+
+		for (int i = 1; i < side; i++)
+		{
+			if (i % 3 == 0)
 			{
 				continue;
 			}
@@ -702,7 +782,12 @@ void render_board(Sdl_Data *sdl_data)
 		}
 	}
 
-	for(int i = 1; i < 3; i++)
+	for(int i = 0; i < max_normal_cells; i++)
+	{
+		render_cell(sdl_data, sdl_data->playfield->normal_cells[i], sdl_data->super_mode ? board[i]->status : board[0]->value[i % 3][i / 3]);
+	}
+
+	for (int i = 1; i < 3; i++)
 	{
 		x = board_rect->x;
 		y = board_rect->y;
@@ -736,7 +821,7 @@ bool load_media(Sdl_Data *sdl_data)
 	sdl_data->bot_difficulty = 0;
 	sdl_data->on_lan = 0;
 
-	if(!init_textures(sdl_data) || !init_pallete(sdl_data) || !init_menu(sdl_data) || !init_playfield(sdl_data))
+	if (!init_textures(sdl_data) || !init_pallete(sdl_data) || !init_menu(sdl_data) || !init_playfield(sdl_data))
 	{
 		return 0;
 	}
@@ -750,16 +835,16 @@ void handle_menu_event(Sdl_Data *sdl_data, SDL_Event event)
 {
 	Menu *menu = sdl_data->menu;
 
-	if(event.type == SDL_MOUSEBUTTONDOWN)
+	if (event.type == SDL_MOUSEBUTTONDOWN)
 	{
 		int x, y;
 		SDL_GetMouseState(&x, &y);
 		SDL_Rect *hitbox;
 
-		for(int i = 0; i < menu_buttons; i++)
+		for (int i = 0; i < menu_buttons; i++)
 		{
 			hitbox = &menu->buttons[i]->background_rect;
-			if(x > hitbox->x && y > hitbox->y && x < hitbox->x + hitbox->w && y < hitbox->y + hitbox->h)
+			if (x > hitbox->x && y > hitbox->y && x < hitbox->x + hitbox->w && y < hitbox->y + hitbox->h)
 			{
 				sdl_data->menu_functions[i](sdl_data);
 				break;
@@ -767,7 +852,7 @@ void handle_menu_event(Sdl_Data *sdl_data, SDL_Event event)
 		}
 		SDL_RenderPresent(sdl_data->renderer);
 	}
-	else if(event.type == SDL_MOUSEBUTTONUP)
+	else if (event.type == SDL_MOUSEBUTTONUP)
 	{
 		render_menu(sdl_data);
 	}
@@ -784,28 +869,43 @@ void handle_ingame_event(Sdl_Data *sdl_data, SDL_Event event)
 		SDL_Rect *hitbox;
 
 		hitbox = &playfield->put_sign->background_rect;
-		if(x > hitbox->x && y > hitbox->y && x < hitbox->x + hitbox->w && y < hitbox->y + hitbox->h)
+		if (x > hitbox->x && y > hitbox->y && x < hitbox->x + hitbox->w && y < hitbox->y + hitbox->h)
 		{
 			sdl_data->put_sign(sdl_data);
 			return;
 		}
 
 		hitbox = &playfield->forfeit->background_rect;
-		if(x > hitbox->x && y > hitbox->y && x < hitbox->x + hitbox->w && y < hitbox->y + hitbox->h)
+		if (x > hitbox->x && y > hitbox->y && x < hitbox->x + hitbox->w && y < hitbox->y + hitbox->h)
 		{
 			sdl_data->forfeit(sdl_data);
 			return;
 		}
 
-		for(int i = 0; i < (sdl_data->super_mode ? 81 : 9); i++)
+		if(sdl_data->super_mode)
 		{
-			hitbox = &playfield->cells[i]->rect;
-			if(x > hitbox->x && y > hitbox->y && x < hitbox->x + hitbox->w && y < hitbox->y + hitbox->h)
+			for (int i = 0; i < max_super_cells; i++)
 			{
-				sdl_data->select_cell(sdl_data, x, y);
-				return;
+				hitbox = &playfield->super_cells[i]->rect;
+				if (x > hitbox->x && y > hitbox->y && x < hitbox->x + hitbox->w && y < hitbox->y + hitbox->h)
+				{
+					sdl_data->select_cell(sdl_data, x, y);
+					return;
+				}
 			}
 		}
+		else
+		{
+			for(int i = 0; i < max_normal_cells; i++)
+			{
+				hitbox = &playfield->normal_cells[i]->rect;
+				if (x > hitbox->x && y > hitbox->y && x < hitbox->x + hitbox->w && y < hitbox->y + hitbox->h)
+				{
+					sdl_data->select_cell(sdl_data, x, y);
+					return;
+				}
+			}
+		}	
 	}
 	else if(event.type == SDL_MOUSEBUTTONUP)
 	{
@@ -815,22 +915,22 @@ void handle_ingame_event(Sdl_Data *sdl_data, SDL_Event event)
 
 void frame_events(Sdl_Data *sdl_data, bool *quit)
 {
-    SDL_Event event;
+	SDL_Event event;
 
-    while(SDL_PollEvent(&event) != 0)
-    {
+	while(SDL_PollEvent(&event) != 0)
+	{
 		if(event.type == SDL_QUIT)
 		{
 			*quit = 1;
 		}
 
-        if(sdl_data->in_game)
-        {
-            handle_ingame_event(sdl_data, event);
-        }
-        else
-        {
-            handle_menu_event(sdl_data, event);
-        }
-    }
+		if(sdl_data->in_game)
+		{
+			handle_ingame_event(sdl_data, event);
+		}
+		else
+		{
+			handle_menu_event(sdl_data, event);
+		}
+	}
 }
