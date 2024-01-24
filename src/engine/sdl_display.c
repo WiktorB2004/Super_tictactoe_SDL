@@ -22,6 +22,7 @@ void f_play(Sdl_Data *sdl_data)
 	sdl_data->select_x = -1;
 	sdl_data->select_y = -1;
 	sdl_data->game->status = IN_PROGRESS;
+
 	if(sdl_data->super_mode)
 	{
 		sdl_data->select_board = -1;
@@ -30,7 +31,12 @@ void f_play(Sdl_Data *sdl_data)
 	{
 		sdl_data->select_board = 0;
 	}
+
 	setup_cells(sdl_data);
+	free_txt(&sdl_data->playfield->timer->content_txt);
+	free_txt(&sdl_data->playfield->forfeit->content_txt);
+	sdl_data->playfield->timer->content_txt = load_from_text(sdl_data, &sdl_data->playfield->timer->content_rect, "10:00");
+	sdl_data->playfield->forfeit->content_txt = load_from_text(sdl_data, &sdl_data->playfield->forfeit->content_rect, "FORFEIT");
 	render_playfield(sdl_data);
 	sdl_data->in_game = 1;
 }
@@ -116,6 +122,7 @@ void f_switch_online(Sdl_Data *sdl_data)
 	sdl_data->on_lan = sdl_data->on_lan ? 0 : 1;
 	free_txt(&sdl_data->menu->game_id->content_txt);
 	free_txt(&sdl_data->menu->buttons[switch_online]->content_txt);
+
 	if (sdl_data->on_lan)
 	{
 		sprintf(buffer, "%d", sdl_data->game_id);
@@ -128,15 +135,26 @@ void f_switch_online(Sdl_Data *sdl_data)
 		sdl_data->menu->game_id->content_txt = load_from_text(sdl_data, &sdl_data->menu->game_id->content_rect, buffer);
 		sdl_data->menu->buttons[switch_online]->content_txt = load_from_text(sdl_data, &sdl_data->menu->buttons[switch_online]->content_rect, "vs BOT");
 	}
+
 	render_object(sdl_data->renderer, sdl_data->menu->game_id, 0);
 	render_button(sdl_data->renderer, sdl_data->menu->buttons[switch_online], 0);
 }
 
 void f_select_cell(Sdl_Data *sdl_data, int x, int y)
 {
+	if(sdl_data->game->status != IN_PROGRESS)
+	{
+		return;
+	}
+
 	int select_x = (x - sdl_data->playfield->background->background_rect.x) / (board_size / (sdl_data->super_mode ? 9 : 3));
 	int select_y = (y - sdl_data->playfield->background->background_rect.y) / (board_size / (sdl_data->super_mode ? 9 : 3));
 	int select_board = select_x / 3 + select_y / 3 * 3;
+
+	if(sdl_data->game->board[select_board]->value[select_x % 3][select_y % 3] != EMPTY)
+	{
+		return;
+	}
 
 	if((sdl_data->select_board == -1 || sdl_data->select_board == select_board) && sdl_data->game->board[select_board]->status == IN_PROGRESS)
 	{
@@ -151,21 +169,50 @@ void f_put_sign(Sdl_Data *sdl_data)
 	{
 		return;
 	}
+
 	if(sdl_data->select_board == -1)
 	{
 		sdl_data->select_board = sdl_data->select_x / 3 + sdl_data->select_y / 3 * 3;
 	}
+
 	sdl_data->select_x %= 3;
 	sdl_data->select_y %= 3;
 	gameplay(sdl_data);
+
 	if(sdl_data->super_mode)
-	{
+	{	
 		sdl_data->select_board = sdl_data->select_x + sdl_data->select_y * 3;
-		if(sdl_data->game->board[sdl_data->select_board] != IN_PROGRESS)
+		if(sdl_data->game->board[sdl_data->select_board]->status != IN_PROGRESS)
 		{
 			sdl_data->select_board = -1;
 		}
 	}
+
+	if(sdl_data->game->status != IN_PROGRESS)
+	{
+		Object *timer = sdl_data->playfield->timer;
+		char buffer[7];
+
+		switch(sdl_data->game->status)
+		{
+			case X_WON:
+				sprintf(buffer, "X WON!");
+				break;
+			case O_WON:
+				sprintf(buffer, "O WON!");
+				break;
+			default:
+				sprintf(buffer, "DRAW!");
+		}
+
+		free_txt(&timer->content_txt);
+		free_txt(&sdl_data->playfield->forfeit->content_txt);
+		timer->content_txt = load_from_text(sdl_data, &timer->content_rect, buffer);
+		sdl_data->playfield->forfeit->content_txt = load_from_text(sdl_data, &sdl_data->playfield->forfeit->content_rect, "EXIT");
+		render_object(sdl_data->renderer, timer, 0);
+		render_button(sdl_data->renderer, sdl_data->playfield->forfeit, 0);
+	}
+
 	render_board(sdl_data);
 	SDL_RenderPresent(sdl_data->renderer);
 	sdl_data->select_x = -1;
@@ -174,6 +221,33 @@ void f_put_sign(Sdl_Data *sdl_data)
 
 void f_forfeit(Sdl_Data *sdl_data)
 {
+	if(sdl_data->game->status == IN_PROGRESS)
+	{
+		Object *timer = sdl_data->playfield->timer;
+		char buffer[7];
+		
+		if(sdl_data->game->turn == X)
+		{
+			sdl_data->game->status = O_WON;
+			sprintf(buffer, "O WON!");
+		}
+		else
+		{
+			sdl_data->game->status = X_WON;
+			sprintf(buffer, "X WON!");
+		}
+
+		free_txt(&timer->content_txt);
+		free_txt(&sdl_data->playfield->forfeit->content_txt);
+		timer->content_txt = load_from_text(sdl_data, &timer->content_rect, buffer);
+		sdl_data->playfield->forfeit->content_txt = load_from_text(sdl_data, &sdl_data->playfield->forfeit->content_rect, "EXIT");
+		render_object(sdl_data->renderer, timer, 0);
+		render_button(sdl_data->renderer, sdl_data->playfield->forfeit, 0);
+		SDL_RenderPresent(sdl_data->renderer);
+
+		return;
+	}
+
 	render_menu(sdl_data);
 	sdl_data->in_game = 0;
 	reset_Game(sdl_data->game);
@@ -590,7 +664,7 @@ bool init_playfield(Sdl_Data *sdl_data)
 	set_pos(&playfield->timer->background_rect, 650, 100, 256, 128);
 	playfield->timer->content_rect = playfield->timer->background_rect;
 	playfield->timer->background_txt = sdl_data->textures->field_background;
-	playfield->timer->content_txt = load_from_text(sdl_data, &playfield->timer->content_rect, "10:00");
+	playfield->timer->content_txt = NULL;
 
 	set_pos(&playfield->put_sign->background_rect, 650, 300, 256, 128);
 	playfield->put_sign->flip = SDL_FLIP_NONE;
@@ -603,7 +677,7 @@ bool init_playfield(Sdl_Data *sdl_data)
 	playfield->forfeit->flip = SDL_FLIP_NONE;
 	playfield->forfeit->background_txt = textures->field_background;
 	playfield->forfeit->content_rect = playfield->forfeit->background_rect;
-	playfield->forfeit->content_txt = load_from_text(sdl_data, &playfield->forfeit->content_rect, "FORFEIT");
+	playfield->forfeit->content_txt = NULL;
 	sdl_data->forfeit = f_forfeit;
 
 	sdl_data->select_cell = f_select_cell;
