@@ -18,7 +18,8 @@ var searchData=
   ['flip_15',['flip',['../structbutton.html#a63270ab40c67338c1151c4edc5c785e2',1,'button']]],
   ['font_16',['font',['../structpallete.html#a0b5db1b288a1bd2ebeef1ead6e8c9509',1,'pallete']]],
   ['forfeit_17',['forfeit',['../structplayfield.html#a870970830ee415ca2a9477f54d257ae2',1,'playfield::forfeit'],['../structsdl__data.html#ac3587612a6798c64dc916626cba3f85b',1,'sdl_data::forfeit']]],
-  ['frame_5fevents_18',['frame_events',['../sdl__display_8c.html#a880f7ec30f2f314308ba76c177416857',1,'frame_events(Sdl_Data *sdl_data, bool *quit):&#160;sdl_display.c'],['../sdl__display_8h.html#a880f7ec30f2f314308ba76c177416857',1,'frame_events(Sdl_Data *sdl_data, bool *quit):&#160;sdl_display.c']]],
+  ['frame_5fevents_18',['frame_events',['../group__Functions.html#ga880f7ec30f2f314308ba76c177416857',1,'frame_events(Sdl_Data *sdl_data, bool *quit):&#160;sdl_display.c'],['../group__Functions.html#ga880f7ec30f2f314308ba76c177416857',1,'frame_events(Sdl_Data *sdl_data, bool *quit):&#160;sdl_display.c']]],
   ['free_5fgame_19',['free_Game',['../gameplay__utils_8c.html#ac6f273882892a97b6f5ed18a8906f370',1,'free_Game(Game *game):&#160;gameplay_utils.c'],['../gameplay__utils_8h.html#ac6f273882892a97b6f5ed18a8906f370',1,'free_Game(Game *game):&#160;gameplay_utils.c']]],
-  ['free_5ftxt_20',['free_txt',['../sdl__display_8c.html#a150a2e3166d4ebcdce78e54aeb34abe9',1,'sdl_display.c']]]
+  ['free_5ftxt_20',['free_txt',['../sdl__display_8c.html#a150a2e3166d4ebcdce78e54aeb34abe9',1,'sdl_display.c']]],
+  ['functions_21',['Functions',['../group__Functions.html',1,'']]]
 ];

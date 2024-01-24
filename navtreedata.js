@@ -26,6 +26,7 @@ var NAVTREE =
 [
   [ "Super Tictactoe", "index.html", [
     [ "Super tic tac toe", "index.html", "index" ],
+    [ "Topics", "topics.html", "topics" ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Structure Index", "classes.html", null ],
@@ -52,7 +53,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"structGame.html"
+"sdl__display_8h.html#a69b5df78d315f81ed77df30fdbfb7002"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

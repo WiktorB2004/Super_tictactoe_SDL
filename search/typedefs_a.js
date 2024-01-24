@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['zmiana_0',['zmiana',['../bot__utils_8h.html#a9b3971301b7903554c34226928791a98',1,'bot_utils.h']]]
+  ['vector_5fnode_0',['vector_node',['../bot__utils_8h.html#a5575dbe23cb4194c9e466746041700a5',1,'bot_utils.h']]]
 ];

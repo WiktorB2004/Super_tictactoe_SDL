@@ -103,8 +103,9 @@ $(function(){initNavTree('index.html',''); initResizable(); });
 <h1><a class="anchor" id="autotoc_md1"></a>
 How to play</h1>
 <ul>
-<li>Use docker image <div class="fragment"><div class="line">$ docker pull ghcr.io/wiktorb2004/super_tictactoe_sdl:master</div>
-<div class="line">$ docker run -it ghcr.io/wiktorb2004/super_tictactoe_sdl:master</div>
+<li>Use docker image - must have docker and X11 server installed + docker daemon running <div class="fragment"><div class="line">$ docker pull ghcr.io/wiktorb2004/super_tictactoe_sdl:master</div>
+<div class="line"># Use X11 server or select other configuration suitable for your setup</div>
+<div class="line">$ docker run -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -it supertictactoe</div>
 </div><!-- fragment --></li>
 <li>Download repository and build the source code <div class="fragment"><div class="line">$ git clone https://github.com/WiktorB2004/Super_tictactoe_SDL.git</div>
 <div class="line">$ cd Super_tictactoe_SDL</div>

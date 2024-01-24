@@ -107,9 +107,12 @@ Functions</h2></td></tr>
 <tr class="memitem:ab826e854f1dbcb890c20015867ed419e" id="r_ab826e854f1dbcb890c20015867ed419e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab826e854f1dbcb890c20015867ed419e">initialize_Board</a> (<a class="el" href="structBoard.html">Board</a> *board)</td></tr>
 <tr class="memdesc:ab826e854f1dbcb890c20015867ed419e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function initializes regular game of size (3x3).  <br /></td></tr>
 <tr class="separator:ab826e854f1dbcb890c20015867ed419e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a964be18711c032dd4629f0aa4912149e" id="r_a964be18711c032dd4629f0aa4912149e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a964be18711c032dd4629f0aa4912149e">initialize_Game</a> (<a class="el" href="structGame.html">Game</a> *game, int size)</td></tr>
-<tr class="memdesc:a964be18711c032dd4629f0aa4912149e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function initializes game of specified size (NxN).  <br /></td></tr>
-<tr class="separator:a964be18711c032dd4629f0aa4912149e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf4bf05e45c6724cae52b4c7f325a1bc" id="r_aaf4bf05e45c6724cae52b4c7f325a1bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaf4bf05e45c6724cae52b4c7f325a1bc">initialize_Game</a> (<a class="el" href="structGame.html">Game</a> *game)</td></tr>
+<tr class="memdesc:aaf4bf05e45c6724cae52b4c7f325a1bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function initializes game.  <br /></td></tr>
+<tr class="separator:aaf4bf05e45c6724cae52b4c7f325a1bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91081fa436dee900f75a3ad417e2b7cd" id="r_a91081fa436dee900f75a3ad417e2b7cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a91081fa436dee900f75a3ad417e2b7cd">reset_Game</a> (<a class="el" href="structGame.html">Game</a> *game)</td></tr>
+<tr class="memdesc:a91081fa436dee900f75a3ad417e2b7cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function resets to beginning status of a specified game.  <br /></td></tr>
+<tr class="separator:a91081fa436dee900f75a3ad417e2b7cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6f273882892a97b6f5ed18a8906f370" id="r_ac6f273882892a97b6f5ed18a8906f370"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac6f273882892a97b6f5ed18a8906f370">free_Game</a> (<a class="el" href="structGame.html">Game</a> *game)</td></tr>
 <tr class="memdesc:ac6f273882892a97b6f5ed18a8906f370"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function deallocates memory of the <a class="el" href="structGame.html" title="Represents any board of the size NxN.">Game</a>.  <br /></td></tr>
 <tr class="separator:ac6f273882892a97b6f5ed18a8906f370"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -347,8 +350,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a964be18711c032dd4629f0aa4912149e" name="a964be18711c032dd4629f0aa4912149e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a964be18711c032dd4629f0aa4912149e">&#9670;&#160;</a></span>initialize_Game()</h2>
+<a id="aaf4bf05e45c6724cae52b4c7f325a1bc" name="aaf4bf05e45c6724cae52b4c7f325a1bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf4bf05e45c6724cae52b4c7f325a1bc">&#9670;&#160;</a></span>initialize_Game()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -356,22 +359,43 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void initialize_Game </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structGame.html">Game</a> *</td>          <td class="paramname"><span class="paramname"><em>game</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype"><a class="el" href="structGame.html">Game</a> *</td>          <td class="paramname"><span class="paramname"><em>game</em></span></td><td>)</td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>size</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>This function initializes game of specified size (NxN). </p>
+<p>This function initializes game. </p>
 <p>This function initializes game of specified size by allocating needed memory and other struct values.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">game</td><td>Pointer to <a class="el" href="structGame.html" title="Represents any board of the size NxN.">Game</a> to initialize. </td></tr>
-    <tr><td class="paramname">size</td><td>The size of the game to initialize </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a91081fa436dee900f75a3ad417e2b7cd" name="a91081fa436dee900f75a3ad417e2b7cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91081fa436dee900f75a3ad417e2b7cd">&#9670;&#160;</a></span>reset_Game()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void reset_Game </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structGame.html">Game</a> *</td>          <td class="paramname"><span class="paramname"><em>game</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function resets to beginning status of a specified game. </p>
+<p>This function resets a game of specified size by setting default values for all fields.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">game</td><td>Pointer to <a class="el" href="structGame.html" title="Represents any board of the size NxN.">Game</a> to initialize. </td></tr>
   </table>
   </dd>
 </dl>
