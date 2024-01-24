@@ -6,7 +6,7 @@
 // TODO(#11): Handling edge cases and value limits + improvement of gameplay module
 // TODO(#16): Improve GUI - SDL functions
 // TODO(#31): Visual improvements
-// TODO: Improve documentation
+// TODO(#32): Improve documentation
 
 int main(void)
 {
