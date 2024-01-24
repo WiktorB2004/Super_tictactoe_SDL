@@ -511,12 +511,12 @@ bool init_menu(Sdl_Data *sdl_data)
 	menu->game_id->content_rect = menu->game_id->background_rect;
 	menu->game_id->content_txt = load_from_text(sdl_data, &menu->game_id->content_rect, "0");
 
-	set_pos(&menu->sign_x->background_rect, (window_width - 128) / 2 - 250, 500, 128, 128);
+	set_pos(&menu->sign_x->background_rect, (window_width - 128) / 2 - 250, 520, 128, 128);
 	menu->sign_x->content_rect = menu->sign_x->background_rect;
 	menu->sign_x->background_txt = textures->field_background;
 	menu->sign_x->content_txt = textures->sign_x;
 
-	set_pos(&menu->sign_o->background_rect, (window_width - 128) / 2 + 250, 500, 128, 128);
+	set_pos(&menu->sign_o->background_rect, (window_width - 128) / 2 + 250, 520, 128, 128);
 	menu->sign_o->content_rect = menu->sign_o->background_rect;
 	menu->sign_o->background_txt = textures->field_background;
 	menu->sign_o->content_txt = textures->sign_o;
@@ -552,45 +552,45 @@ bool init_menu(Sdl_Data *sdl_data)
 	buttons[play]->content_txt = load_from_text(sdl_data, &buttons[play]->content_rect, "PLAY");
 	menu_functions[play] = f_play;
 
-	set_pos(&buttons[add_id]->background_rect, (window_width - 64) / 2 + 180, 380, 64, 64);
+	set_pos(&buttons[add_id]->background_rect, (window_width - 64) / 2 + 180, 368, 64, 64);
 	buttons[add_id]->content_rect = buttons[add_id]->background_rect;
 	buttons[add_id]->content_txt = textures->single_arrow;
 	menu_functions[add_id] = f_add_id;
 
-	set_pos(&buttons[sub_id]->background_rect, (window_width - 64) / 2 - 180, 380, 64, 64);
+	set_pos(&buttons[sub_id]->background_rect, (window_width - 64) / 2 - 180, 368, 64, 64);
 	buttons[sub_id]->flip = SDL_FLIP_HORIZONTAL;
 	buttons[sub_id]->content_rect = buttons[sub_id]->background_rect;
 	buttons[sub_id]->content_txt = textures->single_arrow;
 	menu_functions[sub_id] = f_sub_id;
 
-	set_pos(&buttons[add_mult_id]->background_rect, (window_width - 64) / 2 + 260, 380, 64, 64);
+	set_pos(&buttons[add_mult_id]->background_rect, (window_width - 64) / 2 + 260, 368, 64, 64);
 	buttons[add_mult_id]->content_rect = buttons[add_mult_id]->background_rect;
 	buttons[add_mult_id]->content_txt = textures->double_arrow;
 	menu_functions[add_mult_id] = f_add_mult_id;
 
-	set_pos(&buttons[sub_mult_id]->background_rect, (window_width - 64) / 2 - 260, 380, 64, 64);
+	set_pos(&buttons[sub_mult_id]->background_rect, (window_width - 64) / 2 - 260, 368, 64, 64);
 	buttons[sub_mult_id]->flip = SDL_FLIP_HORIZONTAL;
 	buttons[sub_mult_id]->content_rect = buttons[sub_mult_id]->background_rect;
 	buttons[sub_mult_id]->content_txt = textures->double_arrow;
 	menu_functions[sub_mult_id] = f_sub_mult_id;
 
-	set_pos(&buttons[next_x]->background_rect, (window_width - 128) / 2 - 80, 520, 64, 64);
+	set_pos(&buttons[next_x]->background_rect, (window_width - 128) / 2 - 100, 552, 64, 64);
 	buttons[next_x]->content_rect = buttons[next_x]->background_rect;
 	buttons[next_x]->content_txt = textures->single_arrow;
 	menu_functions[next_x] = f_next_x;
 
-	set_pos(&buttons[prev_x]->background_rect, (window_width - 128) / 2 - 400, 520, 64, 64);
+	set_pos(&buttons[prev_x]->background_rect, (window_width - 128) / 2 - 336, 552, 64, 64);
 	buttons[prev_x]->flip = SDL_FLIP_HORIZONTAL;
 	buttons[prev_x]->content_rect = buttons[prev_x]->background_rect;
 	buttons[prev_x]->content_txt = textures->single_arrow;
 	menu_functions[prev_x] = f_prev_x;
 
-	set_pos(&buttons[next_o]->background_rect, (window_width - 128) / 2 + 400, 520, 64, 64);
+	set_pos(&buttons[next_o]->background_rect, (window_width - 128) / 2 + 400, 552, 64, 64);
 	buttons[next_o]->content_rect = buttons[next_o]->background_rect;
 	buttons[next_o]->content_txt = textures->single_arrow;
 	menu_functions[next_o] = f_next_o;
 
-	set_pos(&buttons[prev_o]->background_rect, (window_width - 128) / 2 + 80, 520, 64, 64);
+	set_pos(&buttons[prev_o]->background_rect, (window_width - 128) / 2 + 164, 552, 64, 64);
 	buttons[prev_o]->flip = SDL_FLIP_HORIZONTAL;
 	buttons[prev_o]->content_rect = buttons[prev_o]->background_rect;
 	buttons[prev_o]->content_txt = textures->single_arrow;
@@ -670,14 +670,14 @@ bool init_playfield(Sdl_Data *sdl_data)
 	playfield->timer->background_txt = sdl_data->textures->field_background;
 	playfield->timer->content_txt = NULL;
 
-	set_pos(&playfield->put_sign->background_rect, 650, 300, 256, 128);
+	set_pos(&playfield->put_sign->background_rect, 650, 286, 256, 128);
 	playfield->put_sign->flip = SDL_FLIP_NONE;
 	playfield->put_sign->background_txt = textures->field_background;
 	playfield->put_sign->content_rect = playfield->put_sign->background_rect;
 	playfield->put_sign->content_txt = load_from_text(sdl_data, &playfield->put_sign->content_rect, "PUT SIGN");
 	sdl_data->put_sign = f_put_sign;
 
-	set_pos(&playfield->forfeit->background_rect, 650, 500, 256, 128);
+	set_pos(&playfield->forfeit->background_rect, 650, 472, 256, 128);
 	playfield->forfeit->flip = SDL_FLIP_NONE;
 	playfield->forfeit->background_txt = textures->field_background;
 	playfield->forfeit->content_rect = playfield->forfeit->background_rect;
