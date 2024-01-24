@@ -5,7 +5,7 @@
 // TODO(#5): Write code for hosting games over network
 // TODO(#11): Handling edge cases and value limits + improvement of gameplay module
 // TODO(#16): Improve GUI - SDL functions
-// TODO: Visual improvements
+// TODO(#31): Visual improvements
 // TODO: Improve documentation
 
 int main(void)
