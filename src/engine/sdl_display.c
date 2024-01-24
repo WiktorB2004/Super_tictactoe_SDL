@@ -712,6 +712,17 @@ void setup_cells(Sdl_Data *sdl_data)
 	sdl_data->select_y = -1;
 }
 
+void highlight(Sdl_Data *sdl_data, SDL_Rect *rect)
+{
+	SDL_BlendMode blend_mode;
+	SDL_Color *color = &sdl_data->pallete->spot_highlight;
+    SDL_GetRenderDrawBlendMode(sdl_data->renderer, &blend_mode);
+	SDL_SetRenderDrawBlendMode(sdl_data->renderer, SDL_BLENDMODE_MUL);
+    SDL_SetRenderDrawColor(sdl_data->renderer, color->r, color->g, color->b, color->a);
+    SDL_RenderFillRect(sdl_data->renderer, rect);
+    SDL_SetRenderDrawBlendMode(sdl_data->renderer, blend_mode);
+}
+
 void render_cell(Sdl_Data *sdl_data, Cell *cell, int sign)
 {
 	if (sign == EMPTY)
@@ -841,6 +852,16 @@ void render_board(Sdl_Data *sdl_data)
 
 	if (sdl_data->super_mode)
 	{
+		if(sdl_data->select_board != -1)
+		{
+			SDL_Rect rect;
+			rect.x = board_rect->x + sdl_data->select_board % 3 * size_bold;
+			rect.y = board_rect->y + sdl_data->select_board / 3 * size_bold;
+			rect.w = size_bold;
+			rect.h = size_bold;
+			highlight(sdl_data, &rect);
+		}
+
 		for(int i = 0; i < max_super_cells; i++)
 		{
 			render_cell(sdl_data, sdl_data->playfield->super_cells[i], board[(i % 9) / 3 + (i / 27) * 3]->value[i % 3][(i % 27) / 9]);
@@ -924,6 +945,10 @@ void handle_menu_event(Sdl_Data *sdl_data, SDL_Event event)
 			if (x > hitbox->x && y > hitbox->y && x < hitbox->x + hitbox->w && y < hitbox->y + hitbox->h)
 			{
 				sdl_data->menu_functions[i](sdl_data);
+				if(i != play)
+				{
+					highlight(sdl_data, &menu->buttons[i]->background_rect);
+				}
 				break;
 			}
 		}
@@ -949,6 +974,7 @@ void handle_ingame_event(Sdl_Data *sdl_data, SDL_Event event)
 		if (x > hitbox->x && y > hitbox->y && x < hitbox->x + hitbox->w && y < hitbox->y + hitbox->h)
 		{
 			sdl_data->put_sign(sdl_data);
+			highlight(sdl_data, hitbox);
 			return;
 		}
 
@@ -956,6 +982,7 @@ void handle_ingame_event(Sdl_Data *sdl_data, SDL_Event event)
 		if (x > hitbox->x && y > hitbox->y && x < hitbox->x + hitbox->w && y < hitbox->y + hitbox->h)
 		{
 			sdl_data->forfeit(sdl_data);
+			highlight(sdl_data, hitbox);
 			return;
 		}
 
@@ -967,6 +994,7 @@ void handle_ingame_event(Sdl_Data *sdl_data, SDL_Event event)
 				if (x > hitbox->x && y > hitbox->y && x < hitbox->x + hitbox->w && y < hitbox->y + hitbox->h)
 				{
 					sdl_data->select_cell(sdl_data, x, y);
+					highlight(sdl_data, hitbox);
 					return;
 				}
 			}
@@ -979,6 +1007,7 @@ void handle_ingame_event(Sdl_Data *sdl_data, SDL_Event event)
 				if (x > hitbox->x && y > hitbox->y && x < hitbox->x + hitbox->w && y < hitbox->y + hitbox->h)
 				{
 					sdl_data->select_cell(sdl_data, x, y);
+					highlight(sdl_data, hitbox);
 					return;
 				}
 			}
@@ -986,7 +1015,7 @@ void handle_ingame_event(Sdl_Data *sdl_data, SDL_Event event)
 	}
 	else if(event.type == SDL_MOUSEBUTTONUP)
 	{
-		return;
+		render_playfield(sdl_data);
 	}
 }
 
