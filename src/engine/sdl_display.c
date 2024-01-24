@@ -1,5 +1,6 @@
 #include "../../include/sdl_display.h"
 #include "../../include/utils/gameplay_utils.h"
+#include "../../include/utils/timer.h"
 
 void setup_cells(Sdl_Data *sdl_data);
 void render_button(SDL_Renderer *renderer, Button *button, int clip);
@@ -10,6 +11,36 @@ void render_playfield(Sdl_Data *sdl_data);
 void free_txt(SDL_Texture **texture);
 SDL_Texture *load_from_text(Sdl_Data *sdl_data, SDL_Rect *content_rect, const char *text);
 
+void stop_game(Sdl_Data *sdl_data)
+{
+	Object *timer = sdl_data->playfield->timer;
+	char buffer[7];
+
+	switch(sdl_data->game->status)
+	{
+		case X_WON:
+			sprintf(buffer, "X WON!");
+			break;
+		case O_WON:
+			sprintf(buffer, "O WON!");
+			break;
+		default:
+			sprintf(buffer, "DRAW!");
+	}
+
+	free_txt(&timer->content_txt);
+	free_txt(&sdl_data->playfield->forfeit->content_txt);
+	timer->content_txt = load_from_text(sdl_data, &timer->content_rect, buffer);
+	sdl_data->playfield->forfeit->content_txt = load_from_text(sdl_data, &sdl_data->playfield->forfeit->content_rect, "EXIT");
+	render_object(sdl_data->renderer, timer, 0);
+	render_button(sdl_data->renderer, sdl_data->playfield->forfeit, 0);
+
+	sdl_data->select_x = -1;
+	sdl_data->select_y = -1;
+	render_board(sdl_data);
+	SDL_RenderPresent(sdl_data->renderer);
+}
+
 void f_mode(Sdl_Data *sdl_data)
 {
 	sdl_data->super_mode = sdl_data->super_mode ? 0 : 1;
@@ -19,6 +50,7 @@ void f_mode(Sdl_Data *sdl_data)
 
 void f_play(Sdl_Data *sdl_data)
 {
+	char buffer[10];
 	sdl_data->select_x = -1;
 	sdl_data->select_y = -1;
 	sdl_data->game->status = IN_PROGRESS;
@@ -35,9 +67,12 @@ void f_play(Sdl_Data *sdl_data)
 	setup_cells(sdl_data);
 	free_txt(&sdl_data->playfield->timer->content_txt);
 	free_txt(&sdl_data->playfield->forfeit->content_txt);
-	sdl_data->playfield->timer->content_txt = load_from_text(sdl_data, &sdl_data->playfield->timer->content_rect, "10:00");
+	sprintf(buffer, "%d:%2d", sdl_data->game->round_time / 60, sdl_data->game->round_time % 60);
+	sdl_data->playfield->timer->content_txt = load_from_text(sdl_data, &sdl_data->playfield->timer->content_rect, buffer);
 	sdl_data->playfield->forfeit->content_txt = load_from_text(sdl_data, &sdl_data->playfield->forfeit->content_rect, "FORFEIT");
 	render_playfield(sdl_data);
+	set_timer(&sdl_data->game->timer, sdl_data->game->round_time);
+	sdl_data->last_time = seconds_left(sdl_data->game->timer);
 	sdl_data->in_game = 1;
 }
 void f_add_id(Sdl_Data *sdl_data)
@@ -190,60 +225,29 @@ void f_put_sign(Sdl_Data *sdl_data)
 
 	if(sdl_data->game->status != IN_PROGRESS)
 	{
-		Object *timer = sdl_data->playfield->timer;
-		char buffer[7];
-
-		switch(sdl_data->game->status)
-		{
-			case X_WON:
-				sprintf(buffer, "X WON!");
-				break;
-			case O_WON:
-				sprintf(buffer, "O WON!");
-				break;
-			default:
-				sprintf(buffer, "DRAW!");
-		}
-
-		free_txt(&timer->content_txt);
-		free_txt(&sdl_data->playfield->forfeit->content_txt);
-		timer->content_txt = load_from_text(sdl_data, &timer->content_rect, buffer);
-		sdl_data->playfield->forfeit->content_txt = load_from_text(sdl_data, &sdl_data->playfield->forfeit->content_rect, "EXIT");
-		render_object(sdl_data->renderer, timer, 0);
-		render_button(sdl_data->renderer, sdl_data->playfield->forfeit, 0);
+		stop_game(sdl_data);
 	}
 
-	render_board(sdl_data);
-	SDL_RenderPresent(sdl_data->renderer);
 	sdl_data->select_x = -1;
 	sdl_data->select_y = -1;
+	render_board(sdl_data);
+	SDL_RenderPresent(sdl_data->renderer);
 }
 
 void f_forfeit(Sdl_Data *sdl_data)
 {
 	if(sdl_data->game->status == IN_PROGRESS)
-	{
-		Object *timer = sdl_data->playfield->timer;
-		char buffer[7];
-		
+	{	
 		if(sdl_data->game->turn == X)
 		{
 			sdl_data->game->status = O_WON;
-			sprintf(buffer, "O WON!");
 		}
 		else
 		{
 			sdl_data->game->status = X_WON;
-			sprintf(buffer, "X WON!");
 		}
 
-		free_txt(&timer->content_txt);
-		free_txt(&sdl_data->playfield->forfeit->content_txt);
-		timer->content_txt = load_from_text(sdl_data, &timer->content_rect, buffer);
-		sdl_data->playfield->forfeit->content_txt = load_from_text(sdl_data, &sdl_data->playfield->forfeit->content_rect, "EXIT");
-		render_object(sdl_data->renderer, timer, 0);
-		render_button(sdl_data->renderer, sdl_data->playfield->forfeit, 0);
-		SDL_RenderPresent(sdl_data->renderer);
+		stop_game(sdl_data);
 
 		return;
 	}
@@ -891,7 +895,6 @@ bool load_media(Sdl_Data *sdl_data)
 	sdl_data->game_id = 0;
 	sdl_data->in_game = 0;
 	sdl_data->super_mode = 0;
-	sdl_data->time_left = 600;
 	sdl_data->bot_difficulty = 0;
 	sdl_data->on_lan = 0;
 
@@ -1005,6 +1008,25 @@ void frame_events(Sdl_Data *sdl_data, bool *quit)
 		else
 		{
 			handle_menu_event(sdl_data, event);
+		}
+	}
+
+	int s_left = seconds_left(sdl_data->game->timer);
+	if(sdl_data->game->status == IN_PROGRESS && sdl_data->in_game && s_left != sdl_data->last_time)
+	{
+		if(s_left == 0)
+		{
+			sdl_data->game->status = DRAW;
+			stop_game(sdl_data);
+		}
+		else
+		{
+			char buffer[10];
+			sprintf(buffer, "%d:%2d", s_left / 60, s_left % 60);
+			free_txt(&sdl_data->playfield->timer->content_txt);
+			sdl_data->playfield->timer->content_txt = load_from_text(sdl_data, &sdl_data->playfield->timer->content_rect, buffer);
+			render_object(sdl_data->renderer, sdl_data->playfield->timer, 0);
+			SDL_RenderPresent(sdl_data->renderer);
 		}
 	}
 }

@@ -23,20 +23,20 @@ typedef struct Game Game;
  */
 
 /** @brief Number of sign sprites. */
-#define sign_sprites 4
+static const int sign_sprites = 4;
 
 /** @brief Size of sign sprite. */
-#define sign_sprite_res 128
+static const int sign_sprite_res = 128;
 
 /** @brief Number of modes in the game. */
-#define mode_count 2
+static const int mode_count = 2;
 
 /** @brief Size of mode sprite. */
-#define mode_sprite_res 256
+static const int mode_sprite_res = 256;
 
 /** @brief Maximum number of cells in the game. */
-#define max_super_cells 81
-#define max_normal_cells 9
+static const int max_super_cells = 81;
+static const int max_normal_cells = 9;
 
 /** @} */
 
@@ -216,7 +216,7 @@ typedef struct sdl_data
 	bool in_game;										  /**< Flag indicating whether in-game. */
 	int bot_difficulty;									  /**< Bot difficulty level. */
 	int game_id;										  /**< Current game ID. */
-	int time_left;										  /**< Time left in the game. */
+	int last_time;										  /**< Last time left in the game. */
 	int select_x;										  /**< X-coordinate of the selected cell. */
 	int select_y;										  /**< Y-coordinate of the selected cell. */
 	int select_board;									  /**< Selected game board. */

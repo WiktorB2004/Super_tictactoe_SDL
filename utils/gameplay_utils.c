@@ -35,6 +35,7 @@ void initialize_Game(Game *game)
     game->board_size = 1;
     game->moves_count = 0;
     game->status = NOT_STARTED;
+    game->round_time = max_round_time;
 }
 
 void reset_Game(Game *game)

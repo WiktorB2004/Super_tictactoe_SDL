@@ -21,6 +21,7 @@ set(OBJ_DIR ${CMAKE_CURRENT_SOURCE_DIR}/obj)
 
 # Source files
 set(SOURCES
+    ${UTILS_DIR}/timer.c
     ${UTILS_DIR}/gameplay_utils.c   
     ${UTILS_DIR}/bot_utils.c
     ${UTILS_DIR}/engine_utils.c

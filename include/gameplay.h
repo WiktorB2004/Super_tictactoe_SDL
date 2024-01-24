@@ -3,6 +3,10 @@
 #include "./sdl_display.h"
 
 typedef struct sdl_data Sdl_Data;
+typedef long long Timer;
+
+/** @brief Maximum time for a single game in seconds. */
+static const int max_round_time = 900;
 
 /*!
  * \brief Enumerates all the statuses of the board.
@@ -53,6 +57,8 @@ typedef struct
  */
 typedef struct Game
 {
+    int round_time;    /**< Max time for a round in seconds */
+    Timer timer;       /**< The end value of a timer */
     Board **board;     /**< Pointer to the pointer of board - linear representation of NxN board */
     int board_size;    /**< boards are board_size x board_size */
     int moves_count;   /**< Numbers of the moves played in the game */
