@@ -29,7 +29,7 @@ void test_initialize_Game(void)
 {
     Game game;
     int size = 2;
-    initialize_Game(&game, size);
+    initialize_Game(&game);
 
     TEST_ASSERT_EQUAL(size, game.board_size);
     TEST_ASSERT_EQUAL(NOT_STARTED, game.status);
@@ -51,7 +51,7 @@ void test_free_Game(void)
     Game *test_game = (Game *)malloc(sizeof(Game));
     TEST_ASSERT_NOT_NULL(test_game); // Check if memory allocation is successful
 
-    initialize_Game(test_game, 3);
+    initialize_Game(test_game);
 
     free_Game(test_game);
 
@@ -151,8 +151,7 @@ void test_check_game(void)
 {
     Game game;
     int size = 2;
-    initialize_Game(&game, size);
-
+    initialize_Game(&game);
     Player turn = X;
     check_game(&game, turn);
     TEST_ASSERT_EQUAL(IN_PROGRESS, game.status);

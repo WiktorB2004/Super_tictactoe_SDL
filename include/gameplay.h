@@ -1,4 +1,8 @@
-#pragma once
+#ifndef GAME_H
+#define GAME_H
+#include "./sdl_display.h"
+
+typedef struct sdl_data Sdl_Data;
 
 /*!
  * \brief Enumerates all the statuses of the board.
@@ -47,7 +51,7 @@ typedef struct
  * This structure defines tictactoe board. It keeps NxN game status and boards,
  * allowing to play on the boards of any (correct) size.
  */
-typedef struct
+typedef struct Game
 {
     Board **board;     /**< Pointer to the pointer of board - linear representation of NxN board */
     int board_size;    /**< boards are board_size x board_size */
@@ -112,4 +116,6 @@ void check_game_draw(Game *game);
  *
  * @param game The pointer to the game of tictactoe - initialized beforehand.
  */
-void gameplay(Game *game);
+void gameplay(Sdl_Data *game);
+
+#endif // GAME_H

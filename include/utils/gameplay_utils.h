@@ -2,7 +2,6 @@
 #include <stdbool.h>
 #include "../gameplay.h"
 
-
 /*!
  * \brief This function initializes regular game of size (3x3).
  *
@@ -23,7 +22,7 @@ void initialize_Board(Board *board);
  * @param game Pointer to Game to initialize.
  * @param size The size of the game to initialize
  */
-void initialize_Game(Game *game, int size);
+void initialize_Game(Game *game);
 
 /*!
  * \brief This function deallocates memory of the Game.

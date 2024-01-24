@@ -17,22 +17,22 @@ void initialize_Board(Board *board)
     }
 }
 
-void initialize_Game(Game *game, int size)
+void initialize_Game(Game *game)
 {
-    game->board = (Board **)malloc(sizeof(Board *) * (size * size));
+    game->board = (Board **)malloc(sizeof(Board *) * 9);
     if (game->board == NULL)
     {
         fprintf(stderr, "Memory allocation for Game failed.\n");
         exit(EXIT_FAILURE);
     }
     // FIXME: Make it random
-    for (int i = 0; i < (size * size); i++)
+    for (int i = 0; i < 9; i++)
     {
         game->board[i] = (Board *)malloc(sizeof(Board));
         initialize_Board(game->board[i]);
     }
     game->turn = X;
-    game->board_size = size;
+    game->board_size = 0;
     game->moves_count = 0;
     game->status = NOT_STARTED;
 }
@@ -113,56 +113,67 @@ bool check_board_diagonally(Board *board)
 
 bool check_draw_horizontally(Board *board)
 {
-    for(int i=0;i<3;i++)
+    for (int i = 0; i < 3; i++)
     {
-        int x=0,o=0;
-        for(int j=0;j<3;j++)
+        int x = 0, o = 0;
+        for (int j = 0; j < 3; j++)
         {
-             if( board->value[i][j] == 0 ) o++;
-             else if( board->value[i][j] == 1 ) x++;
+            if (board->value[i][j] == 0)
+                o++;
+            else if (board->value[i][j] == 1)
+                x++;
         }
-        if( x == 0 || o == 0 ) return true;
+        if (x == 0 || o == 0)
+            return true;
     }
     return false;
 }
 
 bool check_draw_vertically(Board *board)
 {
-    for(int j=0;j<3;j++)
+    for (int j = 0; j < 3; j++)
     {
-        int x=0,o=0;
-        for(int i=0;i<3;i++)
+        int x = 0, o = 0;
+        for (int i = 0; i < 3; i++)
         {
-             if( board->value[i][j] == 0 ) o++;
-             else if( board->value[i][j] == 1 ) x++;
+            if (board->value[i][j] == 0)
+                o++;
+            else if (board->value[i][j] == 1)
+                x++;
         }
-        if( x == 0 || o == 0 ) return true;
+        if (x == 0 || o == 0)
+            return true;
     }
     return false;
 }
 
 bool check_draw_diagonally(Board *board)
 {
-    int x=0,o=0,i=0,j=0;
-    while(i<3)
+    int x = 0, o = 0, i = 0, j = 0;
+    while (i < 3)
     {
-        if(board->value[i][i] == 0 ) o++;
-        else if(board->value[i][i] == 1 ) x++;
+        if (board->value[i][i] == 0)
+            o++;
+        else if (board->value[i][i] == 1)
+            x++;
         i++;
     }
 
-    if( o==0 || x==0 ) return true;
+    if (o == 0 || x == 0)
+        return true;
 
-    o=0,x=0;
+    o = 0, x = 0;
     i--;
-    while(j<3)
+    while (j < 3)
     {
-        if(board->value[i][j] == 0) o++;
-        else if(board->value[i][j] == 1) x++;
-        i--,j++;
+        if (board->value[i][j] == 0)
+            o++;
+        else if (board->value[i][j] == 1)
+            x++;
+        i--, j++;
     }
 
-    if( o==0 || x==0 ) return true;
+    if (o == 0 || x == 0)
+        return true;
     return false;
 }
-
