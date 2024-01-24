@@ -7,7 +7,7 @@
 - Use docker image
 ```
 $ docker pull ghcr.io/wiktorb2004/super_tictactoe_sdl:master
-$ docker run -it ghcr.io/wiktorb2004/super_tictactoe_sdl:master
+$ docker run -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -it supertictactoe
 ``` 
 - Download repository and build the source code
 ```

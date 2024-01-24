@@ -35,6 +35,7 @@ COPY CMakeLists.txt .
 COPY include/ include
 COPY src/ src
 COPY utils/ utils
+COPY resources/ resources
 
 # Create a build directory and run CMake to configure the project
 RUN mkdir build && \
