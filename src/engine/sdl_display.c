@@ -18,6 +18,8 @@ void f_mode(Sdl_Data *sdl_data)
 
 void f_play(Sdl_Data *sdl_data)
 {
+	sdl_data->select_x = -1;
+	sdl_data->select_y = -1;
 	if(sdl_data->super_mode)
 	{
 		sdl_data->select_board = 4;
@@ -143,6 +145,10 @@ void f_select_cell(Sdl_Data *sdl_data, int x, int y)
 
 void f_put_sign(Sdl_Data *sdl_data)
 {
+	if(sdl_data->select_x == -1)
+	{
+		return;
+	}
 	gameplay(sdl_data);
 	if(sdl_data->super_mode)
 	{
@@ -150,6 +156,8 @@ void f_put_sign(Sdl_Data *sdl_data)
 	}
 	render_board(sdl_data);
 	SDL_RenderPresent(sdl_data->renderer);
+	sdl_data->select_x = -1;
+	sdl_data->select_y = -1;
 }
 
 void f_forfeit(Sdl_Data *sdl_data)
