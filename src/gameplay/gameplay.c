@@ -35,7 +35,7 @@ void modify_board(Board *board, int row, int column, Player player)
 void check_board(Board *board, Player turn)
 {
     bool check_result = check_board_horizontally(board) || check_board_vertically(board) || check_board_diagonally(board);
-    if (check_result)
+    if (check_result && board->status == IN_PROGRESS)
     {
         switch (turn)
         {
@@ -130,7 +130,7 @@ void gameplay(Sdl_Data *data)
         for (int board_id = 0; board_id < (game->board_size) * (game->board_size); board_id++)
         {
             check_board(game->board[board_id], game->turn);
-            check_draw(game->board[board_id]);
+            // check_draw(game->board[board_id]);
         }
 
         if (game->board_size == 1)
@@ -140,7 +140,7 @@ void gameplay(Sdl_Data *data)
         else
         {
             check_game(game, game->turn);
-            check_game_draw(game);
+            // check_game_draw(game);
         }
         game->turn = (game->turn == X) ? O : X;
         game->moves_count++;
