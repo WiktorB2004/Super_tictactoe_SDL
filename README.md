@@ -8,7 +8,7 @@
 ```
 $ docker pull ghcr.io/wiktorb2004/super_tictactoe_sdl:master
 # Use X11 server or select other configuration suitable for your setup
-$ docker run -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -it supertictactoe
+$ docker run -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -it ghcr.io/wiktorb2004/super_tictactoe_sdl:master 
 ``` 
 - Download repository and build the source code
 ```
