@@ -13,7 +13,6 @@ void engine()
     {
         return;
     }
-    game.status = IN_PROGRESS;
     sdl_data->game = &game;
     bool quit = 0;
     while (!quit)

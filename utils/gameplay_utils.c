@@ -37,6 +37,23 @@ void initialize_Game(Game *game)
     game->status = NOT_STARTED;
 }
 
+void reset_Game(Game *game)
+{
+    game->turn = X;
+    game->status = NOT_STARTED;
+    for(int i = 0; i < 9; i++)
+    {
+        game->board[i]->status = IN_PROGRESS;
+        for(int j = 0; j < 3; j++)
+        {
+            for(int k = 0; k < 3; k++)
+            {
+                game->board[i]->value[j][k] = EMPTY;
+            }
+        }
+    }
+}
+
 void free_Game(Game *game)
 {
     if (game == NULL)

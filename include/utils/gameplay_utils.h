@@ -13,16 +13,26 @@
 void initialize_Board(Board *board);
 
 /*!
- * \brief This function initializes game of specified size (NxN).
+ * \brief This function initializes game.
  *
  * This function initializes game of specified size by allocating needed memory
  * and other struct values.
  *
  *
  * @param game Pointer to Game to initialize.
- * @param size The size of the game to initialize
  */
 void initialize_Game(Game *game);
+
+/*!
+ * \brief This function resets to beginning status of a specified game.
+ *
+ * This function resets a game of specified size by setting default values
+ * for all fields.
+ *
+ *
+ * @param game Pointer to Game to initialize.
+ */
+void reset_Game(Game *game);
 
 /*!
  * \brief This function deallocates memory of the Game.

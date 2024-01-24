@@ -1,4 +1,5 @@
 #include "../../include/sdl_display.h"
+#include "../../include/utils/gameplay_utils.h"
 
 void setup_cells(Sdl_Data *sdl_data);
 void render_button(SDL_Renderer *renderer, Button *button, int clip);
@@ -20,6 +21,7 @@ void f_play(Sdl_Data *sdl_data)
 {
 	sdl_data->select_x = -1;
 	sdl_data->select_y = -1;
+	sdl_data->game->status = IN_PROGRESS;
 	if(sdl_data->super_mode)
 	{
 		sdl_data->select_board = 4;
@@ -164,6 +166,7 @@ void f_forfeit(Sdl_Data *sdl_data)
 {
 	render_menu(sdl_data);
 	sdl_data->in_game = 0;
+	reset_Game(sdl_data->game);
 }
 
 void free_txt(SDL_Texture **texture)
