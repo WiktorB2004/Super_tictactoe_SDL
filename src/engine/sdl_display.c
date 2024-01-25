@@ -1,5 +1,6 @@
 #include "../../include/sdl_display.h"
 #include "../../include/utils/gameplay_utils.h"
+#include "../../include/utils/timer.h"
 
 void setup_cells(Sdl_Data *sdl_data);
 void render_button(SDL_Renderer *renderer, Button *button, int clip);
@@ -10,6 +11,36 @@ void render_playfield(Sdl_Data *sdl_data);
 void free_txt(SDL_Texture **texture);
 SDL_Texture *load_from_text(Sdl_Data *sdl_data, SDL_Rect *content_rect, const char *text);
 
+void stop_game(Sdl_Data *sdl_data)
+{
+	Object *timer = sdl_data->playfield->timer;
+	char buffer[7];
+
+	switch(sdl_data->game->status)
+	{
+		case X_WON:
+			sprintf(buffer, "X WON!");
+			break;
+		case O_WON:
+			sprintf(buffer, "O WON!");
+			break;
+		default:
+			sprintf(buffer, "DRAW!");
+	}
+
+	free_txt(&timer->content_txt);
+	free_txt(&sdl_data->playfield->forfeit->content_txt);
+	timer->content_txt = load_from_text(sdl_data, &timer->content_rect, buffer);
+	sdl_data->playfield->forfeit->content_txt = load_from_text(sdl_data, &sdl_data->playfield->forfeit->content_rect, "EXIT");
+	render_object(sdl_data->renderer, timer, 0);
+	render_button(sdl_data->renderer, sdl_data->playfield->forfeit, 0);
+
+	sdl_data->select_x = -1;
+	sdl_data->select_y = -1;
+	render_board(sdl_data);
+	SDL_RenderPresent(sdl_data->renderer);
+}
+
 void f_mode(Sdl_Data *sdl_data)
 {
 	sdl_data->super_mode = sdl_data->super_mode ? 0 : 1;
@@ -19,6 +50,7 @@ void f_mode(Sdl_Data *sdl_data)
 
 void f_play(Sdl_Data *sdl_data)
 {
+	char buffer[10];
 	sdl_data->select_x = -1;
 	sdl_data->select_y = -1;
 	sdl_data->game->status = IN_PROGRESS;
@@ -35,9 +67,12 @@ void f_play(Sdl_Data *sdl_data)
 	setup_cells(sdl_data);
 	free_txt(&sdl_data->playfield->timer->content_txt);
 	free_txt(&sdl_data->playfield->forfeit->content_txt);
-	sdl_data->playfield->timer->content_txt = load_from_text(sdl_data, &sdl_data->playfield->timer->content_rect, "10:00");
+	sprintf(buffer, "%d:%2d", sdl_data->game->round_time / 60, sdl_data->game->round_time % 60);
+	sdl_data->playfield->timer->content_txt = load_from_text(sdl_data, &sdl_data->playfield->timer->content_rect, buffer);
 	sdl_data->playfield->forfeit->content_txt = load_from_text(sdl_data, &sdl_data->playfield->forfeit->content_rect, "FORFEIT");
 	render_playfield(sdl_data);
+	set_timer(&sdl_data->game->timer, sdl_data->game->round_time);
+	sdl_data->last_time = seconds_left(sdl_data->game->timer);
 	sdl_data->in_game = 1;
 }
 void f_add_id(Sdl_Data *sdl_data)
@@ -190,60 +225,29 @@ void f_put_sign(Sdl_Data *sdl_data)
 
 	if(sdl_data->game->status != IN_PROGRESS)
 	{
-		Object *timer = sdl_data->playfield->timer;
-		char buffer[7];
-
-		switch(sdl_data->game->status)
-		{
-			case X_WON:
-				sprintf(buffer, "X WON!");
-				break;
-			case O_WON:
-				sprintf(buffer, "O WON!");
-				break;
-			default:
-				sprintf(buffer, "DRAW!");
-		}
-
-		free_txt(&timer->content_txt);
-		free_txt(&sdl_data->playfield->forfeit->content_txt);
-		timer->content_txt = load_from_text(sdl_data, &timer->content_rect, buffer);
-		sdl_data->playfield->forfeit->content_txt = load_from_text(sdl_data, &sdl_data->playfield->forfeit->content_rect, "EXIT");
-		render_object(sdl_data->renderer, timer, 0);
-		render_button(sdl_data->renderer, sdl_data->playfield->forfeit, 0);
+		stop_game(sdl_data);
 	}
 
-	render_board(sdl_data);
-	SDL_RenderPresent(sdl_data->renderer);
 	sdl_data->select_x = -1;
 	sdl_data->select_y = -1;
+	render_board(sdl_data);
+	SDL_RenderPresent(sdl_data->renderer);
 }
 
 void f_forfeit(Sdl_Data *sdl_data)
 {
 	if(sdl_data->game->status == IN_PROGRESS)
-	{
-		Object *timer = sdl_data->playfield->timer;
-		char buffer[7];
-		
+	{	
 		if(sdl_data->game->turn == X)
 		{
 			sdl_data->game->status = O_WON;
-			sprintf(buffer, "O WON!");
 		}
 		else
 		{
 			sdl_data->game->status = X_WON;
-			sprintf(buffer, "X WON!");
 		}
 
-		free_txt(&timer->content_txt);
-		free_txt(&sdl_data->playfield->forfeit->content_txt);
-		timer->content_txt = load_from_text(sdl_data, &timer->content_rect, buffer);
-		sdl_data->playfield->forfeit->content_txt = load_from_text(sdl_data, &sdl_data->playfield->forfeit->content_rect, "EXIT");
-		render_object(sdl_data->renderer, timer, 0);
-		render_button(sdl_data->renderer, sdl_data->playfield->forfeit, 0);
-		SDL_RenderPresent(sdl_data->renderer);
+		stop_game(sdl_data);
 
 		return;
 	}
@@ -507,12 +511,12 @@ bool init_menu(Sdl_Data *sdl_data)
 	menu->game_id->content_rect = menu->game_id->background_rect;
 	menu->game_id->content_txt = load_from_text(sdl_data, &menu->game_id->content_rect, "0");
 
-	set_pos(&menu->sign_x->background_rect, (window_width - 128) / 2 - 250, 500, 128, 128);
+	set_pos(&menu->sign_x->background_rect, (window_width - 128) / 2 - 250, 520, 128, 128);
 	menu->sign_x->content_rect = menu->sign_x->background_rect;
 	menu->sign_x->background_txt = textures->field_background;
 	menu->sign_x->content_txt = textures->sign_x;
 
-	set_pos(&menu->sign_o->background_rect, (window_width - 128) / 2 + 250, 500, 128, 128);
+	set_pos(&menu->sign_o->background_rect, (window_width - 128) / 2 + 250, 520, 128, 128);
 	menu->sign_o->content_rect = menu->sign_o->background_rect;
 	menu->sign_o->background_txt = textures->field_background;
 	menu->sign_o->content_txt = textures->sign_o;
@@ -548,45 +552,45 @@ bool init_menu(Sdl_Data *sdl_data)
 	buttons[play]->content_txt = load_from_text(sdl_data, &buttons[play]->content_rect, "PLAY");
 	menu_functions[play] = f_play;
 
-	set_pos(&buttons[add_id]->background_rect, (window_width - 64) / 2 + 180, 380, 64, 64);
+	set_pos(&buttons[add_id]->background_rect, (window_width - 64) / 2 + 180, 368, 64, 64);
 	buttons[add_id]->content_rect = buttons[add_id]->background_rect;
 	buttons[add_id]->content_txt = textures->single_arrow;
 	menu_functions[add_id] = f_add_id;
 
-	set_pos(&buttons[sub_id]->background_rect, (window_width - 64) / 2 - 180, 380, 64, 64);
+	set_pos(&buttons[sub_id]->background_rect, (window_width - 64) / 2 - 180, 368, 64, 64);
 	buttons[sub_id]->flip = SDL_FLIP_HORIZONTAL;
 	buttons[sub_id]->content_rect = buttons[sub_id]->background_rect;
 	buttons[sub_id]->content_txt = textures->single_arrow;
 	menu_functions[sub_id] = f_sub_id;
 
-	set_pos(&buttons[add_mult_id]->background_rect, (window_width - 64) / 2 + 260, 380, 64, 64);
+	set_pos(&buttons[add_mult_id]->background_rect, (window_width - 64) / 2 + 260, 368, 64, 64);
 	buttons[add_mult_id]->content_rect = buttons[add_mult_id]->background_rect;
 	buttons[add_mult_id]->content_txt = textures->double_arrow;
 	menu_functions[add_mult_id] = f_add_mult_id;
 
-	set_pos(&buttons[sub_mult_id]->background_rect, (window_width - 64) / 2 - 260, 380, 64, 64);
+	set_pos(&buttons[sub_mult_id]->background_rect, (window_width - 64) / 2 - 260, 368, 64, 64);
 	buttons[sub_mult_id]->flip = SDL_FLIP_HORIZONTAL;
 	buttons[sub_mult_id]->content_rect = buttons[sub_mult_id]->background_rect;
 	buttons[sub_mult_id]->content_txt = textures->double_arrow;
 	menu_functions[sub_mult_id] = f_sub_mult_id;
 
-	set_pos(&buttons[next_x]->background_rect, (window_width - 128) / 2 - 80, 520, 64, 64);
+	set_pos(&buttons[next_x]->background_rect, (window_width - 128) / 2 - 100, 552, 64, 64);
 	buttons[next_x]->content_rect = buttons[next_x]->background_rect;
 	buttons[next_x]->content_txt = textures->single_arrow;
 	menu_functions[next_x] = f_next_x;
 
-	set_pos(&buttons[prev_x]->background_rect, (window_width - 128) / 2 - 400, 520, 64, 64);
+	set_pos(&buttons[prev_x]->background_rect, (window_width - 128) / 2 - 336, 552, 64, 64);
 	buttons[prev_x]->flip = SDL_FLIP_HORIZONTAL;
 	buttons[prev_x]->content_rect = buttons[prev_x]->background_rect;
 	buttons[prev_x]->content_txt = textures->single_arrow;
 	menu_functions[prev_x] = f_prev_x;
 
-	set_pos(&buttons[next_o]->background_rect, (window_width - 128) / 2 + 400, 520, 64, 64);
+	set_pos(&buttons[next_o]->background_rect, (window_width - 128) / 2 + 400, 552, 64, 64);
 	buttons[next_o]->content_rect = buttons[next_o]->background_rect;
 	buttons[next_o]->content_txt = textures->single_arrow;
 	menu_functions[next_o] = f_next_o;
 
-	set_pos(&buttons[prev_o]->background_rect, (window_width - 128) / 2 + 80, 520, 64, 64);
+	set_pos(&buttons[prev_o]->background_rect, (window_width - 128) / 2 + 164, 552, 64, 64);
 	buttons[prev_o]->flip = SDL_FLIP_HORIZONTAL;
 	buttons[prev_o]->content_rect = buttons[prev_o]->background_rect;
 	buttons[prev_o]->content_txt = textures->single_arrow;
@@ -666,14 +670,14 @@ bool init_playfield(Sdl_Data *sdl_data)
 	playfield->timer->background_txt = sdl_data->textures->field_background;
 	playfield->timer->content_txt = NULL;
 
-	set_pos(&playfield->put_sign->background_rect, 650, 300, 256, 128);
+	set_pos(&playfield->put_sign->background_rect, 650, 286, 256, 128);
 	playfield->put_sign->flip = SDL_FLIP_NONE;
 	playfield->put_sign->background_txt = textures->field_background;
 	playfield->put_sign->content_rect = playfield->put_sign->background_rect;
 	playfield->put_sign->content_txt = load_from_text(sdl_data, &playfield->put_sign->content_rect, "PUT SIGN");
 	sdl_data->put_sign = f_put_sign;
 
-	set_pos(&playfield->forfeit->background_rect, 650, 500, 256, 128);
+	set_pos(&playfield->forfeit->background_rect, 650, 472, 256, 128);
 	playfield->forfeit->flip = SDL_FLIP_NONE;
 	playfield->forfeit->background_txt = textures->field_background;
 	playfield->forfeit->content_rect = playfield->forfeit->background_rect;
@@ -706,6 +710,17 @@ void setup_cells(Sdl_Data *sdl_data)
 
 	sdl_data->select_x = -1;
 	sdl_data->select_y = -1;
+}
+
+void highlight(Sdl_Data *sdl_data, SDL_Rect *rect)
+{
+	SDL_BlendMode blend_mode;
+	SDL_Color *color = &sdl_data->pallete->spot_highlight;
+    SDL_GetRenderDrawBlendMode(sdl_data->renderer, &blend_mode);
+	SDL_SetRenderDrawBlendMode(sdl_data->renderer, SDL_BLENDMODE_MUL);
+    SDL_SetRenderDrawColor(sdl_data->renderer, color->r, color->g, color->b, color->a);
+    SDL_RenderFillRect(sdl_data->renderer, rect);
+    SDL_SetRenderDrawBlendMode(sdl_data->renderer, blend_mode);
 }
 
 void render_cell(Sdl_Data *sdl_data, Cell *cell, int sign)
@@ -837,6 +852,16 @@ void render_board(Sdl_Data *sdl_data)
 
 	if (sdl_data->super_mode)
 	{
+		if(sdl_data->select_board != -1)
+		{
+			SDL_Rect rect;
+			rect.x = board_rect->x + sdl_data->select_board % 3 * size_bold;
+			rect.y = board_rect->y + sdl_data->select_board / 3 * size_bold;
+			rect.w = size_bold;
+			rect.h = size_bold;
+			highlight(sdl_data, &rect);
+		}
+
 		for(int i = 0; i < max_super_cells; i++)
 		{
 			render_cell(sdl_data, sdl_data->playfield->super_cells[i], board[(i % 9) / 3 + (i / 27) * 3]->value[i % 3][(i % 27) / 9]);
@@ -891,7 +916,6 @@ bool load_media(Sdl_Data *sdl_data)
 	sdl_data->game_id = 0;
 	sdl_data->in_game = 0;
 	sdl_data->super_mode = 0;
-	sdl_data->time_left = 600;
 	sdl_data->bot_difficulty = 0;
 	sdl_data->on_lan = 0;
 
@@ -921,6 +945,10 @@ void handle_menu_event(Sdl_Data *sdl_data, SDL_Event event)
 			if (x > hitbox->x && y > hitbox->y && x < hitbox->x + hitbox->w && y < hitbox->y + hitbox->h)
 			{
 				sdl_data->menu_functions[i](sdl_data);
+				if(i != play)
+				{
+					highlight(sdl_data, &menu->buttons[i]->background_rect);
+				}
 				break;
 			}
 		}
@@ -946,6 +974,7 @@ void handle_ingame_event(Sdl_Data *sdl_data, SDL_Event event)
 		if (x > hitbox->x && y > hitbox->y && x < hitbox->x + hitbox->w && y < hitbox->y + hitbox->h)
 		{
 			sdl_data->put_sign(sdl_data);
+			highlight(sdl_data, hitbox);
 			return;
 		}
 
@@ -953,6 +982,7 @@ void handle_ingame_event(Sdl_Data *sdl_data, SDL_Event event)
 		if (x > hitbox->x && y > hitbox->y && x < hitbox->x + hitbox->w && y < hitbox->y + hitbox->h)
 		{
 			sdl_data->forfeit(sdl_data);
+			highlight(sdl_data, hitbox);
 			return;
 		}
 
@@ -964,6 +994,7 @@ void handle_ingame_event(Sdl_Data *sdl_data, SDL_Event event)
 				if (x > hitbox->x && y > hitbox->y && x < hitbox->x + hitbox->w && y < hitbox->y + hitbox->h)
 				{
 					sdl_data->select_cell(sdl_data, x, y);
+					highlight(sdl_data, hitbox);
 					return;
 				}
 			}
@@ -976,6 +1007,7 @@ void handle_ingame_event(Sdl_Data *sdl_data, SDL_Event event)
 				if (x > hitbox->x && y > hitbox->y && x < hitbox->x + hitbox->w && y < hitbox->y + hitbox->h)
 				{
 					sdl_data->select_cell(sdl_data, x, y);
+					highlight(sdl_data, hitbox);
 					return;
 				}
 			}
@@ -983,7 +1015,7 @@ void handle_ingame_event(Sdl_Data *sdl_data, SDL_Event event)
 	}
 	else if(event.type == SDL_MOUSEBUTTONUP)
 	{
-		return;
+		render_playfield(sdl_data);
 	}
 }
 
@@ -1005,6 +1037,25 @@ void frame_events(Sdl_Data *sdl_data, bool *quit)
 		else
 		{
 			handle_menu_event(sdl_data, event);
+		}
+	}
+
+	int s_left = seconds_left(sdl_data->game->timer);
+	if(sdl_data->game->status == IN_PROGRESS && sdl_data->in_game && s_left != sdl_data->last_time)
+	{
+		if(s_left == 0)
+		{
+			sdl_data->game->status = DRAW;
+			stop_game(sdl_data);
+		}
+		else
+		{
+			char buffer[10];
+			sprintf(buffer, "%d:%2d", s_left / 60, s_left % 60);
+			free_txt(&sdl_data->playfield->timer->content_txt);
+			sdl_data->playfield->timer->content_txt = load_from_text(sdl_data, &sdl_data->playfield->timer->content_rect, buffer);
+			render_object(sdl_data->renderer, sdl_data->playfield->timer, 0);
+			SDL_RenderPresent(sdl_data->renderer);
 		}
 	}
 }

@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.27)
 project(Super_Tictactoe)
 
 # SDL configuration
-find_package(SDL2 REQUIRED)
 INCLUDE(FindPkgConfig)
 PKG_SEARCH_MODULE(SDL2 REQUIRED sdl2)
 PKG_SEARCH_MODULE(SDL2IMAGE REQUIRED SDL2_image>=2.0.0)
@@ -21,6 +20,7 @@ set(OBJ_DIR ${CMAKE_CURRENT_SOURCE_DIR}/obj)
 
 # Source files
 set(SOURCES
+    ${UTILS_DIR}/timer.c
     ${UTILS_DIR}/gameplay_utils.c   
     ${UTILS_DIR}/bot_utils.c
     ${UTILS_DIR}/engine_utils.c
