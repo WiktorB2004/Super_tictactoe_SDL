@@ -1,6 +1,6 @@
 var topics =
 [
-    [ "Constants", "group__Constants.html", "group__Constants" ],
+    [ "Constants", "group__Constants.html", null ],
     [ "Paths to Resources", "group__Paths.html", null ],
     [ "Game Limits", "group__Limits.html", null ],
     [ "Game Board", "group__GameBoard.html", null ],

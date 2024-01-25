@@ -19,6 +19,7 @@ var sdl__display_8c =
     [ "free_txt", "sdl__display_8c.html#a150a2e3166d4ebcdce78e54aeb34abe9", null ],
     [ "handle_ingame_event", "sdl__display_8c.html#a3c2bee53c11c7748f9193180a9b86428", null ],
     [ "handle_menu_event", "sdl__display_8c.html#ac175e2d21f646ec7738ca6d0e1546dee", null ],
+    [ "highlight", "sdl__display_8c.html#a1ef639d4cc140126b70302df8702a9dc", null ],
     [ "init_menu", "sdl__display_8c.html#acf2d04800b0039aedd48feb81898d251", null ],
     [ "init_pallete", "sdl__display_8c.html#adf66de3e402409774df2443b28821c69", null ],
     [ "init_playfield", "sdl__display_8c.html#aed16687efb749973febecf4fa25f4e8a", null ],
@@ -35,5 +36,6 @@ var sdl__display_8c =
     [ "render_playfield", "sdl__display_8c.html#ab187c4da46c153c0bc4824974cb2501c", null ],
     [ "set_color", "sdl__display_8c.html#a7a8b7754155906d6c9872e4078472b6e", null ],
     [ "set_pos", "sdl__display_8c.html#a33108bc5029e56acd5bd6de59dafe353", null ],
-    [ "setup_cells", "sdl__display_8c.html#ad05388d04bce451ff478fb668dc65894", null ]
+    [ "setup_cells", "sdl__display_8c.html#ad05388d04bce451ff478fb668dc65894", null ],
+    [ "stop_game", "sdl__display_8c.html#aea4e8615d747dc23986f8099b7e48d85", null ]
 ];

@@ -12,5 +12,6 @@ var searchData=
   ['renderer_9',['renderer',['../structsdl__data.html#ad05ad6e645eae02cd3efe286b2306d86',1,'sdl_data']]],
   ['reset_5fgame_10',['reset_Game',['../gameplay__utils_8c.html#a91081fa436dee900f75a3ad417e2b7cd',1,'reset_Game(Game *game):&#160;gameplay_utils.c'],['../gameplay__utils_8h.html#a91081fa436dee900f75a3ad417e2b7cd',1,'reset_Game(Game *game):&#160;gameplay_utils.c']]],
   ['resources_11',['Paths to Resources',['../group__Paths.html',1,'']]],
-  ['ruch_12',['ruch',['../structnode.html#aae2ec69b083a8118bdfa405a0f9166c9',1,'node']]]
+  ['round_5ftime_12',['round_time',['../structGame.html#ab8255fcbc1dbbbb2b3c97dcad56b4b9d',1,'Game']]],
+  ['ruch_13',['ruch',['../structnode.html#aae2ec69b083a8118bdfa405a0f9166c9',1,'node']]]
 ];

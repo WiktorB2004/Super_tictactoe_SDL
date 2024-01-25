@@ -99,6 +99,7 @@ $(function(){initNavTree('sdl__display_8c.html',''); initResizable(); });
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="sdl__display_8h_source.html">../../include/sdl_display.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="gameplay__utils_8h_source.html">../../include/utils/gameplay_utils.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="timer_8h_source.html">../../include/utils/timer.h</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -118,6 +119,8 @@ Functions</h2></td></tr>
 <tr class="separator:a150a2e3166d4ebcdce78e54aeb34abe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7680947f4ed99ca031ea86929921d9dd" id="r_a7680947f4ed99ca031ea86929921d9dd"><td class="memItemLeft" align="right" valign="top">SDL_Texture *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7680947f4ed99ca031ea86929921d9dd">load_from_text</a> (<a class="el" href="gameplay_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>, SDL_Rect *content_rect, const char *text)</td></tr>
 <tr class="separator:a7680947f4ed99ca031ea86929921d9dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea4e8615d747dc23986f8099b7e48d85" id="r_aea4e8615d747dc23986f8099b7e48d85"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aea4e8615d747dc23986f8099b7e48d85">stop_game</a> (<a class="el" href="gameplay_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>)</td></tr>
+<tr class="separator:aea4e8615d747dc23986f8099b7e48d85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9887ccd62ab054ff754734cfd16c838f" id="r_a9887ccd62ab054ff754734cfd16c838f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9887ccd62ab054ff754734cfd16c838f">f_mode</a> (<a class="el" href="gameplay_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>)</td></tr>
 <tr class="separator:a9887ccd62ab054ff754734cfd16c838f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa93bd5c2750c1dfc9a162f99e2c1492e" id="r_aa93bd5c2750c1dfc9a162f99e2c1492e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa93bd5c2750c1dfc9a162f99e2c1492e">f_play</a> (<a class="el" href="gameplay_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>)</td></tr>
@@ -166,6 +169,8 @@ Functions</h2></td></tr>
 <tr class="separator:acf2d04800b0039aedd48feb81898d251"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed16687efb749973febecf4fa25f4e8a" id="r_aed16687efb749973febecf4fa25f4e8a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aed16687efb749973febecf4fa25f4e8a">init_playfield</a> (<a class="el" href="gameplay_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>)</td></tr>
 <tr class="separator:aed16687efb749973febecf4fa25f4e8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ef639d4cc140126b70302df8702a9dc" id="r_a1ef639d4cc140126b70302df8702a9dc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ef639d4cc140126b70302df8702a9dc">highlight</a> (<a class="el" href="gameplay_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>, SDL_Rect *rect)</td></tr>
+<tr class="separator:a1ef639d4cc140126b70302df8702a9dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaae5f9a90471c78e068c0d9eb2e4d936" id="r_aaae5f9a90471c78e068c0d9eb2e4d936"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaae5f9a90471c78e068c0d9eb2e4d936">render_cell</a> (<a class="el" href="gameplay_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>, <a class="el" href="group__Structures.html#ga5a015017629833d016e38b49dca7b1c3">Cell</a> *<a class="el" href="structcell.html">cell</a>, int sign)</td></tr>
 <tr class="separator:aaae5f9a90471c78e068c0d9eb2e4d936"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaefad48bb757d75e8ca79a08e8a25a80e" id="r_gaefad48bb757d75e8ca79a08e8a25a80e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Functions.html#gaefad48bb757d75e8ca79a08e8a25a80e">load_media</a> (<a class="el" href="gameplay_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *<a class="el" href="structsdl__data.html">sdl_data</a>)</td></tr>
@@ -480,6 +485,27 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">SDL_Event</td>          <td class="paramname"><span class="paramname"><em>event</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1ef639d4cc140126b70302df8702a9dc" name="a1ef639d4cc140126b70302df8702a9dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ef639d4cc140126b70302df8702a9dc">&#9670;&#160;</a></span>highlight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void highlight </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="gameplay_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Rect *</td>          <td class="paramname"><span class="paramname"><em>rect</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -810,6 +836,23 @@ Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">void setup_cells </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="gameplay_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aea4e8615d747dc23986f8099b7e48d85" name="aea4e8615d747dc23986f8099b7e48d85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea4e8615d747dc23986f8099b7e48d85">&#9670;&#160;</a></span>stop_game()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void stop_game </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="gameplay_8h.html#ae9f85c4277681e2e679bd29bf69f7b95">Sdl_Data</a> *</td>          <td class="paramname"><span class="paramname"><em>sdl_data</em></span></td><td>)</td>
           <td></td>

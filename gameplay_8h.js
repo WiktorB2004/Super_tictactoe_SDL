@@ -4,6 +4,7 @@ var gameplay_8h =
     [ "Game", "structGame.html", "structGame" ],
     [ "Game", "gameplay_8h.html#a69b5df78d315f81ed77df30fdbfb7002", null ],
     [ "Sdl_Data", "gameplay_8h.html#ae9f85c4277681e2e679bd29bf69f7b95", null ],
+    [ "Timer", "gameplay_8h.html#ab482b1741bfb73d1065811de7a0703de", null ],
     [ "GameStatus", "gameplay_8h.html#a881b49e3802366255ad852f1c8624fd1", [
       [ "IN_PROGRESS", "gameplay_8h.html#a881b49e3802366255ad852f1c8624fd1a643cea6438bbca00e218a0b1c05e1012", null ],
       [ "X_WON", "gameplay_8h.html#a881b49e3802366255ad852f1c8624fd1abe74362599fba03e8f1d5ca74f195603", null ],

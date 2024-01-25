@@ -101,9 +101,18 @@ $(function(){initNavTree('engine_8h_source.html',''); initResizable(); });
 </div><!--header-->
 <div class="contents">
 <a href="engine_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keywordtype">void</span> <a class="code hl_function" href="engine_8h.html#a4c2cd5d533e88fcffb6c03de68c0d976">engine</a>();</div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;time.h&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno"><a class="line" href="engine_8h.html#ab482b1741bfb73d1065811de7a0703de">    4</a></span><span class="keyword">typedef</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <a class="code hl_typedef" href="engine_8h.html#ab482b1741bfb73d1065811de7a0703de">Timer</a>;</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keywordtype">int</span> <a class="code hl_function" href="engine_8h.html#a8fe3dd40264c5afaab0ec24f3a3f691f">seconds_left</a>(<a class="code hl_typedef" href="engine_8h.html#ab482b1741bfb73d1065811de7a0703de">Timer</a> timer);</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keywordtype">void</span> <a class="code hl_function" href="engine_8h.html#aa7aa13029f117dec8d3501d56c79032f">set_timer</a>(<a class="code hl_typedef" href="engine_8h.html#ab482b1741bfb73d1065811de7a0703de">Timer</a> *timer, <span class="keywordtype">int</span> seconds);</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keywordtype">void</span> <a class="code hl_function" href="engine_8h.html#a4c2cd5d533e88fcffb6c03de68c0d976">engine</a>();</div>
 <div class="ttc" id="aengine_8h_html_a4c2cd5d533e88fcffb6c03de68c0d976"><div class="ttname"><a href="engine_8h.html#a4c2cd5d533e88fcffb6c03de68c0d976">engine</a></div><div class="ttdeci">void engine()</div><div class="ttdef"><b>Definition</b> engine.c:7</div></div>
+<div class="ttc" id="aengine_8h_html_a8fe3dd40264c5afaab0ec24f3a3f691f"><div class="ttname"><a href="engine_8h.html#a8fe3dd40264c5afaab0ec24f3a3f691f">seconds_left</a></div><div class="ttdeci">int seconds_left(Timer timer)</div><div class="ttdef"><b>Definition</b> timer.c:10</div></div>
+<div class="ttc" id="aengine_8h_html_aa7aa13029f117dec8d3501d56c79032f"><div class="ttname"><a href="engine_8h.html#aa7aa13029f117dec8d3501d56c79032f">set_timer</a></div><div class="ttdeci">void set_timer(Timer *timer, int seconds)</div><div class="ttdef"><b>Definition</b> timer.c:17</div></div>
+<div class="ttc" id="aengine_8h_html_ab482b1741bfb73d1065811de7a0703de"><div class="ttname"><a href="engine_8h.html#ab482b1741bfb73d1065811de7a0703de">Timer</a></div><div class="ttdeci">long long Timer</div><div class="ttdef"><b>Definition</b> engine.h:4</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
