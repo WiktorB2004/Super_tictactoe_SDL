@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.27)
 project(Super_Tictactoe)
 
 # SDL configuration
-find_package(SDL2 REQUIRED)
 INCLUDE(FindPkgConfig)
 PKG_SEARCH_MODULE(SDL2 REQUIRED sdl2)
 PKG_SEARCH_MODULE(SDL2IMAGE REQUIRED SDL2_image>=2.0.0)
