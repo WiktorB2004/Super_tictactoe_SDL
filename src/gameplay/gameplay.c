@@ -75,7 +75,7 @@ void check_game(Game *game, Player turn)
                 board->moves_count++;
                 break;
             case DRAW:
-                board->value[i][j] = DRAW;
+                board->value[i][j] = DRAW_P;
                 board->moves_count++;
                 break;
             case IN_PROGRESS:
