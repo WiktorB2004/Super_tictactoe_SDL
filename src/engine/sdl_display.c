@@ -397,7 +397,7 @@ bool init_sdl(Sdl_Data **sdl_data_ptr)
 		return 0;
 	}
 
-	sdl_data->renderer = SDL_CreateRenderer(sdl_data->window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	sdl_data->renderer = SDL_CreateRenderer(sdl_data->window, -1, SDL_RENDERER_SOFTWARE | SDL_RENDERER_PRESENTVSYNC);
 	if (sdl_data->renderer == NULL)
 	{
 		fprintf(stderr, "Unable to create renderer: %s\n", SDL_GetError());
@@ -406,7 +406,6 @@ bool init_sdl(Sdl_Data **sdl_data_ptr)
 
 	SDL_SetRenderDrawColor(sdl_data->renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(sdl_data->renderer);
-	SDL_RenderPresent(sdl_data->renderer);
 	SDL_RenderPresent(sdl_data->renderer);
 
 	int img_flags = IMG_INIT_PNG;
@@ -762,7 +761,6 @@ void highlight(Sdl_Data *sdl_data, SDL_Rect *rect)
     SDL_RenderFillRect(sdl_data->renderer, rect);
     SDL_SetRenderDrawBlendMode(sdl_data->renderer, blend_mode);
 	SDL_RenderPresent(sdl_data->renderer);
-	SDL_RenderPresent(sdl_data->renderer);
 }
 
 void render_cell(Sdl_Data *sdl_data, Cell *cell, int sign)
@@ -879,7 +877,6 @@ void render_menu(Sdl_Data *sdl_data)
 	}
 
 	SDL_RenderPresent(renderer);
-	SDL_RenderPresent(renderer);
 }
 
 void render_board(Sdl_Data *sdl_data)
@@ -955,7 +952,6 @@ void render_playfield(Sdl_Data *sdl_data)
 
 	render_board(sdl_data);
 	SDL_RenderPresent(renderer);
-	SDL_RenderPresent(renderer);
 }
 
 bool load_media(Sdl_Data *sdl_data)
@@ -1000,7 +996,6 @@ void handle_menu_event(Sdl_Data *sdl_data, SDL_Event event)
 			}
 		}
 		SDL_RenderPresent(sdl_data->renderer);
-		SDL_RenderPresent(sdl_data->renderer);
 	}
 	else if (event.type == SDL_MOUSEBUTTONUP)
 	{
@@ -1024,7 +1019,6 @@ void handle_ingame_event(Sdl_Data *sdl_data, SDL_Event event)
 			sdl_data->put_sign(sdl_data);
 			highlight(sdl_data, hitbox);
 			SDL_RenderPresent(sdl_data->renderer);
-			SDL_RenderPresent(sdl_data->renderer);
 			return;
 		}
 
@@ -1033,7 +1027,6 @@ void handle_ingame_event(Sdl_Data *sdl_data, SDL_Event event)
 		{
 			sdl_data->forfeit(sdl_data);
 			highlight(sdl_data, hitbox);
-			SDL_RenderPresent(sdl_data->renderer);
 			SDL_RenderPresent(sdl_data->renderer);
 			return;
 		}
@@ -1048,7 +1041,6 @@ void handle_ingame_event(Sdl_Data *sdl_data, SDL_Event event)
 					sdl_data->select_cell(sdl_data, x, y);
 					highlight(sdl_data, hitbox);
 					SDL_RenderPresent(sdl_data->renderer);
-					SDL_RenderPresent(sdl_data->renderer);
 					return;
 				}
 			}
@@ -1062,7 +1054,6 @@ void handle_ingame_event(Sdl_Data *sdl_data, SDL_Event event)
 				{
 					sdl_data->select_cell(sdl_data, x, y);
 					highlight(sdl_data, hitbox);
-					SDL_RenderPresent(sdl_data->renderer);
 					SDL_RenderPresent(sdl_data->renderer);
 					return;
 				}
@@ -1119,7 +1110,6 @@ void frame_events(Sdl_Data *sdl_data, bool *quit)
 			free_txt(&sdl_data->playfield->timer->content_txt);
 			sdl_data->playfield->timer->content_txt = load_from_text(sdl_data, &sdl_data->playfield->timer->content_rect, buffer);
 			render_object(sdl_data->renderer, sdl_data->playfield->timer, 0);
-			SDL_RenderPresent(sdl_data->renderer);
 			SDL_RenderPresent(sdl_data->renderer);
 		}
 	}
