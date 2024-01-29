@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['board_0',['Game Board',['../group__GameBoard.html',1,'']]]
+  ['constants_0',['Constants',['../group__Constants.html',1,'']]]
 ];

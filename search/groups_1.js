@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['constants_0',['Constants',['../group__Constants.html',1,'']]]
+  ['enumerations_0',['Enumerations',['../group__Enumerations.html',1,'']]]
 ];

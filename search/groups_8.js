@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['structures_0',['Structures',['../group__Structures.html',1,'']]]
+  ['to_20resources_0',['Paths to Resources',['../group__Paths.html',1,'']]]
 ];

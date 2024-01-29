@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['limits_0',['Game Limits',['../group__Limits.html',1,'']]]
+  ['paths_20to_20resources_0',['Paths to Resources',['../group__Paths.html',1,'']]]
 ];
