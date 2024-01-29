@@ -190,8 +190,8 @@ void f_select_cell(Sdl_Data *sdl_data, int x, int y)
 		return;
 	}
 
-	int select_x = (x - sdl_data->playfield->background->background_rect.x) / (board_size / (sdl_data->super_mode ? 9 : 3));
-	int select_y = (y - sdl_data->playfield->background->background_rect.y) / (board_size / (sdl_data->super_mode ? 9 : 3));
+	int select_x = (x - sdl_data->playfield->background->background_rect.x) / (board_size * (high_res ? 2 : 1) / (sdl_data->super_mode ? 9 : 3));
+	int select_y = (y - sdl_data->playfield->background->background_rect.y) / (board_size * (high_res ? 2 : 1) / (sdl_data->super_mode ? 9 : 3));
 	int select_board = select_x / 3 + select_y / 3 * 3;
 
 	if(sdl_data->game->board[select_board]->value[select_x % 3][select_y % 3] != EMPTY)
