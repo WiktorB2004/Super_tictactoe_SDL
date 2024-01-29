@@ -336,24 +336,6 @@ void set_pos(SDL_Rect *rect, int x, int y, int w, int h)
 
 bool init_sdl(Sdl_Data **sdl_data_ptr)
 {
-	SDL_DisplayMode dm;
-	int w, h;
-
-	if(SDL_GetDesktopDisplayMode(0, &dm) != 0)
-	{
-		high_res = 0;
-	}
-	else
-	{
-		w = dm.w;
-		h = dm.h;
-
-		if(w > window_width * 2 || h > window_height * 2)
-		{
-			high_res = 1;
-		}
-	}
-
 	*sdl_data_ptr = malloc(sizeof(Sdl_Data));
 	Sdl_Data *sdl_data = *sdl_data_ptr;
 	if (sdl_data == NULL)
@@ -371,6 +353,24 @@ bool init_sdl(Sdl_Data **sdl_data_ptr)
 	if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"))
 	{
 		printf("Warning: Linear texture filtering disabled\n");
+	}
+
+	SDL_DisplayMode dm;
+	int w, h;
+
+	if(SDL_GetDesktopDisplayMode(0, &dm) != 0)
+	{
+		high_res = 0;
+	}
+	else
+	{
+		w = dm.w;
+		h = dm.h;
+
+		if(w > window_width * 2 || h > window_height * 2)
+		{
+			high_res = 1;
+		}
 	}
 
 	sdl_data->window = SDL_CreateWindow("Super TicTacToe", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, window_width * (high_res ? 2 : 1), window_height * (high_res ? 2 : 1), SDL_WINDOW_SHOWN);
