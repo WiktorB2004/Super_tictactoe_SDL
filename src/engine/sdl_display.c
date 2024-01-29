@@ -867,7 +867,7 @@ void render_board(Sdl_Data *sdl_data)
 	Playfield *playfield = sdl_data->playfield;
 	SDL_Renderer *renderer = sdl_data->renderer;
 	int side = sdl_data->super_mode ? 9 : 3;
-	int size_bold = board_size / 3, size = board_size / 9, x, y;
+	int size_bold = board_size * (high_res ? 2 : 1) / 3, size = board_size * (high_res ? 2 : 1) / 9, x, y;
 	SDL_Rect *board_rect = &sdl_data->playfield->background->background_rect;
 	Board **board = sdl_data->game->board;
 
