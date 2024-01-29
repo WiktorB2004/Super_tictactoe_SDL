@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['bot_0',['bot',['../bot_8c.html#a665f1a2b7454a78632a4f1e7113dd9b0',1,'bot(Game *game, int czesc, int tryb):&#160;bot.c'],['../game__bot_8h.html#a665f1a2b7454a78632a4f1e7113dd9b0',1,'bot(Game *game, int czesc, int tryb):&#160;bot.c']]],
+  ['bot_0',['bot',['../bot_8c.html#a665f1a2b7454a78632a4f1e7113dd9b0',1,'bot(Game *game, int czesc, int tryb):&#160;bot.c'],['../gameplay_8c.html#a665f1a2b7454a78632a4f1e7113dd9b0',1,'bot(Game *game, int czesc, int tryb):&#160;bot.c'],['../game__bot_8h.html#a665f1a2b7454a78632a4f1e7113dd9b0',1,'bot(Game *game, int czesc, int tryb):&#160;bot.c']]],
   ['bot_5f3x3_5fhard_1',['bot_3x3_hard',['../bot_8c.html#ae1dbf83c7389fdde2ee281f1584a53a8',1,'bot_3x3_hard(Game *game, int czesc):&#160;bot.c'],['../game__bot_8h.html#ae1dbf83c7389fdde2ee281f1584a53a8',1,'bot_3x3_hard(Game *game, int czesc):&#160;bot.c']]],
   ['bot_5f3x3_5fimpopable_2',['bot_3x3_impopable',['../bot_8c.html#aa65b9361607a77ecaeaa3d435820bfcb',1,'bot_3x3_impopable(Game *game, int czesc):&#160;bot.c'],['../game__bot_8h.html#aa65b9361607a77ecaeaa3d435820bfcb',1,'bot_3x3_impopable(Game *game, int czesc):&#160;bot.c']]],
   ['bot_5f3x3_5fnormal_3',['bot_3x3_normal',['../bot_8c.html#ae87e02b0ebf288bd77979950da039197',1,'bot_3x3_normal(Game *game, int czesc):&#160;bot.c'],['../game__bot_8h.html#ae87e02b0ebf288bd77979950da039197',1,'bot_3x3_normal(Game *game, int czesc):&#160;bot.c']]],

@@ -15,7 +15,8 @@ var gameplay_8h =
     [ "Player", "gameplay_8h.html#a9c8780378078e51e7c9041cbac392db9", [
       [ "EMPTY", "gameplay_8h.html#a9c8780378078e51e7c9041cbac392db9a2f0d18fc0d0fa4a6cd92dc328501874d", null ],
       [ "X", "gameplay_8h.html#a9c8780378078e51e7c9041cbac392db9a58833a3110c570fb05130d40c365d1e4", null ],
-      [ "O", "gameplay_8h.html#a9c8780378078e51e7c9041cbac392db9af4b8b7698dfedf5562a7db2bdb07010a", null ]
+      [ "O", "gameplay_8h.html#a9c8780378078e51e7c9041cbac392db9af4b8b7698dfedf5562a7db2bdb07010a", null ],
+      [ "DRAW_P", "gameplay_8h.html#a9c8780378078e51e7c9041cbac392db9a7c5502097a69ad8cffdc301b3f821b6a", null ]
     ] ],
     [ "check_board", "gameplay_8h.html#a8298f793785cb4ccc07863e6b8cbcb93", null ],
     [ "check_draw", "gameplay_8h.html#a41531a9d28857e60e79aa7bea20b0854", null ],

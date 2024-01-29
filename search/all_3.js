@@ -7,5 +7,6 @@ var searchData=
   ['dodaj_5fsyna_4',['dodaj_syna',['../bot__utils_8c.html#ab90f3afeacd655c54a3d123e5997318f',1,'dodaj_syna(choosen_node *cn, char **plansza, char **nad_zwyciestwa):&#160;bot_utils.c'],['../bot__utils_8h.html#a526cd9b5ab3c9dce33ab7cadbb2151f0',1,'dodaj_syna(choosen_node *v, char **plansza, char **nad_zwyciestwa):&#160;bot_utils.c']]],
   ['double_5farrow_5',['double_arrow',['../structtextures.html#affbaf7c666fd29ca78e671282d3898f2',1,'textures']]],
   ['doxygen_20installed_6',['Generating documentation - you need to have Doxygen installed',['../index.html#autotoc_md2',1,'']]],
-  ['draw_7',['DRAW',['../gameplay_8h.html#a881b49e3802366255ad852f1c8624fd1a61f3c57b6943c85413975507aede78cd',1,'gameplay.h']]]
+  ['draw_7',['DRAW',['../gameplay_8h.html#a881b49e3802366255ad852f1c8624fd1a61f3c57b6943c85413975507aede78cd',1,'gameplay.h']]],
+  ['draw_5fp_8',['DRAW_P',['../gameplay_8h.html#a9c8780378078e51e7c9041cbac392db9a7c5502097a69ad8cffdc301b3f821b6a',1,'gameplay.h']]]
 ];
