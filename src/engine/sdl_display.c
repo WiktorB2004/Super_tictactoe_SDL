@@ -54,14 +54,19 @@ void f_play(Sdl_Data *sdl_data)
 	sdl_data->select_x = -1;
 	sdl_data->select_y = -1;
 	sdl_data->game->status = IN_PROGRESS;
+	sdl_data->game->moves_count = 0;
 
 	if(sdl_data->super_mode)
 	{
 		sdl_data->select_board = -1;
+		for (int i = 0; i < 9; i++) {
+			sdl_data->game->board[i]->moves_count = 0;
+		}
 	}
 	else
 	{
 		sdl_data->select_board = 0;
+		sdl_data->game->board[0]->moves_count = 0;
 	}
 
 	setup_cells(sdl_data);

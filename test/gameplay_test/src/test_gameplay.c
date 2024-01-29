@@ -131,7 +131,7 @@ void test_check_board(void)
     board.value[0][2] = X;
 
     Player turn = X;
-    check_board(&board, turn);
+    check_board(&board, turn, false);
     TEST_ASSERT_EQUAL(X_WON, board.status);
 
     board.status = IN_PROGRESS;
@@ -140,7 +140,7 @@ void test_check_board(void)
     board.value[2][0] = O;
 
     turn = O;
-    check_board(&board, turn);
+    check_board(&board, turn, false);
     TEST_ASSERT_EQUAL(O_WON, board.status);
 }
 

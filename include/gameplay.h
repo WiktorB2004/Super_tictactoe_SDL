@@ -1,5 +1,6 @@
 #ifndef GAME_H
 #define GAME_H
+#include <stdbool.h>
 #include "./sdl_display.h"
 
 typedef struct sdl_data Sdl_Data;
@@ -88,7 +89,7 @@ void modify_board(Board *board, int row, int column, Player player);
  * @param board The board to be checked.
  * @param turn The player in the game.
  */
-void check_board(Board *board, Player turn);
+void check_board(Board *board, Player turn, bool is_super);
 
 /*!
  * \brief This function perform checks on the game and manages its status.

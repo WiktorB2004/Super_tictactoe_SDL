@@ -32,24 +32,15 @@ void modify_board(Board *board, int row, int column, Player player)
     }
 }
 
-void check_board(Board *board, Player turn)
+void check_board(Board *board, Player turn, bool is_super)
 {
-    bool check_result = check_board_horizontally(board) || check_board_vertically(board) || check_board_diagonally(board);
-    if (check_result && board->status == IN_PROGRESS)
+    check_board_horizontally(board);
+    check_board_vertically(board);
+    check_board_diagonally(board);
+
+    if (board->moves_count == 9 && board->status == IN_PROGRESS)
     {
-        switch (turn)
-        {
-        case X:
-            board->status = X_WON;
-            break;
-        case O:
-            board->status = O_WON;
-            break;
-        default:
-            fprintf(stderr, "Incorrect turn data provided - couldnt check the board status.\n");
-            exit(EXIT_FAILURE);
-            break;
-        }
+        board->status = DRAW;
     }
 }
 
@@ -74,11 +65,15 @@ void check_game(Game *game, Player turn)
             {
             case X_WON:
                 board->value[i][j] = X;
+                board->moves_count++;
+                break;
             case O_WON:
                 board->value[i][j] = O;
+                board->moves_count++;
                 break;
             case DRAW:
                 board->value[i][j] = DRAW;
+                board->moves_count++;
                 break;
             case IN_PROGRESS:
                 board->value[i][j] = EMPTY;
@@ -91,8 +86,7 @@ void check_game(Game *game, Player turn)
             idx++;
         }
     }
-
-    check_board(board, turn);
+    check_board(board, turn, true);
     game->status = board->status;
     free(board);
 }
@@ -127,22 +121,23 @@ void gameplay(Sdl_Data *data)
     if (game->status == IN_PROGRESS)
     {
         modify_board(game->board[data->select_board], data->select_x, data->select_y, game->turn);
-        for (int board_id = 0; board_id < (game->board_size) * (game->board_size); board_id++)
+        if (game->board_size > 1)
         {
-            check_board(game->board[board_id], game->turn);
-            // check_draw(game->board[board_id]);
-        }
+            for (int board_id = 0; board_id < (game->board_size) * (game->board_size); board_id++)
+            {
+                check_board(game->board[board_id], game->turn, true);
+                // check_draw(game->board[board_id]);
+            }
 
-        if (game->board_size == 1)
-        {
-            game->status = game->board[0]->status;
-        }
-        else
-        {
             check_game(game, game->turn);
-            // check_game_draw(game);
+            game->moves_count++;
+        }
+        else if (game->board_size == 1)
+        {
+            check_board(game->board[0], game->turn, false);
+            game->status = game->board[0]->status;
+            game->moves_count = game->board[0]->moves_count;
         }
         game->turn = (game->turn == X) ? O : X;
-        game->moves_count++;
     }
 }
