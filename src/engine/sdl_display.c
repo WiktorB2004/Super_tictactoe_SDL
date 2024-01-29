@@ -68,7 +68,14 @@ void f_play(Sdl_Data *sdl_data)
 	setup_cells(sdl_data);
 	free_txt(&sdl_data->playfield->timer->content_txt);
 	free_txt(&sdl_data->playfield->forfeit->content_txt);
-	sprintf(buffer, "%d:%2d", sdl_data->game->round_time / 60, sdl_data->game->round_time % 60);
+	if(sdl_data->game->round_time % 60 == 0)
+	{
+		sprintf(buffer, "%d:00", sdl_data->game->round_time / 60);
+	}
+	else
+	{
+		sprintf(buffer, "%d:%2d", sdl_data->game->round_time / 60, sdl_data->game->round_time % 60);
+	}
 	sdl_data->playfield->timer->content_txt = load_from_text(sdl_data, &sdl_data->playfield->timer->content_rect, buffer);
 	sdl_data->playfield->forfeit->content_txt = load_from_text(sdl_data, &sdl_data->playfield->forfeit->content_rect, "FORFEIT");
 	set_timer(&sdl_data->game->timer, sdl_data->game->round_time);
@@ -399,6 +406,7 @@ bool init_sdl(Sdl_Data **sdl_data_ptr)
 
 	SDL_SetRenderDrawColor(sdl_data->renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(sdl_data->renderer);
+	SDL_RenderPresent(sdl_data->renderer);
 	SDL_RenderPresent(sdl_data->renderer);
 
 	int img_flags = IMG_INIT_PNG;
@@ -754,6 +762,7 @@ void highlight(Sdl_Data *sdl_data, SDL_Rect *rect)
     SDL_RenderFillRect(sdl_data->renderer, rect);
     SDL_SetRenderDrawBlendMode(sdl_data->renderer, blend_mode);
 	SDL_RenderPresent(sdl_data->renderer);
+	SDL_RenderPresent(sdl_data->renderer);
 }
 
 void render_cell(Sdl_Data *sdl_data, Cell *cell, int sign)
@@ -870,6 +879,7 @@ void render_menu(Sdl_Data *sdl_data)
 	}
 
 	SDL_RenderPresent(renderer);
+	SDL_RenderPresent(renderer);
 }
 
 void render_board(Sdl_Data *sdl_data)
@@ -945,6 +955,7 @@ void render_playfield(Sdl_Data *sdl_data)
 
 	render_board(sdl_data);
 	SDL_RenderPresent(renderer);
+	SDL_RenderPresent(renderer);
 }
 
 bool load_media(Sdl_Data *sdl_data)
@@ -989,6 +1000,7 @@ void handle_menu_event(Sdl_Data *sdl_data, SDL_Event event)
 			}
 		}
 		SDL_RenderPresent(sdl_data->renderer);
+		SDL_RenderPresent(sdl_data->renderer);
 	}
 	else if (event.type == SDL_MOUSEBUTTONUP)
 	{
@@ -1012,6 +1024,7 @@ void handle_ingame_event(Sdl_Data *sdl_data, SDL_Event event)
 			sdl_data->put_sign(sdl_data);
 			highlight(sdl_data, hitbox);
 			SDL_RenderPresent(sdl_data->renderer);
+			SDL_RenderPresent(sdl_data->renderer);
 			return;
 		}
 
@@ -1020,6 +1033,7 @@ void handle_ingame_event(Sdl_Data *sdl_data, SDL_Event event)
 		{
 			sdl_data->forfeit(sdl_data);
 			highlight(sdl_data, hitbox);
+			SDL_RenderPresent(sdl_data->renderer);
 			SDL_RenderPresent(sdl_data->renderer);
 			return;
 		}
@@ -1034,6 +1048,7 @@ void handle_ingame_event(Sdl_Data *sdl_data, SDL_Event event)
 					sdl_data->select_cell(sdl_data, x, y);
 					highlight(sdl_data, hitbox);
 					SDL_RenderPresent(sdl_data->renderer);
+					SDL_RenderPresent(sdl_data->renderer);
 					return;
 				}
 			}
@@ -1047,6 +1062,7 @@ void handle_ingame_event(Sdl_Data *sdl_data, SDL_Event event)
 				{
 					sdl_data->select_cell(sdl_data, x, y);
 					highlight(sdl_data, hitbox);
+					SDL_RenderPresent(sdl_data->renderer);
 					SDL_RenderPresent(sdl_data->renderer);
 					return;
 				}
@@ -1092,10 +1108,18 @@ void frame_events(Sdl_Data *sdl_data, bool *quit)
 		else
 		{
 			char buffer[10];
-			sprintf(buffer, "%d:%2d", s_left / 60, s_left % 60);
+			if(s_left % 60 == 0)
+			{
+				sprintf(buffer, "%d:00", s_left / 60);
+			}
+			else
+			{
+				sprintf(buffer, "%d:%2d", s_left / 60, s_left % 60);
+			}
 			free_txt(&sdl_data->playfield->timer->content_txt);
 			sdl_data->playfield->timer->content_txt = load_from_text(sdl_data, &sdl_data->playfield->timer->content_rect, buffer);
 			render_object(sdl_data->renderer, sdl_data->playfield->timer, 0);
+			SDL_RenderPresent(sdl_data->renderer);
 			SDL_RenderPresent(sdl_data->renderer);
 		}
 	}
