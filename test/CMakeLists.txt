@@ -38,6 +38,7 @@ include_directories(${TEST_DIR}/bot_test/include)
 # )
 set(GAMEPLAY_TEST_SOURCES
     ${UTILS_DIR}/gameplay_utils.c
+    ${UTILS_DIR}/bot_utils.c
     ${SOURCE_DIR}/gameplay/gameplay.c
     ${SOURCE_DIR}/game_bot/bot.c
     ${TEST_DIR}/gameplay_test/src/test_gameplay.c
