@@ -37,8 +37,8 @@ include_directories(${TEST_DIR}/bot_test/include)
 # ${TEST_DIR}/engine_test/engine_test.c
 # )
 set(GAMEPLAY_TEST_SOURCES
-    ${UTILS_DIR}/gameplay_utils.c
     ${UTILS_DIR}/bot_utils.c
+    ${UTILS_DIR}/gameplay_utils.c
     ${SOURCE_DIR}/gameplay/gameplay.c
     ${SOURCE_DIR}/game_bot/bot.c
     ${TEST_DIR}/gameplay_test/src/test_gameplay.c
@@ -107,6 +107,7 @@ add_executable(test_bot ${BOT_TEST_SOURCES})
 # target_link_libraries(test_engine PRIVATE m)
 target_link_libraries(test_gameplay PRIVATE unity)
 target_link_libraries(test_gameplay PRIVATE m)
+target_link_libraries(test_gameplay PUBLIC pthread)
 
 target_link_libraries(test_bot PRIVATE unity)
 target_link_libraries(test_bot PRIVATE m)
