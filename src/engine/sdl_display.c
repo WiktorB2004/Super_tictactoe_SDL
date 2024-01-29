@@ -1001,6 +1001,7 @@ void handle_ingame_event(Sdl_Data *sdl_data, SDL_Event event)
 		{
 			sdl_data->put_sign(sdl_data);
 			highlight(sdl_data, hitbox);
+			SDL_RenderPresent(sdl_data->renderer);
 			return;
 		}
 
@@ -1009,6 +1010,7 @@ void handle_ingame_event(Sdl_Data *sdl_data, SDL_Event event)
 		{
 			sdl_data->forfeit(sdl_data);
 			highlight(sdl_data, hitbox);
+			SDL_RenderPresent(sdl_data->renderer);
 			return;
 		}
 
@@ -1021,6 +1023,7 @@ void handle_ingame_event(Sdl_Data *sdl_data, SDL_Event event)
 				{
 					sdl_data->select_cell(sdl_data, x, y);
 					highlight(sdl_data, hitbox);
+					SDL_RenderPresent(sdl_data->renderer);
 					return;
 				}
 			}
@@ -1034,6 +1037,7 @@ void handle_ingame_event(Sdl_Data *sdl_data, SDL_Event event)
 				{
 					sdl_data->select_cell(sdl_data, x, y);
 					highlight(sdl_data, hitbox);
+					SDL_RenderPresent(sdl_data->renderer);
 					return;
 				}
 			}
