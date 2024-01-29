@@ -917,8 +917,8 @@ void render_board(Sdl_Data *sdl_data)
 			}
 			x = board_rect->x;
 			y = board_rect->y;
-			SDL_RenderDrawLine(sdl_data->renderer, x + size * i, y, x + size * i, y + board_size);
-			SDL_RenderDrawLine(sdl_data->renderer, x, y + size * i, x + board_size, y + size * i);
+			SDL_RenderDrawLine(sdl_data->renderer, x + size * i, y, x + size * i, y + board_size * (high_res ? 2 : 1));
+			SDL_RenderDrawLine(sdl_data->renderer, x, y + size * i, x + board_size * (high_res ? 2 : 1), y + size * i);
 		}
 	}
 
@@ -933,8 +933,8 @@ void render_board(Sdl_Data *sdl_data)
 	{
 		x = board_rect->x;
 		y = board_rect->y;
-		SDL_RenderDrawLine(sdl_data->renderer, x + size_bold * i, y, x + size_bold * i, y + board_size);
-		SDL_RenderDrawLine(sdl_data->renderer, x, y + size_bold * i, x + board_size, y + size_bold * i);
+		SDL_RenderDrawLine(sdl_data->renderer, x + size_bold * i, y, x + size_bold * i, y + board_size * (high_res ? 2 : 1));
+		SDL_RenderDrawLine(sdl_data->renderer, x, y + size_bold * i, x + board_size * (high_res ? 2 : 1), y + size_bold * i);
 	}
 }
 
