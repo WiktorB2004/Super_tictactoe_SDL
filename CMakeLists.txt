@@ -21,7 +21,7 @@ set(OBJ_DIR ${CMAKE_CURRENT_SOURCE_DIR}/obj)
 # Source files
 set(SOURCES
     ${UTILS_DIR}/timer.c
-    ${UTILS_DIR}/gameplay_utils.c   
+    ${UTILS_DIR}/gameplay_utils.c
     ${UTILS_DIR}/bot_utils.c
     ${UTILS_DIR}/engine_utils.c
     ${UTILS_DIR}/host_utils.c
@@ -29,7 +29,6 @@ set(SOURCES
     ${SOURCE_DIR}/engine/engine.c
     ${SOURCE_DIR}/engine/sdl_display.c
     ${SOURCE_DIR}/game_bot/bot.c
-    ${SOURCE_DIR}/game_bot/generate_move.c
     ${SOURCE_DIR}/game_host/game_hosting.c
     ${SOURCE_DIR}/main.c
 )
@@ -48,15 +47,16 @@ set_target_properties(supertictactoe PROPERTIES
 )
 
 # Testing
-if (NOT DEFINED RELEASE_BUILD) 
+if(NOT DEFINED RELEASE_BUILD)
     enable_testing()
     add_subdirectory(${TEST_DIR})
 endif()
 
 # Link math.h
 target_link_libraries(supertictactoe PRIVATE m)
+
 # Link pthreads.h
 target_link_libraries(supertictactoe PUBLIC pthread)
+
 # Link SDL2
 target_link_libraries(supertictactoe PUBLIC ${SDL2_LIBRARIES} ${SDL2IMAGE_LIBRARIES} ${SDL2TTF_LIBRARIES})
-

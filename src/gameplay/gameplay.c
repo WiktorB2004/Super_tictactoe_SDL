@@ -4,6 +4,9 @@
 #include "../../include/gameplay.h"
 #include "../../include/sdl_display.h"
 #include "../../include/utils/gameplay_utils.h"
+#include "../../include/game_bot.h"
+
+int bot(Game *game, int czesc, int tryb);
 
 void modify_board(Board *board, int row, int column, Player player)
 {
@@ -72,7 +75,7 @@ void check_game(Game *game, Player turn)
                 board->moves_count++;
                 break;
             case DRAW:
-                board->value[i][j] = DRAW;
+                board->value[i][j] = DRAW_P;
                 board->moves_count++;
                 break;
             case IN_PROGRESS:
@@ -120,7 +123,32 @@ void gameplay(Sdl_Data *data)
     Game *game = data->game;
     if (game->status == IN_PROGRESS)
     {
-        modify_board(game->board[data->select_board], data->select_x, data->select_y, game->turn);
+        if(game->bot_turn)
+        {
+            int board_id;
+
+            if(data->super_mode)
+            {
+                board_id = bot(game, data->select_board, data->bot_difficulty + 3);
+                data->select_board = game->board[board_id]->status == IN_PROGRESS ? board_id : -1;
+            }
+            else
+            {
+                board_id = bot(game, 0, 0);
+            }
+
+            game->bot_turn = 0;
+        }   
+        else
+        {
+            modify_board(game->board[data->select_board], data->select_x, data->select_y, game->turn);
+
+            if(!data->on_lan)
+            {
+                game->bot_turn = 1;
+            }
+        }
+        
         if (game->board_size > 1)
         {
             for (int board_id = 0; board_id < (game->board_size) * (game->board_size); board_id++)

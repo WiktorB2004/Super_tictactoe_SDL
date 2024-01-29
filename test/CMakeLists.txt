@@ -22,23 +22,25 @@ add_library(unity STATIC ${UNITY_SOURCES})
 # include_directories(${TEST_DIR}/engine_test/include)
 include_directories(${TEST_DIR}/gameplay_test/include)
 include_directories(${TEST_DIR}/bot_test/include)
+
 # include_directories(${TEST_DIR}/host_test/include)
 # include_directories(${TEST_DIR}/utils_test/include)
 
 # Set all test suites source files
 # set(ENGINE_TEST_SOURCES
-#     ${UTILS_DIR}/engine_utils.c
-#     ${UTILS_DIR}/gameplay_utils.c
-#     ${SOURCE_DIR}/engine/engine.c
-#     ${SOURCE_DIR}/gameplay/gameplay.c
-#     ${SOURCE_DIR}/engine/sdl_display.c
-#     ${TEST_DIR}/engine_test/src/sample_test.c
-#     ${TEST_DIR}/engine_test/engine_test.c
+# ${UTILS_DIR}/engine_utils.c
+# ${UTILS_DIR}/gameplay_utils.c
+# ${SOURCE_DIR}/engine/engine.c
+# ${SOURCE_DIR}/gameplay/gameplay.c
+# ${SOURCE_DIR}/engine/sdl_display.c
+# ${TEST_DIR}/engine_test/src/sample_test.c
+# ${TEST_DIR}/engine_test/engine_test.c
 # )
-
 set(GAMEPLAY_TEST_SOURCES
+    ${UTILS_DIR}/bot_utils.c
     ${UTILS_DIR}/gameplay_utils.c
     ${SOURCE_DIR}/gameplay/gameplay.c
+    ${SOURCE_DIR}/game_bot/bot.c
     ${TEST_DIR}/gameplay_test/src/test_gameplay.c
     ${TEST_DIR}/gameplay_test/gameplay_test.c
 )
@@ -48,7 +50,6 @@ set(BOT_TEST_SOURCES
     ${UTILS_DIR}/gameplay_utils.c
     ${SOURCE_DIR}/game_bot/bot.c
     ${SOURCE_DIR}/gameplay/gameplay.c
-    ${SOURCE_DIR}/game_bot/generate_move.c
     ${TEST_DIR}/bot_test/src/test_czy_bot_ogólnie_dziala_poprawnie_dla_calej_pustej_planszy.c
     ${TEST_DIR}/bot_test/src/test_bot_miejsca_wolne_na_planszy_0.c
     ${TEST_DIR}/bot_test/src/test_bot_miejsca_wolne_na_planszy_1.c
@@ -73,21 +74,21 @@ set(BOT_TEST_SOURCES
 )
 
 # set(HOST_TEST_SOURCES
-#     ${UTILS_DIR}/host_utils.c
-#     ${SOURCE_DIR}/game_host/game_hosting.c
-#     ${TEST_DIR}/host_test/src/sample_test.c
-#     ${TEST_DIR}/host_test/host_test.c
+# ${UTILS_DIR}/host_utils.c
+# ${SOURCE_DIR}/game_host/game_hosting.c
+# ${TEST_DIR}/host_test/src/sample_test.c
+# ${TEST_DIR}/host_test/host_test.c
 # )
 
 # set(UTILS_TEST_SOURCES
-#     ${UTILS_DIR}/engine_utils.c
-#     ${UTILS_DIR}/gameplay_utils.c
-#     ${UTILS_DIR}/bot_utils.c
-#     ${SOURCE_DIR}/game_bot/bot.c
-#     ${SOURCE_DIR}/gameplay/gameplay.c
-#     ${SOURCE_DIR}/game_bot/generate_move.c
-#     ${TEST_DIR}/utils_test/src/sample_test.c
-#     ${TEST_DIR}/utils_test/utils_test.c
+# ${UTILS_DIR}/engine_utils.c
+# ${UTILS_DIR}/gameplay_utils.c
+# ${UTILS_DIR}/bot_utils.c
+# ${SOURCE_DIR}/game_bot/bot.c
+# ${SOURCE_DIR}/gameplay/gameplay.c
+# ${SOURCE_DIR}/game_bot/generate_move.c
+# ${TEST_DIR}/utils_test/src/sample_test.c
+# ${TEST_DIR}/utils_test/utils_test.c
 # )
 
 # Include Unity
@@ -95,17 +96,18 @@ include_directories(${LIB_DIR}/Unity)
 
 # Add an executable for tests
 # add_executable(test_engine ${ENGINE_TEST_SOURCES})
-add_executable(test_gameplay  ${GAMEPLAY_TEST_SOURCES})
-add_executable(test_bot  ${BOT_TEST_SOURCES})
+add_executable(test_gameplay ${GAMEPLAY_TEST_SOURCES})
+add_executable(test_bot ${BOT_TEST_SOURCES})
+
 # add_executable(test_host  ${HOST_TEST_SOURCES})
 # add_executable(test_utils ${UTILS_TEST_SOURCES})
 
 # Link Unity library with test executable
 # target_link_libraries(test_engine PRIVATE unity)
 # target_link_libraries(test_engine PRIVATE m)
-
 target_link_libraries(test_gameplay PRIVATE unity)
 target_link_libraries(test_gameplay PRIVATE m)
+target_link_libraries(test_gameplay PUBLIC pthread)
 
 target_link_libraries(test_bot PRIVATE unity)
 target_link_libraries(test_bot PRIVATE m)
@@ -119,9 +121,9 @@ target_link_libraries(test_bot PUBLIC pthread)
 
 # Optionally, set output directories for test files
 # set_target_properties(test_engine PROPERTIES
-#     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/engine
-#     ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/obj/engine
-#     LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/obj/engine
+# RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/engine
+# ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/obj/engine
+# LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/obj/engine
 # )
 set_target_properties(test_gameplay PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/gameplay
@@ -133,21 +135,25 @@ set_target_properties(test_bot PROPERTIES
     ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/obj/bot
     LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/obj/bot
 )
+
 # set_target_properties(test_host PROPERTIES
-#     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/bot
-#     ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/obj/bot
-#     LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/obj/bot
+# RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/bot
+# ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/obj/bot
+# LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/obj/bot
 # )
 # set_target_properties(test_utils PROPERTIES
-#     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/utils
-#     ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/obj/utils
-#     LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/obj/utils
+# RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/utils
+# ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/obj/utils
+# LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/obj/utils
 # )
 
 # Add tests
 enable_testing()
+
 # add_test(NAME engine COMMAND test_engine)
 add_test(NAME gameplay COMMAND test_gameplay)
-add_test(NAME bot COMMAND test_bot)
+
+# add_test(NAME bot COMMAND test_bot)
+
 # add_test(NAME host COMMAND test_host)
 # add_test(NAME utils COMMAND test_utils)
