@@ -63,6 +63,18 @@ int bot(Game *game, int czesc, int tryb)
         exit(EXIT_FAILURE);
     }
 
+    if(czesc == -1)
+    {
+        for(int i = 0; i < 9; i++)
+        {
+            if(game->board[i]->status == IN_PROGRESS)
+            {
+                czesc = i;
+                break;
+            }
+        }
+    }
+
     int ans = (*boty[tryb])(game, czesc);
 
     // deaktywacja mutexa na malloca
@@ -124,9 +136,9 @@ int make_mcts(Game *game, int czesc)
     for (int i = 0; i < 9; i++)
     {
         char wynik = game->board[i]->status;
-        if (wynik == 1)
+        if (wynik == X_WON)
             nad_zywciestwa[i / 3][i % 3] = 'X';
-        else if (wynik == 2)
+        else if (wynik == O_WON)
             nad_zywciestwa[i / 3][i % 3] = 'O';
         else
             nad_zywciestwa[i / 3][i % 3] = ' ';
@@ -140,9 +152,9 @@ int make_mcts(Game *game, int czesc)
             for (int j = 0; j < 3; j++)
             {
                 int w = game->board[c]->value[i][j];
-                if (w == 0)
+                if (w == O)
                     plansza[p.x + i][p.y + j] = 'O';
-                else if (w == 1)
+                else if (w == X)
                     plansza[p.x + i][p.y + j] = 'X';
                 else
                     plansza[p.x + i][p.y + j] = ' ';
@@ -161,6 +173,7 @@ int make_mcts(Game *game, int czesc)
 
     if (moge == 0)
     {
+        printf("niemoge xd\n");
         // nie mam jak dokonać ruchu, zwracam -1
         deallocate(plansza, 9);
         deallocate(nad_zywciestwa, 3);
@@ -243,7 +256,7 @@ int make_mcts(Game *game, int czesc)
     // dopisywanie zmiany
     modify_board(game->board[znajdz_czesc(ruch)], ruch.x % 3, ruch.y % 3, game->turn);
     // game -> board[znajdz_czesc(ruch)] -> value[ruch.x % 3][ruch.y % 3] = gracz;
-    return ruch.czesc;
+    return (ruch.x % 3 + ruch.y % 3 * 3);
 }
 
 int bot_9x9_normal(Game *game, int czesc)

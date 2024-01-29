@@ -11,12 +11,13 @@ void render_playfield(Sdl_Data *sdl_data);
 void free_txt(SDL_Texture **texture);
 SDL_Texture *load_from_text(Sdl_Data *sdl_data, SDL_Rect *content_rect, const char *text);
 
+static const int buffer_size = 10;
 static bool high_res = 0;
 
 void stop_game(Sdl_Data *sdl_data)
 {
 	Object *timer = sdl_data->playfield->timer;
-	char buffer[7];
+	char buffer[buffer_size];
 
 	switch(sdl_data->game->status)
 	{
@@ -39,6 +40,7 @@ void stop_game(Sdl_Data *sdl_data)
 
 	sdl_data->select_x = -1;
 	sdl_data->select_y = -1;
+	sdl_data->select_board = -1;
 	render_playfield(sdl_data);
 }
 
@@ -51,7 +53,8 @@ void f_mode(Sdl_Data *sdl_data)
 
 void f_play(Sdl_Data *sdl_data)
 {
-	char buffer[10];
+	char buffer[buffer_size];
+	sdl_data->game->bot_turn = 0;
 	sdl_data->select_x = -1;
 	sdl_data->select_y = -1;
 	sdl_data->game->status = IN_PROGRESS;
@@ -90,16 +93,27 @@ void f_play(Sdl_Data *sdl_data)
 }
 void f_add_id(Sdl_Data *sdl_data)
 {
-	char buffer[max_id / 10 + 2];
+	char buffer[buffer_size];
 	if (sdl_data->on_lan)
 	{
 		sdl_data->game_id = (sdl_data->game_id + 1) % max_id;
-		sprintf(buffer, "%d", sdl_data->game_id);
+		sdl_data->game->turn = sdl_data->game->turn == X ? O : X;
+		sprintf(buffer, "START: %c", sdl_data->game->turn == X ? 'X' : 'O');
 	}
 	else
 	{
 		sdl_data->bot_difficulty = (sdl_data->bot_difficulty + 1) % max_diff;
-		sprintf(buffer, "%d", sdl_data->bot_difficulty);
+		switch(sdl_data->bot_difficulty)
+		{
+			case 2:
+				sprintf(buffer, "HARD");
+				break;
+			case 1:
+				sprintf(buffer, "MEDIUM");
+				break;
+			default:
+				sprintf(buffer, "EASY");
+		}
 	}
 	free_txt(&sdl_data->menu->game_id->content_txt);
 	sdl_data->menu->game_id->content_txt = load_from_text(sdl_data, &sdl_data->menu->game_id->content_rect, buffer);
@@ -107,16 +121,27 @@ void f_add_id(Sdl_Data *sdl_data)
 }
 void f_sub_id(Sdl_Data *sdl_data)
 {
-	char buffer[max_id / 10 + 2];
+	char buffer[buffer_size];
 	if (sdl_data->on_lan)
 	{
 		sdl_data->game_id = (sdl_data->game_id - 1) % max_id < 0 ? max_id - 1 : (sdl_data->game_id - 1) % max_id;
-		sprintf(buffer, "%d", sdl_data->game_id);
+		sdl_data->game->turn = sdl_data->game->turn == X ? O : X;
+		sprintf(buffer, "START: %c", sdl_data->game->turn == X ? 'X' : 'O');
 	}
 	else
 	{
 		sdl_data->bot_difficulty = (sdl_data->bot_difficulty - 1) % max_diff < 0 ? max_diff - 1 : (sdl_data->bot_difficulty - 1) % max_diff;
-		sprintf(buffer, "%d", sdl_data->bot_difficulty);
+		switch(sdl_data->bot_difficulty)
+		{
+			case 2:
+				sprintf(buffer, "HARD");
+				break;
+			case 1:
+				sprintf(buffer, "MEDIUM");
+				break;
+			default:
+				sprintf(buffer, "EASY");
+		}
 	}
 	free_txt(&sdl_data->menu->game_id->content_txt);
 	sdl_data->menu->game_id->content_txt = load_from_text(sdl_data, &sdl_data->menu->game_id->content_rect, buffer);
@@ -124,9 +149,10 @@ void f_sub_id(Sdl_Data *sdl_data)
 }
 void f_add_mult_id(Sdl_Data *sdl_data)
 {
+	return;
 	if (!sdl_data->on_lan)
 		return;
-	char buffer[max_id / 10 + 2];
+	char buffer[buffer_size];
 	sdl_data->game_id = (sdl_data->game_id + 10) % max_id;
 	sprintf(buffer, "%d", sdl_data->game_id);
 	free_txt(&sdl_data->menu->game_id->content_txt);
@@ -135,9 +161,10 @@ void f_add_mult_id(Sdl_Data *sdl_data)
 }
 void f_sub_mult_id(Sdl_Data *sdl_data)
 {
+	return;
 	if (!sdl_data->on_lan)
 		return;
-	char buffer[max_id / 10 + 2];
+	char buffer[buffer_size];
 	sdl_data->game_id = (sdl_data->game_id - 10) % max_id < 0 ? max_id - 10 + sdl_data->game_id : (sdl_data->game_id - 10) % max_id;
 	sprintf(buffer, "%d", sdl_data->game_id);
 	free_txt(&sdl_data->menu->game_id->content_txt);
@@ -166,20 +193,30 @@ void f_prev_o(Sdl_Data *sdl_data)
 }
 void f_switch_online(Sdl_Data *sdl_data)
 {
-	char buffer[max_id / 10 + 2];
+	char buffer[buffer_size];
 	sdl_data->on_lan = sdl_data->on_lan ? 0 : 1;
 	free_txt(&sdl_data->menu->game_id->content_txt);
 	free_txt(&sdl_data->menu->buttons[switch_online]->content_txt);
 
 	if (sdl_data->on_lan)
 	{
-		sprintf(buffer, "%d", sdl_data->game_id);
+		sprintf(buffer, "START: %c", sdl_data->game->turn == X ? 'X' : 'O');
 		sdl_data->menu->game_id->content_txt = load_from_text(sdl_data, &sdl_data->menu->game_id->content_rect, buffer);
-		sdl_data->menu->buttons[switch_online]->content_txt = load_from_text(sdl_data, &sdl_data->menu->buttons[switch_online]->content_rect, "on LAN");
+		sdl_data->menu->buttons[switch_online]->content_txt = load_from_text(sdl_data, &sdl_data->menu->buttons[switch_online]->content_rect, "LOCAL");
 	}
 	else
 	{
-		sprintf(buffer, "%d", sdl_data->bot_difficulty);
+		switch(sdl_data->bot_difficulty)
+		{
+			case 2:
+				sprintf(buffer, "HARD");
+				break;
+			case 1:
+				sprintf(buffer, "MEDIUM");
+				break;
+			default:
+				sprintf(buffer, "EASY");
+		}
 		sdl_data->menu->game_id->content_txt = load_from_text(sdl_data, &sdl_data->menu->game_id->content_rect, buffer);
 		sdl_data->menu->buttons[switch_online]->content_txt = load_from_text(sdl_data, &sdl_data->menu->buttons[switch_online]->content_rect, "vs BOT");
 	}
@@ -241,6 +278,15 @@ void f_put_sign(Sdl_Data *sdl_data)
 		stop_game(sdl_data);
 	}
 
+	if(!sdl_data->on_lan)
+	{
+		gameplay(sdl_data);
+		if(sdl_data->game->status != IN_PROGRESS)
+		{
+			stop_game(sdl_data);
+		}
+	}
+
 	sdl_data->select_x = -1;
 	sdl_data->select_y = -1;
 	render_playfield(sdl_data);
@@ -258,14 +304,17 @@ void f_forfeit(Sdl_Data *sdl_data)
 		{
 			sdl_data->game->status = X_WON;
 		}
-
 		stop_game(sdl_data);
 
 		return;
 	}
 
+	char buffer[10];
 	sdl_data->in_game = 0;
 	reset_Game(sdl_data->game);
+	sprintf(buffer, "START: %c", sdl_data->game->turn == X ? 'X' : 'O');
+	free_txt(&sdl_data->menu->game_id->content_txt);
+	sdl_data->menu->game_id->content_txt = load_from_text(sdl_data, &sdl_data->menu->game_id->content_rect, buffer);
 	render_menu(sdl_data);
 }
 
@@ -551,7 +600,7 @@ bool init_menu(Sdl_Data *sdl_data)
 	set_pos(&menu->game_id->background_rect, (window_width - 256) / (high_res ? 1 : 2), 368 * mult, 256 * mult, 64 * mult);
 	menu->game_id->background_txt = textures->field_background;
 	menu->game_id->content_rect = menu->game_id->background_rect;
-	menu->game_id->content_txt = load_from_text(sdl_data, &menu->game_id->content_rect, "0");
+	menu->game_id->content_txt = load_from_text(sdl_data, &menu->game_id->content_rect, "EASY");
 
 	set_pos(&menu->sign_x->background_rect, (window_width - 128) / (high_res ? 1 : 2) - 250 * mult, 520 * mult, 128 * mult, 128 * mult);
 	menu->sign_x->content_rect = menu->sign_x->background_rect;
@@ -1103,7 +1152,7 @@ void frame_events(Sdl_Data *sdl_data, bool *quit)
 		}
 		else
 		{
-			char buffer[10];
+			char buffer[buffer_size];
 			if(s_left % 60 == 0)
 			{
 				sprintf(buffer, "%d:00", s_left / 60);

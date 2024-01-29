@@ -58,6 +58,7 @@ typedef struct
  */
 typedef struct Game
 {
+    bool bot_turn;      /**< Whether or not current turn is bot's*/
     int round_time;    /**< Max time for a round in seconds */
     Timer timer;       /**< The end value of a timer */
     Board **board;     /**< Pointer to the pointer of board - linear representation of NxN board */
