@@ -11,7 +11,7 @@ void render_playfield(Sdl_Data *sdl_data);
 void free_txt(SDL_Texture **texture);
 SDL_Texture *load_from_text(Sdl_Data *sdl_data, SDL_Rect *content_rect, const char *text);
 
-static const int buffer_size = 10;
+static const int buffer_size = 32;
 static bool high_res = 0;
 
 void stop_game(Sdl_Data *sdl_data)
