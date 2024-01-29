@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['check_5fboard_0',['check_board',['../gameplay_8c.html#aea84aaef057eac3b70e538333a2c5c3f',1,'check_board(Board *board, Player turn):&#160;gameplay.c'],['../gameplay_8h.html#aea84aaef057eac3b70e538333a2c5c3f',1,'check_board(Board *board, Player turn):&#160;gameplay.c']]],
+  ['check_5fboard_0',['check_board',['../gameplay_8c.html#a8298f793785cb4ccc07863e6b8cbcb93',1,'check_board(Board *board, Player turn, bool is_super):&#160;gameplay.c'],['../gameplay_8h.html#a8298f793785cb4ccc07863e6b8cbcb93',1,'check_board(Board *board, Player turn, bool is_super):&#160;gameplay.c']]],
   ['check_5fboard_5fdiagonally_1',['check_board_diagonally',['../gameplay__utils_8c.html#ac39ce2957c3e5681f5e0886e4b3e5e17',1,'check_board_diagonally(Board *board):&#160;gameplay_utils.c'],['../gameplay__utils_8h.html#ac39ce2957c3e5681f5e0886e4b3e5e17',1,'check_board_diagonally(Board *board):&#160;gameplay_utils.c']]],
   ['check_5fboard_5fhorizontally_2',['check_board_horizontally',['../gameplay__utils_8c.html#a6b6a15a62495aa0e300fc4c4016cc478',1,'check_board_horizontally(Board *board):&#160;gameplay_utils.c'],['../gameplay__utils_8h.html#a6b6a15a62495aa0e300fc4c4016cc478',1,'check_board_horizontally(Board *board):&#160;gameplay_utils.c']]],
   ['check_5fboard_5fvertically_3',['check_board_vertically',['../gameplay__utils_8c.html#af6b758b4261d8934c8a5ca173a80cc75',1,'check_board_vertically(Board *board):&#160;gameplay_utils.c'],['../gameplay__utils_8h.html#af6b758b4261d8934c8a5ca173a80cc75',1,'check_board_vertically(Board *board):&#160;gameplay_utils.c']]],

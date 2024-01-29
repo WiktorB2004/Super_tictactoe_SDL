@@ -109,9 +109,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ae149c393a1bd8cf384a266f53887598b" id="r_ae149c393a1bd8cf384a266f53887598b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae149c393a1bd8cf384a266f53887598b">modify_board</a> (<a class="el" href="structBoard.html">Board</a> *board, int row, int column, <a class="el" href="gameplay_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a> player)</td></tr>
 <tr class="memdesc:ae149c393a1bd8cf384a266f53887598b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function places the move in specified row/column.  <br /></td></tr>
 <tr class="separator:ae149c393a1bd8cf384a266f53887598b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea84aaef057eac3b70e538333a2c5c3f" id="r_aea84aaef057eac3b70e538333a2c5c3f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aea84aaef057eac3b70e538333a2c5c3f">check_board</a> (<a class="el" href="structBoard.html">Board</a> *board, <a class="el" href="gameplay_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a> turn)</td></tr>
-<tr class="memdesc:aea84aaef057eac3b70e538333a2c5c3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function perform checks on the single board and manages its status.  <br /></td></tr>
-<tr class="separator:aea84aaef057eac3b70e538333a2c5c3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8298f793785cb4ccc07863e6b8cbcb93" id="r_a8298f793785cb4ccc07863e6b8cbcb93"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8298f793785cb4ccc07863e6b8cbcb93">check_board</a> (<a class="el" href="structBoard.html">Board</a> *board, <a class="el" href="gameplay_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a> turn, bool is_super)</td></tr>
+<tr class="memdesc:a8298f793785cb4ccc07863e6b8cbcb93"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function perform checks on the single board and manages its status.  <br /></td></tr>
+<tr class="separator:a8298f793785cb4ccc07863e6b8cbcb93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41531a9d28857e60e79aa7bea20b0854" id="r_a41531a9d28857e60e79aa7bea20b0854"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a41531a9d28857e60e79aa7bea20b0854">check_draw</a> (<a class="el" href="structBoard.html">Board</a> *board)</td></tr>
 <tr class="memdesc:a41531a9d28857e60e79aa7bea20b0854"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function perform checks on the game and manages its status.  <br /></td></tr>
 <tr class="separator:a41531a9d28857e60e79aa7bea20b0854"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -125,8 +125,8 @@ Functions</h2></td></tr>
 <tr class="separator:afb6baac2381a024726739569d1dd3cbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="aea84aaef057eac3b70e538333a2c5c3f" name="aea84aaef057eac3b70e538333a2c5c3f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aea84aaef057eac3b70e538333a2c5c3f">&#9670;&#160;</a></span>check_board()</h2>
+<a id="a8298f793785cb4ccc07863e6b8cbcb93" name="a8298f793785cb4ccc07863e6b8cbcb93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8298f793785cb4ccc07863e6b8cbcb93">&#9670;&#160;</a></span>check_board()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -139,7 +139,12 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="gameplay_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a></td>          <td class="paramname"><span class="paramname"><em>turn</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="gameplay_8h.html#a9c8780378078e51e7c9041cbac392db9">Player</a></td>          <td class="paramname"><span class="paramname"><em>turn</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>is_super</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
