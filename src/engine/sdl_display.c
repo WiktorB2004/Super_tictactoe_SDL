@@ -927,6 +927,10 @@ void render_menu(Sdl_Data *sdl_data)
 
 	for (int i = 0; i < menu_buttons; i++)
 	{
+		if(i == sub_mult_id || i == add_mult_id)
+		{
+			continue;
+		}
 		render_button(renderer, menu->buttons[i], i == mode ? (int)sdl_data->super_mode + 1 : 0);
 	}
 
@@ -1038,6 +1042,10 @@ void handle_menu_event(Sdl_Data *sdl_data, SDL_Event event)
 
 		for (int i = 0; i < menu_buttons; i++)
 		{
+			if(i == sub_mult_id || i == add_mult_id)
+			{
+				continue;
+			}
 			hitbox = &menu->buttons[i]->background_rect;
 			if (x > hitbox->x && y > hitbox->y && x < hitbox->x + hitbox->w && y < hitbox->y + hitbox->h)
 			{
