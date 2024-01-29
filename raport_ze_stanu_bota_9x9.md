@@ -36,14 +36,14 @@ Wykresy pokazują wyniki dla bota nr_4 grającego z botem nr_3
 
 <table>
   <tr>
-    <td><img src="/wykresy/wykres_9.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_10.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_15.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_9.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_10.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_15.png" alt="wykres" width="550"/></td>
   </tr>
   <tr>
-    <td><img src="/wykresy/wykres_16.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_43.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_46.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_16.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_43.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_46.png" alt="wykres" width="550"/></td>
   </tr>
 </table>
 
@@ -53,17 +53,17 @@ Wykresy pokazują wyniki dla bota nr_4 grającego z botem nr_3
 
 <table>
   <tr>
-    <td><img src="/wykresy/wykres_0.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_6.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_13.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_0.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_6.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_13.png" alt="wykres" width="550"/></td>
   </tr>
   <tr>
-    <td><img src="/wykresy/wykres_22.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_31.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_37.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_22.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_31.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_37.png" alt="wykres" width="550"/></td>
   </tr>
   <tr>
-    <td><img src="/wykresy/wykres_40.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_40.png" alt="wykres" width="550"/></td>
   </tr>
 </table>
 
@@ -72,18 +72,18 @@ Wykresy pokazują wyniki dla bota nr_4 grającego z botem nr_3
 
 <table>
   <tr>
-    <td><img src="/wykresy/wykres_2.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_3.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_12.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_2.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_3.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_12.png" alt="wykres" width="550"/></td>
   </tr>
   <tr>
-    <td><img src="/wykresy/wykres_19.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_21.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_25.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_19.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_21.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_25.png" alt="wykres" width="550"/></td>
   </tr>
   <tr>
-    <td><img src="/wykresy/wykres_27.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_34.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_27.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_34.png" alt="wykres" width="550"/></td>
   </tr>
 </table>
 
@@ -92,12 +92,12 @@ Wykresy pokazują wyniki dla bota nr_4 grającego z botem nr_3
 
 <table>
   <tr>
-    <td><img src="/wykresy/wykres_1.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_4.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_7.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_1.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_4.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_7.png" alt="wykres" width="550"/></td>
   </tr>
   <tr>
-    <td><img src="/wykresy/wykres_8.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_8.png" alt="wykres" width="550"/></td>
   </tr>
 </table>
 
@@ -106,19 +106,19 @@ Wykresy pokazują wyniki dla bota nr_4 grającego z botem nr_3
 
 <table>
   <tr>
-    <td><img src="/wykresy/wykres_5.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_14.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_18.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_5.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_14.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_18.png" alt="wykres" width="550"/></td>
   </tr>
   <tr>
-    <td><img src="/wykresy/wykres_20.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_24.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_28.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_20.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_24.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_28.png" alt="wykres" width="550"/></td>
   </tr>
   <tr>
-    <td><img src="/wykresy/wykres_33.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_39.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_42.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_33.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_39.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_42.png" alt="wykres" width="550"/></td>
   </tr>
 </table>
 
@@ -127,14 +127,14 @@ Wykresy pokazują wyniki dla bota nr_4 grającego z botem nr_3
 
 <table>
   <tr>
-    <td><img src="/wykresy/wykres_11.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_23.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_30.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_11.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_23.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_30.png" alt="wykres" width="550"/></td>
   </tr>
   <tr>
-    <td><img src="/wykresy/wykres_36.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_41.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_45.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_36.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_41.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_45.png" alt="wykres" width="550"/></td>
   </tr>
 </table>
 
@@ -143,27 +143,27 @@ Wykresy pokazują wyniki dla bota nr_4 grającego z botem nr_3
 
 <table>
   <tr>
-    <td><img src="/wykresy/wykres_17.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_26.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_29.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_17.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_26.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_29.png" alt="wykres" width="550"/></td>
   </tr>
   <tr>
-    <td><img src="/wykresy/wykres_32.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_35.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_38.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_32.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_35.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_38.png" alt="wykres" width="550"/></td>
   </tr>
   <tr>
-    <td><img src="/wykresy/wykres_44.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_44.png" alt="wykres" width="550"/></td>
   </tr>
 </table>
 
 
 ##### Wygrane 70% > 
-![wykres](/wykresy/wykres_47.png)
+![wykres](/bot-charts/wykres_47.png)
 
 ### Analiza wykresów
 Podczas przeprowadzania testów okazało się że DIFF = 1 daje dobre wyniki, niestety takie ustawnienie powoduje, że czas działania bota jest o wiele większy. Bot króry wykonuje 500k iteracji i ma DIFF = 1 wykonuje 1 ruch 8s, taką sama ilosc czasu na wykonanie ruchu wykonuje bot który ma 7M iteracji i DIFF = 0. Mając dwa zarótno tak bardzo podobne i różne boty szkoda by było ich nie porównać. Porówanie tych dwuch botów na 50 testach:
-![wykres](/wykresy/wykresDIFF0vsDiFF1.png)
+![wykres](/bot-charts/wykresDIFF0vsDiFF1.png)
 
 Jak wynika z wykresu nie ma to znaczenia czy używamy bota z 7M iteracji i DIFF = 0, czy bota z 500k iteracji i DIFF = 1
 
@@ -173,24 +173,24 @@ Druga częć polegała na pojedynkach pomiędzy botem impopable a botem hard, ka
 
 <table>
   <tr>
-    <td><img src="/wykresy/wykres_v2_0.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_v2_1.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_v2_2.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_v2_0.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_v2_1.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_v2_2.png" alt="wykres" width="550"/></td>
   </tr>
   <tr>
-    <td><img src="/wykresy/wykres_v2_3.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_v2_4.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_v2_5.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_v2_3.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_v2_4.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_v2_5.png" alt="wykres" width="550"/></td>
   </tr>
   <tr>
-    <td><img src="/wykresy/wykres_v2_6.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_v2_7.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_v2_8.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_v2_6.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_v2_7.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_v2_8.png" alt="wykres" width="550"/></td>
   </tr>
   <tr>
-    <td><img src="/wykresy/wykres_v2_9.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_v2_10.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_v2_11.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_v2_9.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_v2_10.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_v2_11.png" alt="wykres" width="550"/></td>
   </tr>
 </table>
 
@@ -203,20 +203,20 @@ W tej części znów grały przeciwko sobie boty hard i impopable, jednak teraz 
 
 <table>
   <tr>
-    <td><img src="/wykresy/wykres_v3_0.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_v3_1.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_v3_0.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_v3_1.png" alt="wykres" width="550"/></td>
   </tr>
   <tr>
-    <td><img src="/wykresy/wykres_v3_2.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_v3_3.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_v3_2.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_v3_3.png" alt="wykres" width="550"/></td>
   </tr>
   <tr>
-    <td><img src="/wykresy/wykres_v3_4.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_v3_5.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_v3_4.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_v3_5.png" alt="wykres" width="550"/></td>
   </tr>
   <tr>
-    <td><img src="/wykresy/wykres_v3_6.png" alt="wykres" width="550"/></td>
-    <td><img src="/wykresy/wykres_v3_7.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_v3_6.png" alt="wykres" width="550"/></td>
+    <td><img src="/bot-charts/wykres_v3_7.png" alt="wykres" width="550"/></td>
   </tr>
 </table>
 
@@ -227,10 +227,10 @@ W tej części znów grały przeciwko sobie boty hard i impopable, jednak teraz 
 Najlepiej sobie poradził bot DIFF = 0, SQRT = 0.8, SELECT = 2, WINS = 2 są to ostateczne parametry dla bota. Testy jak sobie radzą inne boty dla tych paramatrów, każdy test zawiera 50 symulacji
 
 ##### random vs normal
-![wykres](/wykresy/wykresRandomNormal.png)
+![wykres](/bot-charts/wykresRandomNormal.png)
 
 ##### normal vs hard
-![wykres](/wykresy/wykresNormalHard.png)
+![wykres](/bot-charts/wykresNormalHard.png)
 
 ##### hard vs impopable
-![wykres](/wykresy/wykres_v3_4.png)
+![wykres](/bot-charts/wykres_v3_4.png)
