@@ -360,6 +360,11 @@ bool init_sdl(Sdl_Data **sdl_data_ptr)
 		printf("Warning: Vsync disabled\n");
 	}
 
+	if(!SDL_SetHint(SDL_HINT_VIDEO_DOUBLE_BUFFER, "1"))
+	{
+		printf("Warning: Double buffering disabled\n");
+	}
+
 	SDL_DisplayMode dm;
 	int w, h;
 
