@@ -11,6 +11,8 @@ void render_playfield(Sdl_Data *sdl_data);
 void free_txt(SDL_Texture **texture);
 SDL_Texture *load_from_text(Sdl_Data *sdl_data, SDL_Rect *content_rect, const char *text);
 
+static bool high_res = 0;
+
 void stop_game(Sdl_Data *sdl_data)
 {
 	Object *timer = sdl_data->playfield->timer;
@@ -37,8 +39,7 @@ void stop_game(Sdl_Data *sdl_data)
 
 	sdl_data->select_x = -1;
 	sdl_data->select_y = -1;
-	render_board(sdl_data);
-	SDL_RenderPresent(sdl_data->renderer);
+	render_playfield(sdl_data);
 }
 
 void f_mode(Sdl_Data *sdl_data)
@@ -72,13 +73,20 @@ void f_play(Sdl_Data *sdl_data)
 	setup_cells(sdl_data);
 	free_txt(&sdl_data->playfield->timer->content_txt);
 	free_txt(&sdl_data->playfield->forfeit->content_txt);
-	sprintf(buffer, "%d:%2d", sdl_data->game->round_time / 60, sdl_data->game->round_time % 60);
+	if(sdl_data->game->round_time % 60 == 0)
+	{
+		sprintf(buffer, "%d:00", sdl_data->game->round_time / 60);
+	}
+	else
+	{
+		sprintf(buffer, "%d:%2d", sdl_data->game->round_time / 60, sdl_data->game->round_time % 60);
+	}
 	sdl_data->playfield->timer->content_txt = load_from_text(sdl_data, &sdl_data->playfield->timer->content_rect, buffer);
 	sdl_data->playfield->forfeit->content_txt = load_from_text(sdl_data, &sdl_data->playfield->forfeit->content_rect, "FORFEIT");
-	render_playfield(sdl_data);
 	set_timer(&sdl_data->game->timer, sdl_data->game->round_time);
-	sdl_data->last_time = seconds_left(sdl_data->game->timer);
+	sdl_data->last_time = seconds_left(sdl_data->game->timer) + 1;
 	sdl_data->in_game = 1;
+	render_playfield(sdl_data);
 }
 void f_add_id(Sdl_Data *sdl_data)
 {
@@ -187,8 +195,8 @@ void f_select_cell(Sdl_Data *sdl_data, int x, int y)
 		return;
 	}
 
-	int select_x = (x - sdl_data->playfield->background->background_rect.x) / (board_size / (sdl_data->super_mode ? 9 : 3));
-	int select_y = (y - sdl_data->playfield->background->background_rect.y) / (board_size / (sdl_data->super_mode ? 9 : 3));
+	int select_x = (x - sdl_data->playfield->background->background_rect.x) / (board_size * (high_res ? 2 : 1) / (sdl_data->super_mode ? 9 : 3));
+	int select_y = (y - sdl_data->playfield->background->background_rect.y) / (board_size * (high_res ? 2 : 1) / (sdl_data->super_mode ? 9 : 3));
 	int select_board = select_x / 3 + select_y / 3 * 3;
 
 	if(sdl_data->game->board[select_board]->value[select_x % 3][select_y % 3] != EMPTY)
@@ -235,8 +243,7 @@ void f_put_sign(Sdl_Data *sdl_data)
 
 	sdl_data->select_x = -1;
 	sdl_data->select_y = -1;
-	render_board(sdl_data);
-	SDL_RenderPresent(sdl_data->renderer);
+	render_playfield(sdl_data);
 }
 
 void f_forfeit(Sdl_Data *sdl_data)
@@ -257,9 +264,9 @@ void f_forfeit(Sdl_Data *sdl_data)
 		return;
 	}
 
-	render_menu(sdl_data);
 	sdl_data->in_game = 0;
 	reset_Game(sdl_data->game);
+	render_menu(sdl_data);
 }
 
 void free_txt(SDL_Texture **texture)
@@ -343,31 +350,59 @@ bool init_sdl(Sdl_Data **sdl_data_ptr)
 {
 	*sdl_data_ptr = malloc(sizeof(Sdl_Data));
 	Sdl_Data *sdl_data = *sdl_data_ptr;
-	if (sdl_data == NULL)
+	if(sdl_data == NULL)
 	{
 		fprintf(stderr, "Unable to allocate memory\n");
 		return 0;
 	}
 
-	if (SDL_Init(SDL_INIT_VIDEO) < 0)
+	if(SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		fprintf(stderr, "Unable to initialize SDL: %s\n", SDL_GetError());
 		return 0;
 	}
 
-	if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"))
+	if(!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"))
 	{
 		printf("Warning: Linear texture filtering disabled\n");
 	}
 
-	sdl_data->window = SDL_CreateWindow("Super TicTacToe", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, window_width, window_height, SDL_WINDOW_SHOWN);
+	if(!SDL_SetHint(SDL_HINT_RENDER_VSYNC, "1"))
+	{
+		printf("Warning: Vsync disabled\n");
+	}
+
+	if(!SDL_SetHint(SDL_HINT_VIDEO_DOUBLE_BUFFER, "1"))
+	{
+		printf("Warning: Double buffering disabled\n");
+	}
+
+	SDL_DisplayMode dm;
+	int w, h;
+
+	if(SDL_GetDesktopDisplayMode(0, &dm) != 0)
+	{
+		high_res = 0;
+	}
+	else
+	{
+		w = dm.w;
+		h = dm.h;
+
+		if(w > window_width * 2 || h > window_height * 2)
+		{
+			high_res = 1;
+		}
+	}
+
+	sdl_data->window = SDL_CreateWindow("Super TicTacToe", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, window_width * (high_res ? 2 : 1), window_height * (high_res ? 2 : 1), SDL_WINDOW_SHOWN);
 	if (sdl_data->window == NULL)
 	{
 		fprintf(stderr, "Unable to create window: %s\n", SDL_GetError());
 		return 0;
 	}
 
-	sdl_data->renderer = SDL_CreateRenderer(sdl_data->window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	sdl_data->renderer = SDL_CreateRenderer(sdl_data->window, -1, SDL_RENDERER_SOFTWARE | SDL_RENDERER_PRESENTVSYNC);
 	if (sdl_data->renderer == NULL)
 	{
 		fprintf(stderr, "Unable to create renderer: %s\n", SDL_GetError());
@@ -506,22 +541,24 @@ bool init_menu(Sdl_Data *sdl_data)
 		return 0;
 	}
 
-	set_pos(&menu->logo->background_rect, (window_width - 512) / 2, 40, 512, 128);
+	int mult = high_res ? 2 : 1;
+
+	set_pos(&menu->logo->background_rect, (window_width - 512) / (high_res ? 1 : 2), 40 * mult, 512 * mult, 128 * mult);
 	menu->logo->content_rect = menu->logo->background_rect;
 	menu->logo->background_txt = NULL;
 	menu->logo->content_txt = textures->logo;
 
-	set_pos(&menu->game_id->background_rect, (window_width - 256) / 2, 368, 256, 64);
+	set_pos(&menu->game_id->background_rect, (window_width - 256) / (high_res ? 1 : 2), 368 * mult, 256 * mult, 64 * mult);
 	menu->game_id->background_txt = textures->field_background;
 	menu->game_id->content_rect = menu->game_id->background_rect;
 	menu->game_id->content_txt = load_from_text(sdl_data, &menu->game_id->content_rect, "0");
 
-	set_pos(&menu->sign_x->background_rect, (window_width - 128) / 2 - 250, 520, 128, 128);
+	set_pos(&menu->sign_x->background_rect, (window_width - 128) / (high_res ? 1 : 2) - 250 * mult, 520 * mult, 128 * mult, 128 * mult);
 	menu->sign_x->content_rect = menu->sign_x->background_rect;
 	menu->sign_x->background_txt = textures->field_background;
 	menu->sign_x->content_txt = textures->sign_x;
 
-	set_pos(&menu->sign_o->background_rect, (window_width - 128) / 2 + 250, 520, 128, 128);
+	set_pos(&menu->sign_o->background_rect, (window_width - 128) / (high_res ? 1 : 2) + 250 * mult, 520 * mult, 128 * mult, 128 * mult);
 	menu->sign_o->content_rect = menu->sign_o->background_rect;
 	menu->sign_o->background_txt = textures->field_background;
 	menu->sign_o->content_txt = textures->sign_o;
@@ -547,61 +584,61 @@ bool init_menu(Sdl_Data *sdl_data)
 		buttons[i]->background_txt = textures->field_background;
 	}
 
-	set_pos(&buttons[mode]->background_rect, (window_width - 128) / 2, 150, 128, 128);
+	set_pos(&buttons[mode]->background_rect, (window_width - 128) / (high_res ? 1 : 2), 150 * mult, 128 * mult, 128 * mult);
 	buttons[mode]->content_rect = buttons[mode]->background_rect;
 	buttons[mode]->content_txt = textures->modes;
 	menu_functions[mode] = f_mode;
 
-	set_pos(&buttons[play]->background_rect, (window_width - 256) / 2, 300, 256, 64);
+	set_pos(&buttons[play]->background_rect, (window_width - 256) / (high_res ? 1 : 2), 300 * mult, 256 * mult, 64 * mult);
 	buttons[play]->content_rect = buttons[play]->background_rect;
 	buttons[play]->content_txt = load_from_text(sdl_data, &buttons[play]->content_rect, "PLAY");
 	menu_functions[play] = f_play;
 
-	set_pos(&buttons[add_id]->background_rect, (window_width - 64) / 2 + 180, 368, 64, 64);
+	set_pos(&buttons[add_id]->background_rect, (window_width - 64) / (high_res ? 1 : 2) + 180 * mult, 368 * mult, 64 * mult, 64 * mult);
 	buttons[add_id]->content_rect = buttons[add_id]->background_rect;
 	buttons[add_id]->content_txt = textures->single_arrow;
 	menu_functions[add_id] = f_add_id;
 
-	set_pos(&buttons[sub_id]->background_rect, (window_width - 64) / 2 - 180, 368, 64, 64);
+	set_pos(&buttons[sub_id]->background_rect, (window_width - 64) / (high_res ? 1 : 2) - 180 * mult, 368 * mult, 64 * mult, 64 * mult);
 	buttons[sub_id]->flip = SDL_FLIP_HORIZONTAL;
 	buttons[sub_id]->content_rect = buttons[sub_id]->background_rect;
 	buttons[sub_id]->content_txt = textures->single_arrow;
 	menu_functions[sub_id] = f_sub_id;
 
-	set_pos(&buttons[add_mult_id]->background_rect, (window_width - 64) / 2 + 260, 368, 64, 64);
+	set_pos(&buttons[add_mult_id]->background_rect, (window_width - 64) / (high_res ? 1 : 2) + 260 * mult, 368 * mult, 64 * mult, 64 * mult);
 	buttons[add_mult_id]->content_rect = buttons[add_mult_id]->background_rect;
 	buttons[add_mult_id]->content_txt = textures->double_arrow;
 	menu_functions[add_mult_id] = f_add_mult_id;
 
-	set_pos(&buttons[sub_mult_id]->background_rect, (window_width - 64) / 2 - 260, 368, 64, 64);
+	set_pos(&buttons[sub_mult_id]->background_rect, (window_width - 64) / (high_res ? 1 : 2) - 260 * mult, 368 * mult, 64 * mult, 64 * mult);
 	buttons[sub_mult_id]->flip = SDL_FLIP_HORIZONTAL;
 	buttons[sub_mult_id]->content_rect = buttons[sub_mult_id]->background_rect;
 	buttons[sub_mult_id]->content_txt = textures->double_arrow;
 	menu_functions[sub_mult_id] = f_sub_mult_id;
 
-	set_pos(&buttons[next_x]->background_rect, (window_width - 128) / 2 - 100, 552, 64, 64);
+	set_pos(&buttons[next_x]->background_rect, (window_width - 128) / (high_res ? 1 : 2) - 100 * mult, 552 * mult, 64 * mult, 64 * mult);
 	buttons[next_x]->content_rect = buttons[next_x]->background_rect;
 	buttons[next_x]->content_txt = textures->single_arrow;
 	menu_functions[next_x] = f_next_x;
 
-	set_pos(&buttons[prev_x]->background_rect, (window_width - 128) / 2 - 336, 552, 64, 64);
+	set_pos(&buttons[prev_x]->background_rect, (window_width - 128) / (high_res ? 1 : 2) - 336 * mult, 552 * mult, 64 * mult, 64 * mult);
 	buttons[prev_x]->flip = SDL_FLIP_HORIZONTAL;
 	buttons[prev_x]->content_rect = buttons[prev_x]->background_rect;
 	buttons[prev_x]->content_txt = textures->single_arrow;
 	menu_functions[prev_x] = f_prev_x;
 
-	set_pos(&buttons[next_o]->background_rect, (window_width - 128) / 2 + 400, 552, 64, 64);
+	set_pos(&buttons[next_o]->background_rect, (window_width - 128) / (high_res ? 1 : 2) + 400 * mult, 552 * mult, 64 * mult, 64 * mult);
 	buttons[next_o]->content_rect = buttons[next_o]->background_rect;
 	buttons[next_o]->content_txt = textures->single_arrow;
 	menu_functions[next_o] = f_next_o;
 
-	set_pos(&buttons[prev_o]->background_rect, (window_width - 128) / 2 + 164, 552, 64, 64);
+	set_pos(&buttons[prev_o]->background_rect, (window_width - 128) / (high_res ? 1 : 2) + 164 * mult, 552 * mult, 64 * mult, 64 * mult);
 	buttons[prev_o]->flip = SDL_FLIP_HORIZONTAL;
 	buttons[prev_o]->content_rect = buttons[prev_o]->background_rect;
 	buttons[prev_o]->content_txt = textures->single_arrow;
 	menu_functions[prev_o] = f_prev_o;
 
-	set_pos(&buttons[switch_online]->background_rect, (window_width - 256) / 2, 436, 256, 64);
+	set_pos(&buttons[switch_online]->background_rect, (window_width - 256) / (high_res ? 1 : 2), 436 * mult, 256 * mult, 64 * mult);
 	buttons[switch_online]->content_rect = buttons[switch_online]->background_rect;
 	buttons[switch_online]->content_txt = load_from_text(sdl_data, &buttons[switch_online]->content_rect, "vs BOT");
 	menu_functions[switch_online] = f_switch_online;
@@ -665,24 +702,26 @@ bool init_playfield(Sdl_Data *sdl_data)
 		return 0;
 	}
 
-	set_pos(&playfield->background->background_rect, 100, 100, board_size, board_size);
+	int mult = high_res ? 2 : 1;
+
+	set_pos(&playfield->background->background_rect, 100 * mult, 100 * mult, board_size * mult, board_size * mult);
 	playfield->background->content_rect = playfield->background->background_rect;
 	playfield->background->background_txt = sdl_data->textures->field_background;
 	playfield->background->content_txt = NULL;
 
-	set_pos(&playfield->timer->background_rect, 650, 100, 256, 128);
+	set_pos(&playfield->timer->background_rect, 650 * mult, 100 * mult, 256 * mult, 128 * mult);
 	playfield->timer->content_rect = playfield->timer->background_rect;
 	playfield->timer->background_txt = sdl_data->textures->field_background;
 	playfield->timer->content_txt = NULL;
 
-	set_pos(&playfield->put_sign->background_rect, 650, 286, 256, 128);
+	set_pos(&playfield->put_sign->background_rect, 650 * mult, 286 * mult, 256 * mult, 128 * mult);
 	playfield->put_sign->flip = SDL_FLIP_NONE;
 	playfield->put_sign->background_txt = textures->field_background;
 	playfield->put_sign->content_rect = playfield->put_sign->background_rect;
 	playfield->put_sign->content_txt = load_from_text(sdl_data, &playfield->put_sign->content_rect, "PUT SIGN");
 	sdl_data->put_sign = f_put_sign;
 
-	set_pos(&playfield->forfeit->background_rect, 650, 472, 256, 128);
+	set_pos(&playfield->forfeit->background_rect, 650 * mult, 472 * mult, 256 * mult, 128 * mult);
 	playfield->forfeit->flip = SDL_FLIP_NONE;
 	playfield->forfeit->background_txt = textures->field_background;
 	playfield->forfeit->content_rect = playfield->forfeit->background_rect;
@@ -696,7 +735,7 @@ bool init_playfield(Sdl_Data *sdl_data)
 
 void setup_cells(Sdl_Data *sdl_data)
 {
-	int n_size = board_size / 3, s_size = board_size / 9;
+	int n_size = board_size * (high_res ? 2 : 1) / 3, s_size = board_size * (high_res ? 2 : 1) / 9;
 	int x = sdl_data->playfield->background->background_rect.x;
 	int y = sdl_data->playfield->background->background_rect.y;
 	Cell *cell;
@@ -726,6 +765,7 @@ void highlight(Sdl_Data *sdl_data, SDL_Rect *rect)
     SDL_SetRenderDrawColor(sdl_data->renderer, color->r, color->g, color->b, color->a);
     SDL_RenderFillRect(sdl_data->renderer, rect);
     SDL_SetRenderDrawBlendMode(sdl_data->renderer, blend_mode);
+	SDL_RenderPresent(sdl_data->renderer);
 }
 
 void render_cell(Sdl_Data *sdl_data, Cell *cell, int sign)
@@ -849,7 +889,7 @@ void render_board(Sdl_Data *sdl_data)
 	Playfield *playfield = sdl_data->playfield;
 	SDL_Renderer *renderer = sdl_data->renderer;
 	int side = sdl_data->super_mode ? 9 : 3;
-	int size_bold = board_size / 3, size = board_size / 9, x, y;
+	int size_bold = board_size * (high_res ? 2 : 1) / 3, size = board_size * (high_res ? 2 : 1) / 9, x, y;
 	SDL_Rect *board_rect = &sdl_data->playfield->background->background_rect;
 	Board **board = sdl_data->game->board;
 
@@ -872,6 +912,8 @@ void render_board(Sdl_Data *sdl_data)
 			render_cell(sdl_data, sdl_data->playfield->super_cells[i], board[(i % 9) / 3 + (i / 27) * 3]->value[i % 3][(i % 27) / 9]);
 		}
 
+		SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+
 		for (int i = 1; i < side; i++)
 		{
 			if (i % 3 == 0)
@@ -880,9 +922,8 @@ void render_board(Sdl_Data *sdl_data)
 			}
 			x = board_rect->x;
 			y = board_rect->y;
-			SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-			SDL_RenderDrawLine(sdl_data->renderer, x + size * i, y, x + size * i, y + board_size);
-			SDL_RenderDrawLine(sdl_data->renderer, x, y + size * i, x + board_size, y + size * i);
+			SDL_RenderDrawLine(sdl_data->renderer, x + size * i, y, x + size * i, y + board_size * (high_res ? 2 : 1));
+			SDL_RenderDrawLine(sdl_data->renderer, x, y + size * i, x + board_size * (high_res ? 2 : 1), y + size * i);
 		}
 	}
 
@@ -891,13 +932,14 @@ void render_board(Sdl_Data *sdl_data)
 		render_cell(sdl_data, sdl_data->playfield->normal_cells[i], sdl_data->super_mode ? board[i]->status : board[0]->value[i % 3][i / 3]);
 	}
 
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0x40);
+
 	for (int i = 1; i < 3; i++)
 	{
 		x = board_rect->x;
 		y = board_rect->y;
-		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0x40);
-		SDL_RenderDrawLine(sdl_data->renderer, x + size_bold * i, y, x + size_bold * i, y + board_size);
-		SDL_RenderDrawLine(sdl_data->renderer, x, y + size_bold * i, x + board_size, y + size_bold * i);
+		SDL_RenderDrawLine(sdl_data->renderer, x + size_bold * i, y, x + size_bold * i, y + board_size * (high_res ? 2 : 1));
+		SDL_RenderDrawLine(sdl_data->renderer, x, y + size_bold * i, x + board_size * (high_res ? 2 : 1), y + size_bold * i);
 	}
 }
 
@@ -914,6 +956,7 @@ void render_playfield(Sdl_Data *sdl_data)
 	render_button(renderer, playfield->forfeit, 0);
 
 	render_board(sdl_data);
+	SDL_RenderPresent(renderer);
 }
 
 bool load_media(Sdl_Data *sdl_data)
@@ -980,6 +1023,7 @@ void handle_ingame_event(Sdl_Data *sdl_data, SDL_Event event)
 		{
 			sdl_data->put_sign(sdl_data);
 			highlight(sdl_data, hitbox);
+			SDL_RenderPresent(sdl_data->renderer);
 			return;
 		}
 
@@ -988,6 +1032,7 @@ void handle_ingame_event(Sdl_Data *sdl_data, SDL_Event event)
 		{
 			sdl_data->forfeit(sdl_data);
 			highlight(sdl_data, hitbox);
+			SDL_RenderPresent(sdl_data->renderer);
 			return;
 		}
 
@@ -1000,6 +1045,7 @@ void handle_ingame_event(Sdl_Data *sdl_data, SDL_Event event)
 				{
 					sdl_data->select_cell(sdl_data, x, y);
 					highlight(sdl_data, hitbox);
+					SDL_RenderPresent(sdl_data->renderer);
 					return;
 				}
 			}
@@ -1013,6 +1059,7 @@ void handle_ingame_event(Sdl_Data *sdl_data, SDL_Event event)
 				{
 					sdl_data->select_cell(sdl_data, x, y);
 					highlight(sdl_data, hitbox);
+					SDL_RenderPresent(sdl_data->renderer);
 					return;
 				}
 			}
@@ -1048,6 +1095,7 @@ void frame_events(Sdl_Data *sdl_data, bool *quit)
 	int s_left = seconds_left(sdl_data->game->timer);
 	if(sdl_data->game->status == IN_PROGRESS && sdl_data->in_game && s_left != sdl_data->last_time)
 	{
+		sdl_data->last_time = s_left;
 		if(s_left == 0)
 		{
 			sdl_data->game->status = DRAW;
@@ -1056,7 +1104,14 @@ void frame_events(Sdl_Data *sdl_data, bool *quit)
 		else
 		{
 			char buffer[10];
-			sprintf(buffer, "%d:%2d", s_left / 60, s_left % 60);
+			if(s_left % 60 == 0)
+			{
+				sprintf(buffer, "%d:00", s_left / 60);
+			}
+			else
+			{
+				sprintf(buffer, "%d:%2d", s_left / 60, s_left % 60);
+			}
 			free_txt(&sdl_data->playfield->timer->content_txt);
 			sdl_data->playfield->timer->content_txt = load_from_text(sdl_data, &sdl_data->playfield->timer->content_rect, buffer);
 			render_object(sdl_data->renderer, sdl_data->playfield->timer, 0);

@@ -95,17 +95,7 @@ static const int font_size = 64;
 static const int menu_buttons = 11;
 
 /** @brief Size of the game board. */
-static const int board_size = 500;
-
-/** @} */
-
-/**
- * @defgroup GameBoard Game Board
- * @{
- */
-
-/** @brief Two-dimensional array representing the game board. */
-static int board[9][9];
+static const int board_size = 504;
 
 /** @} */
 
