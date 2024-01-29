@@ -338,21 +338,26 @@ bool init_sdl(Sdl_Data **sdl_data_ptr)
 {
 	*sdl_data_ptr = malloc(sizeof(Sdl_Data));
 	Sdl_Data *sdl_data = *sdl_data_ptr;
-	if (sdl_data == NULL)
+	if(sdl_data == NULL)
 	{
 		fprintf(stderr, "Unable to allocate memory\n");
 		return 0;
 	}
 
-	if (SDL_Init(SDL_INIT_VIDEO) < 0)
+	if(SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		fprintf(stderr, "Unable to initialize SDL: %s\n", SDL_GetError());
 		return 0;
 	}
 
-	if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"))
+	if(!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"))
 	{
 		printf("Warning: Linear texture filtering disabled\n");
+	}
+
+	if(!SDL_SetHint(SDL_HINT_RENDER_VSYNC, "1"))
+	{
+		printf("Warning: Vsync disabled\n");
 	}
 
 	SDL_DisplayMode dm;
