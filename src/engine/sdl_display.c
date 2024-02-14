@@ -19,16 +19,16 @@ void stop_game(Sdl_Data *sdl_data)
 	Object *timer = sdl_data->playfield->timer;
 	char buffer[buffer_size];
 
-	switch(sdl_data->game->status)
+	switch (sdl_data->game->status)
 	{
-		case X_WON:
-			sprintf(buffer, "X WON!");
-			break;
-		case O_WON:
-			sprintf(buffer, "O WON!");
-			break;
-		default:
-			sprintf(buffer, "DRAW!");
+	case X_WON:
+		sprintf(buffer, "X WON!");
+		break;
+	case O_WON:
+		sprintf(buffer, "O WON!");
+		break;
+	default:
+		sprintf(buffer, "DRAW!");
 	}
 
 	free_txt(&timer->content_txt);
@@ -60,10 +60,11 @@ void f_play(Sdl_Data *sdl_data)
 	sdl_data->game->status = IN_PROGRESS;
 	sdl_data->game->moves_count = 0;
 
-	if(sdl_data->super_mode)
+	if (sdl_data->super_mode)
 	{
 		sdl_data->select_board = -1;
-		for (int i = 0; i < 9; i++) {
+		for (int i = 0; i < 9; i++)
+		{
 			sdl_data->game->board[i]->moves_count = 0;
 		}
 	}
@@ -76,7 +77,7 @@ void f_play(Sdl_Data *sdl_data)
 	setup_cells(sdl_data);
 	free_txt(&sdl_data->playfield->timer->content_txt);
 	free_txt(&sdl_data->playfield->forfeit->content_txt);
-	if(sdl_data->game->round_time % 60 == 0)
+	if (sdl_data->game->round_time % 60 == 0)
 	{
 		sprintf(buffer, "%d:00", sdl_data->game->round_time / 60);
 	}
@@ -103,16 +104,16 @@ void f_add_id(Sdl_Data *sdl_data)
 	else
 	{
 		sdl_data->bot_difficulty = (sdl_data->bot_difficulty + 1) % max_diff;
-		switch(sdl_data->bot_difficulty)
+		switch (sdl_data->bot_difficulty)
 		{
-			case 2:
-				sprintf(buffer, "HARD");
-				break;
-			case 1:
-				sprintf(buffer, "MEDIUM");
-				break;
-			default:
-				sprintf(buffer, "EASY");
+		case 2:
+			sprintf(buffer, "HARD");
+			break;
+		case 1:
+			sprintf(buffer, "MEDIUM");
+			break;
+		default:
+			sprintf(buffer, "EASY");
 		}
 	}
 	free_txt(&sdl_data->menu->game_id->content_txt);
@@ -131,16 +132,16 @@ void f_sub_id(Sdl_Data *sdl_data)
 	else
 	{
 		sdl_data->bot_difficulty = (sdl_data->bot_difficulty - 1) % max_diff < 0 ? max_diff - 1 : (sdl_data->bot_difficulty - 1) % max_diff;
-		switch(sdl_data->bot_difficulty)
+		switch (sdl_data->bot_difficulty)
 		{
-			case 2:
-				sprintf(buffer, "HARD");
-				break;
-			case 1:
-				sprintf(buffer, "MEDIUM");
-				break;
-			default:
-				sprintf(buffer, "EASY");
+		case 2:
+			sprintf(buffer, "HARD");
+			break;
+		case 1:
+			sprintf(buffer, "MEDIUM");
+			break;
+		default:
+			sprintf(buffer, "EASY");
 		}
 	}
 	free_txt(&sdl_data->menu->game_id->content_txt);
@@ -206,16 +207,16 @@ void f_switch_online(Sdl_Data *sdl_data)
 	}
 	else
 	{
-		switch(sdl_data->bot_difficulty)
+		switch (sdl_data->bot_difficulty)
 		{
-			case 2:
-				sprintf(buffer, "HARD");
-				break;
-			case 1:
-				sprintf(buffer, "MEDIUM");
-				break;
-			default:
-				sprintf(buffer, "EASY");
+		case 2:
+			sprintf(buffer, "HARD");
+			break;
+		case 1:
+			sprintf(buffer, "MEDIUM");
+			break;
+		default:
+			sprintf(buffer, "EASY");
 		}
 		sdl_data->menu->game_id->content_txt = load_from_text(sdl_data, &sdl_data->menu->game_id->content_rect, buffer);
 		sdl_data->menu->buttons[switch_online]->content_txt = load_from_text(sdl_data, &sdl_data->menu->buttons[switch_online]->content_rect, "vs BOT");
@@ -227,7 +228,7 @@ void f_switch_online(Sdl_Data *sdl_data)
 
 void f_select_cell(Sdl_Data *sdl_data, int x, int y)
 {
-	if(sdl_data->game->status != IN_PROGRESS)
+	if (sdl_data->game->status != IN_PROGRESS)
 	{
 		return;
 	}
@@ -236,12 +237,12 @@ void f_select_cell(Sdl_Data *sdl_data, int x, int y)
 	int select_y = (y - sdl_data->playfield->background->background_rect.y) / (board_size * (high_res ? 2 : 1) / (sdl_data->super_mode ? 9 : 3));
 	int select_board = select_x / 3 + select_y / 3 * 3;
 
-	if(sdl_data->game->board[select_board]->value[select_x % 3][select_y % 3] != EMPTY)
+	if (sdl_data->game->board[select_board]->value[select_x % 3][select_y % 3] != EMPTY)
 	{
 		return;
 	}
 
-	if((sdl_data->select_board == -1 || sdl_data->select_board == select_board) && sdl_data->game->board[select_board]->status == IN_PROGRESS)
+	if ((sdl_data->select_board == -1 || sdl_data->select_board == select_board) && sdl_data->game->board[select_board]->status == IN_PROGRESS)
 	{
 		sdl_data->select_x = select_x;
 		sdl_data->select_y = select_y;
@@ -250,12 +251,12 @@ void f_select_cell(Sdl_Data *sdl_data, int x, int y)
 
 void f_put_sign(Sdl_Data *sdl_data)
 {
-	if(sdl_data->select_x == -1)
+	if (sdl_data->select_x == -1)
 	{
 		return;
 	}
 
-	if(sdl_data->select_board == -1)
+	if (sdl_data->select_board == -1)
 	{
 		sdl_data->select_board = sdl_data->select_x / 3 + sdl_data->select_y / 3 * 3;
 	}
@@ -264,24 +265,24 @@ void f_put_sign(Sdl_Data *sdl_data)
 	sdl_data->select_y %= 3;
 	gameplay(sdl_data);
 
-	if(sdl_data->super_mode)
-	{	
+	if (sdl_data->super_mode)
+	{
 		sdl_data->select_board = sdl_data->select_x + sdl_data->select_y * 3;
-		if(sdl_data->game->board[sdl_data->select_board]->status != IN_PROGRESS)
+		if (sdl_data->game->board[sdl_data->select_board]->status != IN_PROGRESS)
 		{
 			sdl_data->select_board = -1;
 		}
 	}
 
-	if(sdl_data->game->status != IN_PROGRESS)
+	if (sdl_data->game->status != IN_PROGRESS)
 	{
 		stop_game(sdl_data);
 	}
 
-	if(!sdl_data->on_lan)
+	if (!sdl_data->on_lan)
 	{
 		gameplay(sdl_data);
-		if(sdl_data->game->status != IN_PROGRESS)
+		if (sdl_data->game->status != IN_PROGRESS)
 		{
 			stop_game(sdl_data);
 		}
@@ -294,9 +295,9 @@ void f_put_sign(Sdl_Data *sdl_data)
 
 void f_forfeit(Sdl_Data *sdl_data)
 {
-	if(sdl_data->game->status == IN_PROGRESS)
-	{	
-		if(sdl_data->game->turn == X)
+	if (sdl_data->game->status == IN_PROGRESS)
+	{
+		if (sdl_data->game->turn == X)
 		{
 			sdl_data->game->status = O_WON;
 		}
@@ -399,29 +400,29 @@ bool init_sdl(Sdl_Data **sdl_data_ptr)
 {
 	*sdl_data_ptr = malloc(sizeof(Sdl_Data));
 	Sdl_Data *sdl_data = *sdl_data_ptr;
-	if(sdl_data == NULL)
+	if (sdl_data == NULL)
 	{
 		fprintf(stderr, "Unable to allocate memory\n");
 		return 0;
 	}
 
-	if(SDL_Init(SDL_INIT_VIDEO) < 0)
+	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		fprintf(stderr, "Unable to initialize SDL: %s\n", SDL_GetError());
 		return 0;
 	}
 
-	if(!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"))
+	if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"))
 	{
 		printf("Warning: Linear texture filtering disabled\n");
 	}
 
-	if(!SDL_SetHint(SDL_HINT_RENDER_VSYNC, "1"))
+	if (!SDL_SetHint(SDL_HINT_RENDER_VSYNC, "1"))
 	{
 		printf("Warning: Vsync disabled\n");
 	}
 
-	if(!SDL_SetHint(SDL_HINT_VIDEO_DOUBLE_BUFFER, "1"))
+	if (!SDL_SetHint(SDL_HINT_VIDEO_DOUBLE_BUFFER, "1"))
 	{
 		printf("Warning: Double buffering disabled\n");
 	}
@@ -429,7 +430,7 @@ bool init_sdl(Sdl_Data **sdl_data_ptr)
 	SDL_DisplayMode dm;
 	int w, h;
 
-	if(SDL_GetDesktopDisplayMode(0, &dm) != 0)
+	if (SDL_GetDesktopDisplayMode(0, &dm) != 0)
 	{
 		high_res = 0;
 	}
@@ -438,9 +439,12 @@ bool init_sdl(Sdl_Data **sdl_data_ptr)
 		w = dm.w;
 		h = dm.h;
 
-		if(w > window_width * 2 || h > window_height * 2)
+		if (w > window_width * 2 || h > window_height * 2)
 		{
-			high_res = 1;
+
+			// FIXME: Make this work correctly with all screen sizes
+			// high_res = 1;
+			high_res = 0;
 		}
 	}
 
@@ -809,11 +813,11 @@ void highlight(Sdl_Data *sdl_data, SDL_Rect *rect)
 {
 	SDL_BlendMode blend_mode;
 	SDL_Color *color = &sdl_data->pallete->spot_highlight;
-    SDL_GetRenderDrawBlendMode(sdl_data->renderer, &blend_mode);
+	SDL_GetRenderDrawBlendMode(sdl_data->renderer, &blend_mode);
 	SDL_SetRenderDrawBlendMode(sdl_data->renderer, SDL_BLENDMODE_MUL);
-    SDL_SetRenderDrawColor(sdl_data->renderer, color->r, color->g, color->b, color->a);
-    SDL_RenderFillRect(sdl_data->renderer, rect);
-    SDL_SetRenderDrawBlendMode(sdl_data->renderer, blend_mode);
+	SDL_SetRenderDrawColor(sdl_data->renderer, color->r, color->g, color->b, color->a);
+	SDL_RenderFillRect(sdl_data->renderer, rect);
+	SDL_SetRenderDrawBlendMode(sdl_data->renderer, blend_mode);
 	SDL_RenderPresent(sdl_data->renderer);
 }
 
@@ -824,7 +828,7 @@ void render_cell(Sdl_Data *sdl_data, Cell *cell, int sign)
 		return;
 	}
 
-	if(sign == DRAW)
+	if (sign == DRAW)
 	{
 		SDL_Rect rect;
 		SDL_Texture *txt = load_from_text(sdl_data, &rect, "DRAW");
@@ -927,7 +931,7 @@ void render_menu(Sdl_Data *sdl_data)
 
 	for (int i = 0; i < menu_buttons; i++)
 	{
-		if(i == sub_mult_id || i == add_mult_id)
+		if (i == sub_mult_id || i == add_mult_id)
 		{
 			continue;
 		}
@@ -950,7 +954,7 @@ void render_board(Sdl_Data *sdl_data)
 
 	if (sdl_data->super_mode)
 	{
-		if(sdl_data->select_board != -1)
+		if (sdl_data->select_board != -1)
 		{
 			SDL_Rect rect;
 			rect.x = board_rect->x + sdl_data->select_board % 3 * size_bold;
@@ -960,7 +964,7 @@ void render_board(Sdl_Data *sdl_data)
 			highlight(sdl_data, &rect);
 		}
 
-		for(int i = 0; i < max_super_cells; i++)
+		for (int i = 0; i < max_super_cells; i++)
 		{
 			render_cell(sdl_data, sdl_data->playfield->super_cells[i], board[(i % 9) / 3 + (i / 27) * 3]->value[i % 3][(i % 27) / 9]);
 		}
@@ -980,7 +984,7 @@ void render_board(Sdl_Data *sdl_data)
 		}
 	}
 
-	for(int i = 0; i < max_normal_cells; i++)
+	for (int i = 0; i < max_normal_cells; i++)
 	{
 		render_cell(sdl_data, sdl_data->playfield->normal_cells[i], sdl_data->super_mode ? board[i]->status : board[0]->value[i % 3][i / 3]);
 	}
@@ -1042,7 +1046,7 @@ void handle_menu_event(Sdl_Data *sdl_data, SDL_Event event)
 
 		for (int i = 0; i < menu_buttons; i++)
 		{
-			if(i == sub_mult_id || i == add_mult_id)
+			if (i == sub_mult_id || i == add_mult_id)
 			{
 				continue;
 			}
@@ -1050,7 +1054,7 @@ void handle_menu_event(Sdl_Data *sdl_data, SDL_Event event)
 			if (x > hitbox->x && y > hitbox->y && x < hitbox->x + hitbox->w && y < hitbox->y + hitbox->h)
 			{
 				sdl_data->menu_functions[i](sdl_data);
-				if(i != play)
+				if (i != play)
 				{
 					highlight(sdl_data, &menu->buttons[i]->background_rect);
 				}
@@ -1069,7 +1073,7 @@ void handle_ingame_event(Sdl_Data *sdl_data, SDL_Event event)
 {
 	Playfield *playfield = sdl_data->playfield;
 
-	if(event.type == SDL_MOUSEBUTTONDOWN)
+	if (event.type == SDL_MOUSEBUTTONDOWN)
 	{
 		int x, y;
 		SDL_GetMouseState(&x, &y);
@@ -1093,7 +1097,7 @@ void handle_ingame_event(Sdl_Data *sdl_data, SDL_Event event)
 			return;
 		}
 
-		if(sdl_data->super_mode)
+		if (sdl_data->super_mode)
 		{
 			for (int i = 0; i < max_super_cells; i++)
 			{
@@ -1109,7 +1113,7 @@ void handle_ingame_event(Sdl_Data *sdl_data, SDL_Event event)
 		}
 		else
 		{
-			for(int i = 0; i < max_normal_cells; i++)
+			for (int i = 0; i < max_normal_cells; i++)
 			{
 				hitbox = &playfield->normal_cells[i]->rect;
 				if (x > hitbox->x && y > hitbox->y && x < hitbox->x + hitbox->w && y < hitbox->y + hitbox->h)
@@ -1120,9 +1124,9 @@ void handle_ingame_event(Sdl_Data *sdl_data, SDL_Event event)
 					return;
 				}
 			}
-		}	
+		}
 	}
-	else if(event.type == SDL_MOUSEBUTTONUP)
+	else if (event.type == SDL_MOUSEBUTTONUP)
 	{
 		render_playfield(sdl_data);
 	}
@@ -1132,14 +1136,14 @@ void frame_events(Sdl_Data *sdl_data, bool *quit)
 {
 	SDL_Event event;
 
-	while(SDL_PollEvent(&event) != 0)
+	while (SDL_PollEvent(&event) != 0)
 	{
-		if(event.type == SDL_QUIT)
+		if (event.type == SDL_QUIT)
 		{
 			*quit = 1;
 		}
 
-		if(sdl_data->in_game)
+		if (sdl_data->in_game)
 		{
 			handle_ingame_event(sdl_data, event);
 		}
@@ -1150,10 +1154,10 @@ void frame_events(Sdl_Data *sdl_data, bool *quit)
 	}
 
 	int s_left = seconds_left(sdl_data->game->timer);
-	if(sdl_data->game->status == IN_PROGRESS && sdl_data->in_game && s_left != sdl_data->last_time)
+	if (sdl_data->game->status == IN_PROGRESS && sdl_data->in_game && s_left != sdl_data->last_time)
 	{
 		sdl_data->last_time = s_left;
-		if(s_left == 0)
+		if (s_left == 0)
 		{
 			sdl_data->game->status = DRAW;
 			stop_game(sdl_data);
@@ -1161,7 +1165,7 @@ void frame_events(Sdl_Data *sdl_data, bool *quit)
 		else
 		{
 			char buffer[buffer_size];
-			if(s_left % 60 == 0)
+			if (s_left % 60 == 0)
 			{
 				sprintf(buffer, "%d:00", s_left / 60);
 			}
